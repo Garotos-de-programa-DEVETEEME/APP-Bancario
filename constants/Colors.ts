@@ -5,8 +5,26 @@
 
 const tintColor = '#3E75BC';
 
+
+export type colorType = {
+  text:  string,
+    textSecundary:  string,
+    alternativeText:  string,
+    background:  string,
+    backgroundCards:  string,
+    tint: string,
+    icon:  string,
+    alternativeIcon: string,
+    risk: {
+      veryLow:  string,
+      low:  string,
+      medium:  string,
+      high:  string,
+    },
+}
+
 export const Colors = {
-  light: {
+  light:  {
     text: '#2A2A2A',
     textSecundary: '#A5A5A5',
     alternativeText: '#EDEDED',
