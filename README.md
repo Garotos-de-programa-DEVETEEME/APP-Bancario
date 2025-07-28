@@ -39,7 +39,7 @@ src/
   ├── constants/          # Armazena valores fixos e reutilizáveis utilizados em diferentes partes da aplicação, como paleta de cores, que não alteram durante a execução do aplicativo
   ├── hooks/              # Contém funções reutilizáveis baseadas nos React Hooks.
   ├── scripts/            # Contém scripts auxiliares usados durante o desenvolvimento.
-  ├── .gitignore/         # Contém a lista de arquivos que vão ser ignorados em cada Commit no Git do projeto.
+  ├── .gitignore/         # Contém a lista de arquivos que vão ser ignorados em cada Commit no Git do projeto. Usado par armazenar informações confidenciais
   ├── app.json/           # Arquivo de configuração do Expo.
   ├── eslint.config.js    # Define as regras de linting para manter o padrão de código.
   ├── package-lock.json   # Arquivo que garante a instalação exata das versões das dependências. (Não alterar)
