@@ -1,12 +1,27 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+import { unsubscribeFromKeyboardEvents } from "react-native-reanimated/lib/typescript/core";
 
-const tintColor = '#3E75BC';
+const tintColor = '#3E75BC';//cor principal projeto
 
-export const Colors = {
-  light: {
+export type stylesType = {
+  text: string,
+    textSecundary: string,
+    alternativeText: string,
+    background: string,
+    backgroundCards: string,
+    tint: string,
+    icon: string,
+    alternativeIcon: string,
+    risk: {
+      veryLow: string,
+      low: string,
+      medium: string,
+      high: string,
+    },
+    fontFamily: string,
+}
+
+export const Styles = {
+  light:  {
     text: '#2A2A2A',
     textSecundary: '#A5A5A5',
     alternativeText: '#EDEDED',
@@ -21,6 +36,7 @@ export const Colors = {
       medium: '#FF9F46',
       high: '#FF4646',
     },
+    fontFamily:'Roboto_400Regular',
   },
   dark: {
     text: '#FFFFFF',
@@ -37,5 +53,6 @@ export const Colors = {
       medium: '#FF9F46',
       high: '#FF4646',
     },
+    fontFamily:'Roboto_400Regular',
   },
 };
