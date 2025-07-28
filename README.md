@@ -32,7 +32,6 @@ yarn install
 
 ```
 src/
-  ├── .vscode/            # Contém configurações específicas para o Visual Studio Code.
   ├── app/                # Contém as rotas e telas principais do aplicativo, organizadas segundo a convenção de roteamento do Expo Router.
   ├── assets/             # Contém todos os recursos estáticos da aplicação, como imagens, fontes e ícones.
   ├── components/         # Contém componentes visuais e lógicos reutilizáveis.
@@ -40,9 +39,5 @@ src/
   ├── hooks/              # Contém funções reutilizáveis baseadas nos React Hooks.
   ├── scripts/            # Contém scripts auxiliares usados durante o desenvolvimento.
   ├── .gitignore/         # Contém a lista de arquivos que vão ser ignorados em cada Commit no Git do projeto. Usado par armazenar informações confidenciais
-  ├── app.json/           # Arquivo de configuração do Expo.
-  ├── eslint.config.js    # Define as regras de linting para manter o padrão de código.
-  ├── package-lock.json   # Arquivo que garante a instalação exata das versões das dependências. (Não alterar)
-  ├── package.json        # Arquivo que lista as dependências, scripts e metadados do projeto. (Não alterar)
-  └── tsconfig.json       #Arquivo de configuração do TypeScript, define regras de caminhos de importação, suporte a JSX e opções de compilação. (Não alterar)
+  └── app.json/           # Arquivo de configuração do Expo.
 ```
