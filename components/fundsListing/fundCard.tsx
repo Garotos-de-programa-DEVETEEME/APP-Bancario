@@ -1,15 +1,18 @@
 import { stylesType } from "@/constants/Colors";
 import { useTheme } from "@/hooks/useTheme";
 import { fundosType } from "@/constants/Types/fundos";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { RiskIcon } from "./riskIcon";
+import { Expanded } from "./expandedFund";
 
 interface FundsCardProps{
-    fund:fundosType
+    fund:fundosType;
+    onPress: () => void;
+    expanded: boolean;
 }
 
-export const FundsCard = ({fund}: FundsCardProps) => {
-    const formatarMoeda = (valor: number) => {
+export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
+    const coinFormat = (valor: number) => {
         const formatador = new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL',
@@ -19,43 +22,49 @@ export const FundsCard = ({fund}: FundsCardProps) => {
     };
 
     const theme = useTheme();
-    const styles = getStyle(theme);
+    const styles = getStyle(theme, expanded);
 
     return(
         <View style={styles.container}>
-            <View style={styles.textContainer}>
-                <Text style={styles.fundTypeText}>
-                    {fund.type}
-                </Text>
-                <View style={styles.riskContainer}>
-                    <Text style={styles.fundRiskText}>
-                        {`Risco ${fund.risk}:`}
+            <Pressable onPress={onPress}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.fundTypeText}>
+                        {fund.type}
                     </Text>
-                    <RiskIcon risk={fund.risk} />
+                    <View style={styles.riskContainer}>
+                        <Text style={styles.fundRiskText}>
+                            {`Risco ${fund.risk}:`}
+                        </Text>
+                        <RiskIcon risk={fund.risk} />
+                    </View>
                 </View>
-            </View>
-            <View>
-                <Text style={styles.title}>
-                    {fund.name}
-                </Text>
-            </View>
-            <View></View>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>Aplicação incial: </Text>
-                <Text style={styles.text}>
-                    {formatarMoeda(fund.initialApplication)}
-                </Text>
-            </View>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>Rentabilidade dos ultimos 12 meses</Text>
-                <Text style={styles.rentabilityText}>
-                    {`${fund.rentability}%`}
-                </Text>
-            </View>
+                <View>
+                    <Text style={styles.title}>
+                        {fund.name}
+                    </Text>
+                </View>
+                <View></View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>Aplicação incial: </Text>
+                    <Text style={styles.text}>
+                        {coinFormat(fund.initialApplication)}
+                    </Text>
+                </View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>Rentabilidade dos ultimos 12 meses</Text>
+                    <Text style={styles.rentabilityText}>
+                        {`${fund.rentability}%`}
+                    </Text>
+                </View>
+            </Pressable>
+            <Expanded
+                fund={fund}
+                expanded={expanded}
+            />
         </View>
     );
 }
-const getStyle = (theme: stylesType) =>{
+const getStyle = (theme: stylesType, expanded: boolean) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.backgroundCards,
@@ -105,6 +114,6 @@ const getStyle = (theme: stylesType) =>{
             flexDirection:'row',
             alignItems:'center',
             gap:10,
-        }
+        },
     });
 }

@@ -7,6 +7,11 @@ export type fundosType = {
     initialApplication: number,
     rentability: number,
     risk: 'muito baixo' | 'baixo' | 'medio' | 'alto',
+    globalTax: number,
+    limitTimer: number,//alterar para data
+    movimentation:number,
+    daysRescue:number,
+    daysLiquidation:number,
 }
 //excluir daqui para baixo
 export const tempFundos:fundosType[]  = [
@@ -17,6 +22,11 @@ export const tempFundos:fundosType[]  = [
         initialApplication: 1,
         rentability: 102.10,
         risk: 'muito baixo',
+        globalTax: 0.8,
+        limitTimer: 17,//alterar para data
+        movimentation: 1,
+        daysRescue: 30,
+        daysLiquidation: 1,
     },
     {
         id: 2,
@@ -25,6 +35,11 @@ export const tempFundos:fundosType[]  = [
         initialApplication: 5,
         rentability: 2.10,
         risk: 'baixo',
+        globalTax: 0.8,
+        limitTimer: 17,//alterar para data
+        movimentation: 1,
+        daysRescue: 30,
+        daysLiquidation: 1,
     },
     {
         id: 3,
@@ -32,6 +47,11 @@ export const tempFundos:fundosType[]  = [
         name: 'Banestes Invest Money FI Renda Fixa',
         initialApplication: 3000,
         rentability: -8.05,
-        risk: 'alto'
+        risk: 'alto',
+        globalTax: 0.8,
+        limitTimer: 17,//alterar para data
+        movimentation: 1,
+        daysRescue: 30,
+        daysLiquidation: 1,
     },
 ]
