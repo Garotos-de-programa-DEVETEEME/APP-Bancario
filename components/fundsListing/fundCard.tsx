@@ -2,12 +2,13 @@ import { stylesType } from "@/constants/Colors";
 import { useTheme } from "@/hooks/useTheme";
 import { fundosType } from "@/constants/Types/fundos";
 import { StyleSheet, Text, View } from "react-native";
+import { RiskIcon } from "./riskIcon";
 
 interface FundsCardProps{
     fund:fundosType
 }
 
-export const FundsCard:React.FC<FundsCardProps> = ({fund, }) => {
+export const FundsCard = ({fund}: FundsCardProps) => {
     const formatarMoeda = (valor: number) => {
         const formatador = new Intl.NumberFormat('pt-BR', {
             style: 'currency',
@@ -26,9 +27,12 @@ export const FundsCard:React.FC<FundsCardProps> = ({fund, }) => {
                 <Text style={styles.fundTypeText}>
                     {fund.type}
                 </Text>
-                <Text style={styles.fundRiskText}>
-                    {`Risco ${fund.risk}`}
-                </Text>
+                <View style={styles.riskContainer}>
+                    <Text style={styles.fundRiskText}>
+                        {`Risco ${fund.risk}:`}
+                    </Text>
+                    <RiskIcon risk={fund.risk} />
+                </View>
             </View>
             <View>
                 <Text style={styles.title}>
@@ -96,5 +100,11 @@ const getStyle = (theme: stylesType) =>{
             fontSize:17,
             fontFamily:theme.fontFamily,
         },
+        riskContainer:{
+            display:'flex',
+            flexDirection:'row',
+            alignItems:'center',
+            gap:10,
+        }
     });
 }

@@ -1,4 +1,4 @@
-import { FundsCard } from "@/components/fundoCard";
+import { FundsCard } from "@/components/fundsListing/fundCard";
 import { stylesType, Styles } from "@/constants/Colors";
 import { tempFundos } from "@/constants/Types/fundos";
 import { useTheme } from "@/hooks/useTheme";
