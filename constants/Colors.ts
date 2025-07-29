@@ -9,8 +9,8 @@ export type stylesType = {
     background: string,
     backgroundCards: string,
     tint: string,
-    icon: string,
     alternativeIcon: string,
+    border: string,
     risk: {
       veryLow: string,
       low: string,
@@ -28,8 +28,8 @@ export const Styles = {
     background: '#FFFFFF',
     backgroundCards: '#C9C9C9',
     tint: tintColor,
-    icon: '#3E75BC',
     alternativeIcon:'#A5A5A5',
+    border: '#C9C9C9',
     risk: {
       veryLow: '#46FF59',
       low: '#CFFF46',
@@ -45,8 +45,8 @@ export const Styles = {
     background: '#212121',
     backgroundCards: '#2A2A2A',
     tint: tintColor,
-    icon: '#3E75BC',
     alternativeIcon:'#A5A5A5',
+    border: '#3C3C3C',
     risk: {
       veryLow: '#46FF59',
       low: '#CFFF46',

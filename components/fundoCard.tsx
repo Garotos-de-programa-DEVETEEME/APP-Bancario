@@ -1,19 +1,100 @@
-import { stylesType, Styles } from "@/constants/Colors";
+import { stylesType } from "@/constants/Colors";
+import { useTheme } from "@/hooks/useTheme";
 import { fundosType } from "@/constants/Types/fundos";
-import { useColorScheme, View, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 interface FundsCardProps{
     fund:fundosType
 }
 
 export const FundsCard:React.FC<FundsCardProps> = ({fund, }) => {
-    const colorScheme = useColorScheme();
-    const theme:stylesType = colorScheme === 'dark'? Styles.dark:Styles.light;
+    const formatarMoeda = (valor: number) => {
+        const formatador = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        });
+
+        return formatador.format(valor);
+    };
+
+    const theme = useTheme();
+    const styles = getStyle(theme);
+
     return(
-        <View>
-            <Text>
-                {fund.name}
-            </Text>
+        <View style={styles.container}>
+            <View style={styles.textContainer}>
+                <Text style={styles.fundTypeText}>
+                    {fund.type}
+                </Text>
+                <Text style={styles.fundRiskText}>
+                    {`Risco ${fund.risk}`}
+                </Text>
+            </View>
+            <View>
+                <Text style={styles.title}>
+                    {fund.name}
+                </Text>
+            </View>
+            <View></View>
+            <View style={styles.textContainer}>
+                <Text style={styles.text}>Aplicação incial: </Text>
+                <Text style={styles.text}>
+                    {formatarMoeda(fund.initialApplication)}
+                </Text>
+            </View>
+            <View style={styles.textContainer}>
+                <Text style={styles.text}>Rentabilidade dos ultimos 12 meses</Text>
+                <Text style={styles.rentabilityText}>
+                    {`${fund.rentability}%`}
+                </Text>
+            </View>
         </View>
     );
+}
+const getStyle = (theme: stylesType) =>{
+    return StyleSheet.create({
+        container: {
+            backgroundColor: theme.backgroundCards,
+            width:400 ,
+            borderRadius: '15px',
+            borderColor: theme.border,
+            borderWidth:1,
+            boxSizing:'border-box',
+            paddingTop: 4,
+            paddingBottom: 2,
+            paddingRight: 11,
+            paddingLeft: 4,
+            alignSelf:"center"
+        },
+        fundTypeText:{
+            color: theme.tint,
+            fontSize:12,
+            fontFamily:theme.fontFamily,
+        },
+        fundRiskText:{
+            color: theme.alternativeIcon,
+            fontSize:12,
+            fontFamily:theme.fontFamily,
+        },
+        textContainer:{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between'
+        },
+        title:{
+            color:theme.text,
+            fontSize:17,
+            fontFamily:theme.fontFamily,
+        },
+        text:{
+            color:theme.alternativeText,
+            fontSize:13,
+            fontFamily:theme.fontFamily,
+        },
+        rentabilityText:{
+            color: theme.tint,
+            fontSize:17,
+            fontFamily:theme.fontFamily,
+        },
+    });
 }

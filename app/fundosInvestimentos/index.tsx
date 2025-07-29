@@ -1,13 +1,17 @@
 import { FundsCard } from "@/components/fundoCard";
+import { stylesType, Styles } from "@/constants/Colors";
 import { tempFundos } from "@/constants/Types/fundos";
-import { View, Text } from "react-native";
+import { useTheme } from "@/hooks/useTheme";
+import { View, StyleSheet } from "react-native";
 
-export const FundoInvestimento = () => {
+export default function FundoInvestimento() {
 
     const investmentFunds = tempFundos;
+    const theme = useTheme();
+    const styles = getStyles(theme);
 
     return(
-        <View>
+        <View style={styles.container}>
             {investmentFunds.map((fund)=>{
                 return(
                     <>
@@ -17,4 +21,14 @@ export const FundoInvestimento = () => {
             })}
         </View>
     );
+};
+
+const getStyles = (theme: stylesType) =>{
+    return StyleSheet.create({
+        container: {
+            backgroundColor: theme.background,
+            height:'100%',
+            gap:'20px'
+        },
+    });
 };

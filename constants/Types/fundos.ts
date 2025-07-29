@@ -6,9 +6,9 @@ export type fundosType = {
     name: string,
     initialApplication: number,
     rentability: number,
-    risk: 'very low' | 'low' | 'medium' | 'high',
+    risk: 'muito baixo' | 'baixo' | 'medio' | 'alto',
 }
-
+//excluir daqui para baixo
 export const tempFundos:fundosType[]  = [
     {
         id: 1,
@@ -16,22 +16,22 @@ export const tempFundos:fundosType[]  = [
         name: 'Banestes Invest Facil',
         initialApplication: 1,
         rentability: 102.10,
-        risk: 'very low',
+        risk: 'muito baixo',
     },
     {
         id: 2,
         type: 'Fundos Simples',
-        name: 'Banestes Invest Facil',
+        name: 'Banestes Dividendo Fi',
         initialApplication: 5,
         rentability: 2.10,
-        risk: 'low',
+        risk: 'baixo',
     },
     {
         id: 3,
         type: 'Fundos Simples',
-        name: 'Banestes Invest Facil',
-        initialApplication: 30000,
+        name: 'Banestes Invest Money FI Renda Fixa',
+        initialApplication: 3000,
         rentability: -8.05,
-        risk: 'high'
+        risk: 'alto'
     },
 ]
