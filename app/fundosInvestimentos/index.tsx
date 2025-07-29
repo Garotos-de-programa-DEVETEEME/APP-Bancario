@@ -1,9 +1,9 @@
 import { FundsCard } from "@/components/fundsListing/fundCard";
-import { stylesType, Styles } from "@/constants/Colors";
+import { stylesType } from "@/constants/Colors";
 import { tempFundos } from "@/constants/Types/fundos";
 import { useTheme } from "@/hooks/useTheme";
 import { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 
 export default function FundoInvestimento() {
 
@@ -23,6 +23,13 @@ export default function FundoInvestimento() {
 
     return(
         <View style={styles.container}>
+            <View style={{backgroundColor:theme.backgroundCards, width: 400, height:33 ,borderRadius:10, alignSelf:'center', display:'flex', justifyContent:'center',marginTop:24,  }}>
+                <View>
+                    <Image src={require('../../assets/Images/pesquisar.png')} />
+                    <Text style={{color:theme.alternativeIcon}}>Buscar Fundo</Text>
+                </View>
+                <Image/>
+            </View>
             {investmentFunds.map((fund)=>{
                 return(
                     <>
