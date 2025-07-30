@@ -1,10 +1,10 @@
 import EntrarButton from '@/components/EntrarButton';
 import { Styles } from '@/constants/Colors';
 import {
-    ImageBackground,
-    SafeAreaView,
-    StyleSheet,
-    View,
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  View,
 } from 'react-native';
 
 export default function App() {
@@ -20,11 +20,14 @@ export default function App() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.content} />
 
+        <View style={styles.buttonwrapper}>
         <EntrarButton
           title="Cliente"
           theme={theme}
           onPress={() => console.log('Entrar clicado')}
         />
+        </View>
+
       </SafeAreaView>
     </ImageBackground>
   );
@@ -42,5 +45,9 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+  },
+  buttonwrapper: {
+    height: 160,
+    alignItems: 'center'
   },
 });
