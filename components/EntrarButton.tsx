@@ -1,4 +1,4 @@
-import { Styles, stylesType } from '@/constants/Colors';
+import { useTheme } from '@/hooks/useTheme';
 import {
   GestureResponderEvent,
   StyleSheet,
@@ -8,25 +8,24 @@ import {
 } from 'react-native';
 
 type EntrarButtonProps = {
-  theme?: 'light' | 'dark';
   title: string;
   onPress: (event: GestureResponderEvent) => void;
 };
 
 export default function EntrarButton({
-  theme = 'light',
   title,
   onPress,
 }: EntrarButtonProps) {
-  const current: stylesType = Styles[theme];
+
+  const theme = useTheme();
 
   return (
     <View
       style={[
         styles.container,
         {
-          backgroundColor: current.background,
-          shadowColor: current.text,
+          backgroundColor: theme.background,
+          shadowColor: theme.text,
         },
       ]}
     >
@@ -34,13 +33,13 @@ export default function EntrarButton({
         style={[
           styles.text,
           {
-            color: current.text,
-            fontFamily: current.fontFamily,
+            color: theme.text,
+            fontFamily: theme.fontFamily,
           },
         ]}
       >
         Olá,{' '}
-        <Text style={{ fontWeight: 'bold', color: 'current.text' }}>
+        <Text style={{ fontWeight: 'bold', color: 'theme.text' }}>
           {title}
         </Text>
       </Text>
@@ -53,7 +52,7 @@ export default function EntrarButton({
         <View
           style={[
             styles.divider,
-            { backgroundColor: current.alternativeIcon },
+            { backgroundColor: theme.alternativeIcon },
           ]}
         />
 
@@ -62,8 +61,8 @@ export default function EntrarButton({
             style={[
               styles.entrarText,
               {
-                color: current.tint,
-                fontFamily: current.fontFamily,
+                color: theme.tint,
+                fontFamily: theme.fontFamily,
               },
             ]}
           >
