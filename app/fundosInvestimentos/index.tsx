@@ -1,12 +1,12 @@
 import { FundsCard } from "@/components/fundsListing/fundCard";
-import { stylesType, Styles } from "@/constants/Colors";
+import { SearchBar } from "@/components/searchBar";
+import { stylesType } from "@/constants/Colors";
 import { tempFundos } from "@/constants/Types/fundos";
 import { useTheme } from "@/hooks/useTheme";
 import { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, } from "react-native";
 
 export default function FundoInvestimento() {
-
     const investmentFunds = tempFundos;
     const theme = useTheme();
     const styles = getStyles(theme);
@@ -21,8 +21,21 @@ export default function FundoInvestimento() {
         setCurrentExpanded(key);
     }
 
+    const [searchBarValue, setSearchBarValue] = useState('');
+
+    const filterFundosInvestimentos = (text: string) => {
+        setSearchBarValue(text);
+    };
+
     return(
         <View style={styles.container}>
+            <SearchBar
+                placeholder="Buscar fundo"
+                value={searchBarValue}
+                onChangeText={(e) => filterFundosInvestimentos(e)}
+                filter
+            />
+
             {investmentFunds.map((fund)=>{
                 return(
                     <>

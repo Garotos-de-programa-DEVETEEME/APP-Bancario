@@ -22,7 +22,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
     };
 
     const theme = useTheme();
-    const styles = getStyle(theme, expanded);
+    const styles = getStyle(theme);
 
     return(
         <View style={styles.container}>
@@ -32,9 +32,6 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
                         {fund.type}
                     </Text>
                     <View style={styles.riskContainer}>
-                        <Text style={styles.fundRiskText}>
-                            {`Risco ${fund.risk}:`}
-                        </Text>
                         <RiskIcon risk={fund.risk} />
                     </View>
                 </View>
@@ -64,7 +61,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
         </View>
     );
 }
-const getStyle = (theme: stylesType, expanded: boolean) =>{
+const getStyle = (theme: stylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.backgroundCards,
@@ -81,11 +78,6 @@ const getStyle = (theme: stylesType, expanded: boolean) =>{
         },
         fundTypeText:{
             color: theme.tint,
-            fontSize:12,
-            fontFamily:theme.fontFamily,
-        },
-        fundRiskText:{
-            color: theme.alternativeIcon,
             fontSize:12,
             fontFamily:theme.fontFamily,
         },

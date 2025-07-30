@@ -1,5 +1,4 @@
 import EntrarButton from '@/components/EntrarButton';
-import { Styles } from '@/constants/Colors';
 import {
   ImageBackground,
   SafeAreaView,
@@ -8,12 +7,10 @@ import {
 } from 'react-native';
 
 export default function App() {
-  const theme = 'light';
-  const currentStyle = Styles[theme];
 
   return (
     <ImageBackground
-      source={'https://legacy.reactjs.org/logo-og.png'}
+      source={require('https://legacy.reactjs.org/logo-og.png')}
       style={styles.background}
       resizeMode="cover"
     >
@@ -23,7 +20,6 @@ export default function App() {
         <View style={styles.buttonwrapper}>
         <EntrarButton
           title="Cliente"
-          theme={theme}
           onPress={() => console.log('Entrar clicado')}
         />
         </View>
