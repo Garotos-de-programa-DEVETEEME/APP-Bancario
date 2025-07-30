@@ -32,9 +32,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
                         {fund.type}
                     </Text>
                     <View style={styles.riskContainer}>
-                        <Text style={styles.fundRiskText}>
-                            {`Risco ${fund.risk}:`}
-                        </Text>
+                        
                         <RiskIcon risk={fund.risk} />
                     </View>
                 </View>
@@ -81,11 +79,6 @@ const getStyle = (theme: stylesType, expanded: boolean) =>{
         },
         fundTypeText:{
             color: theme.tint,
-            fontSize:12,
-            fontFamily:theme.fontFamily,
-        },
-        fundRiskText:{
-            color: theme.alternativeIcon,
             fontSize:12,
             fontFamily:theme.fontFamily,
         },

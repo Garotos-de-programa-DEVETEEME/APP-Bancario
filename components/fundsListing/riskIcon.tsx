@@ -10,12 +10,17 @@ export const RiskIcon = ({risk}: riskIconProps) =>{
     const theme = useTheme();
     const styles = getStyles(theme, risk);
     return(
-        <View style={styles.container}>
-            <Text style={styles.firstIcon}></Text>
-            <Text style={styles.secondIcon}></Text>
-            <Text style={styles.thirdIcon}></Text>
-            <Text style={styles.fourthIcon}></Text>
-        </View>
+        <>
+            <Text style={styles.fundRiskText}>
+                {`Risco ${risk === 'muito baixo'? 'Muito baixo': risk === 'baixo'? 'Baixo': risk === 'medio'? 'Médio': 'Alto'}:`}
+            </Text>
+            <View style={styles.container}>
+                <Text style={styles.firstIcon}></Text>
+                <Text style={styles.secondIcon}></Text>
+                <Text style={styles.thirdIcon}></Text>
+                <Text style={styles.fourthIcon}></Text>
+            </View>
+        </>
     );
 };
 
@@ -27,6 +32,11 @@ const getStyles = (theme: stylesType, risk: string) =>{
             display:'flex',
             flexDirection:'row',
             gap: 1,
+        },
+        fundRiskText:{
+            color: theme.alternativeIcon,
+            fontSize:12,
+            fontFamily:theme.fontFamily,
         },
         firstIcon:{
             backgroundColor: risk === 'muito baixo'? theme.risk.veryLow: risk === 'baixo'? theme.risk.low: risk === 'medio'? theme.risk.medium: theme.risk.high,
