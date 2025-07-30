@@ -1,10 +1,14 @@
-import { Text } from 'react-native';  
+import { Styles, stylesType } from '@/constants/Colors';
+import { Text, useColorScheme, } from 'react-native';
+
 
 export default function NotFoundScreen() {
+  const colorScheme = useColorScheme();
+  const theme:stylesType = colorScheme === 'dark'? Styles.dark:Styles.light;
   return (
     <>
-      <Text>Page not found</Text>
-      <Text>Sorry, the page you are looking for does not exist.</Text>
+      <Text style={{color: theme.text}}>Page not found</Text>
+      <Text style={{color: theme.text}}>Sorry, the page you are looking for does not exist.</Text>
     </>
   );
 }
