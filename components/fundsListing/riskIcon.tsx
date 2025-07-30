@@ -12,7 +12,7 @@ export const RiskIcon = ({risk}: riskIconProps) =>{
     return(
         <>
             <Text style={styles.fundRiskText}>
-                {`Risco ${risk === 'muito baixo'? 'Muito baixo': risk === 'baixo'? 'Baixo': risk === 'medio'? 'Médio': 'Alto'}:`}
+                {`Risco ${risk === 'muito baixo'? 'Muito Baixo': risk === 'baixo'? 'Baixo': risk === 'medio'? 'Médio': 'Alto'}:`}
             </Text>
             <View style={styles.container}>
                 <Text style={styles.firstIcon}></Text>

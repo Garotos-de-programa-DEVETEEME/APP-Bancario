@@ -1,5 +1,3 @@
-import { unsubscribeFromKeyboardEvents } from "react-native-reanimated/lib/typescript/core";
-
 const tintColor = '#3E75BC';//cor principal projeto
 
 export type stylesType = {
