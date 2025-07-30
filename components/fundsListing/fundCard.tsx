@@ -32,7 +32,6 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
                         {fund.type}
                     </Text>
                     <View style={styles.riskContainer}>
-                        
                         <RiskIcon risk={fund.risk} />
                     </View>
                 </View>
