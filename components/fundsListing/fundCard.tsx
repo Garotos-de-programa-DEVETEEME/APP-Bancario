@@ -22,7 +22,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
     };
 
     const theme = useTheme();
-    const styles = getStyle(theme, expanded);
+    const styles = getStyle(theme);
 
     return(
         <View style={styles.container}>
@@ -62,7 +62,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
         </View>
     );
 }
-const getStyle = (theme: stylesType, expanded: boolean) =>{
+const getStyle = (theme: stylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.backgroundCards,
