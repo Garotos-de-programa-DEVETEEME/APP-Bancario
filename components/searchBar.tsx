@@ -20,7 +20,7 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
     return(
         <View style={styles.container}>
             <View style={styles.searchICons} >
-                <Search style={styles.searchIcon}/>
+                {/*  <Search style={styles.searchIcon}/>*/}
                 <TextInput 
                     style={styles.searchTextInput}
                     placeholder={placeholder}
@@ -28,7 +28,7 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
                     onChangeText={onChangeText}
                 />
             </View>
-            <ListFilter style={styles.filterIcon}/>
+            {/*<ListFilter style={styles.filterIcon}/>*/}
         </View>
     );
 };
