@@ -1,6 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
 import {
-  GestureResponderEvent,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -9,7 +8,7 @@ import {
 
 type EntrarButtonProps = {
   title: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress: () => void;
 };
 
 export default function EntrarButton({

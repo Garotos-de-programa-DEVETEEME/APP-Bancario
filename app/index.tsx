@@ -1,4 +1,5 @@
 import EntrarButton from '@/components/EntrarButton';
+import { router } from 'expo-router';
 import {
   ImageBackground,
   SafeAreaView,
@@ -10,7 +11,7 @@ export default function App() {
 
   return (
     <ImageBackground
-      source={require('https://legacy.reactjs.org/logo-og.png')}
+      source={'https://legacy.reactjs.org/logo-og.png'}
       style={styles.background}
       resizeMode="cover"
     >
@@ -20,7 +21,7 @@ export default function App() {
         <View style={styles.buttonwrapper}>
         <EntrarButton
           title="Cliente"
-          onPress={() => console.log('Entrar clicado')}
+          onPress={() => router.push('./fundosInvestimentos')}
         />
         </View>
 
