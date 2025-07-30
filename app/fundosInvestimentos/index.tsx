@@ -7,7 +7,6 @@ import { useState } from "react";
 import { View, StyleSheet, } from "react-native";
 
 export default function FundoInvestimento() {
-
     const investmentFunds = tempFundos;
     const theme = useTheme();
     const styles = getStyles(theme);
@@ -34,7 +33,7 @@ export default function FundoInvestimento() {
                 placeholder="Buscar fundo"
                 value={searchBarValue}
                 onChangeText={(e) => filterFundosInvestimentos(e)}
-                filter={true}   
+                filter
             />
 
             {investmentFunds.map((fund)=>{
