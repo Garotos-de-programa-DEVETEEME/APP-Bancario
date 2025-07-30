@@ -105,31 +105,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 });
-
-/* const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 3,
-    maxWidth: 500,
-    margin: 50,
-  },
-  text: {
-    fontSize: 16,
-  },
-  entrarText: {
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  divider: {
-    width: 1,
-    height: 20,
-    marginHorizontal: 12,
-  },
-}); */

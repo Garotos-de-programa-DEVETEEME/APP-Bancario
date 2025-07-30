@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 export default function App() {
-  const theme = 'light'; // ou useColorScheme() para detectar dinamicamente
+  const theme = 'light';
   const currentStyle = Styles[theme];
 
   return (
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 40, // espaço entre botão e fundo da tela
+    paddingBottom: 40,
   },
   content: {
     flex: 1,
