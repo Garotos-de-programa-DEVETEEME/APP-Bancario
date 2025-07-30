@@ -57,7 +57,7 @@ const getStyles = (theme: stylesType) =>{
         container: {
             backgroundColor: theme.background,
             height:'100%',
-            gap:'20px'
+            gap:20
         },
     });
 };

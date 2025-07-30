@@ -38,7 +38,7 @@ const getStyles = (theme: stylesType, filter:boolean) => {
         container: {
             backgroundColor:theme.backgroundCards,
             width: 400,
-            height:33,
+            height:38,
             borderRadius:10,
             alignSelf:'center',
             display:'flex',
@@ -58,7 +58,6 @@ const getStyles = (theme: stylesType, filter:boolean) => {
         },
         searchTextInput:{
             color: theme.alternativeIcon,
-            borderWidth:0,
         },
         filterIcon:{
             color: theme.alternativeIcon,

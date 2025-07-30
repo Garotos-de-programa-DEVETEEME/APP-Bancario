@@ -65,8 +65,8 @@ const getStyle = (theme: stylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.backgroundCards,
-            width:400 ,
-            borderRadius: '15px',
+            width:380 ,
+            borderRadius: 15,
             borderColor: theme.border,
             borderWidth:1,
             boxSizing:'border-box',
