@@ -1,5 +1,5 @@
-import { stylesType } from "@/src/constants/Colors";
 import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
 import { StyleSheet, TextInput, View } from "react-native";
 
 

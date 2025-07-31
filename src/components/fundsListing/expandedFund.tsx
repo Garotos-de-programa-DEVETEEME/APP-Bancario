@@ -1,6 +1,6 @@
 import { fundosType } from "@/src/@Types/fundos";
-import { stylesType } from "@/src/constants/Colors";
 import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
 import { coinFormat } from "@/src/utils/coinFormat";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 

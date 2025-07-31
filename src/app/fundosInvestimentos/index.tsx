@@ -1,8 +1,8 @@
 import { tempFundos } from "@/src/@Types/fundos";
 import { FundsCard } from "@/src/components/fundsListing/fundCard";
 import { SearchBar } from "@/src/components/searchBar";
-import { stylesType } from "@/src/constants/Colors";
 import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
 import { useState } from "react";
 import { StyleSheet, View, } from "react-native";
 
