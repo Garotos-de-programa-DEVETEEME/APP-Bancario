@@ -1,6 +1,6 @@
-import { stylesType } from "@/constants/Colors";
-import { useTheme } from "@/hooks/useTheme";
-import { Text, StyleSheet, View } from "react-native";
+import { stylesType } from "@/src/constants/Colors";
+import { useTheme } from "@/src/hooks/useTheme";
+import { StyleSheet, Text, View } from "react-native";
 
 interface riskIconProps{
     risk: 'muito baixo' | 'baixo' | 'medio' | 'alto';

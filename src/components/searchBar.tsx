@@ -1,7 +1,6 @@
-import { stylesType } from "@/constants/Colors";
-import { useTheme } from "@/hooks/useTheme";
-import { View, TextInput, StyleSheet } from "react-native"
-import { ListFilter, Search } from 'lucide-react';
+import { stylesType } from "@/src/constants/Colors";
+import { useTheme } from "@/src/hooks/useTheme";
+import { StyleSheet, TextInput, View } from "react-native";
 
 
 interface SearchBarProps {

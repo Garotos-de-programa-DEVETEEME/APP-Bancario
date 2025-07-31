@@ -1,10 +1,10 @@
-import EntrarButton from '@/components/EntrarButton';
+import EntrarButton from '@/src/components/EntrarButton';
 import { router } from 'expo-router';
 import {
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  View,
+    ImageBackground,
+    SafeAreaView,
+    StyleSheet,
+    View,
 } from 'react-native';
 
 export default function App() {
