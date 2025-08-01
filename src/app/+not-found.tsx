@@ -1,4 +1,4 @@
-import { Styles, stylesType } from '@/constants/Colors';
+import { Styles, stylesType } from '@/src/themes/Colors';
 import { Text, useColorScheme, } from 'react-native';
 
 

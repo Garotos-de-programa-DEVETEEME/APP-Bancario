@@ -1,5 +1,5 @@
 import { useColorScheme } from "react-native";
-import { Styles, stylesType } from "../constants/Colors";
+import { Styles, stylesType } from "../themes/Colors";
 
 export const useTheme = ()=>{
     const colorScheme = useColorScheme();

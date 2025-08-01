@@ -1,10 +1,10 @@
-import { FundsCard } from "@/components/fundsListing/fundCard";
-import { SearchBar } from "@/components/searchBar";
-import { stylesType } from "@/constants/Colors";
-import { tempFundos } from "@/constants/Types/fundos";
-import { useTheme } from "@/hooks/useTheme";
+import { tempFundos } from "@/src/@Types/fundos";
+import { FundsCard } from "@/src/components/fundsListing/fundCard";
+import { SearchBar } from "@/src/components/searchBar";
+import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
 import { useState } from "react";
-import { View, StyleSheet, } from "react-native";
+import { StyleSheet, View, } from "react-native";
 
 export default function FundoInvestimento() {
     const investmentFunds = tempFundos;
