@@ -22,17 +22,13 @@ export default function FundoInvestimento() {
     }
 
     const [searchBarValue, setSearchBarValue] = useState('');
-
-    const filterFundosInvestimentos = (text: string) => {
-        setSearchBarValue(text);
-    };
-
+    
     return(
         <View style={styles.container}>
             <SearchBar
                 placeholder="Buscar fundo"
                 value={searchBarValue}
-                onChangeText={(e) => filterFundosInvestimentos(e)}
+                onChangeText={(e) => setSearchBarValue(e)}
                 filter
             />
 
