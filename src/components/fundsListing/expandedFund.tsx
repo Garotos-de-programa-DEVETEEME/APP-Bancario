@@ -58,7 +58,7 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
             flexDirection:'column',
         },
         moreInfoButton:{
-            backgroundColor: theme.text,
+            backgroundColor: theme.backgroundCards,
             borderRadius: 10,
             height: 29,
             width: 180,
@@ -66,6 +66,8 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
             alignItems:'center',
             marginTop: 16,
             marginBottom: 8,
+            borderColor: theme.tint,
+            borderWidth: 1,
         },
         moreInfoButtonText:{
             color: theme.tint,
@@ -84,7 +86,7 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
             marginBottom: 8,
         },
         investirButtonText:{
-            color: theme.text,
+            color: theme.whiteText,
             fontFamily: theme.fontFamily,
             fontSize: 15,
             fontWeight:'500',

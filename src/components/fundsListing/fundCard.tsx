@@ -33,7 +33,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
                         {fund.name}
                     </Text>
                 </View>
-                <View></View>
+                <View style={{display:expanded? 'flex':'none', borderTopColor:theme.border, borderTopWidth:1 }}></View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Aplicação incial: </Text>
                     <Text style={styles.text}>
@@ -46,11 +46,11 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
                         {`${fund.rentability}%`}
                     </Text>
                 </View>
+                <Expanded
+                    fund={fund}
+                    expanded={expanded}
+                />
             </Pressable>
-            <Expanded
-                fund={fund}
-                expanded={expanded}
-            />
         </View>
     );
 }
