@@ -1,9 +1,10 @@
-import { stylesType } from "@/constants/Colors";
-import { useTheme } from "@/hooks/useTheme";
-import { fundosType } from "@/constants/Types/fundos";
+import { fundosType } from "@/src/@Types/fundos";
+import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
+import { coinFormat } from "@/src/utils/coinFormat";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { RiskIcon } from "./riskIcon";
 import { Expanded } from "./expandedFund";
+import { RiskIcon } from "./riskIcon";
 
 interface FundsCardProps{
     fund:fundosType;
@@ -12,14 +13,6 @@ interface FundsCardProps{
 }
 
 export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
-    const coinFormat = (valor: number) => {
-        const formatador = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-        });
-
-        return formatador.format(valor);
-    };
 
     const theme = useTheme();
     const styles = getStyle(theme);

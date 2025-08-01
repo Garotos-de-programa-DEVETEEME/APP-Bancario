@@ -1,7 +1,8 @@
-import { stylesType } from "@/constants/Colors";
-import { fundosType } from "@/constants/Types/fundos";
-import { useTheme } from "@/hooks/useTheme";
-import { Text, View, Pressable,StyleSheet } from "react-native";
+import { fundosType } from "@/src/@Types/fundos";
+import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
+import { coinFormat } from "@/src/utils/coinFormat";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface expandedProps{
     fund: fundosType;
@@ -11,15 +12,6 @@ interface expandedProps{
 export const Expanded = ({fund, expanded}:expandedProps) =>{
     const theme = useTheme();
     const styles = getStyles(theme, expanded);
-
-    const coinFormat = (valor: number) => {
-        const formatador = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-        });
-
-        return formatador.format(valor);
-    };
 
     return (
         <View style={styles.expandedContentContainer}>
