@@ -1,4 +1,4 @@
-import { fundosType } from "@/src/@Types/fundos";
+import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import { coinFormat } from "@/src/utils/coinFormat";
@@ -7,7 +7,7 @@ import { Expanded } from "./expandedFund";
 import { RiskIcon } from "./riskIcon";
 
 interface FundsCardProps{
-    fund:fundosType;
+    fund:fundsType;
     onPress: () => void;
     expanded: boolean;
 }
@@ -22,28 +22,28 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
             <Pressable onPress={onPress}>
                 <View style={styles.textContainer}>
                     <Text style={styles.fundTypeText}>
-                        {fund.type}
+                        {/*fund.type*/}
                     </Text>
                     <View style={styles.riskContainer}>
-                        <RiskIcon risk={fund.risk} />
+                        <RiskIcon risk={'alto'/*fund.risk*/} />
                     </View>
                 </View>
                 <View>
                     <Text style={styles.title}>
-                        {fund.name}
+                        {fund.nome}
                     </Text>
                 </View>
                 <View style={{display:expanded? 'flex':'none', borderTopColor:theme.border, borderTopWidth:1 }}></View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Aplicação incial: </Text>
                     <Text style={styles.text}>
-                        {coinFormat(fund.initialApplication)}
+                        {coinFormat(fund.valorAplicacaoInicial)}
                     </Text>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Rentabilidade dos ultimos 12 meses</Text>
                     <Text style={styles.rentabilityText}>
-                        {`${fund.rentability}%`}
+                        {`${fund.taxaRentabilidade}%`}{/* consultar se este valor esta em porcentagem */}
                     </Text>
                 </View>
                 <Expanded
