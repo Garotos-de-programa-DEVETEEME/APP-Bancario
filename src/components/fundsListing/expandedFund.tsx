@@ -1,11 +1,12 @@
-import { fundosType } from "@/src/@Types/fundos";
+import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import { coinFormat } from "@/src/utils/coinFormat";
+import { converterNumeroParaHora } from "@/src/utils/hourFormat";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface expandedProps{
-    fund: fundosType;
+    fund: fundsType;
     expanded:boolean
 }
 
@@ -17,23 +18,23 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
         <View style={styles.expandedContentContainer}>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Taxa global: </Text>
-                    <Text style={styles.text}> {`${fund.globalTax}% a.a.`} </Text>
+                    <Text style={styles.text}> {`${fund.taxaAdministracao}% a.a.`} </Text>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Hora limite de aplicação: </Text>
-                    <Text style={styles.text}> {`${fund.limitTimer}:00`/* alterar para data*/} </Text>
+                    <Text style={styles.text}> {`${converterNumeroParaHora(fund.horaLimite)}`}</Text>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Movimentação (aplic/resg): </Text>
-                    <Text style={styles.text}> {`${coinFormat(fund.movimentation)}`} </Text>
+                    <Text style={styles.text}>  {'R$ 1,00'/*`${coinFormat(fund.movimentation)}`*/}</Text>{/*adicionar movimentação */}
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Cotização de resgate: </Text>
-                    <Text style={styles.text}> {`D+${fund.daysRescue} (Dias Corridos)`} </Text>
+                    <Text style={styles.text}> {`D+30 (Dias Corridos)`} </Text>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>Cotização de resgate: </Text>
-                    <Text style={styles.text}> {`D+${fund.daysLiquidation} (Dias Úteis)`} </Text>
+                    <Text style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </Text>
                 </View>
                 <View style={styles.textContainer}>
                     <Pressable style={styles.moreInfoButton}>
@@ -58,7 +59,7 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
             flexDirection:'column',
         },
         moreInfoButton:{
-            backgroundColor: theme.text,
+            backgroundColor: theme.backgroundCards,
             borderRadius: 10,
             height: 29,
             width: 180,
@@ -66,6 +67,8 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
             alignItems:'center',
             marginTop: 16,
             marginBottom: 8,
+            borderColor: theme.tint,
+            borderWidth: 1,
         },
         moreInfoButtonText:{
             color: theme.tint,
@@ -84,7 +87,7 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
             marginBottom: 8,
         },
         investirButtonText:{
-            color: theme.text,
+            color: theme.whiteText,
             fontFamily: theme.fontFamily,
             fontSize: 15,
             fontWeight:'500',
