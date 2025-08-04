@@ -1,10 +1,10 @@
 import EntrarButton from '@/src/components/EntrarButton';
 import { router } from 'expo-router';
 import {
-    ImageBackground,
-    SafeAreaView,
-    StyleSheet,
-    View,
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  View,
 } from 'react-native';
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
         <View style={styles.buttonwrapper}>
         <EntrarButton
           title="Cliente"
-          onPress={() => router.push('./fundosInvestimentos')}
+          onPress={() => router.push('./telaInicial')}
         />
         </View>
 
