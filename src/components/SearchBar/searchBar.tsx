@@ -1,7 +1,10 @@
+import { FilterType } from "@/src/@Types/Filter";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
+import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import Octicons from 'react-native-vector-icons/Octicons';
+import { Filter } from "./filter";
 
 
 interface SearchBarProps {
@@ -11,29 +14,28 @@ interface SearchBarProps {
     filter?: boolean;
 }
 
-
 export const SearchBar = ({placeholder, value, onChangeText, filter= false}: SearchBarProps) => {
 
     const theme = useTheme();
     const styles = getStyles(theme, filter);
-    
+    const [filters, setFilters] = useState<FilterType[]>([]);
+
     return(
         <View style={styles.container}>
             <View style={styles.searchContainer} >
                 <Octicons name="search" style={styles.searchIcon} size={24} />
-                <TextInput 
+                <TextInput
                     style={styles.searchTextInput}
                     placeholder={placeholder}
                     placeholderTextColor={theme.alternativeIcon}
-                    value={value}
+                    value={filters[0]?.value}
                     onChangeText={onChangeText}
                 />
             </View>
-            <Octicons 
-                name="filter" 
-                style={styles.filterIcon}
-                size={24}
-                onPress={() => console.log('Filter pressed')}
+            <Filter
+                page={'../../app/fundosInvestimentos/filter'}
+                filters={filters}
+                function={setFiltersimage.png}
             />
         </View>
     );
@@ -63,13 +65,7 @@ const getStyles = (theme: stylesType, filter:boolean) => {
             gap: 4,
         },
         searchTextInput:{
-            color: theme.alternativeIcon, 
-        },
-        filterIcon:{
             color: theme.alternativeIcon,
-            alignSelf:'center',
-            marginRight:18,
-            display: filter? 'flex': 'none',
         },
         searchIcon:{
             color: theme.alternativeIcon,

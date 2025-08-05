@@ -13,6 +13,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" options={{ title: 'Home Page' }} />
         <Stack.Screen name="fundosInvestimentos/index" options={{ title: 'Fundos Investimentos' }} />
+        <Stack.Screen name="fundosInvestimentos/filter/index" options={{ title: 'Filtros' }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
