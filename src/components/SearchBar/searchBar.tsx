@@ -1,10 +1,9 @@
-import { FilterType } from "@/src/@Types/Filter";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
-import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import Octicons from 'react-native-vector-icons/Octicons';
-import { Filter } from "./filter";
+import { router } from "expo-router";
+import { useFilters } from "@/src/Context/filterContext";
 
 
 interface SearchBarProps {
@@ -18,7 +17,7 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
 
     const theme = useTheme();
     const styles = getStyles(theme, filter);
-    const [filters, setFilters] = useState<FilterType[]>([]);
+    const {filters, setFilters} = useFilters();
 
     return(
         <View style={styles.container}>
@@ -32,11 +31,15 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
                     onChangeText={onChangeText}
                 />
             </View>
-            <Filter
-                page={'../../app/fundosInvestimentos/filter'}
-                filters={filters}
-                function={setFiltersimage.png}
+            <Octicons
+                name="filter"
+                style={styles.filterIcon}
+                size={24}
+                onPress={() => router.push('/fundosInvestimentos/filter')}
             />
+            {/* <Filter
+                page={'../../app/fundosInvestimentos/filter'}
+            /> */}
         </View>
     );
 };
@@ -69,6 +72,11 @@ const getStyles = (theme: stylesType, filter:boolean) => {
         },
         searchIcon:{
             color: theme.alternativeIcon,
-        }
+        },
+        filterIcon:{
+            color: theme.alternativeIcon,
+            alignSelf:'center',
+            marginRight:18,
+        },
     })
 }

@@ -4,19 +4,22 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/src/hooks/useColorScheme';
+import { FiltersProvider } from '../Context/filterContext';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
+    <FiltersProvider>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ title: 'Home Page' }} />
-        <Stack.Screen name="fundosInvestimentos/index" options={{ title: 'Fundos Investimentos' }} />
-        <Stack.Screen name="fundosInvestimentos/filter/index" options={{ title: 'Filtros' }} />
+            <Stack.Screen name="fundosInvestimentos/index" options={{ title: 'Fundos Investimentos' }} />
+            <Stack.Screen name="fundosInvestimentos/filter/index" options={{ title: 'Filtros' }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
+    </FiltersProvider>
   );
 }

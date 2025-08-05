@@ -1,0 +1,69 @@
+import { FilterType } from "@/src/@Types/Filter";
+import { useTheme } from "@/src/hooks/useTheme";
+import { stylesType } from "@/src/themes/Colors";
+import { Pressable, StyleSheet, Text } from "react-native";
+
+interface filterOptionProps{
+    info: FilterType;
+    isSelected: boolean;
+    onSelect: (option: number) => void;
+    height?: number;
+    width?: number;
+}
+
+
+export const FilterOption = ({ info, isSelected, onSelect, height, width }: filterOptionProps) => {
+    const theme = useTheme();
+    const style = styles(theme, info.riskColor, height, width);
+
+    return (
+        <Pressable
+            onPress={() => onSelect(info.id)}
+            style={isSelected? style.filteoptrOptionContainerSelected:style.filterOptionContainer}
+        >
+            { info?.riskColor &&  (<Text style={style.placeholderRiskIcon}></Text>)}{/* adiciona a bola de risco caso vc defina uma cor */}
+            <Text style={style.placeholderText}>
+                {info.placeholder}
+            </Text>
+        </Pressable>
+    );
+}
+
+const styles = (theme:stylesType, colorIcon?:string, height?:number, width?:number) =>{
+    return StyleSheet.create({
+        filterOptionContainer:{
+            backgroundColor: theme.backgroundCards,
+            color:theme.text,
+            width: width? width: 120,
+            height: height? height: 32,
+            borderRadius:10,
+            alignItems:'center',
+            justifyContent:'center',
+            display:'flex',
+            flexDirection:'row',
+            gap: 1
+        },
+        filteoptrOptionContainerSelected:{
+            backgroundColor: colorIcon? colorIcon:theme.tint,
+            color:theme.text,
+            width: width? width: 120,
+            height: height? height: 32,
+            borderRadius:10,
+            alignItems:'center',
+            justifyContent:'center',
+            display:'flex',
+            flexDirection:'row',
+            gap: 2
+        },
+        placeholderText:{
+            color: theme.text,
+            fontSize: 14,
+        },
+        placeholderRiskIcon:{
+            width:10,
+            height:10,
+            borderRadius:10/2,
+            backgroundColor: colorIcon,
+        }
+    })
+}
