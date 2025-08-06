@@ -7,21 +7,22 @@ interface filterOptionProps{
     info: FilterType;
     isSelected: boolean;
     onSelect: (option: number) => void;
+    type?:'default' | 'risk' | 'searchBar';
     height?: number;
     width?: number;
 }
 
 
-export const FilterOption = ({ info, isSelected, onSelect, height, width }: filterOptionProps) => {
+export const FilterOption = ({ info, isSelected, onSelect, height, width, type = 'default' }: filterOptionProps) => {
     const theme = useTheme();
-    const style = styles(theme, info.riskColor, height, width);
+    const style = styles(theme, info.color, height, width);
 
     return (
         <Pressable
             onPress={() => onSelect(info.id)}
             style={isSelected? style.filteoptrOptionContainerSelected:style.filterOptionContainer}
         >
-            { info?.riskColor &&  (<Text style={style.placeholderRiskIcon}></Text>)}{/* adiciona a bola de risco caso vc defina uma cor */}
+            {type === 'risk' &&  (<Text style={style.placeholderRiskIcon}></Text>)}{/* adiciona a bola de risco caso vc defina uma cor */}
             <Text style={style.placeholderText}>
                 {info.placeholder}
             </Text>
