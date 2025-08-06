@@ -1,4 +1,5 @@
 import { FilterType } from "@/src/@Types/Filter";
+import { NavigationButton } from "@/src/components/Buttons/navigationButton";
 import { FilterOption } from "@/src/components/SearchBar/filterOption";
 import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -61,7 +62,7 @@ export default function FilterFundsPage() {
             riskColor: theme.risk.high
         },
     ]
-    
+
     const updateRiskFilter = (id: number) => {
         if(id === selectedRiskFilter){ // Verifica se o filtro de risco selecionado é diferente do atual
             setSelectedRiskFilter(-1); // Se o filtro de risco selecionado for o mesmo, desmarca
@@ -94,9 +95,9 @@ export default function FilterFundsPage() {
                     {valueFilters.map((e)=>
                         <FilterOption
                             key={e.id}
-                            info={e} 
-                            isSelected={selectedValueFilter === e.id} 
-                            onSelect={(e) => updateValueFilter(e)}                 
+                            info={e}
+                            isSelected={selectedValueFilter === e.id}
+                            onSelect={(e) => updateValueFilter(e)}
                         />
                     )}
                 </View>
@@ -107,22 +108,16 @@ export default function FilterFundsPage() {
                     {riskFilters.map((e)=>
                         <FilterOption
                             key={e.id}
-                            info={e} 
-                            isSelected={selectedRiskFilter === e.id} 
+                            info={e}
+                            isSelected={selectedRiskFilter === e.id}
                             onSelect={(e) => updateRiskFilter(e)}
-                            height={22} 
-                            width={94}          
+                            height={22}
+                            width={94}
                         />
                     )}
                 </View>
             </View>
-            <Pressable
-                onPress={() => updateFilters()}
-            >
-                <Text style={{color:'#FFFF'}}>
-                    Filtrar
-                </Text>
-            </Pressable>
+            <NavigationButton route={()=> updateFilters()} text={"fundos de investimento"} icon card iconName="wallet" IconHeigth={24}/>
         </View>
     )
 };
