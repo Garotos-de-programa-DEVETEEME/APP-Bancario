@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface navigationButtonProps{
-    route: () => void;// a função aqui deve ser um () => router.push()
+    route: () => void;// a função aqui deve conter um () => router.push()
     text:string;
     transparentStyle?:boolean;
     card?:boolean;
@@ -38,7 +38,7 @@ const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, 
         buttonContainer:{
             backgroundColor: card? theme.backgroundCards:transparentStyle? 'tranparent':theme.tint,
             borderRadius: 10,
-            height: IconHeigth? IconHeigth! + 40:29,
+            height: IconHeigth? IconHeigth!:29,
             width: IconHeigth? 117:180,
             justifyContent: 'center',
             alignItems: 'center',
@@ -49,6 +49,7 @@ const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, 
             display:'flex',
             flexDirection:'row',
             gap: 10,
+            padding: 8,
         },
         buttonText:{
             color: transparentStyle? theme.tint:theme.whiteText
