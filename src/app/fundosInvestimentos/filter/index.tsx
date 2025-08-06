@@ -1,12 +1,15 @@
 import { FilterType } from "@/src/@Types/Filter";
+import { FavoriteButton } from "@/src/components/Buttons/favoriteButton";
 import { NavigationButton } from "@/src/components/Buttons/navigationButton";
 import { FilterOption } from "@/src/components/SearchBar/filterOption";
 import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
+import { CommonActions } from "@react-navigation/native";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Pressable, Text, View, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+
 
 export default function FilterFundsPage() {
     const {filters, setFilters} = useFilters();
@@ -34,42 +37,59 @@ export default function FilterFundsPage() {
         },
     ]
 
-    const [selectedRiskFilter, setSelectedRiskFilter] = useState<number>(filters[1]?.id ?? -1); //pega o id do segundo filtro selecionado, que é o de risco
+    const [risksSelected, setRiskSelected]= useState<number[]>([]);
+
+    for(var i = 2; i < filters.length; i++){
+        setRiskSelected((prev) => [...prev, filters[i].id])
+    }
 
     const riskFilters: FilterType[] = [//filtros por risco
         {
             id:4,
             value:'muito baixo',
             placeholder:'Muito Baixo',
-            riskColor: theme.risk.veryLow
+            color: theme.risk.veryLow
         },
         {
             id:5,
             value:'baixo',
             placeholder:'Baixo',
-            riskColor: theme.risk.low
+            color: theme.risk.low
         },
         {
             id:6,
             value:'medio',
             placeholder:'Médio',
-            riskColor: theme.risk.medium,
+            color: theme.risk.medium,
         },
         {
             id:7,
             value:'alto',
             placeholder:'Alto',
-            riskColor: theme.risk.high
+            color: theme.risk.high
         },
     ]
 
-    const updateRiskFilter = (id: number) => {
-        if(id === selectedRiskFilter){ // Verifica se o filtro de risco selecionado é diferente do atual
-            setSelectedRiskFilter(-1); // Se o filtro de risco selecionado for o mesmo, desmarca
-            return;
-        }
-        setSelectedRiskFilter(id); // Atualiza o filtro de risco selecionado
+    const [starSelected, setStarSelected] = useState(false);
+    const starFilterValue:FilterType = {
+        id:7,
+        value: 'favorite',
+        placeholder: 'Favoritos',
+        color: '#DF9F1C'
     }
+
+
+    const updateRiskFilter = (data: number) => {
+        const includes = risksSelected.includes(data);
+        if(includes){
+            const newFilter = risksSelected.filter((item)=> item !== data)
+            setRiskSelected(newFilter);
+        }else{
+            setRiskSelected(prev => [...prev, data])
+        }
+        console.log(risksSelected)
+    }
+
     const updateValueFilter = (id: number) => {
         if(id === selectedValueFilter){ // Verifica se o filtro de valor selecionado é diferente do atual
             setSelectedValueFilter(-1); // Se o filtro de valor selecionado for o mesmo, desmarca
@@ -78,26 +98,33 @@ export default function FilterFundsPage() {
        setSelectedValueFilter(id); // Atualiza o filtro de valor selecionado
     }
 
-
     const updateFilters = () =>{// Função para atualizar os filtros selecionados e sair da página de filtro
         const filtersToUpdate: FilterType[] = [];//array que vai receber os filtros selecionados
-        if(valueFilters) filtersToUpdate.push(valueFilters[selectedValueFilter! -1]);// se houver um filtro de valor selecionado, adiciona ao array
-        if(riskFilters) filtersToUpdate.push(riskFilters[selectedRiskFilter! - valueFilters.length -1]);//se houver um filtro de risco selecionado, adiciona ao array. Diminuímos o valor do id do filtro de risco pelo tamanho do array de filtros de valor para manter a lógica correta.
+        if(selectedValueFilter > 0) filtersToUpdate[0] = (valueFilters[selectedValueFilter -1]);// se houver um filtro de valor selecionado, adiciona ao array
+        if(starSelected) filtersToUpdate[1] = starFilterValue;
+
+        var i = 2
         setFilters(filtersToUpdate);
         router.push('/fundosInvestimentos');
     }
 
     return(
         <View>
+            <View style={style.starCategorie}>
+                <Text style={style.categoriesTitle}>Favoritos</Text>
+                <View style={style.starButton}>
+                    <FavoriteButton onPress={() =>  setStarSelected(selected => !selected)} selected={starSelected} text={'Favoritos'} />
+                </View>
+            </View>
             <View>
                 <Text style={style.categoriesTitle}>Aplicação Inicial</Text>
-                <View style={style.categoriasCards}>
+                <View style={style.categoriesCards}>
                     {valueFilters.map((e)=>
                         <FilterOption
                             key={e.id}
                             info={e}
                             isSelected={selectedValueFilter === e.id}
-                            onSelect={(e) => updateValueFilter(e)}
+                            onSelect={(e) => updateValueFilter}
                         />
                     )}
                 </View>
@@ -109,15 +136,18 @@ export default function FilterFundsPage() {
                         <FilterOption
                             key={e.id}
                             info={e}
-                            isSelected={selectedRiskFilter === e.id}
+                            isSelected={risksSelected.includes(e.id)}
                             onSelect={(e) => updateRiskFilter(e)}
                             height={22}
                             width={94}
+                            type='risk'
                         />
                     )}
                 </View>
             </View>
-            <NavigationButton route={()=> updateFilters()} text={"fundos de investimento"} icon card iconName="wallet" IconHeigth={24}/>
+            <View style={style.redirectButton}>
+                <NavigationButton route={()=> updateFilters()} text={"Filtrar"}/>
+            </View>
         </View>
     )
 };
@@ -131,7 +161,7 @@ const styles = (theme:stylesType)=>{
             marginBottom:16,
             marginLeft:22,
         },
-        categoriasCards:{
+        categoriesCards:{
             display:'flex',
             flexDirection:'row',
             gap:24,
@@ -141,6 +171,18 @@ const styles = (theme:stylesType)=>{
             borderBottomWidth:1,
             paddingBottom:24,
             marginBottom:18,
+        },
+        starCategorie:{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'flex-start',
+            borderBottomColor:theme.border,
+            borderBottomWidth:1,
+            paddingBottom:16,
+            marginBottom:18,
+        },
+        starButton:{
+            marginLeft:21
         },
         categoriiesRiskCards:{
             display:'flex',
@@ -153,5 +195,8 @@ const styles = (theme:stylesType)=>{
             paddingBottom:24,
             marginBottom:18,
         },
+        redirectButton:{
+            alignItems:'center'
+        }
     });
 }
