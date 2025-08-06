@@ -1,8 +1,8 @@
+import ClientHeader from "@/src/components/homeScreen/clientHeader";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import {
-    StyleSheet,
-    View
+    StyleSheet
 } from 'react-native';
 
 
@@ -12,11 +12,11 @@ export default function TelaInicial() {
     const styles = getStyles(theme);
 
     return(
-        <View style={styles.header}>
-            <View style={styles.container}>
-                
-            </View>
-        </View>
+        <ClientHeader
+            title = 'Cliente'
+            image = 'https://legacy.reactjs.org/logo-og.png'
+            value = '-1'
+        />
     );
 };
 
