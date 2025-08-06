@@ -1,7 +1,7 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import { StyleSheet, TextInput, View } from "react-native";
-import Octicons from 'react-native-vector-icons/Octicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { router } from "expo-router";
 import { useFilters } from "@/src/Context/filterContext";
 
@@ -22,7 +22,7 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
     return(
         <View style={styles.container}>
             <View style={styles.searchContainer} >
-                <Octicons name="search" style={styles.searchIcon} size={24} />
+                <MaterialIcons name="search" style={styles.searchIcon} size={24} />
                 <TextInput
                     style={styles.searchTextInput}
                     placeholder={placeholder}
@@ -31,8 +31,8 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
                     onChangeText={onChangeText}
                 />
             </View>
-            <Octicons
-                name="filter"
+            <MaterialIcons
+                name="filter-list"
                 style={styles.filterIcon}
                 size={24}
                 onPress={() => router.push('/fundosInvestimentos/filter')}
