@@ -5,7 +5,6 @@ import {
     Text,
     View
 } from 'react-native';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PatrimonyCard from "./patrimonyCard";
 
@@ -41,12 +40,12 @@ export default function ClientHeader({
                         </View>
                     </View>
                     <View style={styles.right}>
-                        <Fontisto name="bell" color="#FFF" size={20} />
+                        <MaterialCommunityIcons name="bell-outline" color="#FFF" size={24} />
                         <MaterialCommunityIcons name="exit-to-app" color="#FFF" size={24} />
                     </View>
                 </View>
             </View>
-            <View>
+            <View style={styles.cardcontainer}>
                 <PatrimonyCard value={value} />
             </View>
         </View>
@@ -62,9 +61,10 @@ const getStyles = (theme: stylesType) =>{
             alignItems: 'center'
         },
         cardcontainer: {
-             position: 'absolute',
+            position: 'absolute',
             top: headerHeight - (cardHeight / 2),
             width: '90%',
+            alignItems: 'center'
         },
         container: {
             flexDirection: 'row',
@@ -73,7 +73,7 @@ const getStyles = (theme: stylesType) =>{
         header: {
             backgroundColor: '#3E75BC',
             width: '100%',
-            height: 138,
+            height: 125,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
             justifyContent: 'center'
