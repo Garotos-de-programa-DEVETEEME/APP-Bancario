@@ -64,6 +64,7 @@ const getStyles = (theme: stylesType, filter:boolean) => {
         },
         searchTextInput:{
             color: theme.alternativeIcon, 
+            fontFamily: 'Whitney-Regular'
         },
         filterIcon:{
             color: theme.alternativeIcon,

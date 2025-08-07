@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import { StyledText } from './StyledText';
 
 type EntrarButtonProps = {
   title: string;
@@ -28,7 +29,7 @@ export default function EntrarButton({
         },
       ]}
     >
-      <Text
+      <StyledText
         style={[
           styles.text,
           {
@@ -38,10 +39,10 @@ export default function EntrarButton({
         ]}
       >
         Olá,{' '}
-        <Text style={{ fontWeight: 'bold', color: 'theme.text' }}>
+        <StyledText style={{ fontWeight: 'bold', color: 'theme.text' }}>
           {title}
-        </Text>
-      </Text>
+        </StyledText>
+      </StyledText>
 
       <View
         style={[
@@ -56,7 +57,7 @@ export default function EntrarButton({
         />
 
         <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-          <Text
+          <StyledText
             style={[
               styles.entrarText,
               {
@@ -66,7 +67,7 @@ export default function EntrarButton({
             ]}
           >
             Entrar
-          </Text>
+          </StyledText>
         </TouchableOpacity>
       </View>
     </View>

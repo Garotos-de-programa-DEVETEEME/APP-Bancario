@@ -11,7 +11,7 @@ export default function App() {
 
   return (
     <ImageBackground
-      source={'https://legacy.reactjs.org/logo-og.png'}
+      source={{uri :'https://legacy.reactjs.org/logo-og.png'}}
       style={styles.background}
       resizeMode="cover"
     >

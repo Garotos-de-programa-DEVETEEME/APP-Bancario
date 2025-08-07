@@ -4,6 +4,7 @@ import { stylesType } from "@/src/themes/Colors";
 import { coinFormat } from "@/src/utils/coinFormat";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyledText } from '../StyledText';
 
 interface expandedProps{
     fund: fundsType;
@@ -17,35 +18,35 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
     return (
         <View style={styles.expandedContentContainer}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Taxa global: </Text>
-                    <Text style={styles.text}> {`${fund.taxaAdministracao}% a.a.`} </Text>
+                    <StyledText style={styles.text}>Taxa global: </StyledText>
+                    <StyledText style={styles.text}> {`${fund.taxaAdministracao}% a.a.`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Hora limite de aplicação: </Text>
-                    <Text style={styles.text}> {`${converterNumeroParaHora(fund.horaLimite)}`}</Text>
+                    <StyledText style={styles.text}>Hora limite de aplicação: </StyledText>
+                    <StyledText style={styles.text}> {`${converterNumeroParaHora(fund.horaLimite)}`}</StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Movimentação (aplic/resg): </Text>
-                    <Text style={styles.text}>  {'R$ 1,00'/*`${coinFormat(fund.movimentation)}`*/}</Text>{/*adicionar movimentação */}
+                    <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
+                    <StyledText style={styles.text}>  {'R$ 1,00'/*`${coinFormat(fund.movimentation)}`*/}</StyledText>{/*adicionar movimentação */}
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Cotização de resgate: </Text>
-                    <Text style={styles.text}> {`D+30 (Dias Corridos)`} </Text>
+                    <StyledText style={styles.text}>Cotização de resgate: </StyledText>
+                    <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Cotização de resgate: </Text>
-                    <Text style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </Text>
+                    <StyledText style={styles.text}>Cotização de resgate: </StyledText>
+                    <StyledText style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
                     <Pressable style={styles.moreInfoButton}>
-                        <Text style={styles.moreInfoButtonText}>
+                        <StyledText style={styles.moreInfoButtonText}>
                             Saiba Mais
-                        </Text>
+                        </StyledText>
                     </Pressable>
                     <Pressable style={styles.investirButton}>
-                        <Text style={styles.investirButtonText}>
+                        <StyledText style={styles.investirButtonText}>
                             Investir
-                        </Text>
+                        </StyledText>
                     </Pressable>
                 </View>
             </View>
