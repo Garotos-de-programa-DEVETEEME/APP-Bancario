@@ -38,7 +38,7 @@ const getStyles = (theme: StylesType, card?:boolean, transparentStyle?:boolean, 
         buttonContainer:{
             backgroundColor: card? theme.backgroundCards:transparentStyle? 'tranparent':theme.tint,
             borderRadius: 10,
-            height: IconHeigth? IconHeigth!:29,
+            height: IconHeigth? IconHeigth!:37,
             width: IconHeigth? 117:180,
             justifyContent: 'center',
             alignItems: 'center',

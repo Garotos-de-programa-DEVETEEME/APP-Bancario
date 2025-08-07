@@ -5,7 +5,6 @@ import { View, Text, StyleSheet } from "react-native";
 
 interface filterSelectedProps{
     data:FilterType;
-
 }
 
 
@@ -27,10 +26,15 @@ function getStyle(theme:StylesType, data:FilterType){
     return(
         StyleSheet.create({
             container:{
-                backgroundColor: data.color? data.color:theme.tint
+                backgroundColor: data.color? data.color:theme.tint,
+                width: 120,
+                height:22,
+                borderRadius:10,
+                alignItems:'center',
+                justifyContent:'center'
             },
             text:{
-                color: data.color? theme.text:theme.whiteText,
+                color: data.color?  theme.darkText:theme.whiteText,
                 fontFamily: theme.fontFamily,
                 fontWeight: 500,
                 fontSize: 14,

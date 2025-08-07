@@ -70,6 +70,7 @@ export default function FilterFundsPage() {
                     value:'favoritos',
                     placeholder:'Favoritos',
                     selected: false,
+                    color:'#F2C94C',//cor do filtro de favoritos
                 });
 
     useEffect(()=> {
@@ -182,7 +183,7 @@ const styles = (theme:StylesType)=>{
         categoriesCards:{
             display:'flex',
             flexDirection:'row',
-            gap:24,
+            gap:8,
             justifyContent:'center',
             width:'100%',
             borderBottomColor:theme.border,
