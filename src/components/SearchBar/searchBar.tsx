@@ -2,7 +2,7 @@ import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { router } from "expo-router";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View, ScrollView } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FiltersSelected } from "./FiltersSelected";
 
@@ -14,19 +14,28 @@ interface SearchBarProps {
     filter?: boolean;
 }
 
-export const SearchBar = ({placeholder, value, onChangeText, filter= false}: SearchBarProps) => {
+export const SearchBar = ({placeholder, value, onChangeText, filter: hasFilter= false}: SearchBarProps) => {
 
     const theme = useTheme();
-    const styles = getStyles(theme, filter);
-    const {filters, setFilters} = useFilters();
+    const styles = getStyles(theme, hasFilter);
+    const {filters} = useFilters();
 
     return(
         <View style={styles.container}>
             <View style={styles.searchContainer} >
-                {filter? filters.map((filterSelected) => (
-                    // Example: render filter values as chips or text, adjust as needed
-                    <FiltersSelected key={filterSelected.id} data={filterSelected} />
-                )):(
+                {(hasFilter && (filters.length > 0)) && (
+                    <ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        style={{ maxWidth: 306, flexGrow: 0 }}
+                        contentContainerStyle={{ flexDirection: 'row', gap: 10 }}
+                    >
+                        {filters.map((filter) => (
+                            <FiltersSelected data={filter} key={filter.id}/>
+                        ))}
+                    </ScrollView>
+                )}
+                {(!hasFilter || filters.length < 1) && (
                     <>
                         <MaterialIcons name="search" style={styles.searchIcon} size={24} />
                         <TextInput
@@ -37,7 +46,7 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
                             onChangeText={onChangeText}
                         />
                     </>
-                )}
+                    )}
             </View>
             <MaterialIcons
                 name="filter-list"
