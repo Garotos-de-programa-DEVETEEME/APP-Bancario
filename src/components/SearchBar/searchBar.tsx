@@ -4,6 +4,7 @@ import { StylesType } from "@/src/themes/Colors";
 import { router } from "expo-router";
 import { StyleSheet, TextInput, View } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { FiltersSelected } from "./FiltersSelected";
 
 
 interface SearchBarProps {
@@ -22,14 +23,21 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
     return(
         <View style={styles.container}>
             <View style={styles.searchContainer} >
-                <MaterialIcons name="search" style={styles.searchIcon} size={24} />
-                <TextInput
-                    style={styles.searchTextInput}
-                    placeholder={placeholder}
-                    placeholderTextColor={theme.alternativeIcon}
-                    value={filters[0]?.value}
-                    onChangeText={onChangeText}
-                />
+                {filter? filters.map((filterSelected) => (
+                    // Example: render filter values as chips or text, adjust as needed
+                    <FiltersSelected key={filterSelected.id} data={filterSelected} />
+                )):(
+                    <>
+                        <MaterialIcons name="search" style={styles.searchIcon} size={24} />
+                        <TextInput
+                            style={styles.searchTextInput}
+                            placeholder={placeholder}
+                            placeholderTextColor={theme.alternativeIcon}
+                            value={filters[0]?.value}
+                            onChangeText={onChangeText}
+                        />
+                    </>
+                )}
             </View>
             <MaterialIcons
                 name="filter-list"
@@ -37,9 +45,6 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
                 size={24}
                 onPress={() => router.push('/fundosInvestimentos/filter')}
             />
-            {/* <Filter
-                page={'../../app/fundosInvestimentos/filter'}
-            /> */}
         </View>
     );
 };
