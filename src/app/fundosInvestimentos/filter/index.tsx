@@ -7,7 +7,7 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import { CommonActions } from "@react-navigation/native";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 
@@ -16,95 +16,97 @@ export default function FilterFundsPage() {
     const theme = useTheme();
     const style = styles(theme);
 
-
-    const [selectedValueFilter, setSelectedValueFilter]= useState<number>(filters[0]?.id ?? -1);//pega o id do primeiro filtro selecionado, que é o de valor monetário
-
-    const valueFilters: FilterType[] = [//filtros por valor monetario
+    const initialValueFilters: FilterType[] = [//filtros por valor monetario
         {
             id:1,
             value:'500',//adaptar para como funcionara na api
             placeholder:'R$0 - R$500',
+            selected:false,
         },
         {
             id:2,
             value:'1000',
             placeholder:'R$500 - R$1000',
+            selected:false,
         },
         {
             id:3,
             value:'1001',
             placeholder:'+ R$1000',
+            selected:false,
         },
     ]
 
-    const [risksSelected, setRiskSelected]= useState<number[]>([]);
+    const [valueFilters, setValueFilters] = useState<FilterType[]>(initialValueFilters);
 
-    for(var i = 2; i < filters.length; i++){
-        setRiskSelected((prev) => [...prev, filters[i].id])
+    const updateValueFilter = (id: number) => {// Atualiza o filtro de valor selecionado
+        setValueFilters(prev => prev.map(filter =>//setta uma nova lista de filtros com base no valor retornado nesse map
+            filter.id === id? {...filter, selected: !filter.selected}:{...filter, selected: false} //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos como false
+        ))
+        console.log(valueFilters)
     }
 
-    const riskFilters: FilterType[] = [//filtros por risco
+
+    const initialRiskFilters: FilterType[] = [//filtros por risco
         {
             id:4,
             value:'muito baixo',
             placeholder:'Muito Baixo',
-            color: theme.risk.veryLow
+            color: theme.risk.veryLow,
+            selected: false,
         },
         {
             id:5,
             value:'baixo',
             placeholder:'Baixo',
-            color: theme.risk.low
+            color: theme.risk.low,
+            selected: false,
         },
         {
             id:6,
             value:'medio',
             placeholder:'Médio',
             color: theme.risk.medium,
+            selected: false,
         },
         {
             id:7,
             value:'alto',
             placeholder:'Alto',
-            color: theme.risk.high
+            color: theme.risk.high,
+            selected: false,
         },
     ]
 
-    const [starSelected, setStarSelected] = useState(false);
+    const [riskFilters, setRiskFilters] = useState<FilterType[]>(initialRiskFilters);
+
+
+    const updateRiskFilter = (id: number) => {// Atualiza o filtro de valor selecionado
+        setRiskFilters(prev => prev.map(filter =>//setta uma nova lista de filtros com base no valor retornado nesse map
+            filter.id === id? {...filter, selected: !filter.selected}:filter//caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos retornamos o filtro sem alterações
+        ))
+    }
+
+
     const starFilterValue:FilterType = {
         id:7,
         value: 'favorite',
         placeholder: 'Favoritos',
-        color: '#DF9F1C'
+        color: '#DF9F1C',
+        selected: false,
     }
 
+    const [starSelected, setStarSelected] = useState<boolean>(starFilterValue.selected);
 
-    const updateRiskFilter = (data: number) => {
-        const includes = risksSelected.includes(data);
-        if(includes){
-            const newFilter = risksSelected.filter((item)=> item !== data)
-            setRiskSelected(newFilter);
-        }else{
-            setRiskSelected(prev => [...prev, data])
-        }
-        console.log(risksSelected)
-    }
-
-    const updateValueFilter = (id: number) => {
-        if(id === selectedValueFilter){ // Verifica se o filtro de valor selecionado é diferente do atual
-            setSelectedValueFilter(-1); // Se o filtro de valor selecionado for o mesmo, desmarca
-            return;
-        }
-       setSelectedValueFilter(id); // Atualiza o filtro de valor selecionado
+    const updaterStarFilter = () =>{
+        const isSelected = !starSelected
+        setStarSelected(isSelected);
+        starFilterValue.selected = isSelected;
     }
 
     const updateFilters = () =>{// Função para atualizar os filtros selecionados e sair da página de filtro
-        const filtersToUpdate: FilterType[] = [];//array que vai receber os filtros selecionados
-        if(selectedValueFilter > 0) filtersToUpdate[0] = (valueFilters[selectedValueFilter -1]);// se houver um filtro de valor selecionado, adiciona ao array
-        if(starSelected) filtersToUpdate[1] = starFilterValue;
-
-        var i = 2
-        setFilters(filtersToUpdate);
+        const filtersToUpdate: FilterType[] = [starFilterValue,...riskFilters, ...valueFilters];//array que vai receber os filtros selecionados
+        console.log(filtersToUpdate)
         router.push('/fundosInvestimentos');
     }
 
@@ -113,7 +115,7 @@ export default function FilterFundsPage() {
             <View style={style.starCategorie}>
                 <Text style={style.categoriesTitle}>Favoritos</Text>
                 <View style={style.starButton}>
-                    <FavoriteButton onPress={() =>  setStarSelected(selected => !selected)} selected={starSelected} text={'Favoritos'} />
+                    <FavoriteButton onPress={() =>  updaterStarFilter()} selected={starSelected} text={'Favoritos'} />
                 </View>
             </View>
             <View>
@@ -123,8 +125,8 @@ export default function FilterFundsPage() {
                         <FilterOption
                             key={e.id}
                             info={e}
-                            isSelected={selectedValueFilter === e.id}
-                            onSelect={(e) => updateValueFilter}
+                            isSelected={e.selected}
+                            onSelect={(e) => updateValueFilter(e)}
                         />
                     )}
                 </View>
@@ -136,7 +138,7 @@ export default function FilterFundsPage() {
                         <FilterOption
                             key={e.id}
                             info={e}
-                            isSelected={risksSelected.includes(e.id)}
+                            isSelected={e.selected}
                             onSelect={(e) => updateRiskFilter(e)}
                             height={22}
                             width={94}
