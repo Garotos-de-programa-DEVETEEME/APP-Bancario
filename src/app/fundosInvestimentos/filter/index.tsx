@@ -15,13 +15,7 @@ export default function FilterFundsPage() {
     const theme = useTheme();
     const style = styles(theme);
 
-    const [valueFilters, setValueFilters] = useState<FilterType[]>([]);
-    const [riskFilters, setRiskFilters] = useState<FilterType[]>([]);
-    const [starFilter, setStarFilter] = useState<FilterType>();
-
-    useEffect(()=> {
-            if(filters.length < 1){//defini valores iniciais para os filtros caso não contenha nennhum filtro por default
-                setValueFilters([//filtros por valor monetario
+    const [valueFilters, setValueFilters] = useState<FilterType[]>([//filtros por valor monetario
                     {
                         id:1,
                         value:'500',//adaptar para como funcionara na api
@@ -40,8 +34,8 @@ export default function FilterFundsPage() {
                         placeholder:'+ R$1000',
                         selected:false,
                     },
-                ])
-                setRiskFilters([//filtros por risco
+                ]);
+    const [riskFilters, setRiskFilters] = useState<FilterType[]>([//filtros por risco
                     {
                         id:4,
                         value:'muito baixo',
@@ -70,17 +64,25 @@ export default function FilterFundsPage() {
                         color: theme.risk.high,
                         selected: false,
                     },
-                ])
-                setStarFilter({
+                ]);
+    const [starFilter, setStarFilter] = useState<FilterType>({
                     id:8,
                     value:'favoritos',
                     placeholder:'Favoritos',
                     selected: false,
                 });
-            }else{
-                setRiskFilters([filters[0], filters[1], filters[2], filters[3]]);
-                setValueFilters([filters[4], filters[5], filters[6]]);
-                setStarFilter(filters[7]);
+
+    useEffect(()=> {
+            if(filters.length > 1){//atualiza os fltros com base no que foi selecionado anteriormente
+                filters.forEach((e) => {
+                    if(e.id === 1 || e.id === 2 || e.id === 3){//filtros de valor
+                        setValueFilters(prev => prev.map(filter => filter.id === e.id? {...filter, selected: e.selected}: filter));
+                    } else if(e.id >= 4 && e.id <= 7){//filtros de risco
+                        setRiskFilters(prev => prev.map(filter => filter.id === e.id? {...filter, selected: e.selected}: filter));
+                    } else if(e.id === 8){//filtro de favoritos
+                        setStarFilter({...e});
+                    }
+                });
             }
         },[])
 
@@ -89,7 +91,6 @@ export default function FilterFundsPage() {
         setValueFilters(prev => prev.map(filter =>//setta uma nova lista de filtros com base no valor retornado nesse map
             filter.id === id? {...filter, selected: !filter.selected}:{...filter, selected: false} //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos como false
         ))
-        console.log(valueFilters)
     }
 
 
@@ -105,10 +106,24 @@ export default function FilterFundsPage() {
         setStarFilter(prev => prev! && {...prev, selected: !prev.selected});// Atualiza o filtro de favoritos
     }
 
-    const updateFilters = () =>{// Função para atualizar os filtros selecionados e sair da página de filtro
-        const filtersToUpdate: FilterType[] = [...riskFilters, ...valueFilters, starFilter!];//array que vai receber os filtros selecionados
-        setFilters(filtersToUpdate)
-        router.push('/fundosInvestimentos');// redireciona a pagina de investimentos
+    const filterSelected = (list: FilterType[]) => {
+        return list.filter((e) => !!e && e.selected === true);
+    }
+
+    
+    const [filtersToUpdate, setFilterToUpdate] = useState<FilterType[]>([]);//array que vai receber os filtros selecionados
+    const updateFilters = () => {
+        // Use a local variable instead of state
+        let selectedFilters: FilterType[] = [
+            ...filterSelected(valueFilters),
+            ...filterSelected(riskFilters)
+        ];
+        if (starFilter.selected) {
+            selectedFilters = [...selectedFilters, starFilter];
+        }
+        console.log(selectedFilters);
+        setFilters(selectedFilters);
+        router.push('/fundosInvestimentos');
     }
 
     return(
