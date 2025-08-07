@@ -16,28 +16,75 @@ export default function FilterFundsPage() {
     const theme = useTheme();
     const style = styles(theme);
 
-    const initialValueFilters: FilterType[] = [//filtros por valor monetario
-        {
-            id:1,
-            value:'500',//adaptar para como funcionara na api
-            placeholder:'R$0 - R$500',
-            selected:false,
-        },
-        {
-            id:2,
-            value:'1000',
-            placeholder:'R$500 - R$1000',
-            selected:false,
-        },
-        {
-            id:3,
-            value:'1001',
-            placeholder:'+ R$1000',
-            selected:false,
-        },
-    ]
+    const [valueFilters, setValueFilters] = useState<FilterType[]>([]);
+    const [riskFilters, setRiskFilters] = useState<FilterType[]>([]);
+    const [starFilter, setStarFilter] = useState<FilterType>();
 
-    const [valueFilters, setValueFilters] = useState<FilterType[]>(initialValueFilters);
+    useEffect(()=> {
+            if(filters.length < 1){//defini valores iniciais para os filtros caso não contenha nennhum filtro
+                setValueFilters([//filtros por valor monetario
+                    {
+                        id:1,
+                        value:'500',//adaptar para como funcionara na api
+                        placeholder:'R$0 - R$500',
+                        selected:false,
+                    },
+                    {
+                        id:2,
+                        value:'1000',
+                        placeholder:'R$500 - R$1000',
+                        selected:false,
+                    },
+                    {
+                        id:3,
+                        value:'1001',
+                        placeholder:'+ R$1000',
+                        selected:false,
+                    },
+                ])
+                setRiskFilters([//filtros por risco
+                    {
+                        id:4,
+                        value:'muito baixo',
+                        placeholder:'Muito Baixo',
+                        color: theme.risk.veryLow,
+                        selected: false,
+                    },
+                    {
+                        id:5,
+                        value:'baixo',
+                        placeholder:'Baixo',
+                        color: theme.risk.low,
+                        selected: false,
+                    },
+                    {
+                        id:6,
+                        value:'medio',
+                        placeholder:'Médio',
+                        color: theme.risk.medium,
+                        selected: false,
+                    },
+                    {
+                        id:7,
+                        value:'alto',
+                        placeholder:'Alto',
+                        color: theme.risk.high,
+                        selected: false,
+                    },
+                ])
+                setStarFilter({
+                    id:8,
+                    value:'favoritos',
+                    placeholder:'Favoritos',
+                    selected: false,
+                });
+            }else{
+                setRiskFilters([filters[0], filters[1], filters[2], filters[3]]);
+                setValueFilters([filters[4], filters[5], filters[6]]);
+                setStarFilter(filters[7]);
+            }
+        },[])
+
 
     const updateValueFilter = (id: number) => {// Atualiza o filtro de valor selecionado
         setValueFilters(prev => prev.map(filter =>//setta uma nova lista de filtros com base no valor retornado nesse map
@@ -47,38 +94,6 @@ export default function FilterFundsPage() {
     }
 
 
-    const initialRiskFilters: FilterType[] = [//filtros por risco
-        {
-            id:4,
-            value:'muito baixo',
-            placeholder:'Muito Baixo',
-            color: theme.risk.veryLow,
-            selected: false,
-        },
-        {
-            id:5,
-            value:'baixo',
-            placeholder:'Baixo',
-            color: theme.risk.low,
-            selected: false,
-        },
-        {
-            id:6,
-            value:'medio',
-            placeholder:'Médio',
-            color: theme.risk.medium,
-            selected: false,
-        },
-        {
-            id:7,
-            value:'alto',
-            placeholder:'Alto',
-            color: theme.risk.high,
-            selected: false,
-        },
-    ]
-
-    const [riskFilters, setRiskFilters] = useState<FilterType[]>(initialRiskFilters);
 
 
     const updateRiskFilter = (id: number) => {// Atualiza o filtro de valor selecionado
@@ -87,26 +102,14 @@ export default function FilterFundsPage() {
         ))
     }
 
-
-    const starFilterValue:FilterType = {
-        id:7,
-        value: 'favorite',
-        placeholder: 'Favoritos',
-        color: '#DF9F1C',
-        selected: false,
-    }
-
-    const [starSelected, setStarSelected] = useState<boolean>(starFilterValue.selected);
-
     const updaterStarFilter = () =>{
-        const isSelected = !starSelected
-        setStarSelected(isSelected);
-        starFilterValue.selected = isSelected;
+        console.log(starFilter)
+        setStarFilter(prev => prev! && {...prev, selected: !prev.selected});// Atualiza o filtro de favoritos
     }
 
     const updateFilters = () =>{// Função para atualizar os filtros selecionados e sair da página de filtro
-        const filtersToUpdate: FilterType[] = [starFilterValue,...riskFilters, ...valueFilters];//array que vai receber os filtros selecionados
-        console.log(filtersToUpdate)
+        const filtersToUpdate: FilterType[] = [...riskFilters, ...valueFilters, starFilter!];//array que vai receber os filtros selecionados
+        setFilters(filtersToUpdate)
         router.push('/fundosInvestimentos');
     }
 
@@ -115,7 +118,7 @@ export default function FilterFundsPage() {
             <View style={style.starCategorie}>
                 <Text style={style.categoriesTitle}>Favoritos</Text>
                 <View style={style.starButton}>
-                    <FavoriteButton onPress={() =>  updaterStarFilter()} selected={starSelected} text={'Favoritos'} />
+                    <FavoriteButton onPress={() =>  updaterStarFilter()} selected={starFilter?.selected!} text={'Favoritos'} />
                 </View>
             </View>
             <View>
