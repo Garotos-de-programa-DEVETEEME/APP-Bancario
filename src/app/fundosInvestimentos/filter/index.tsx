@@ -5,7 +5,6 @@ import { FilterOption } from "@/src/components/SearchBar/filterOption";
 import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
-import { CommonActions } from "@react-navigation/native";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -21,7 +20,7 @@ export default function FilterFundsPage() {
     const [starFilter, setStarFilter] = useState<FilterType>();
 
     useEffect(()=> {
-            if(filters.length < 1){//defini valores iniciais para os filtros caso não contenha nennhum filtro
+            if(filters.length < 1){//defini valores iniciais para os filtros caso não contenha nennhum filtro por default
                 setValueFilters([//filtros por valor monetario
                     {
                         id:1,
@@ -103,14 +102,13 @@ export default function FilterFundsPage() {
     }
 
     const updaterStarFilter = () =>{
-        console.log(starFilter)
         setStarFilter(prev => prev! && {...prev, selected: !prev.selected});// Atualiza o filtro de favoritos
     }
 
     const updateFilters = () =>{// Função para atualizar os filtros selecionados e sair da página de filtro
         const filtersToUpdate: FilterType[] = [...riskFilters, ...valueFilters, starFilter!];//array que vai receber os filtros selecionados
         setFilters(filtersToUpdate)
-        router.push('/fundosInvestimentos');
+        router.push('/fundosInvestimentos');// redireciona a pagina de investimentos
     }
 
     return(
