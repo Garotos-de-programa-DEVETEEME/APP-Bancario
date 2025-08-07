@@ -68,10 +68,15 @@ const getStyles = (theme: stylesType, filter:boolean) => {
             gap: 4,
         },
         searchTextInput:{
+<<<<<<< HEAD:src/components/searchBar.tsx
+            color: theme.alternativeIcon, 
+            fontFamily: 'Whitney-Regular'
+=======
             color: theme.alternativeIcon,
         },
         searchIcon:{
             color: theme.alternativeIcon,
+>>>>>>> dc887c5cc8b668c988ce7547bcf8abc5d71935c1:src/components/SearchBar/searchBar.tsx
         },
         filterIcon:{
             color: theme.alternativeIcon,

@@ -2,8 +2,13 @@ import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
+<<<<<<< HEAD
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyledText } from '../StyledText';
+=======
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationButton } from "../Buttons/navigationButton";
+>>>>>>> dc887c5cc8b668c988ce7547bcf8abc5d71935c1
 
 interface expandedProps{
     fund: fundsType;
@@ -17,28 +22,41 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
     return (
         <View style={styles.expandedContentContainer}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Taxa global: </Text>
-                    <Text style={styles.text}> {`${fund.taxaAdministracao}% a.a.`} </Text>
+                    <StyledText style={styles.text}>Taxa global: </StyledText>
+                    <StyledText style={styles.text}> {`${fund.taxaAdministracao}% a.a.`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Hora limite de aplicação: </Text>
-                    <Text style={styles.text}> {`${converterNumeroParaHora(fund.horaLimite)}`}</Text>
+                    <StyledText style={styles.text}>Hora limite de aplicação: </StyledText>
+                    <StyledText style={styles.text}> {`${converterNumeroParaHora(fund.horaLimite)}`}</StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Movimentação (aplic/resg): </Text>
-                    <Text style={styles.text}>  {'R$ 1,00'/*`${coinFormat(fund.movimentation)}`*/}</Text>{/*adicionar movimentação */}
+                    <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
+                    <StyledText style={styles.text}>  {'R$ 1,00'/*`${coinFormat(fund.movimentation)}`*/}</StyledText>{/*adicionar movimentação */}
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Cotização de resgate: </Text>
-                    <Text style={styles.text}> {`D+30 (Dias Corridos)`} </Text>
+                    <StyledText style={styles.text}>Cotização de resgate: </StyledText>
+                    <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Cotização de resgate: </Text>
-                    <Text style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </Text>
+                    <StyledText style={styles.text}>Cotização de resgate: </StyledText>
+                    <StyledText style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
+<<<<<<< HEAD
+                    <Pressable style={styles.moreInfoButton}>
+                        <StyledText style={styles.moreInfoButtonText}>
+                            Saiba Mais
+                        </StyledText>
+                    </Pressable>
+                    <Pressable style={styles.investirButton}>
+                        <StyledText style={styles.investirButtonText}>
+                            Investir
+                        </StyledText>
+                    </Pressable>
+=======
                     <NavigationButton route={() => console.log('temporario')} text={"Saiba Mais"} transparentStyle/>
                     <NavigationButton route={() => console.log('temporario')} text={"Investir"}/>
+>>>>>>> dc887c5cc8b668c988ce7547bcf8abc5d71935c1
                 </View>
             </View>
     );

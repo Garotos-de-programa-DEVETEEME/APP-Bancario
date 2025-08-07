@@ -5,6 +5,7 @@ import { coinFormat } from "@/src/utils/coinFormat";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Expanded } from "./expandedFund";
 import { RiskIcon } from "./riskIcon";
+import { StyledText } from '../StyledText';
 
 interface FundsCardProps{
     fund:fundsType;
@@ -21,30 +22,30 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
         <View style={styles.container}>
             <Pressable onPress={onPress}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.fundTypeText}>
+                    <StyledText style={styles.fundTypeText}>
                         {/*fund.type*/}
-                    </Text>
+                    </StyledText>
                     <View style={styles.riskContainer}>
                         <RiskIcon risk={'alto'/*fund.risk*/} />
                     </View>
                 </View>
                 <View>
-                    <Text style={styles.title}>
+                    <StyledText style={styles.title}>
                         {fund.nome}
-                    </Text>
+                    </StyledText>
                 </View>
                 <View style={{display:expanded? 'flex':'none', borderTopColor:theme.border, borderTopWidth:1 }}></View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Aplicação incial: </Text>
-                    <Text style={styles.text}>
+                    <StyledText style={styles.text}>Aplicação incial: </StyledText>
+                    <StyledText style={styles.text}>
                         {coinFormat(fund.valorAplicacaoInicial)}
-                    </Text>
+                    </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Rentabilidade dos ultimos 12 meses</Text>
-                    <Text style={styles.rentabilityText}>
+                    <StyledText style={styles.text}>Rentabilidade dos ultimos 12 meses</StyledText>
+                    <StyledText style={styles.rentabilityText}>
                         {`${fund.taxaRentabilidade}%`}{/* consultar se este valor esta em porcentagem */}
-                    </Text>
+                    </StyledText>
                 </View>
                 <Expanded
                     fund={fund}

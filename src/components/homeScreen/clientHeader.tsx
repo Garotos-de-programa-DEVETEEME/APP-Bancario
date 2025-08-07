@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PatrimonyCard from "./patrimonyCard";
+import { StyledText } from '../StyledText';
 
 
 type ClientHeaderProps = {
@@ -31,12 +32,12 @@ export default function ClientHeader({
                     <View style={styles.left}>
                         <img src={image} alt="Foto Cliente" style={styles.image} />
                         <View style={styles.textbox}>
-                            <Text style={{ fontWeight: 'bold', color: theme.whiteText }}>
+                            <StyledText style={{ fontWeight: 'bold', color: theme.whiteText }}>
                                 {title}
-                            </Text>
-                            <Text style={{ color: theme.whiteText }}>
+                            </StyledText>
+                            <StyledText style={{ color: theme.whiteText }}>
                                 Veja seu perfil
-                            </Text>
+                            </StyledText>
                         </View>
                     </View>
                     <View style={styles.right}>

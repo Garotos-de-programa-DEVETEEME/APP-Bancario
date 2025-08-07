@@ -1,6 +1,7 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
 import { StyleSheet, Text, View } from "react-native";
+import { StyledText } from '../StyledText';
 
 interface riskIconProps{
     risk: 'muito baixo' | 'baixo' | 'medio' | 'alto';
@@ -11,9 +12,9 @@ export const RiskIcon = ({risk}: riskIconProps) =>{
     const styles = getStyles(theme, risk);
     return(
         <>
-            <Text style={styles.fundRiskText}>
+            <StyledText style={styles.fundRiskText}>
                 {`Risco ${risk === 'muito baixo'? 'muito baixo': risk === 'baixo'? 'baixo': risk === 'medio'? 'médio': 'alto'}:`}
-            </Text>
+            </StyledText>
             <View style={styles.container}>
                 <Text style={styles.firstIcon}></Text>
                 <Text style={styles.secondIcon}></Text>
