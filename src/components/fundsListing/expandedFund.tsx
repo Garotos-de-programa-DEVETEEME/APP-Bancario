@@ -1,9 +1,9 @@
 import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
-import { coinFormat } from "@/src/utils/coinFormat";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationButton } from "../Buttons/navigationButton";
 
 interface expandedProps{
     fund: fundsType;
@@ -37,16 +37,8 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
                     <Text style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </Text>
                 </View>
                 <View style={styles.textContainer}>
-                    <Pressable style={styles.moreInfoButton}>
-                        <Text style={styles.moreInfoButtonText}>
-                            Saiba Mais
-                        </Text>
-                    </Pressable>
-                    <Pressable style={styles.investirButton}>
-                        <Text style={styles.investirButtonText}>
-                            Investir
-                        </Text>
-                    </Pressable>
+                    <NavigationButton route={() => console.log('temporario')} text={"Saiba Mais"} transparentStyle/>
+                    <NavigationButton route={() => console.log('temporario')} text={"Investir"}/>
                 </View>
             </View>
     );
@@ -57,40 +49,6 @@ const getStyles = (theme: stylesType, expanded:boolean) =>{
         expandedContentContainer:{
             display: expanded? 'flex':'none',
             flexDirection:'column',
-        },
-        moreInfoButton:{
-            backgroundColor: theme.backgroundCards,
-            borderRadius: 10,
-            height: 29,
-            width: 180,
-            justifyContent:'center',
-            alignItems:'center',
-            marginTop: 16,
-            marginBottom: 8,
-            borderColor: theme.tint,
-            borderWidth: 1,
-        },
-        moreInfoButtonText:{
-            color: theme.tint,
-            fontFamily: theme.fontFamily,
-            fontSize: 15,
-            fontWeight:'500',
-        },
-        investirButton:{
-            backgroundColor: theme.tint,
-            borderRadius: 10,
-            height: 29,
-            width: 180,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 16,
-            marginBottom: 8,
-        },
-        investirButtonText:{
-            color: theme.whiteText,
-            fontFamily: theme.fontFamily,
-            fontSize: 15,
-            fontWeight:'500',
         },
         text:{
             color:theme.alternativeText,

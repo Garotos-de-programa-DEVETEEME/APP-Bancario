@@ -1,4 +1,4 @@
-import EntrarButton from '@/src/components/EntrarButton';
+import EntrarButton from '@/src/components/Buttons/EntrarButton';
 import { router } from 'expo-router';
 import {
   ImageBackground,
@@ -11,7 +11,7 @@ export default function App() {
 
   return (
     <ImageBackground
-      source={'https://legacy.reactjs.org/logo-og.png'}
+      source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
       style={styles.background}
       resizeMode="cover"
     >
