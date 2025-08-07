@@ -1,5 +1,5 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import {
     StyleSheet,
     Text,
@@ -52,7 +52,7 @@ export default function ClientHeader({
     );
 }
 
-const getStyles = (theme: stylesType) =>{
+const getStyles = (theme: StylesType) =>{
     const headerHeight = 138;
     const cardHeight = 80;
 

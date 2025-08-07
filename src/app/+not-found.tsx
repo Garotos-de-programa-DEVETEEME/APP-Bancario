@@ -1,10 +1,10 @@
-import { Styles, stylesType } from '@/src/themes/Colors';
+import { Styles, StylesType } from '@/src/themes/Colors';
 import { Text, useColorScheme, } from 'react-native';
 
 
 export default function NotFoundScreen() {
   const colorScheme = useColorScheme();
-  const theme:stylesType = colorScheme === 'dark'? Styles.dark:Styles.light;
+  const theme:StylesType = colorScheme === 'dark'? Styles.dark:Styles.light;
   return (
     <>
       <Text style={{color: theme.text}}>Page not found</Text>

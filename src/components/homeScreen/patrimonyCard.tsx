@@ -1,5 +1,5 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { useState } from "react";
 import {
     StyleSheet,
@@ -47,7 +47,7 @@ export default function PatrimonyCard({
     );
 }
 
-const getStyles = (theme: stylesType) =>{
+const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.border,

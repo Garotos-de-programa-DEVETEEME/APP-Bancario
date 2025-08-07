@@ -1,9 +1,9 @@
+import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
+import { router } from "expo-router";
 import { StyleSheet, TextInput, View } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { router } from "expo-router";
-import { useFilters } from "@/src/Context/filterContext";
 
 
 interface SearchBarProps {
@@ -44,7 +44,7 @@ export const SearchBar = ({placeholder, value, onChangeText, filter= false}: Sea
     );
 };
 
-const getStyles = (theme: stylesType, filter:boolean) => {
+const getStyles = (theme: StylesType, filter:boolean) => {
     return StyleSheet.create({
         container: {
             backgroundColor:theme.backgroundCards,

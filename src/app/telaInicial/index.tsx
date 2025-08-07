@@ -1,6 +1,6 @@
 import ClientHeader from "@/src/components/homeScreen/clientHeader";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import {
     StyleSheet
 } from 'react-native';
@@ -20,7 +20,7 @@ export default function TelaInicial() {
     );
 };
 
-const getStyles = (theme: stylesType) =>{
+const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
             flexDirection: 'row',

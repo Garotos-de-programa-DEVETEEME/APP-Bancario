@@ -4,7 +4,7 @@ import { NavigationButton } from "@/src/components/Buttons/navigationButton";
 import { FilterOption } from "@/src/components/SearchBar/filterOption";
 import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -155,7 +155,7 @@ export default function FilterFundsPage() {
     )
 };
 
-const styles = (theme:stylesType)=>{
+const styles = (theme:StylesType)=>{
     return StyleSheet.create({
         categoriesTitle:{
             color:theme.text,

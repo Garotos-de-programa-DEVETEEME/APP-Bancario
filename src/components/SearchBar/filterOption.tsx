@@ -1,6 +1,6 @@
 import { FilterType } from "@/src/@Types/Filter";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { Pressable, StyleSheet, Text } from "react-native";
 
 interface filterOptionProps{
@@ -30,7 +30,7 @@ export const FilterOption = ({ info, isSelected, onSelect, height, width, type =
     );
 }
 
-const styles = (theme:stylesType, colorIcon?:string, height?:number, width?:number) =>{
+const styles = (theme:StylesType, colorIcon?:string, height?:number, width?:number) =>{
     return StyleSheet.create({
         filterOptionContainer:{
             backgroundColor: theme.backgroundCards,

@@ -1,6 +1,6 @@
 import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { coinFormat } from "@/src/utils/coinFormat";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Expanded } from "./expandedFund";
@@ -54,7 +54,7 @@ export const FundsCard = ({fund, onPress, expanded}: FundsCardProps) => {
         </View>
     );
 }
-const getStyle = (theme: stylesType) =>{
+const getStyle = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.backgroundCards,

@@ -1,5 +1,5 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { Pressable, StyleSheet, Text } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -33,7 +33,7 @@ export const NavigationButton = ({route: route, text, transparentStyle, card, ic
     );
 }
 
-const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, IconHeigth?:number) =>{
+const getStyles = (theme: StylesType, card?:boolean, transparentStyle?:boolean, IconHeigth?:number) =>{
     return StyleSheet.create({
         buttonContainer:{
             backgroundColor: card? theme.backgroundCards:transparentStyle? 'tranparent':theme.tint,

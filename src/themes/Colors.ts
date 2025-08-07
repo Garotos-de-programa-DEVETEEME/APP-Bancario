@@ -1,6 +1,6 @@
 const tintColor = '#3E75BC';//cor principal projeto
 
-export type stylesType = {
+export type StylesType = {
   text: string,
   textSecundary: string,
   alternativeText: string,
