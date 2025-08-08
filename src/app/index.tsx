@@ -10,23 +10,25 @@ import {
 export default function App() {
 
   return (
-    <ImageBackground
-      source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
-      style={styles.background}
-      resizeMode="cover"
-    >
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.content} />
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <SafeAreaView style={styles.safeArea}>
+          <View style={styles.content} />
 
-        <View style={styles.buttonwrapper}>
-        <EntrarButton
-          title="Cliente"
-          onPress={() => router.push('./telaInicial')}
-        />
-        </View>
+          <View style={styles.buttonwrapper}>
+          <EntrarButton
+            title="Cliente"
+            onPress={() => router.push('./telaInicial')}
+          />
+          </View>
 
-      </SafeAreaView>
-    </ImageBackground>
+        </SafeAreaView>
+      </ImageBackground>
+    </View>
   );
 }
 

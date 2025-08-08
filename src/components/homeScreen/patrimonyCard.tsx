@@ -1,9 +1,9 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
+import { StyledText } from '../StyledText';
 import { useState } from "react";
 import {
     StyleSheet,
-    Text,
     TouchableOpacity,
     View
 } from 'react-native';
@@ -30,10 +30,10 @@ export default function PatrimonyCard({
         <View style={styles.container}>
             <View style={styles.div}>
                 <View style={styles.left}>
-                    <Text style={{ fontWeight: 'bold', color: theme.text, fontSize: 18 }}>Meu Patrimônio</Text>
-                    <Text style={{ fontWeight: 'bold', color: theme.text, fontSize: 15 }}>
+                    <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 18 }}>Meu Patrimônio</StyledText>
+                    <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 15 }}>
                         {isVisible ? `R$ ${value}` : 'R$ ••••••'}
-                    </Text>
+                    </StyledText>
                 </View>
                 <TouchableOpacity onPress={toggleVisibility} style={styles.visibility}>
                     <MaterialCommunityIcons 
