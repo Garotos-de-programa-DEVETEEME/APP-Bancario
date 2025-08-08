@@ -1,9 +1,9 @@
+import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
 import { stylesType } from "@/src/themes/Colors";
+import { router } from "expo-router";
 import { StyleSheet, TextInput, View } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { router } from "expo-router";
-import { useFilters } from "@/src/Context/filterContext";
 
 
 interface SearchBarProps {
@@ -68,15 +68,10 @@ const getStyles = (theme: stylesType, filter:boolean) => {
             gap: 4,
         },
         searchTextInput:{
-<<<<<<< HEAD:src/components/searchBar.tsx
-            color: theme.alternativeIcon, 
-            fontFamily: 'Whitney-Regular'
-=======
             color: theme.alternativeIcon,
         },
         searchIcon:{
             color: theme.alternativeIcon,
->>>>>>> dc887c5cc8b668c988ce7547bcf8abc5d71935c1:src/components/SearchBar/searchBar.tsx
         },
         filterIcon:{
             color: theme.alternativeIcon,
