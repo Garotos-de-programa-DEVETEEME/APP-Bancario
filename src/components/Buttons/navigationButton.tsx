@@ -1,10 +1,10 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { Pressable, StyleSheet, Text } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface navigationButtonProps{
-    route: () => void;// a função aqui deve conter um () => router.push()
+    route: () => void;
     text:string;
     transparentStyle?:boolean;
     card?:boolean;
@@ -33,12 +33,12 @@ export const NavigationButton = ({route: route, text, transparentStyle, card, ic
     );
 }
 
-const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, IconHeigth?:number) =>{
+const getStyles = (theme: StylesType, card?:boolean, transparentStyle?:boolean, IconHeigth?:number) =>{
     return StyleSheet.create({
         buttonContainer:{
             backgroundColor: card? theme.backgroundCards:transparentStyle? 'tranparent':theme.tint,
             borderRadius: 10,
-            height: IconHeigth? IconHeigth!:29,
+            height: IconHeigth? IconHeigth!:37,
             width: IconHeigth? 117:180,
             justifyContent: 'center',
             alignItems: 'center',

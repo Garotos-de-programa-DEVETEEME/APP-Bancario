@@ -1,5 +1,5 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { StyleSheet, Text, View } from "react-native";
 import { StyledText } from '../StyledText';
 
@@ -25,7 +25,7 @@ export const RiskIcon = ({risk}: riskIconProps) =>{
     );
 };
 
-const getStyles = (theme: stylesType, risk: string) =>{
+const getStyles = (theme: StylesType, risk: string) =>{
     const ballSize = 10
 
     return StyleSheet.create({

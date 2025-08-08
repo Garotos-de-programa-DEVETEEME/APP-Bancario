@@ -1,10 +1,11 @@
 const tintColor = '#3E75BC';//cor principal projeto
 
-export type stylesType = {
+export type StylesType = {
   text: string,
   textSecundary: string,
   alternativeText: string,
   whiteText: string,
+  darkText: string,
   background: string,
   backgroundCards: string,
   tint: string,
@@ -25,6 +26,7 @@ export const Styles = {
     textSecundary: '#A5A5A5',
     alternativeText: '#2A2A2A',
     whiteText:'#EDEDED',
+    darkText: "#343434",
     background: '#FFFFFF',
     backgroundCards: '#EDEDED',
     tint: tintColor,
@@ -43,6 +45,7 @@ export const Styles = {
     textSecundary: '#EEEEEE',
     alternativeText: '#D5D5D5',
     whiteText:'#FFFFFF',
+    darkText: "#343434",
     background: '#212121',
     backgroundCards: '#2A2A2A',
     tint: tintColor,
