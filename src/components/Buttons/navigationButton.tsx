@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface navigationButtonProps{
-    route: () => void;// a função aqui deve conter um () => router.push()
+    route: () => void;
     text:string;
     transparentStyle?:boolean;
     card?:boolean;

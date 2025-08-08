@@ -9,7 +9,6 @@ import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-
 export default function FilterFundsPage() {
     const {filters, setFilters} = useFilters();
     const theme = useTheme();
@@ -87,15 +86,11 @@ export default function FilterFundsPage() {
             }
         },[])
 
-
     const updateValueFilter = (id: number) => {// Atualiza o filtro de valor selecionado
         setValueFilters(prev => prev.map(filter =>//setta uma nova lista de filtros com base no valor retornado nesse map
             filter.id === id? {...filter, selected: !filter.selected}:{...filter, selected: false} //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos como false
         ))
     }
-
-
-
 
     const updateRiskFilter = (id: number) => {// Atualiza o filtro de valor selecionado
         setRiskFilters(prev => prev.map(filter =>//setta uma nova lista de filtros com base no valor retornado nesse map
@@ -111,8 +106,6 @@ export default function FilterFundsPage() {
         return list.filter((e) => !!e && e.selected === true);
     }
 
-    
-    const [filtersToUpdate, setFilterToUpdate] = useState<FilterType[]>([]);//array que vai receber os filtros selecionados
     const updateFilters = () => {
         // Use a local variable instead of state
         let selectedFilters: FilterType[] = [

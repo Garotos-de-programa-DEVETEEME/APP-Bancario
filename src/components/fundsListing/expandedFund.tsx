@@ -4,6 +4,7 @@ import { StylesType } from "@/src/themes/Colors";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
 import { StyleSheet, View } from "react-native";
 import { NavigationButton } from "../Buttons/navigationButton";
+import { StyledText } from "../StyledText";
 
 interface expandedProps{
     fund: fundsType;

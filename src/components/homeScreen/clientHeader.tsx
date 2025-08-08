@@ -1,10 +1,8 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import {
     StyleSheet,
-    Text,
     View,
     Image,
-    Pressable
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PatrimonyCard from "./patrimonyCard";
