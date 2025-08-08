@@ -10,27 +10,25 @@ import {
 export default function App() {
 
   return (
-    <ImageBackground
-<<<<<<< HEAD
-      source={{uri :'https://legacy.reactjs.org/logo-og.png'}}
-=======
-      source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
->>>>>>> dc887c5cc8b668c988ce7547bcf8abc5d71935c1
-      style={styles.background}
-      resizeMode="cover"
-    >
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.content} />
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <SafeAreaView style={styles.safeArea}>
+          <View style={styles.content} />
 
-        <View style={styles.buttonwrapper}>
-        <EntrarButton
-          title="Cliente"
-          onPress={() => router.push('./telaInicial')}
-        />
-        </View>
+          <View style={styles.buttonwrapper}>
+          <EntrarButton
+            title="Cliente"
+            onPress={() => router.push('./telaInicial')}
+          />
+          </View>
 
-      </SafeAreaView>
-    </ImageBackground>
+        </SafeAreaView>
+      </ImageBackground>
+    </View>
   );
 }
 
