@@ -1,6 +1,6 @@
 import { FilterType } from "@/src/@Types/Filter";
+import { ButtonIcon } from "@/src/components/Buttons/ButtonIcon";
 import { FavoriteButton } from "@/src/components/Buttons/favoriteButton";
-import { NavigationButton } from "@/src/components/Buttons/navigationButton";
 import { FilterOption } from "@/src/components/SearchBar/filterOption";
 import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -158,7 +158,7 @@ export default function FilterFundsPage() {
                 </View>
             </View>
             <View style={style.redirectButton}>
-                <NavigationButton route={()=> updateFilters()} text={"Filtrar"}/>
+                <ButtonIcon route={()=> updateFilters()} text={"Filtrar"}/>
             </View>
         </View>
     )

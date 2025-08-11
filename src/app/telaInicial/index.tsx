@@ -1,5 +1,5 @@
+import { ButtonIcon } from "@/src/components/Buttons/ButtonIcon";
 import { NavigationButton } from "@/src/components/Buttons/navigationButton";
-import { NavigationButtonSimple } from "@/src/components/Buttons/navigationButtonSimple";
 import ClientHeader from "@/src/components/homeScreen/clientHeader";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
@@ -22,7 +22,7 @@ export default function TelaInicial() {
             />
 
             <View style={styles.buttonbox}>
-                <NavigationButton
+                <ButtonIcon
                 route={function (): void {
                     throw new Error("Function not implemented.");
                 } }
@@ -33,7 +33,7 @@ export default function TelaInicial() {
                 IconHeigth={40}
                 />
 
-                <NavigationButtonSimple
+                <NavigationButton
                     onPress={function (): void {
                         throw new Error("Function not implemented.");
                     } }   
