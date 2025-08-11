@@ -158,7 +158,10 @@ export default function FilterFundsPage() {
                 </View>
             </View>
             <View style={style.redirectButton}>
-                <NavigationButton route={()=> updateFilters()} text={"Filtrar"}/>
+                <NavigationButton
+                onPress={() => updateFilters()}
+                text="Filtrar"
+            />
             </View>
         </View>
     )

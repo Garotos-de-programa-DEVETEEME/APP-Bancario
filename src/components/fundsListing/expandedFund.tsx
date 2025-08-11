@@ -3,8 +3,8 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
 import { StyleSheet, View } from "react-native";
-import { NavigationButton } from "../Buttons/navigationButton";
 import { StyledText } from "../StyledText";
+import { NavigationButton } from "../Buttons/navigationButton";
 
 interface expandedProps{
     fund: fundsType;
@@ -38,8 +38,8 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
                     <StyledText style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-                    <NavigationButton route={() => console.log('temporario')} text={"Saiba Mais"} transparentStyle/>
-                    <NavigationButton route={() => console.log('temporario')} text={"Investir"}/>
+                    <NavigationButton onPress={() => console.log('temporario')} text={"Saiba Mais"} transparentStyle/>
+                    <NavigationButton onPress={() => console.log('temporario')} text={"Investir"}/>
                 </View>
             </View>
     );
