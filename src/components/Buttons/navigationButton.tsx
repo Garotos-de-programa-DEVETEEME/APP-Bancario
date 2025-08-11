@@ -1,6 +1,6 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
-import { Pressable, StyleSheet, Text, ViewStyle } from "react-native";
+import { Pressable, StyleSheet, Text} from "react-native";
 
 interface NavigationButtonProps {
   onPress: () => void;// a função aqui deve conter um () => router.push()
@@ -29,19 +29,18 @@ const getStyles = (
   theme: StylesType,
   transparentStyle?: boolean,
 ) => {
-  const buttonContainerStyle: ViewStyle = {
-    backgroundColor: transparentStyle ? "transparent" : theme.tint,
-    borderRadius: 10, 
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 16,
-    marginBottom: 8,
-    borderColor: transparentStyle ? theme.tint : "transparent",
-    borderWidth: 1,
-  };
 
   return StyleSheet.create({
-    buttonContainer: buttonContainerStyle,
+    buttonContainer:{
+      backgroundColor: transparentStyle ? "transparent" : theme.tint,
+      borderRadius: 10,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 16,
+      marginBottom: 8,
+      borderColor: transparentStyle ? theme.tint : "transparent",
+      borderWidth: 1,
+    },
     buttonText: {
       color: transparentStyle ? theme.tint : theme.whiteText,
       fontSize: 18,
