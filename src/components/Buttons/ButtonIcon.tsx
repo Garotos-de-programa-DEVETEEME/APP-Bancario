@@ -6,25 +6,21 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 interface buttonIconProps{
     route: () => void;
     text:string;
-    card?:boolean;
-    icon:boolean;//caso o icone seja verdadeiro deve-se colocar o iconName e o iconHeigth
-    iconName?: string;
+    iconName: string;
     IconHeigth?: number
 }
 
-export const ButtonIcon = ({route: route, text, card, icon, iconName, IconHeigth}:buttonIconProps) =>{
+export const ButtonIcon = ({route: route, text, iconName, IconHeigth}:buttonIconProps) =>{
 
     const theme = useTheme();
-        const styles = getStyles(theme, card, IconHeigth);
+        const styles = getStyles(theme, IconHeigth);
 
     return(
         <Pressable
             style={styles.buttonContainer}
             onPress={route}
         >
-            {(icon && iconName) && (
-                <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth!}/>
-            )}
+            <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth!}/>
             <Text style={styles.buttonText}>
                 {text}
             </Text>
@@ -32,13 +28,13 @@ export const ButtonIcon = ({route: route, text, card, icon, iconName, IconHeigth
     );
 }
 
-const getStyles = (theme: StylesType, card?:boolean, IconHeigth?:number) =>{
+const getStyles = (theme: StylesType, IconHeigth?:number) =>{
     return StyleSheet.create({
         buttonContainer:{
-            backgroundColor: card? theme.backgroundCards : theme.tint,
+            backgroundColor: theme.backgroundCards,
             borderRadius: 10,
-            height: IconHeigth? IconHeigth!:37,
-            width: IconHeigth? 117:180,
+            height: 61,
+            width: 117,
             justifyContent: 'center',
             alignItems: 'center',
             marginTop: 16,
@@ -51,7 +47,7 @@ const getStyles = (theme: StylesType, card?:boolean, IconHeigth?:number) =>{
             padding: 8,
         },
         buttonText:{
-            color: card ? theme.tint : theme.whiteText,
+            color: theme.tint,
         },
         icon:{
             color:theme.tint,
