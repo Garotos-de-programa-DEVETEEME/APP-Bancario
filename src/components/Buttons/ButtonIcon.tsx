@@ -7,7 +7,7 @@ interface buttonIconProps{
     route: () => void;
     text:string;
     card?:boolean;
-    icon?:boolean;//caso o icone seja verdadeiro deve-se colocar o iconName e o iconHeigth
+    icon:boolean;//caso o icone seja verdadeiro deve-se colocar o iconName e o iconHeigth
     iconName?: string;
     IconHeigth?: number
 }
