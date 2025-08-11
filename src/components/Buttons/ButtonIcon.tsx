@@ -34,7 +34,7 @@ const getStyles = (theme: StylesType, IconHeigth?:number) =>{
             backgroundColor: theme.backgroundCards,
             borderRadius: 10,
             height: 61,
-            width: 117,
+            width: 110,
             justifyContent: 'center',
             alignItems: 'center',
             marginTop: 16,
@@ -45,9 +45,11 @@ const getStyles = (theme: StylesType, IconHeigth?:number) =>{
             flexDirection:'row',
             gap: 10,
             padding: 8,
+            boxSizing:'border-box',
         },
         buttonText:{
             color: theme.tint,
+            fontSize:11,
         },
         icon:{
             color:theme.tint,
