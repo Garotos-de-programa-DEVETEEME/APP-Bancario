@@ -1,10 +1,9 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { StyledText } from '../StyledText';
 import { useState } from "react";
 import {
     StyleSheet,
-    Text,
     TouchableOpacity,
     View
 } from 'react-native';
@@ -48,7 +47,7 @@ export default function PatrimonyCard({
     );
 }
 
-const getStyles = (theme: stylesType) =>{
+const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.border,

@@ -1,9 +1,8 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
 import {
     StyleSheet,
-    Text,
-    View
+    View,
+    Image,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PatrimonyCard from "./patrimonyCard";
@@ -23,14 +22,14 @@ export default function ClientHeader({
 }: ClientHeaderProps) {
 
     const theme = useTheme();
-    const styles = getStyles(theme);
+    const styles = getStyles();
 
     return(
         <View style={styles.outerbox}>
             <View style={styles.header}>
                 <View style={styles.container}>
                     <View style={styles.left}>
-                        <img src={image} alt="Foto Cliente" style={styles.image} />
+                        <Image src={image} alt="Foto Cliente" style={styles.image} />
                         <View style={styles.textbox}>
                             <StyledText style={{ fontWeight: 'bold', color: theme.whiteText }}>
                                 {title}
@@ -53,7 +52,7 @@ export default function ClientHeader({
     );
 }
 
-const getStyles = (theme: stylesType) =>{
+const getStyles = () =>{
     const headerHeight = 138;
     const cardHeight = 80;
 

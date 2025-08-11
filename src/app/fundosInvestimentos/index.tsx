@@ -2,7 +2,7 @@ import { tempFunds } from "@/src/@Types/fundos";
 import { FundsCard } from "@/src/components/fundsListing/fundCard";
 import { SearchBar } from "@/src/components/SearchBar/searchBar";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { useState } from "react";
 import { StyleSheet, View, } from "react-native";
 
@@ -48,7 +48,7 @@ export default function FundoInvestimento() {
     );
 };
 
-const getStyles = (theme: stylesType) =>{
+const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
             backgroundColor: theme.background,

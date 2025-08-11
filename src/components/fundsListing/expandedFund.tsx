@@ -1,9 +1,10 @@
 import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
 import { StyleSheet, View } from "react-native";
 import { NavigationButton } from "../Buttons/navigationButton";
+import { StyledText } from "../StyledText";
 
 interface expandedProps{
     fund: fundsType;
@@ -44,7 +45,7 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
     );
 };
 
-const getStyles = (theme: stylesType, expanded:boolean) =>{
+const getStyles = (theme: StylesType, expanded:boolean) =>{
     return StyleSheet.create({
         expandedContentContainer:{
             display: expanded? 'flex':'none',

@@ -1,6 +1,6 @@
 import { FilterType } from "@/src/@Types/Filter";
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { Pressable, StyleSheet, Text } from "react-native";
 
 interface filterOptionProps{
@@ -22,7 +22,7 @@ export const FilterOption = ({ info, isSelected, onSelect, height, width, type =
             onPress={() => onSelect(info.id)}
             style={isSelected? style.filteoptrOptionContainerSelected:style.filterOptionContainer}
         >
-            {type === 'risk' &&  (<Text style={style.placeholderRiskIcon}></Text>)}{/* adiciona a bola de risco caso vc defina uma cor */}
+            {(type === 'risk' && !isSelected) &&  (<Text style={style.placeholderRiskIcon}></Text>)}{/* adiciona a bola de risco caso vc defina uma cor */}
             <Text style={style.placeholderText}>
                 {info.placeholder}
             </Text>
@@ -30,7 +30,7 @@ export const FilterOption = ({ info, isSelected, onSelect, height, width, type =
     );
 }
 
-const styles = (theme:stylesType, colorIcon?:string, height?:number, width?:number) =>{
+const styles = (theme:StylesType, colorIcon?:string, height?:number, width?:number) =>{
     return StyleSheet.create({
         filterOptionContainer:{
             backgroundColor: theme.backgroundCards,
@@ -42,7 +42,7 @@ const styles = (theme:stylesType, colorIcon?:string, height?:number, width?:numb
             justifyContent:'center',
             display:'flex',
             flexDirection:'row',
-            gap: 1
+            gap: 5
         },
         filteoptrOptionContainerSelected:{
             backgroundColor: colorIcon? colorIcon:theme.tint,

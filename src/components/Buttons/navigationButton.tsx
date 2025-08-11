@@ -1,10 +1,10 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { stylesType } from "@/src/themes/Colors";
+import { StylesType } from "@/src/themes/Colors";
 import { Pressable, StyleSheet, Text } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface navigationButtonProps{
-    route: () => void;// a função aqui deve conter um () => router.push()
+    route: () => void;
     text:string;
     card?:boolean;
     icon?:boolean;//caso o icone seja verdadeiro deve-se colocar o iconName e o iconHeigth
@@ -37,7 +37,7 @@ const getStyles = (theme: stylesType, card?:boolean, IconHeigth?:number) =>{
         buttonContainer:{
             backgroundColor: card? theme.backgroundCards : theme.tint,
             borderRadius: 10,
-            height: IconHeigth? IconHeigth!:29,
+            height: IconHeigth? IconHeigth!:37,
             width: IconHeigth? 117:180,
             justifyContent: 'center',
             alignItems: 'center',
