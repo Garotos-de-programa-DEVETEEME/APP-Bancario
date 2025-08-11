@@ -6,7 +6,6 @@ interface NavigationButtonSimpleProps {
   onPress: () => void;// a função aqui deve conter um () => router.push()
   text: string;
   transparentStyle?: boolean;
-  card?: boolean;
   disabled?: boolean;
 }
 
@@ -14,11 +13,10 @@ export const NavigationButtonSimple = ({
   onPress,
   text,
   transparentStyle,
-  card,
   disabled,
 }: NavigationButtonSimpleProps) => {
   const theme = useTheme();
-  const styles = getStyles(theme, card, transparentStyle);
+  const styles = getStyles(theme, transparentStyle);
 
   return (
     <Pressable style={styles.buttonContainer} onPress={onPress} disabled={disabled}>
@@ -29,15 +27,10 @@ export const NavigationButtonSimple = ({
 
 const getStyles = (
   theme: stylesType,
-  card?: boolean,
   transparentStyle?: boolean,
 ) => {
   const buttonContainerStyle: ViewStyle = {
-    backgroundColor: card
-      ? theme.backgroundCards
-      : transparentStyle
-      ? "transparent"
-      : theme.tint,
+    backgroundColor: transparentStyle ? "transparent" : theme.tint,
     borderRadius: 10, 
     justifyContent: "center",
     alignItems: "center",
@@ -50,7 +43,7 @@ const getStyles = (
   return StyleSheet.create({
     buttonContainer: buttonContainerStyle,
     buttonText: {
-      color: card || transparentStyle ? theme.tint : theme.whiteText,
+      color: transparentStyle ? theme.tint : theme.whiteText,
       fontSize: 18,
       fontWeight: "bold",
     },

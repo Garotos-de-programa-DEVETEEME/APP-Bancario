@@ -6,17 +6,16 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 interface navigationButtonProps{
     route: () => void;// a função aqui deve conter um () => router.push()
     text:string;
-    transparentStyle?:boolean;
     card?:boolean;
     icon?:boolean;//caso o icone seja verdadeiro deve-se colocar o iconName e o iconHeigth
     iconName?: string;
     IconHeigth?: number
 }
 
-export const NavigationButton = ({route: route, text, transparentStyle, card, icon, iconName, IconHeigth}:navigationButtonProps) =>{
+export const NavigationButton = ({route: route, text, card, icon, iconName, IconHeigth}:navigationButtonProps) =>{
 
     const theme = useTheme();
-        const styles = getStyles(theme, card, transparentStyle, IconHeigth);
+        const styles = getStyles(theme, card, IconHeigth);
 
     return(
         <Pressable
@@ -33,10 +32,10 @@ export const NavigationButton = ({route: route, text, transparentStyle, card, ic
     );
 }
 
-const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, IconHeigth?:number) =>{
+const getStyles = (theme: stylesType, card?:boolean, IconHeigth?:number) =>{
     return StyleSheet.create({
         buttonContainer:{
-            backgroundColor: card? theme.backgroundCards:transparentStyle? 'tranparent':theme.tint,
+            backgroundColor: card? theme.backgroundCards : theme.tint,
             borderRadius: 10,
             height: IconHeigth? IconHeigth!:29,
             width: IconHeigth? 117:180,
@@ -44,7 +43,7 @@ const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, 
             alignItems: 'center',
             marginTop: 16,
             marginBottom: 8,
-            borderColor: transparentStyle? theme.tint:'transparent',
+            borderColor: 'transparent',
             borderWidth: 1,
             display:'flex',
             flexDirection:'row',
@@ -52,7 +51,7 @@ const getStyles = (theme: stylesType, card?:boolean, transparentStyle?:boolean, 
             padding: 8,
         },
         buttonText:{
-            color: transparentStyle? theme.tint:theme.whiteText
+            color: card ? theme.tint : theme.whiteText,
         },
         icon:{
             color:theme.tint,
