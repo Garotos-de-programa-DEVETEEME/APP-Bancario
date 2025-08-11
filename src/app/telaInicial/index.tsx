@@ -1,5 +1,4 @@
 import { ButtonIcon } from "@/src/components/Buttons/ButtonIcon";
-import { NavigationButton } from "@/src/components/Buttons/navigationButton";
 import ClientHeader from "@/src/components/homeScreen/clientHeader";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
@@ -27,17 +26,8 @@ export default function TelaInicial() {
                     throw new Error("Function not implemented.");
                 } }
                 text="Minha Carteira"
-                card
-                icon
-                iconName="credit-card"
+                iconName="wallet"
                 IconHeigth={40}
-                />
-
-                <NavigationButton
-                    onPress={function (): void {
-                        throw new Error("Function not implemented.");
-                    } }   
-                    text="Investir"         
                 />
             </View>
 
@@ -49,7 +39,6 @@ const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
             flexDirection: 'row',
-
         },
         header: {
             backgroundColor: '#3E75BC',
@@ -59,7 +48,7 @@ const getStyles = (theme: StylesType) =>{
             borderBottomRightRadius: 50,
         },
         buttonbox: {
-            margin: 30
+            marginTop: 30
         }
     });
 };
