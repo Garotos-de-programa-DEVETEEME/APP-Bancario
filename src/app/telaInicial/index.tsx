@@ -2,6 +2,7 @@ import { ButtonIcon } from "@/src/components/Buttons/ButtonIcon";
 import ClientHeader from "@/src/components/homeScreen/clientHeader";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
+import { router } from "expo-router";
 import {
     StyleSheet, View
 } from 'react-native';
@@ -22,12 +23,22 @@ export default function TelaInicial() {
 
             <View style={styles.buttonbox}>
                 <ButtonIcon
-                route={function (): void {
-                    throw new Error("Function not implemented.");
-                } }
+                route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
                 text="Minha Carteira"
                 iconName="wallet"
-                IconHeigth={40}
+                IconHeigth={24}
+                />
+                <ButtonIcon
+                route={()=> router.push('/fundosInvestimentos')}
+                text="Fundos de Investimento"
+                iconName="inventory"
+                IconHeigth={24}
+                />
+                <ButtonIcon
+                route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
+                text="Simular Investimento"
+                iconName="timeline"
+                IconHeigth={24}
                 />
             </View>
 
@@ -48,7 +59,11 @@ const getStyles = (theme: StylesType) =>{
             borderBottomRightRadius: 50,
         },
         buttonbox: {
-            marginTop: 30
+            marginTop: 45,
+            display:'flex',
+            flexDirection:'row',
+            gap: 16,
+            justifyContent:'center',
         }
     });
 };
