@@ -5,7 +5,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { StyledText } from './StyledText';
+import { StyledText } from '../StyledText';
 
 type EntrarButtonProps = {
   title: string;

@@ -3,7 +3,8 @@ import { stylesType } from "@/src/themes/Colors";
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    Image
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PatrimonyCard from "./patrimonyCard";
@@ -30,7 +31,7 @@ export default function ClientHeader({
             <View style={styles.header}>
                 <View style={styles.container}>
                     <View style={styles.left}>
-                        <img src={image} alt="Foto Cliente" style={styles.image} />
+                        <Image src={image} alt="Foto Cliente" style={styles.image} />
                         <View style={styles.textbox}>
                             <StyledText style={{ fontWeight: 'bold', color: theme.whiteText }}>
                                 {title}
