@@ -121,7 +121,7 @@ export default function FilterFundsPage() {
     }
 
     return(
-        <View>
+        <View style={style.pageTheme}>
             <View style={style.starCategorie}>
                 <Text style={style.categoriesTitle}>Favoritos</Text>
                 <View style={style.starButton}>
@@ -175,6 +175,11 @@ const styles = (theme:StylesType)=>{
             fontWeight:'bold',
             marginBottom:16,
             marginLeft:22,
+            marginTop:10,
+        },
+        pageTheme: {
+            backgroundColor: theme.background,
+            height: '100%',
         },
         categoriesCards:{
             display:'flex',
