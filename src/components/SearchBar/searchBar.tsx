@@ -82,12 +82,8 @@ const getStyles = (theme: StylesType, filter:boolean) => {
             gap: 4,
         },
         searchTextInput:{
-<<<<<<< HEAD
-            color: theme.alternativeIcon,
-=======
             color: theme.alternativeIcon, 
             fontFamily: 'Whitney-Regular'
->>>>>>> cbd1d9d27644c45833d9cd586c49a9b102779714
         },
         searchIcon:{
             color: theme.alternativeIcon,

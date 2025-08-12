@@ -2,13 +2,8 @@ import { fundsType } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
-<<<<<<< HEAD
 import { StyleSheet, View } from "react-native";
 import { StyledText } from "../StyledText";
-=======
-import { StyledText } from '../StyledText';
-import { StyleSheet, Text, View } from "react-native";
->>>>>>> cbd1d9d27644c45833d9cd586c49a9b102779714
 import { NavigationButton } from "../Buttons/navigationButton";
 
 interface expandedProps{
@@ -43,13 +38,8 @@ export const Expanded = ({fund, expanded}:expandedProps) =>{
                     <StyledText style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </StyledText>
                 </View>
                 <View style={styles.textContainer}>
-<<<<<<< HEAD
                     <NavigationButton onPress={() => console.log('temporario')} text={"Saiba Mais"} transparentStyle/>
                     <NavigationButton onPress={() => console.log('temporario')} text={"Investir"}/>
-=======
-                    <NavigationButton route={() => console.log('temporario')} text={"Saiba Mais"} transparentStyle/>
-                    <NavigationButton route={() => console.log('temporario')} text={"Investir"}/>
->>>>>>> cbd1d9d27644c45833d9cd586c49a9b102779714
                 </View>
             </View>
     );

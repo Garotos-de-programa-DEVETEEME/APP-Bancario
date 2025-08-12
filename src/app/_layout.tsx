@@ -1,15 +1,22 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import 'react-native-reanimated';
+import React, { useEffect } from 'react';
+import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+
 import { useColorScheme } from '@/src/hooks/useColorScheme';
 import { FiltersProvider } from '../Context/filterContext';
 
+import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs';
+import SimpleHeader from '../components/customHeader/SimpleHeader';
+
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  
   const [fontsLoaded, error] = useFonts({
     'Whitney-Regular': require('../assets/fonts/whitney-medium.otf'),
     'Whitney-Bold': require('../assets/fonts/whitney-bold.otf'),
@@ -24,17 +31,32 @@ export default function RootLayout() {
   if (!fontsLoaded && !error) {
     return null;
   }
+
   return (
     <FiltersProvider>
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ title: 'Home Page' }} />
-            <Stack.Screen name="fundosInvestimentos/index" options={{ title: 'Fundos Investimentos' }} />
-            <Stack.Screen name="fundosInvestimentos/filter/index" options={{ title: 'Filtros' }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          
+          <Stack.Screen
+            name="fundosInvestimentos/index"
+            options={{
+              header: () => <PageHeaderWithTabs title="Banestes DTVM" />,
+            }}
+          />
+          
+          <Stack.Screen
+            name="fundosInvestimentos/filter/index"
+            options={{
+              header: () => <SimpleHeader title="Filtros" />,
+            }}
+          />
+          
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
     </FiltersProvider>
   );
 }
