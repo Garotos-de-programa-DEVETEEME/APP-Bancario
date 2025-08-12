@@ -35,7 +35,7 @@ export default function TelaInicial() {
                 IconHeigth={24}
                 />
                 <ButtonIcon
-                route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
+                route={()=> router.push('/simularInvestimento')}
                 text="Simular Investimento"
                 iconName="timeline"
                 IconHeigth={24}

@@ -1,12 +1,12 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import {
+    Image,
     StyleSheet,
     View,
-    Image,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import PatrimonyCard from "./patrimonyCard";
 import { StyledText } from '../StyledText';
+import PatrimonyCard from "./patrimonyCard";
 
 
 type ClientHeaderProps = {
@@ -29,7 +29,7 @@ export default function ClientHeader({
             <View style={styles.header}>
                 <View style={styles.container}>
                     <View style={styles.left}>
-                        <Image src={image} alt="Foto Cliente" style={styles.image} />
+                        <Image source={{ uri: image }} style={styles.image} accessibilityLabel="Foto do Cliente" />
                         <View style={styles.textbox}>
                             <StyledText style={{ fontWeight: 'bold', color: theme.whiteText }}>
                                 {title}
