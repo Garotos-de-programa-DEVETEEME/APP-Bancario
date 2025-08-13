@@ -20,7 +20,12 @@ export type StylesType = {
   fontFamily: string,
 }
 
-export const Styles = {
+type ThemeType =  {
+  light: StylesType,
+  dark: StylesType,
+}
+
+export const Styles:ThemeType = {
   light:  {
     text: '#2A2A2A',
     textSecundary: '#A5A5A5',
