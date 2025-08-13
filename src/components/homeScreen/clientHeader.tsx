@@ -7,6 +7,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PatrimonyCard from "./patrimonyCard";
 import { StyledText } from '../StyledText';
+import { StylesType } from "@/src/themes/Colors";
 
 
 type ClientHeaderProps = {
@@ -22,7 +23,7 @@ export default function ClientHeader({
 }: ClientHeaderProps) {
 
     const theme = useTheme();
-    const styles = getStyles();
+    const styles = getStyles(theme);
 
     return(
         <View style={styles.outerbox}>
@@ -52,31 +53,42 @@ export default function ClientHeader({
     );
 }
 
-const getStyles = () =>{
+const getStyles = (theme:StylesType) =>{
     const headerHeight = 138;
-    const cardHeight = 80;
+    const cardHeight = 90;
+    const sobrepositionamento = 40;
 
     return StyleSheet.create({
         outerbox: {
-            alignItems: 'center'
-        },
-        cardcontainer: {
-            position: 'absolute',
-            top: headerHeight - (cardHeight / 2),
-            width: '90%',
-            alignItems: 'center'
-        },
-        container: {
-            flexDirection: 'row',
-            justifyContent: 'space-between'
+            alignItems: 'center',
+            height: headerHeight - sobrepositionamento + cardHeight,
+            paddingBottom: 0,
         },
         header: {
             backgroundColor: '#3E75BC',
             width: '100%',
-            height: 125,
+            height: headerHeight,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
             justifyContent: 'center'
+        },
+        cardcontainer: {
+            position: 'absolute',
+            top: headerHeight - sobrepositionamento,
+            width: '90%',
+            alignItems: 'center',
+            borderRadius: 15,
+            borderWidth: 1,
+            borderColor: theme.border,
+            justifyContent: 'center',
+            shadowColor: '#000', // Sombra iOS
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+        },
+        container: {
+            flexDirection: 'row',
+            justifyContent: 'space-between'
         },
         left: {
             flexDirection: 'row',
