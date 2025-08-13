@@ -7,11 +7,13 @@ import HeaderTabs from './HeaderTabs';
 
 interface PageHeaderProps {
   title: string;
+  tabTitle: 'carteira' | 'fundos';
 }
 
-export default function PageHeaderWithTabs({ title }: PageHeaderProps) {
+export default function PageHeaderWithTabs({ title, tabTitle}: PageHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const [activeTab, setActiveTab] = React.useState<'carteira' | 'fundos'>(tabTitle);
 
   return (
     <View style={[styles.mainContainer, { paddingTop: insets.top }]}>
@@ -27,7 +29,7 @@ export default function PageHeaderWithTabs({ title }: PageHeaderProps) {
         </View>
         <View style={styles.buttonContainer} />
       </View>
-      <HeaderTabs activeTab="fundos" />
+      <HeaderTabs activeTab={activeTab} setActiveTab={(e)=> setActiveTab(e)} />
     </View>
   );
 }

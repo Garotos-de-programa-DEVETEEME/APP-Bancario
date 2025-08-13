@@ -1,29 +1,33 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router'
 
 type ActiveTab = 'carteira' | 'fundos';
 
 interface HeaderTabsProps {
   activeTab: ActiveTab;
+  setActiveTab: (tab: ActiveTab) => void;
 }
 
-export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
+export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps) {
 
   const router = useRouter();
 
   const handleCarteiraPress = () => {
-    Alert.alert('Em Breve', 'A funcionalidade de Carteira será implementada em breve.');
-  };
+    setActiveTab('carteira');
+    router.push('/carteira');
+  }
 
   const handleFundosPress = () => {
-    router.push('/fundosInvestimentos'); 
+    setActiveTab('fundos');
+    router.push('/fundosInvestimentos');
   };
+
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity 
-        onPress={handleCarteiraPress} 
+      <TouchableOpacity
+        onPress={handleCarteiraPress}
         style={[
           styles.tabButton,
           activeTab === 'carteira' && styles.activeTabButton

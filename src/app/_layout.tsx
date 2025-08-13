@@ -42,7 +42,13 @@ export default function RootLayout() {
           <Stack.Screen
             name="fundosInvestimentos/index"
             options={{
-              header: () => <PageHeaderWithTabs title="Banestes DTVM" />,
+              header: () => <PageHeaderWithTabs title="Banestes DTVM" tabTitle='fundos'/>,
+            }}
+          />
+          <Stack.Screen
+            name="carteira/index"
+            options={{
+              header: () => <PageHeaderWithTabs title="Banetes DTVM" tabTitle='carteira' />,
             }}
           />
           
@@ -52,6 +58,7 @@ export default function RootLayout() {
               header: () => <SimpleHeader title="Filtros" />,
             }}
           />
+
           
           <Stack.Screen name="+not-found" />
         </Stack>
