@@ -23,22 +23,25 @@ export default function TelaInicial() {
 
             <View style={styles.buttonbox}>
                 <ButtonIcon
-                route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
-                text="Minha Carteira"
-                iconName="wallet"
-                IconHeigth={24}
+                    key={1}
+                    route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
+                    text="Minha Carteira"
+                    iconName="wallet"
+                    IconHeigth={24}
                 />
                 <ButtonIcon
-                route={()=> router.push('/fundosInvestimentos')}
-                text="Fundos de Investimento"
-                iconName="inventory"
-                IconHeigth={24}
+                    key={2}
+                    route={()=> router.push('/fundosInvestimentos')}
+                    text="Fundos de Investimento"
+                    iconName="inventory"
+                    IconHeigth={24}
                 />
                 <ButtonIcon
-                route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
-                text="Simular Investimento"
-                iconName="timeline"
-                IconHeigth={24}
+                    key={3}
+                    route={()=> router.push('/fundosInvestimentos')}//TODO: criar a funcionalidade
+                    text="Simular Investimento"
+                    iconName="timeline"
+                    IconHeigth={24}
                 />
             </View>
 
