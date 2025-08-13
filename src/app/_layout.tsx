@@ -46,7 +46,7 @@ export default function RootLayout() {
           />
           
           <Stack.Screen
-            name="fundosInvestimentos/index"
+            name="fundosInvestimenos/index"
             options={{
               header: () => <PageHeaderWithTabs title="Banetes DTVM" tabTitle='fundos' />,
             }}
