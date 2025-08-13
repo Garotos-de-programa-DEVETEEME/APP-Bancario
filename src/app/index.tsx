@@ -22,7 +22,7 @@ export default function App() {
           <View style={styles.buttonwrapper}>
           <EntrarButton
             title="Cliente"
-            onPress={() => router.push('./telaInicial')}
+            onPress={() => router.push('/telaInicial')}
           />
           </View>
 
