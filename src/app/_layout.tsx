@@ -38,11 +38,17 @@ export default function RootLayout() {
         <Stack>
           
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="telaInicial/index"
+            options={{
+              headerShown:false,
+            }}
+          />
           
           <Stack.Screen
             name="fundosInvestimentos/index"
             options={{
-              header: () => <PageHeaderWithTabs title="Banestes DTVM" tabTitle='fundos'/>,
+              header: () => <PageHeaderWithTabs title="Banetes DTVM" tabTitle='fundos' />,
             }}
           />
           <Stack.Screen

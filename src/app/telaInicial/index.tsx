@@ -14,7 +14,7 @@ export default function TelaInicial() {
     const styles = getStyles(theme);
 
     return(
-        <View>
+        <View style={styles.container}>
             <ClientHeader
                 title = 'Cliente'
                 image = 'https://legacy.reactjs.org/logo-og.png'
@@ -49,21 +49,13 @@ export default function TelaInicial() {
 const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
-            flexDirection: 'row',
-        },
-        header: {
-            backgroundColor: '#3E75BC',
-            width: '100%',
-            height: 137,
-            borderBottomLeftRadius: 50,
-            borderBottomRightRadius: 50,
+            display: 'flex',
+            flexDirection: 'column',
         },
         buttonbox: {
-            marginTop: 45,
             display:'flex',
             flexDirection:'row',
-            gap: 16,
-            justifyContent:'center',
+            justifyContent:'space-around',
         }
     });
 };
