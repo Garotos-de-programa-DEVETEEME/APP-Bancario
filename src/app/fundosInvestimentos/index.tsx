@@ -7,7 +7,7 @@ import { useState } from "react";
 import { StyleSheet, View, } from "react-native";
 
 export default function FundoInvestimento() {
-    const investmentFunds = tempFunds;
+    const investmentFunds = tempFunds;//TODO : Fetch real data from API or context
     const theme = useTheme();
     const styles = getStyles(theme);
 
