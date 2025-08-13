@@ -11,14 +11,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 type PatrimonyCardProps = {
     value: string;
+    borderSize?: number;
 }
 
 export default function PatrimonyCard({
     value,
+    borderSize = 15,
 }: PatrimonyCardProps) {
 
     const theme = useTheme();
-    const styles = getStyles(theme);
+    const styles = getStyles(theme, borderSize);
 
     const [isVisible, setIsVisible] = useState(true);
 
@@ -27,47 +29,47 @@ export default function PatrimonyCard({
     }
 
     return(
-        <View style={styles.container}>
-            <View style={styles.div}>
-                <View style={styles.left}>
-                    <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 18 }}>Meu Patrimônio</StyledText>
-                    <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 15 }}>
-                        {isVisible ? `R$ ${value}` : 'R$ ••••••'}
-                    </StyledText>
+            <View style={styles.containerChildren}>
+                <View style={styles.div}>
+                    <View style={styles.left}>
+                        <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 18 }}>Meu Patrimônio</StyledText>
+                        <StyledText style={{ fontWeight: 400, color: theme.textSecundary, fontSize: 15, marginTop: 4 }}>Saldo líquido</StyledText>
+                        <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 15 }}>
+                            {isVisible ? `R$ ${value}` : 'R$ ••••••'}
+                        </StyledText>
+                    </View>
+                    <TouchableOpacity onPress={toggleVisibility} style={styles.visibility}>
+                        <MaterialCommunityIcons
+                            name={isVisible ? "eye" : "eye-off"}
+                            color={theme.alternativeIcon}
+                            size={20}
+                        />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={toggleVisibility} style={styles.visibility}>
-                    <MaterialCommunityIcons 
-                        name={isVisible ? "eye" : "eye-off"} 
-                        color={theme.alternativeIcon} 
-                        size={20} 
-                    />
-                </TouchableOpacity>
-            </View>
         </View>
     );
 }
 
-const getStyles = (theme: StylesType) =>{
+const getStyles = (theme: StylesType, borderSize:number) =>{
     return StyleSheet.create({
-        container: {
-            backgroundColor: theme.border,
-            height: 70,
+        containerChildren: {
+            backgroundColor: theme.background,
+            height: 90,
             width: '100%',
-            borderRadius: 15,
-            borderWidth: 1,
-            borderColor: '#3C3C3C',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            borderRadius: borderSize,
+        },
+        div: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingBottom:10,
         },
         left: {
             marginLeft: 15,
-            gap: 2
+            gap: 2,
         },
         visibility: {
             marginRight: 15,
         },
-        div: {
-            flexDirection: 'row',
-            justifyContent: 'space-between', 
-        }
     });
 };
