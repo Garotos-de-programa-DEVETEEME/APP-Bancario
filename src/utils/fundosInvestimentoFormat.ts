@@ -20,7 +20,7 @@ export const FormatarFundosInvestimento = (funds: fundsType[]):FundosInvestidos[
     return funds.map(fundo => ({
         nomeFundo: fundo.nome,
         tipoFUndo: fundo.siglaFundo,
-        valorInvestido: fundo.valorAplicacaoInicial,
+        valorInvestido: fundo.valorAplicacaoInicial,//TODO alterar para valor correto
         cor: addColor(fundo.nome),
         saldoResgateAutomativco: fundo.valorResgatavelDia,//TODO conferir se é esse campo correto
         valorMinimoResgate: fundo.valorMinimoResgatavel,
