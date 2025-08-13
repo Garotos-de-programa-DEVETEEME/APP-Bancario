@@ -1,9 +1,10 @@
 import { tempFunds } from "@/src/@Types/fundos";
 import { FundosInvestidos } from "@/src/@Types/fundosInvestidos";
+import { WalletInfoCard } from "@/src/components/Wallet/carteira";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { FormatarFundosInvestimento } from "@/src/utils/fundosInvestimentoFormat";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, StyleSheet, } from "react-native";
 
 export default function WalletPage (){
@@ -11,12 +12,15 @@ export default function WalletPage (){
     const theme = useTheme();
     const styles = getStyles(theme);
     const [fundosInvestidos, setFundosInvestidos] = useState<FundosInvestidos[]>([]);//TODO fazer integração com base em API
-    setFundosInvestidos(FormatarFundosInvestimento(tempFunds));
-    
+    useEffect(()=>{
+        const fundosFormatados = FormatarFundosInvestimento(tempFunds)
+        setFundosInvestidos(fundosFormatados);
+    },[])
+
     return (
             <View style={styles.container}>
                 <View style={styles.cateira}>
-                    
+                    <WalletInfoCard fundosInvestidos={fundosInvestidos}/>
                 </View>
                 <View>
                     <View>

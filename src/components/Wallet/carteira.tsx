@@ -1,19 +1,26 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { StyledText } from "../StyledText";
 import PatrimonyCard from "../homeScreen/patrimonyCard";
-import { fundsType } from "@/src/@Types/fundos";
+import { FundosInvestidos } from "@/src/@Types/fundosInvestidos";
+import { StylesType } from "@/src/themes/Colors";
+import { useTheme } from "@/src/hooks/useTheme";
 
 interface walletInfoCardProps{
-    fundosInvestidos: fundsType;
-
+    fundosInvestidos: FundosInvestidos[];
 }
 
 export const WalletInfoCard = ({fundosInvestidos, }:walletInfoCardProps) => {
-    
+
+    const theme = useTheme();
+    const styles = getStyles(theme);
+    const totalInvestido: number = fundosInvestidos.reduce((soma, e) => {
+        return e.valorInvestido + soma;
+    }, 0)
+
     return (
         <View>
             <View>
-                <PatrimonyCard value={"1000"} cointaned={true} />
+                <PatrimonyCard value={totalInvestido} cointaned={true} />
             </View>
             <View>
                 <View>
@@ -22,12 +29,44 @@ export const WalletInfoCard = ({fundosInvestidos, }:walletInfoCardProps) => {
                     </StyledText>
                     {/** TODO grafico pizza component*/}
                 </View>
-                <View>
-
-
+                <View style={{}}>
+                    {fundosInvestidos.map((e, index)=>{
+                        return(
+                            <View
+                                key={index}
+                                style={styles.fundoInfo}
+                            >
+                                <StyledText style={{backgroundColor: e.cor, width:18, height: 18, borderRadius: 18/2 }}></StyledText>
+                                <StyledText style={styles.fundoTexto}> {e.nomeFundo} </StyledText>
+                            </View>
+                        )
+                    })}
                 </View>
             </View>
                     
         </View>
+    )
+}
+
+const getStyles = (theme: StylesType) =>{
+    return (
+        StyleSheet.create({
+            fundoInfo:{
+                display:'flex',
+                flexDirection:'row',
+                justifyContent: 'flex-start',
+                alignSelf:'center',
+                width: 312,
+                borderBottomColor: theme.border,
+                borderBottomWidth: 1,
+                paddingBottom:8,
+                marginTop: 10,
+                gap: 9,
+            },
+            fundoTexto:{
+                fontSize:12,
+                color: theme.text,
+            }
+        })
     )
 }
