@@ -11,16 +11,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 type PatrimonyCardProps = {
     value: string;
-    borderSize?: number;
+    cointaned?: boolean;
 }
 
 export default function PatrimonyCard({
     value,
-    borderSize = 15,
+    cointaned = false,
 }: PatrimonyCardProps) {
 
     const theme = useTheme();
-    const styles = getStyles(theme, borderSize);
+    const styles = getStyles(theme);
 
     const [isVisible, setIsVisible] = useState(true);
 
@@ -29,7 +29,7 @@ export default function PatrimonyCard({
     }
 
     return(
-            <View style={styles.containerChildren}>
+            <View style={cointaned? styles.contained:styles.container}>
                 <View style={styles.div}>
                     <View style={styles.left}>
                         <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 18 }}>Meu Patrimônio</StyledText>
@@ -50,14 +50,20 @@ export default function PatrimonyCard({
     );
 }
 
-const getStyles = (theme: StylesType, borderSize:number) =>{
+const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
-        containerChildren: {
+        container: {
             backgroundColor: theme.background,
             height: 90,
             width: '100%',
             justifyContent: 'center',
-            borderRadius: borderSize,
+            borderRadius: 15,
+        },
+        contained:{
+            backgroundColor: 'transparent',
+            height: 90,
+            width: '100%',
+            justifyContent: 'center',
         },
         div: {
             flexDirection: 'row',
