@@ -8,9 +8,10 @@ import {
     View
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { coinFormat } from "@/src/utils/coinFormat";
 
 type PatrimonyCardProps = {
-    value: string;
+    value: number;
     cointaned?: boolean;
 }
 
@@ -35,7 +36,7 @@ export default function PatrimonyCard({
                         <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 18 }}>Meu Patrimônio</StyledText>
                         <StyledText style={{ fontWeight: 400, color: theme.textSecundary, fontSize: 15, marginTop: 4 }}>Saldo líquido</StyledText>
                         <StyledText style={{ fontWeight: 'bold', color: theme.text, fontSize: 15 }}>
-                            {isVisible ? `R$ ${value}` : 'R$ ••••••'}
+                            {isVisible ? `${coinFormat(value)}` : 'R$ ••••••'}
                         </StyledText>
                     </View>
                     <TouchableOpacity onPress={toggleVisibility} style={styles.visibility}>
