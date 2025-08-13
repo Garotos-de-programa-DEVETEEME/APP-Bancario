@@ -32,12 +32,12 @@ export default function FundoInvestimento() {
                 filter
             />
 
-            {investmentFunds.map((fund)=>{
+            {investmentFunds.map((fund, index)=>{
                 return(
                     <>
                         <FundsCard
                             fund={fund}
-                            key={fund.codigo}
+                            key={index}
                             onPress={() => changeCurrentExpanded(fund.codigo)}
                             expanded={currentExpanded === fund.codigo}
                         />
