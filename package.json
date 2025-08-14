@@ -11,9 +11,9 @@
         "lint": "expo lint",
         "prepare": "husky install"
     },
-    "lint-staged": {
+      "lint-staged": {
     "*.{js,jsx,ts,tsx}": "prettier --write",
-    "*.{json,css,scss,md}": "prettier --write"
+      "*.{json,css,scss,md}": "prettier --write"
     },
     "dependencies": {
         "@expo/vector-icons": "^14.1.0",
