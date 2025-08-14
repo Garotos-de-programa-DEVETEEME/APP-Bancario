@@ -1,62 +1,65 @@
-import 'react-native-reanimated';
-import React, { useEffect } from 'react';
-import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
+import 'react-native-reanimated'
+import React, { useEffect } from 'react'
+import {
+  ThemeProvider,
+  DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native'
+import { Stack } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
 
-import { useColorScheme } from '@/src/hooks/useColorScheme';
-import { FiltersProvider } from '../Context/filterContext';
+import { useColorScheme } from '@/src/hooks/useColorScheme'
+import { FiltersProvider } from '../Context/filterContext'
 
-import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs';
-import SimpleHeader from '../components/customHeader/SimpleHeader';
+import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs'
+import SimpleHeader from '../components/customHeader/SimpleHeader'
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  
+  const colorScheme = useColorScheme()
+
   const [fontsLoaded, error] = useFonts({
     'Whitney-Regular': require('../assets/fonts/whitney-medium.otf'),
     'Whitney-Bold': require('../assets/fonts/whitney-bold.otf'),
-  });
+  })
 
   useEffect(() => {
     if (fontsLoaded || error) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync()
     }
-  }, [fontsLoaded, error]);
+  }, [fontsLoaded, error])
 
   if (!fontsLoaded && !error) {
-    return null;
+    return null
   }
 
   return (
     <FiltersProvider>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
-          
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          
+          <Stack.Screen name='index' options={{ headerShown: false }} />
+
           <Stack.Screen
-            name="fundosInvestimentos/index"
+            name='fundosInvestimentos/index'
             options={{
-              header: () => <PageHeaderWithTabs title="Banestes DTVM" />,
+              header: () => <PageHeaderWithTabs title='Banestes DTVM' />,
             }}
           />
-          
+
           <Stack.Screen
-            name="fundosInvestimentos/filter/index"
+            name='fundosInvestimentos/filter/index'
             options={{
-              header: () => <SimpleHeader title="Filtros" />,
+              header: () => <SimpleHeader title='Filtros' />,
             }}
           />
-          
-          <Stack.Screen name="+not-found" />
+
+          <Stack.Screen name='+not-found' />
         </Stack>
-        <StatusBar style="auto" />
+        <StatusBar style='auto' />
       </ThemeProvider>
     </FiltersProvider>
-  );
+  )
 }

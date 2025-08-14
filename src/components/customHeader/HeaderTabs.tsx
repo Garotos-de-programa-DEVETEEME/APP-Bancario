@@ -1,32 +1,34 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native'
 import { useRouter } from 'expo-router'
 
-type ActiveTab = 'carteira' | 'fundos';
+type ActiveTab = 'carteira' | 'fundos'
 
 interface HeaderTabsProps {
-  activeTab: ActiveTab;
+  activeTab: ActiveTab
 }
 
 export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
-
-  const router = useRouter();
+  const router = useRouter()
 
   const handleCarteiraPress = () => {
-    Alert.alert('Em Breve', 'A funcionalidade de Carteira será implementada em breve.');
-  };
+    Alert.alert(
+      'Em Breve',
+      'A funcionalidade de Carteira será implementada em breve.',
+    )
+  }
 
   const handleFundosPress = () => {
-    router.push('/fundosInvestimentos'); 
-  };
+    router.push('/fundosInvestimentos')
+  }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity 
-        onPress={handleCarteiraPress} 
+      <TouchableOpacity
+        onPress={handleCarteiraPress}
         style={[
           styles.tabButton,
-          activeTab === 'carteira' && styles.activeTabButton
+          activeTab === 'carteira' && styles.activeTabButton,
         ]}
       >
         <Text
@@ -40,11 +42,11 @@ export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
         {activeTab === 'carteira' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
 
-      <TouchableOpacity 
-        onPress={handleFundosPress} 
+      <TouchableOpacity
+        onPress={handleFundosPress}
         style={[
           styles.tabButton,
-          activeTab === 'fundos' && styles.activeTabButton
+          activeTab === 'fundos' && styles.activeTabButton,
         ]}
       >
         <Text
@@ -58,7 +60,7 @@ export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
         {activeTab === 'fundos' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -96,4 +98,4 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-});
+})
