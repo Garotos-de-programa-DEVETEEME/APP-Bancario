@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router'
 
-type ActiveTab = 'carteira' | 'fundos';
+type ActiveTab = 'carteira' | 'fundos'
 
 interface HeaderTabsProps {
   activeTab: ActiveTab;
@@ -30,7 +30,7 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
         onPress={handleCarteiraPress}
         style={[
           styles.tabButton,
-          activeTab === 'carteira' && styles.activeTabButton
+          activeTab === 'carteira' && styles.activeTabButton,
         ]}
       >
         <Text
@@ -44,11 +44,11 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
         {activeTab === 'carteira' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
 
-      <TouchableOpacity 
-        onPress={handleFundosPress} 
+      <TouchableOpacity
+        onPress={handleFundosPress}
         style={[
           styles.tabButton,
-          activeTab === 'fundos' && styles.activeTabButton
+          activeTab === 'fundos' && styles.activeTabButton,
         ]}
       >
         <Text
@@ -62,7 +62,7 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
         {activeTab === 'fundos' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-});
+})

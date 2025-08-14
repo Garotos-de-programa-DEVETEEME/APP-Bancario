@@ -20,16 +20,16 @@ export default function PatrimonyCard({
     cointaned = false,
 }: PatrimonyCardProps) {
 
-    const theme = useTheme();
-    const styles = getStyles(theme);
+  const theme = useTheme();
+  const styles = getStyles(theme);
+  const [isVisible, setIsVisible] = useState(true)
 
-    const [isVisible, setIsVisible] = useState(true);
-
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
-    }
-
+  const toggleVisibility = () => {
+    setIsVisible(prev => !prev)
+  }
     return(
+      <View>
+        <View>
             <View style={cointaned? styles.contained:styles.container}>
                 <View style={styles.div}>
                     <View style={styles.left}>
@@ -48,7 +48,16 @@ export default function PatrimonyCard({
                     </TouchableOpacity>
                 </View>
         </View>
-    );
+        <TouchableOpacity onPress={toggleVisibility} style={styles.visibility}>
+          <MaterialCommunityIcons
+            name={isVisible ? 'eye' : 'eye-off'}
+            color={theme.alternativeIcon}
+            size={20}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
 }
 
 const getStyles = (theme: StylesType) =>{
