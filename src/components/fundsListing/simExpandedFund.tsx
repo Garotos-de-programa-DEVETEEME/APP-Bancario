@@ -8,16 +8,16 @@ import { StyledText } from "../StyledText";
 
 interface simExpandedProps{
     fund: fundsType;
-    expanded:boolean
+    expanded:boolean;
+    onSimulate: () => void;
 }
 
-export const SimExpanded = ({fund, expanded}:simExpandedProps) =>{
+export const SimExpanded = ({fund, expanded, onSimulate}:simExpandedProps) =>{
     const theme = useTheme();
     const styles = getStyles(theme, expanded);
 
     return (
         <View style={styles.expandedContentContainer}>
-            {/* As outras Views com styles.textContainer permanecem iguais */}
             <View style={styles.textContainer}>
                 <StyledText style={styles.text}>Taxa global: </StyledText>
                 <StyledText style={styles.text}> {`${fund.taxaAdministracao}% a.a.`} </StyledText>
@@ -39,20 +39,20 @@ export const SimExpanded = ({fund, expanded}:simExpandedProps) =>{
                 <StyledText style={styles.text}> {`D+${fund.prazoConversaoResgate} (Dias Úteis)`} </StyledText>
             </View>
             
-            {/* PASSO 2: APLIQUE O NOVO ESTILO AQUI */}
             <View style={styles.buttonContainer}>
-                <NavigationButton onPress={() => console.log('temporario')} text={"Simular"}/>
+                <NavigationButton onPress={onSimulate} text={"Simular"}/>
             </View>
         </View>
     );
 };
 
+// ESTILOS REVERTIDOS (COM EXCEÇÃO DO 'buttonContainer' PARA CORRIGIR O ALINHAMENTO)
 const getStyles = (theme: StylesType, expanded:boolean) =>{
     return StyleSheet.create({
         expandedContentContainer:{
             display: expanded? 'flex':'none',
             flexDirection:'column',
-            marginTop: 8, // Adicionei um espaço acima da seção
+            marginTop: 8,
         },
         text:{
             color:theme.alternativeText,
@@ -62,13 +62,13 @@ const getStyles = (theme: StylesType, expanded:boolean) =>{
         textContainer:{
             display:'flex',
             flexDirection:'row',
-            justifyContent:'space-between' // Este estilo continua o mesmo para os textos
+            justifyContent:'space-between'
         },
-        // PASSO 1: CRIE O NOVO ESTILO PARA O BOTÃO
+        // Mantido para corrigir o alinhamento do botão que você pediu
         buttonContainer: {
-            justifyContent: 'center', // Centraliza na horizontal
-            alignItems: 'center',     // Centraliza na vertical
-            marginTop: 10,            // Adiciona um espaço acima do botão
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 10,
         }
     });
 };

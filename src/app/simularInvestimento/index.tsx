@@ -1,8 +1,9 @@
-import { tempFunds } from "@/src/@Types/fundos";
+import { fundsType, tempFunds } from "@/src/@Types/fundos";
 import { SimFundsCard } from "@/src/components/fundsListing/simFundCard";
 import { StyledText } from "@/src/components/StyledText";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
     StyleSheet,
@@ -24,36 +25,43 @@ export default function SimularInvestimento() {
         setCurrentExpanded(key);
     }
 
-    return(
-        <View style={styles.container}>
-            <View style={styles.aviso}>
-                <StyledText style={styles.avisotext}>A simulação considera seu perfil de investidor previamente cadastrado, garantindo maior adequação às suas preferências e tolerância a risco.</StyledText>
-            </View>
+    const handleSimulatePress = (fund: fundsType) => {
+        router.push({
+            pathname: "/simularInvestimento/detalhesFundo",
+            params: { fundData: JSON.stringify(fund) }
+        });
+    };
 
-            <View>
-                <StyledText style={styles.fundstext}>
-                    Fundos
-                </StyledText>
-                <View style={styles.fundsbox}>
-                    {investmentFunds.map((fund)=>{
-                        return(
-                            <>
+    return(
+            <View style={styles.container}>
+                <View style={styles.aviso}>
+                    <StyledText style={styles.avisotext}>A simulação considera seu perfil de investidor previamente cadastrado, garantindo maior adequação às suas preferências e tolerância a risco.</StyledText>
+                </View>
+
+                <View>
+                    <StyledText style={styles.fundstext}>
+                        Fundos
+                    </StyledText>
+                    <View style={styles.fundsbox}>
+                        {investmentFunds.map((fund)=>{
+                            return(
                                 <SimFundsCard
                                     fund={fund}
                                     key={fund.codigo}
                                     onPress={() => changeCurrentExpanded(fund.codigo)}
                                     expanded={currentExpanded === fund.codigo}
+                                    onSimulate={() => handleSimulatePress(fund)}
                                 />
-                            </>
-                        );
-                    })}
+                            );
+                        })}
+                    </View>
                 </View>
+                
             </View>
-            
-        </View>
     );
 };
 
+// ESTILOS REVERTIDOS PARA A VERSÃO ORIGINAL
 const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
@@ -83,7 +91,7 @@ const getStyles = (theme: StylesType) =>{
             gap: 20
         },
         fundstext: {
-            marginBottom: 20,
+            marginBottom: 10,
             color: theme.textSecundary
         }
     });

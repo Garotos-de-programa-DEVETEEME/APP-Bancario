@@ -4,7 +4,6 @@ import { StylesType } from "@/src/themes/Colors";
 import { coinFormat } from "@/src/utils/coinFormat";
 import { Pressable, StyleSheet, View } from "react-native";
 import { StyledText } from '../StyledText';
-// CORREÇÃO 1: Importar o componente correto pelo nome correto.
 import { RiskIcon } from "./riskIcon";
 import { SimExpanded } from "./simExpandedFund";
 
@@ -12,10 +11,10 @@ interface SimFundsCardProps{
     fund:fundsType;
     onPress: () => void;
     expanded: boolean;
+    onSimulate: () => void;
 }
 
-export const SimFundsCard = ({fund, onPress, expanded}: SimFundsCardProps) => {
-
+export const SimFundsCard = ({fund, onPress, expanded, onSimulate}: SimFundsCardProps) => {
     const theme = useTheme();
     const styles = getStyle(theme);
 
@@ -35,7 +34,7 @@ export const SimFundsCard = ({fund, onPress, expanded}: SimFundsCardProps) => {
                         {fund.nome}
                     </StyledText>
                 </View>
-                {/* A linha de separador desnecessária foi removida daqui */}
+                <View style={{display:expanded? 'flex':'none', borderTopColor:theme.border, borderTopWidth:1 }}></View>
                 <View style={styles.textContainer}>
                     <StyledText style={styles.text}>Aplicação incial: </StyledText>
                     <StyledText style={styles.text}>
@@ -48,17 +47,17 @@ export const SimFundsCard = ({fund, onPress, expanded}: SimFundsCardProps) => {
                         {`${fund.taxaRentabilidade}%`}
                     </StyledText>
                 </View>
-
-                {/* CORREÇÃO 2: Usar o nome correto do componente */}
                 <SimExpanded
                     fund={fund}
                     expanded={expanded}
+                    onSimulate={onSimulate}
                 />
             </Pressable>
         </View>
     );
 }
-// O resto do arquivo (getStyle) permanece o mesmo
+
+// ESTILOS REVERTIDOS PARA A VERSÃO ORIGINAL
 const getStyle = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {
