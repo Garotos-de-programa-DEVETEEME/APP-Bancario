@@ -1,41 +1,45 @@
-import { Pressable, Text,  StyleSheet} from "react-native";
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Pressable, Text, StyleSheet } from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-interface favoriteButtonsProps{
-    onPress: () => void;
-    selected:boolean;
-    text?: string;
+interface favoriteButtonsProps {
+  onPress: () => void
+  selected: boolean
+  text?: string
 }
 
-
-export const FavoriteButton = ({onPress, selected, text}:favoriteButtonsProps) =>{
-    return(
-        <Pressable
-            onPress={onPress}
-            style={styles.buttonContainer}
-        >
-            {selected? (<MaterialIcons name={'star'} size={32} style={styles.buttonIcon}/>):
-                (<MaterialIcons name={"star-outline"} size={32} style={styles.buttonIcon}/>)
-            }
-            <Text style={styles.buttonText}>
-                {text}
-            </Text>
-        </Pressable>
-    );
+export const FavoriteButton = ({
+  onPress,
+  selected,
+  text,
+}: favoriteButtonsProps) => {
+  return (
+    <Pressable onPress={onPress} style={styles.buttonContainer}>
+      {selected ? (
+        <MaterialIcons name={'star'} size={32} style={styles.buttonIcon} />
+      ) : (
+        <MaterialIcons
+          name={'star-outline'}
+          size={32}
+          style={styles.buttonIcon}
+        />
+      )}
+      <Text style={styles.buttonText}>{text}</Text>
+    </Pressable>
+  )
 }
 
 const styles = StyleSheet.create({
-    buttonContainer:{
-        display: 'flex',
-        flexDirection:'row',
-        gap:9,
-        alignItems:'center'
-    },
-    buttonIcon:{
-        color: '#DF9F1C'
-    },
-    buttonText:{
-        color: '#DF9F1C',
-        fontSize:16,
-    }
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 9,
+    alignItems: 'center',
+  },
+  buttonIcon: {
+    color: '#DF9F1C',
+  },
+  buttonText: {
+    color: '#DF9F1C',
+    fontSize: 16,
+  },
 })

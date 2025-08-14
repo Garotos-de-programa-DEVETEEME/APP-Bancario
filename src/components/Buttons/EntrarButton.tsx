@@ -1,22 +1,14 @@
-import { useTheme } from '@/src/hooks/useTheme';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View
-} from 'react-native';
-import { StyledText } from '../StyledText';
+import { useTheme } from '@/src/hooks/useTheme'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { StyledText } from '../StyledText'
 
 type EntrarButtonProps = {
-  title: string;
-  onPress: () => void;
-};
+  title: string
+  onPress: () => void
+}
 
-export default function EntrarButton({
-  title,
-  onPress,
-}: EntrarButtonProps) {
-
-  const theme = useTheme();
+export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
+  const theme = useTheme()
 
   return (
     <View
@@ -43,16 +35,9 @@ export default function EntrarButton({
         </StyledText>
       </StyledText>
 
-      <View
-        style={[
-          styles.dividerbox,
-        ]} >
-
+      <View style={[styles.dividerbox]}>
         <View
-          style={[
-            styles.divider,
-            { backgroundColor: theme.alternativeIcon },
-          ]}
+          style={[styles.divider, { backgroundColor: theme.alternativeIcon }]}
         />
 
         <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
@@ -70,9 +55,8 @@ export default function EntrarButton({
         </TouchableOpacity>
       </View>
     </View>
-  );
+  )
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -83,8 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 16,
-    justifyContent: 'space-between'
-
+    justifyContent: 'space-between',
   },
   text: {
     fontSize: 16,
@@ -101,5 +84,5 @@ const styles = StyleSheet.create({
   dividerbox: {
     flexDirection: 'row',
     alignItems: 'center',
-  }
-});
+  },
+})

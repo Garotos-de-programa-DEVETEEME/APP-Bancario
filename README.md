@@ -1,9 +1,11 @@
 # Front-end Asset
 
 ## Descrição
+
 Este é o front-end do projeto Asset, desenvolvido com React Native e TypeScript. O projeto é responsável por gerenciar os ativos e suas operações.
 
 ## Pré-requisitos
+
 - React Native (versão recomendada: 18.x ou superior)
 - npm ou yarn
 - TypeScript
@@ -11,11 +13,13 @@ Este é o front-end do projeto Asset, desenvolvido com React Native e TypeScript
 ## Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone https://gitlab.com/ti-banestes-asset/front-end.git
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 # ou
