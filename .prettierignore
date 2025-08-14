@@ -1,2 +1,14 @@
-    /dist/*
-    /node_modules/*
+# Ignora a pasta de build
+build/
+
+# Ignora a pasta de node modules
+node_modules/
+
+# Ignora todos os arquivos Markdown
+*.md
+
+# Ignora um arquivo específico
+src/meu-arquivo.js
+
+# Ignora todos os arquivos na pasta 'vendor'
+vendor/**/*
