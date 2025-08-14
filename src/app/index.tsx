@@ -1,35 +1,28 @@
-import EntrarButton from '@/src/components/Buttons/EntrarButton';
-import { router } from 'expo-router';
-import {
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import EntrarButton from '@/src/components/Buttons/EntrarButton'
+import { router } from 'expo-router'
+import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native'
 
 export default function App() {
-
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
         source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
         style={styles.background}
-        resizeMode="cover"
+        resizeMode='cover'
       >
         <SafeAreaView style={styles.safeArea}>
           <View style={styles.content} />
 
           <View style={styles.buttonwrapper}>
-          <EntrarButton
-            title="Cliente"
-            onPress={() => router.push('./telaInicial')}
-          />
+            <EntrarButton
+              title='Cliente'
+              onPress={() => router.push('/telaInicial')}
+            />
           </View>
-
         </SafeAreaView>
       </ImageBackground>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -47,6 +40,6 @@ const styles = StyleSheet.create({
   },
   buttonwrapper: {
     height: 160,
-    alignItems: 'center'
+    alignItems: 'center',
   },
-});
+})
