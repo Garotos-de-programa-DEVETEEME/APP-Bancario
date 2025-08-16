@@ -74,31 +74,23 @@ export default function FilterFundsPage() {
     color: '#F2C94C', //cor do filtro de favoritos
   })
 
-  useEffect(() => {
-    if (filters.length > 1) {
-      //atualiza os fltros com base no que foi selecionado anteriormente
-      filters.forEach((e) => {
-        if (e.id === 1 || e.id === 2 || e.id === 3) {
-          //filtros de valor
-          setValueFilters((prev) =>
-            prev.map((filter) =>
-              filter.id === e.id ? { ...filter, selected: e.selected } : filter,
-            ),
-          )
-        } else if (e.id >= 4 && e.id <= 7) {
-          //filtros de risco
-          setRiskFilters((prev) =>
-            prev.map((filter) =>
-              filter.id === e.id ? { ...filter, selected: e.selected } : filter,
-            ),
-          )
-        } else if (e.id === 8) {
-          //filtro de favoritos
-          setStarFilter({ ...e })
-        }
-      })
-    }
-  }, [])
+    useEffect(()=> {
+            if(filters.length > 1){//atualiza os fltros com base no que foi selecionado anteriormente
+                filters.forEach((e) => {
+                    if(e.id < 4){//filtros de valor
+                        const tempArray = valueFilters;
+                        tempArray[e.id - 1] = e;
+                        setValueFilters(tempArray);
+                    } else if(e.id < 8){//filtros de risco
+                        const tempArray = riskFilters;
+                        tempArray[e.id - 4] = e;
+                        setRiskFilters(tempArray);
+                    } else {//filtro de favoritos
+                        setStarFilter(e);
+                    }
+                });
+            }
+        },[])
 
   const updateValueFilter = (id: number) => {
     // Atualiza o filtro de valor selecionado
