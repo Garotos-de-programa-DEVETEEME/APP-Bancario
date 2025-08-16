@@ -76,20 +76,21 @@ export default function FilterFundsPage() {
 
     useEffect(()=> {
             if(filters.length > 1){//atualiza os fltros com base no que foi selecionado anteriormente
+                const tempArrayRisk = [...riskFilters];//cria uma copia da array de filtros de risco
                 filters.forEach((e) => {
-                    if(e.id < 4){//filtros de valor
-                        const tempArray = valueFilters;
-                        tempArray[e.id - 1] = e;
-                        setValueFilters(tempArray);
-                    } else if(e.id < 8){//filtros de risco
-                        const tempArray = riskFilters;
-                        tempArray[e.id - 4] = e;
-                        setRiskFilters(tempArray);
+                    if(e.id < 4){
+                        const tempArrayValue = [...valueFilters];
+                        tempArrayValue[e.id - 1] = e;
+                        setValueFilters(tempArrayValue);//define a risco de filtross igual a sua copia modifica pois pode conter mais de uma alteração
+                    } else if(e.id < 8){//caso o id esteja no intervalo de ids de filtros de risco altera a copia da array de riscos
+                        tempArrayRisk[e.id - 4] = e;
                     } else {//filtro de favoritos
                         setStarFilter(e);
                     }
                 });
+                setRiskFilters(tempArrayRisk);//define os filtros de risco igual a sua copia modifica, pois pode conter mais de uma alteração
             }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         },[])
 
   const updateValueFilter = (id: number) => {
@@ -123,7 +124,7 @@ export default function FilterFundsPage() {
   }
 
   const filterSelected = (list: FilterType[]) => {
-    return list.filter((e) => !!e && e.selected === true)
+    return list.filter((e) => e.selected === true)
   }
 
   const updateFilters = () => {
@@ -135,7 +136,6 @@ export default function FilterFundsPage() {
     if (starFilter.selected) {
       selectedFilters = [...selectedFilters, starFilter]
     }
-    console.log(selectedFilters)
     setFilters(selectedFilters)
     router.push('/fundosInvestimentos')
   }
