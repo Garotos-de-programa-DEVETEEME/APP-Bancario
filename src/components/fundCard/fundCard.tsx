@@ -48,7 +48,7 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", o
           <StyledText style={styles.text}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText style={styles.rentabilityText}>{=/* TODO arrow icons */}
+          <StyledText style={styles.rentabilityText}>{/* TODO arrow icons */}
             {`${fund.taxaRentabilidade}%`}
             {/*TODO consultar se este valor esta em porcentagem */}
           </StyledText>

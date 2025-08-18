@@ -33,7 +33,7 @@ export default function TelaInicial() {
                 />
                 <ButtonIcon
                     key={3}
-                    route={()=> router.push('//simularInvestimento')}
+                    route={()=> router.push('/simularInvestimento')}
                     text="Simular Investimento"
                     iconName="timeline"
                     IconHeigth={24}

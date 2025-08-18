@@ -1,5 +1,5 @@
 import { fundsType, tempFunds } from "@/src/@Types/fundos";
-import { FundsCard } from "@/src/components/fundsListing/fundCard";
+import { FundsCard } from "@/src/components/fundCard/fundCard";
 import { StyledText } from "@/src/components/StyledText";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
