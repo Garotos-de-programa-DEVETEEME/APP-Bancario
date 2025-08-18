@@ -1,4 +1,5 @@
 // dados temporarios para a criação do componente
+//TODO altera isso conforme API propria
 
 export type fundsType = {
   identificadorAplicacaoInternet: string //booleano
@@ -38,7 +39,7 @@ export type fundsType = {
   dataEncerramento: string
 }
 
-//excluir daqui para baixo
+//TODO excluir daqui para baixo
 export const tempFunds: fundsType[] = [
   {
     identificadorAplicacaoInternet: 'S',

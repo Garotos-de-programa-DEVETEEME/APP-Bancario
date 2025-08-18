@@ -23,9 +23,9 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", o
     <View style={styles.container}>
       <Pressable onPress={onPress}>
         <View style={styles.textContainer}>
-          <StyledText style={styles.fundTypeText}>{/*fund.type*/}</StyledText>
+          <StyledText style={styles.fundTypeText}>{/*fund.type*/}</StyledText> {/* TODO: integrar quando tivermos api pronta */}
           <View style={styles.riskContainer}>
-            <RiskIcon risk={'alto' /*fund.risk*/} />
+            <RiskIcon risk={'alto' /*fund.risk*/} />{/*TODO integrar quando a api estiver pronta */}
           </View>
         </View>
         <View>
@@ -48,9 +48,9 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", o
           <StyledText style={styles.text}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText style={styles.rentabilityText}>
+          <StyledText style={styles.rentabilityText}>{=/* TODO arrow icons */}
             {`${fund.taxaRentabilidade}%`}
-            {/* consultar se este valor esta em porcentagem */}
+            {/*TODO consultar se este valor esta em porcentagem */}
           </StyledText>
         </View>
         

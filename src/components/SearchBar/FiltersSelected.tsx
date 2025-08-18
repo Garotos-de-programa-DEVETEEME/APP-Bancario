@@ -1,7 +1,8 @@
 import { FilterType } from '@/src/@Types/Filter'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { StyledText } from '../StyledText'
 
 interface filterSelectedProps {
   data: FilterType
@@ -13,7 +14,7 @@ export const FiltersSelected = ({ data }: filterSelectedProps) => {
 
   return (
     <View style={style.container}>
-      <Text style={style.text}>{data.placeholder}</Text>
+      <StyledText style={style.text}>{data.placeholder}</StyledText>
     </View>
   )
 }

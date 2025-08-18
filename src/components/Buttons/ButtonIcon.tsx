@@ -1,7 +1,8 @@
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
-import { Pressable, StyleSheet, Text } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { StyledText } from '../StyledText'
 
 interface buttonIconProps {
   route: () => void
@@ -22,7 +23,7 @@ export const ButtonIcon = ({
   return (
     <Pressable style={styles.buttonContainer} onPress={route}>
       <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth!} />
-      <Text style={styles.buttonText}>{text}</Text>
+      <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
   )
 }

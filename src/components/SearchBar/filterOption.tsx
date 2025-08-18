@@ -2,6 +2,7 @@ import { FilterType } from '@/src/@Types/Filter'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
 import { Pressable, StyleSheet, Text } from 'react-native'
+import { StyledText } from '../StyledText'
 
 interface filterOptionProps {
   info: FilterType
@@ -33,10 +34,9 @@ export const FilterOption = ({
       }
     >
       {type === 'risk' && !isSelected && (
-        <Text style={style.placeholderRiskIcon}></Text>
+        <StyledText style={style.placeholderRiskIcon}></StyledText> /*TODO alterar o fundo  */
       )}
-      {/* adiciona a bola de risco caso vc defina uma cor */}
-      <Text style={style.placeholderText}>{info.placeholder}</Text>
+      <StyledText style={style.placeholderText}>{info.placeholder}</StyledText>
     </Pressable>
   )
 }
