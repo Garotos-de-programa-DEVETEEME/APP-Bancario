@@ -23,10 +23,9 @@ export const SimFundsCard = ({fund, onPress, expanded, onSimulate}: SimFundsCard
             <Pressable onPress={onPress}>
                 <View style={styles.textContainer}>
                     <StyledText style={styles.fundTypeText}>
-                        {/*fund.type*/}
                     </StyledText>
                     <View style={styles.riskContainer}>
-                        <RiskIcon risk={'alto'/*fund.risk*/} />
+                        <RiskIcon risk={'alto'} />
                     </View>
                 </View>
                 <View>
@@ -57,7 +56,6 @@ export const SimFundsCard = ({fund, onPress, expanded, onSimulate}: SimFundsCard
     );
 }
 
-// ESTILOS REVERTIDOS PARA A VERSÃO ORIGINAL
 const getStyle = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {

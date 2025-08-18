@@ -46,7 +46,6 @@ export const SimExpanded = ({fund, expanded, onSimulate}:simExpandedProps) =>{
     );
 };
 
-// ESTILOS REVERTIDOS (COM EXCEÇÃO DO 'buttonContainer' PARA CORRIGIR O ALINHAMENTO)
 const getStyles = (theme: StylesType, expanded:boolean) =>{
     return StyleSheet.create({
         expandedContentContainer:{
@@ -64,7 +63,6 @@ const getStyles = (theme: StylesType, expanded:boolean) =>{
             flexDirection:'row',
             justifyContent:'space-between'
         },
-        // Mantido para corrigir o alinhamento do botão que você pediu
         buttonContainer: {
             justifyContent: 'center',
             alignItems: 'center',
