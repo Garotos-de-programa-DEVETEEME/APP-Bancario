@@ -1,5 +1,5 @@
 import { tempFunds } from '@/src/@Types/fundos'
-import { FundsCard } from '@/src/components/fundsListing/fundCard'
+import { FundsCard } from '@/src/components/fundCard/fundCard'
 import { SearchBar } from '@/src/components/SearchBar/searchBar'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
