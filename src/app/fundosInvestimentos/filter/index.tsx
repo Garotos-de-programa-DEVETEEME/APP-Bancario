@@ -74,31 +74,24 @@ export default function FilterFundsPage() {
     color: '#F2C94C', //cor do filtro de favoritos
   })
 
-  useEffect(() => {
-    if (filters.length > 1) {
-      //atualiza os fltros com base no que foi selecionado anteriormente
-      filters.forEach((e) => {
-        if (e.id === 1 || e.id === 2 || e.id === 3) {
-          //filtros de valor
-          setValueFilters((prev) =>
-            prev.map((filter) =>
-              filter.id === e.id ? { ...filter, selected: e.selected } : filter,
-            ),
-          )
-        } else if (e.id >= 4 && e.id <= 7) {
-          //filtros de risco
-          setRiskFilters((prev) =>
-            prev.map((filter) =>
-              filter.id === e.id ? { ...filter, selected: e.selected } : filter,
-            ),
-          )
-        } else if (e.id === 8) {
-          //filtro de favoritos
-          setStarFilter({ ...e })
-        }
-      })
-    }
-  }, [])
+    useEffect(()=> {
+            if(filters.length > 1){//atualiza os fltros com base no que foi selecionado anteriormente
+                const tempArrayRisk = [...riskFilters];//cria uma copia da array de filtros de risco
+                filters.forEach((e) => {
+                    if(e.id < 4){
+                        const tempArrayValue = [...valueFilters];
+                        tempArrayValue[e.id - 1] = e;
+                        setValueFilters(tempArrayValue);//define a risco de filtross igual a sua copia modifica pois pode conter mais de uma alteração
+                    } else if(e.id < 8){//caso o id esteja no intervalo de ids de filtros de risco altera a copia da array de riscos
+                        tempArrayRisk[e.id - 4] = e;
+                    } else {//filtro de favoritos
+                        setStarFilter(e);
+                    }
+                });
+                setRiskFilters(tempArrayRisk);//define os filtros de risco igual a sua copia modifica, pois pode conter mais de uma alteração
+            }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[])
 
   const updateValueFilter = (id: number) => {
     // Atualiza o filtro de valor selecionado
@@ -131,7 +124,7 @@ export default function FilterFundsPage() {
   }
 
   const filterSelected = (list: FilterType[]) => {
-    return list.filter((e) => !!e && e.selected === true)
+    return list.filter((e) => e.selected === true)
   }
 
   const updateFilters = () => {
@@ -143,7 +136,6 @@ export default function FilterFundsPage() {
     if (starFilter.selected) {
       selectedFilters = [...selectedFilters, starFilter]
     }
-    console.log(selectedFilters)
     setFilters(selectedFilters)
     router.push('/fundosInvestimentos')
   }
