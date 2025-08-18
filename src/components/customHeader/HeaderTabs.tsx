@@ -1,6 +1,7 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router'
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyledText } from '../StyledText';
 
 type ActiveTab = 'carteira' | 'fundos'
 
@@ -33,14 +34,14 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
           activeTab === 'carteira' && styles.activeTabButton,
         ]}
       >
-        <Text
+        <StyledText
           style={[
             styles.tabText,
             activeTab === 'carteira' && styles.activeTabText,
           ]}
         >
           Carteira
-        </Text>
+        </StyledText>
         {activeTab === 'carteira' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
 
@@ -51,14 +52,14 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
           activeTab === 'fundos' && styles.activeTabButton,
         ]}
       >
-        <Text
+        <StyledText
           style={[
             styles.tabText,
             activeTab === 'fundos' && styles.activeTabText,
           ]}
         >
           Fundos de Investimento
-        </Text>
+        </StyledText>
         {activeTab === 'fundos' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
     </View>
