@@ -1,17 +1,20 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { useNavigation } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
+import { useNavigation } from 'expo-router'
+import React from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import HeaderTabs from './HeaderTabs'
+import { StyledText } from '../StyledText'
 
 interface PageHeaderProps {
-  title: string
+  title: string;
+  tabTitle: 'carteira' | 'fundos';
 }
 
-export default function PageHeaderWithTabs({ title }: PageHeaderProps) {
-  const navigation = useNavigation()
-  const insets = useSafeAreaInsets()
+export default function PageHeaderWithTabs({ title, tabTitle}: PageHeaderProps) {
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  const [activeTab, setActiveTab] = React.useState<'carteira' | 'fundos'>(tabTitle);
 
   return (
     <View style={[styles.mainContainer, { paddingTop: insets.top }]}>
@@ -23,11 +26,11 @@ export default function PageHeaderWithTabs({ title }: PageHeaderProps) {
           <Ionicons name='arrow-back' size={24} color='#005A9C' />
         </TouchableOpacity>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{title}</Text>
+          <StyledText style={styles.title}>{title}</StyledText>
         </View>
         <View style={styles.buttonContainer} />
       </View>
-      <HeaderTabs activeTab='fundos' />
+      <HeaderTabs activeTab={activeTab} setActiveTab={(e)=> setActiveTab(e)} />
     </View>
   )
 }

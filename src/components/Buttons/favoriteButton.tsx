@@ -1,5 +1,6 @@
-import { Pressable, Text, StyleSheet } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { StyledText } from '../StyledText'
 
 interface favoriteButtonsProps {
   onPress: () => void
@@ -23,7 +24,7 @@ export const FavoriteButton = ({
           style={styles.buttonIcon}
         />
       )}
-      <Text style={styles.buttonText}>{text}</Text>
+      <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
   )
 }

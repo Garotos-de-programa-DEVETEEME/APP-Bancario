@@ -1,26 +1,29 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native'
-import { useRouter } from 'expo-router'
+import { useRouter } from 'expo-router';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyledText } from '../StyledText';
 
 type ActiveTab = 'carteira' | 'fundos'
 
 interface HeaderTabsProps {
-  activeTab: ActiveTab
+  activeTab: ActiveTab;
+  setActiveTab: (tab: ActiveTab) => void;
 }
 
-export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
-  const router = useRouter()
+export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps) {
+
+  const router = useRouter();
 
   const handleCarteiraPress = () => {
-    Alert.alert(
-      'Em Breve',
-      'A funcionalidade de Carteira será implementada em breve.',
-    )
+    setActiveTab('carteira');
+    router.push('/carteira');
   }
 
   const handleFundosPress = () => {
-    router.push('/fundosInvestimentos')
-  }
+    setActiveTab('fundos');
+    router.push('/fundosInvestimentos');
+  };
+
 
   return (
     <View style={styles.container}>
@@ -31,14 +34,14 @@ export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
           activeTab === 'carteira' && styles.activeTabButton,
         ]}
       >
-        <Text
+        <StyledText
           style={[
             styles.tabText,
             activeTab === 'carteira' && styles.activeTabText,
           ]}
         >
           Carteira
-        </Text>
+        </StyledText>
         {activeTab === 'carteira' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
 
@@ -49,14 +52,14 @@ export default function HeaderTabs({ activeTab }: HeaderTabsProps) {
           activeTab === 'fundos' && styles.activeTabButton,
         ]}
       >
-        <Text
+        <StyledText
           style={[
             styles.tabText,
             activeTab === 'fundos' && styles.activeTabText,
           ]}
         >
           Fundos de Investimento
-        </Text>
+        </StyledText>
         {activeTab === 'fundos' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
     </View>

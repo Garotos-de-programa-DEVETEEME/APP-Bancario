@@ -2,12 +2,13 @@ import { FilterType } from '@/src/@Types/Filter'
 import { FavoriteButton } from '@/src/components/Buttons/favoriteButton'
 import { NavigationButton } from '@/src/components/Buttons/navigationButton'
 import { FilterOption } from '@/src/components/SearchBar/filterOption'
+import { StyledText } from '@/src/components/StyledText'
 import { useFilters } from '@/src/Context/filterContext'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
 import { router } from 'expo-router'
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 export default function FilterFundsPage() {
   const { filters, setFilters } = useFilters()
@@ -143,7 +144,7 @@ export default function FilterFundsPage() {
   return (
     <View style={style.pageTheme}>
       <View style={style.starCategorie}>
-        <Text style={style.categoriesTitle}>Favoritos</Text>
+        <StyledText style={style.categoriesTitle}>Favoritos</StyledText>
         <View style={style.starButton}>
           <FavoriteButton
             onPress={() => updaterStarFilter()}
@@ -153,7 +154,7 @@ export default function FilterFundsPage() {
         </View>
       </View>
       <View>
-        <Text style={style.categoriesTitle}>Aplicação Inicial</Text>
+        <StyledText style={style.categoriesTitle}>Aplicação Inicial</StyledText>
         <View style={style.categoriesCards}>
           {valueFilters.map((e) => (
             <FilterOption
@@ -166,7 +167,7 @@ export default function FilterFundsPage() {
         </View>
       </View>
       <View>
-        <Text style={style.categoriesTitle}>Risco</Text>
+        <StyledText style={style.categoriesTitle}>Risco</StyledText>
         <View style={style.categoriiesRiskCards}>
           {riskFilters.map((e) => (
             <FilterOption

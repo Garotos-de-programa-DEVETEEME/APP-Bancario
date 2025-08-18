@@ -14,7 +14,7 @@ export default function TelaInicial() {
       <ClientHeader
         title='Cliente'
         image='https://legacy.reactjs.org/logo-og.png'
-        value='-1'
+        value={-1}
       />
             <View style={styles.buttonbox}>
                 <ButtonIcon
