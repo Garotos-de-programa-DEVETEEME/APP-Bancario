@@ -10,7 +10,7 @@ export default function TelaInicial() {
   const styles = getStyles(theme)
 
   return (
-    <View>
+    <View style={styles.container}>
       <ClientHeader
         title='Cliente'
         image='https://legacy.reactjs.org/logo-og.png'
@@ -49,6 +49,7 @@ const getStyles = (theme: StylesType) =>{
         container: {
             display: 'flex',
             flexDirection: 'column',
+            gap: 24,
         },
         buttonbox: {
             display:'flex',

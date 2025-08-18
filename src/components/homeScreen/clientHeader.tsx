@@ -62,6 +62,7 @@ const getStyles = () => {
   return StyleSheet.create({
     outerbox: {
       alignItems: 'center',
+      height: headerHeight + cardHeight - 40
     },
     cardcontainer: {
       position: 'absolute',

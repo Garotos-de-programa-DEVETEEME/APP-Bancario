@@ -28,8 +28,6 @@ export default function PatrimonyCard({
     setIsVisible(prev => !prev)
   }
     return(
-      <View>
-        <View>
             <View style={cointaned? styles.contained:styles.container}>
                 <View style={styles.div}>
                     <View style={styles.left}>
@@ -48,15 +46,6 @@ export default function PatrimonyCard({
                     </TouchableOpacity>
                 </View>
         </View>
-        <TouchableOpacity onPress={toggleVisibility} style={styles.visibility}>
-          <MaterialCommunityIcons
-            name={isVisible ? 'eye' : 'eye-off'}
-            color={theme.alternativeIcon}
-            size={20}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
   )
 }
 
