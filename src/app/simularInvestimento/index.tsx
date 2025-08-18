@@ -1,5 +1,5 @@
 import { fundsType, tempFunds } from "@/src/@Types/fundos";
-import { SimFundsCard } from "@/src/components/fundsListing/simFundCard";
+import { FundsCard } from "@/src/components/fundsListing/fundCard";
 import { StyledText } from "@/src/components/StyledText";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
@@ -45,11 +45,12 @@ export default function SimularInvestimento() {
                     <View style={styles.fundsbox}>
                         {investmentFunds.map((fund)=>{
                             return(
-                                <SimFundsCard
+                                <FundsCard
                                     fund={fund}
                                     key={fund.codigo}
                                     onPress={() => changeCurrentExpanded(fund.codigo)}
                                     expanded={currentExpanded === fund.codigo}
+                                    expandedType="simular"
                                     onSimulate={() => handleSimulatePress(fund)}
                                 />
                             );
