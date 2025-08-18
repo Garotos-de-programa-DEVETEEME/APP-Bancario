@@ -2,7 +2,7 @@ import { useFilters } from '@/src/Context/filterContext'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
 import { router } from 'expo-router'
-import { StyleSheet, TextInput, View, ScrollView } from 'react-native'
+import { ScrollView, StyleSheet, View, TextInput } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { FiltersSelected } from './FiltersSelected'
 

@@ -20,22 +20,19 @@ export const Expanded = ({ fund, expanded }: expandedProps) => {
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Taxa global: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
-          {`${fund.taxaAdministracao}% a.a.`}{' '}
+          {`${fund.taxaAdministracao}% a.a.`}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Hora limite de aplicação: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {`${converterNumeroParaHora(fund.horaLimite)}`}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
         <StyledText style={styles.text}>
-          {' '}
-          {'R$ 1,00' /*`${coinFormat(fund.movimentation)}`*/}
+          {'R$ 1,00' /*`${coinFormat(fund.movimentation)}`*/}{/*TODO procurar qual dado é respectivo a isso */}
         </StyledText>
         {/*adicionar movimentação */}
       </View>
@@ -46,8 +43,7 @@ export const Expanded = ({ fund, expanded }: expandedProps) => {
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
-          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}{' '}
+          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
