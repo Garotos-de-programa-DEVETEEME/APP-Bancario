@@ -1,4 +1,5 @@
-//codigo para converter fundsType par FundosInvestimento
+//codigo para converter fundsType para FundosInvestimento
+//TODO procurar outra forma de fazer isso na tipagem do fundo;
 
 import { fundsType } from "../@Types/fundos";
 import { FundosInvestidos } from "../@Types/fundosInvestidos";
@@ -14,7 +15,6 @@ const cores = [
 const addColor = (nomeFundo: string): string => {
     return (cores.find(e => e.nome === nomeFundo)?.cor || '#A79F9F');
 }
-
 
 export const FormatarFundosInvestimento = (funds: fundsType[]):FundosInvestidos[] => {
     return funds.map(fundo => ({
