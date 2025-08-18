@@ -61,7 +61,6 @@ export default function SimularInvestimento() {
     );
 };
 
-// ESTILOS REVERTIDOS PARA A VERSÃO ORIGINAL
 const getStyles = (theme: StylesType) =>{
     return StyleSheet.create({
         container: {

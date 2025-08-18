@@ -2,6 +2,8 @@ import { fundsType } from '@/src/@Types/fundos'; // Verifique se este caminho es
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+//TODO: Trocar os estilos placeholder com a tela oficial
+
 export default function DetalhesInvestimento() {
     const { fundData } = useLocalSearchParams();
     
