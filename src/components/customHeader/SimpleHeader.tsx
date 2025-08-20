@@ -4,14 +4,18 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StyledText } from '../StyledText'
+import { StylesType } from '@/src/themes/Colors'
+import { useTheme } from '@/src/hooks/useTheme'
 
 interface SimpleHeaderProps {
   title: string
 }
 
 export default function SimpleHeader({ title }: SimpleHeaderProps) {
-  const navigation = useNavigation()
-  const insets = useSafeAreaInsets()
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  const theme = useTheme();
+  const styles = getStyles(theme);
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -29,15 +33,16 @@ export default function SimpleHeader({ title }: SimpleHeaderProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme: StylesType) => {
+  return StyleSheet.create({
   container: {
     height: 80,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
+    backgroundColor: theme.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: theme.backgroundCards,
     paddingHorizontal: 5,
   },
   buttonContainer: {
@@ -50,7 +55,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: theme.text,
     textAlign: 'center',
   },
 })
+}

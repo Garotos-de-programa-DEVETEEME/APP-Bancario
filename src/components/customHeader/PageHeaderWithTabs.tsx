@@ -5,6 +5,8 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import HeaderTabs from './HeaderTabs'
 import { StyledText } from '../StyledText'
+import { StylesType } from '@/src/themes/Colors'
+import { useTheme } from '@/src/hooks/useTheme'
 
 interface PageHeaderProps {
   title: string;
@@ -13,6 +15,8 @@ interface PageHeaderProps {
 
 export default function PageHeaderWithTabs({ title, tabTitle}: PageHeaderProps) {
   const navigation = useNavigation();
+  const theme = useTheme();
+  const styles = getStyles(theme);
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = React.useState<'carteira' | 'fundos'>(tabTitle);
 
@@ -23,7 +27,7 @@ export default function PageHeaderWithTabs({ title, tabTitle}: PageHeaderProps) 
           onPress={() => navigation.goBack()}
           style={styles.buttonContainer}
         >
-          <Ionicons name='arrow-back' size={24} color='#005A9C' />
+          <Ionicons name='arrow-back' size={24} color={theme.tint} />
         </TouchableOpacity>
         <View style={styles.titleContainer}>
           <StyledText style={styles.title}>{title}</StyledText>
@@ -35,11 +39,12 @@ export default function PageHeaderWithTabs({ title, tabTitle}: PageHeaderProps) 
   )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme: StylesType) => {
+  return StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: theme.backgroundCards,
   },
   topBarContainer: {
     height: 60,
@@ -58,7 +63,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: theme.text,
     textAlign: 'center',
   },
 })
+}

@@ -2,6 +2,8 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/themes/Colors';
+import { useTheme } from '@/src/hooks/useTheme';
 
 type ActiveTab = 'carteira' | 'fundos'
 
@@ -13,6 +15,8 @@ interface HeaderTabsProps {
 export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps) {
 
   const router = useRouter();
+  const theme = useTheme();
+  const styles = getStyles(theme);
 
   const handleCarteiraPress = () => {
     setActiveTab('carteira');
@@ -66,11 +70,12 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
   )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme:StylesType) =>{
+  return StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#fff',
+    backgroundColor: theme.background,
     paddingHorizontal: 16,
     height: 50,
     alignItems: 'center',
@@ -83,22 +88,23 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   activeTabButton: {
-    backgroundColor: '#EAF5FF',
+    backgroundColor: theme.background,
   },
   tabText: {
     fontSize: 16,
-    color: '#888',
+    color: theme.text,
   },
   activeTabText: {
-    color: '#005A9C',
+    color: theme.tint,
     fontWeight: 'bold',
   },
   activeIndicator: {
     height: 3,
-    backgroundColor: '#005A9C',
+    backgroundColor: theme.tint,
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
   },
 })
+}
