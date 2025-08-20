@@ -10,10 +10,10 @@ interface expandedProps{
     fund: fundsType;
     expanded: boolean;
     type?: "default" | "simular";
-    onSimulate?: () => void;
+    onSimulate: () => void;
 }
 
-export const Expanded = ({ fund, expanded, type = "default", onSimulate }: expandedProps) => {
+export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) => {
   const theme = useTheme();
   const styles = getStyles(theme, expanded);
 
@@ -53,7 +53,14 @@ export const Expanded = ({ fund, expanded, type = "default", onSimulate }: expan
             </StyledText>
           </View>
 
-          {type === "default" && (
+          {type === "simular" ? (
+            <View style={styles.buttonContainer}>
+                <NavigationButton 
+                  onPress={onSimulate} 
+                  text={"Simular"} 
+                />
+            </View>
+          ) : (
             <View style={styles.textContainer}>
             <NavigationButton
                 onPress={() => console.log("Saiba mais")}
@@ -64,15 +71,6 @@ export const Expanded = ({ fund, expanded, type = "default", onSimulate }: expan
                 onPress={() => console.log("Investir")}
                 text={"Investir"}
             />
-            </View>
-            )}
-          
-            {type === "simular" && (
-            <View style={styles.buttonContainer}>
-                <NavigationButton 
-                  onPress={onSimulate ?? (() => {})} 
-                  text={"Simular"} 
-                />
             </View>
             )}
 
