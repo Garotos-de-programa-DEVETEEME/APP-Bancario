@@ -1,6 +1,7 @@
 import { tempFunds } from "@/src/@Types/fundos";
 import { FundosInvestidos } from "@/src/@Types/fundosInvestidos";
 import { WalletInfoCard } from "@/src/components/Wallet/carteira";
+import { useFilters } from "@/src/Context/filterContext";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { FormatarFundosInvestimento } from "@/src/utils/fundosInvestimentoFormat";
@@ -12,8 +13,10 @@ export default function WalletPage (){
     const theme = useTheme();
     const styles = getStyles(theme);
     const [fundosInvestidos, setFundosInvestidos] = useState<FundosInvestidos[]>([]);//TODO fazer integração com base em API
+    const { setFilters } = useFilters();//importando para limpar os filtros
     useEffect(()=>{
-        const fundosFormatados = FormatarFundosInvestimento(tempFunds)
+        setFilters([]);
+        const fundosFormatados = FormatarFundosInvestimento(tempFunds);
         setFundosInvestidos(fundosFormatados);
     },[])
 
