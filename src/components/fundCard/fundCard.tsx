@@ -3,17 +3,19 @@ import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
 import { coinFormat } from '@/src/utils/coinFormat'
 import { Pressable, StyleSheet, View } from 'react-native'
+import { StyledText } from '../StyledText'
 import { Expanded } from './expandedFund'
 import { RiskIcon } from './riskIcon'
-import { StyledText } from '../StyledText'
 
 interface FundsCardProps {
   fund: fundsType
   onPress: () => void
   expanded: boolean
+  expandedType?: "default" | "simular"
+  onSimulate?: () => void
 }
 
-export const FundsCard = ({ fund, onPress, expanded }: FundsCardProps) => {
+export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", onSimulate }: FundsCardProps) => {
   const theme = useTheme()
   const styles = getStyle(theme)
 
@@ -46,12 +48,19 @@ export const FundsCard = ({ fund, onPress, expanded }: FundsCardProps) => {
           <StyledText style={styles.text}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText style={styles.rentabilityText}>{=/* TODO arrow icons */}
+          <StyledText style={styles.rentabilityText}>{/* TODO arrow icons */}
             {`${fund.taxaRentabilidade}%`}
             {/*TODO consultar se este valor esta em porcentagem */}
           </StyledText>
         </View>
-        <Expanded fund={fund} expanded={expanded} />
+        
+        <Expanded 
+          fund={fund} 
+          expanded={expanded} 
+          type={expandedType} 
+          onSimulate={onSimulate ? onSimulate : () => {}} 
+        />
+
       </Pressable>
     </View>
   )
