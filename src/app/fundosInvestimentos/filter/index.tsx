@@ -177,7 +177,6 @@ export default function FilterFundsPage() {
               onSelect={(e) => updateRiskFilter(e)}
               height={22}
               width={94}
-              type='risk'
             />
           ))}
         </View>
