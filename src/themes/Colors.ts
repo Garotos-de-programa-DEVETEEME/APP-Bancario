@@ -38,8 +38,8 @@ export const Styles:ThemeType = {
     alternativeIcon: '#A5A5A5',
     border: '#C9C9C9',
     risk: {
-      veryLow: '#46FF59',
-      low: '#CFFF46',
+      veryLow: '#55ACE2',
+      low: '#49BB4F',
       medium: '#FF9F46',
       high: '#FF4646',
     },
@@ -57,8 +57,8 @@ export const Styles:ThemeType = {
     alternativeIcon: '#ABABAB',
     border: '#3C3C3C',
     risk: {
-      veryLow: '#46FF59',
-      low: '#CFFF46',
+      veryLow: '#55ACE2',
+      low: '#49BB4F',
       medium: '#FF9F46',
       high: '#FF4646',
     },
