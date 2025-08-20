@@ -16,8 +16,10 @@ export default function WalletPage (){
     const { setFilters } = useFilters();//importando para limpar os filtros
     useEffect(()=>{
         setFilters([]);
-        const fundosFormatados = FormatarFundosInvestimento(tempFunds);
+        //busca da API
+        const fundosFormatados = FormatarFundosInvestimento(tempFunds);//TODO trocar por API
         setFundosInvestidos(fundosFormatados);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return (

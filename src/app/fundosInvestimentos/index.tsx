@@ -11,14 +11,14 @@ export default function FundoInvestimento() {
     const theme = useTheme();
     const styles = getStyles(theme);
 
-  const [currentExpanded, setCurrentExpanded] = useState(-1)
+  const [currentExpanded, setCurrentExpanded] = useState(-1);//variavel que controla o fundo expandido com base no seu ID
 
-  const changeCurrentExpanded = (key: number) => {
-    if (key === currentExpanded) {
-      setCurrentExpanded(-1)
-      return
+  const changeCurrentExpanded = (key: number) => {//controla qual fundo esta expandido
+    if (key === currentExpanded) {//caso clique em um fundo já expandido fecha o mesmo
+      setCurrentExpanded(-1);
+      return;
     }
-    setCurrentExpanded(key)
+    setCurrentExpanded(key);
   }
 
   const [searchBarValue, setSearchBarValue] = useState('')

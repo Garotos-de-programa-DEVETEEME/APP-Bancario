@@ -1,14 +1,13 @@
 import { Pressable, StyleSheet } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { StyledText } from '../StyledText'
-
 interface favoriteButtonsProps {
   onPress: () => void
   selected: boolean
   text?: string
 }
 
-export const FavoriteButton = ({
+export const FavoriteButton = ({//componente de botão de estrela
   onPress,
   selected,
   text,

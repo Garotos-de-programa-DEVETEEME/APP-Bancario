@@ -13,7 +13,7 @@ interface expandedProps{
     onSimulate: () => void;
 }
 
-export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) => {
+export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) => {//componente de fundo de investimento expandido
   const theme = useTheme();
   const styles = getStyles(theme, expanded);
 
@@ -55,9 +55,9 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
           {type === "simular" ? (
             <View style={styles.buttonContainer}>
-                <NavigationButton 
-                  onPress={onSimulate} 
-                  text={"Simular"} 
+                <NavigationButton
+                  onPress={onSimulate}
+                  text={"Simular"}
                 />
             </View>
           ) : (

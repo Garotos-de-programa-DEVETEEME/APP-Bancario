@@ -29,7 +29,7 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
           },
         ]}
       >
-        Olá,{' '}
+        Olá,{' '}{/*TODO trocar por variavel */}
         <StyledText style={{ fontWeight: 'bold', color: 'theme.text' }}>
           {title}
         </StyledText>

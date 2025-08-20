@@ -15,7 +15,7 @@ interface FundsCardProps {
   onSimulate?: () => void
 }
 
-export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", onSimulate }: FundsCardProps) => {
+export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", onSimulate }: FundsCardProps) => {//componente de card de fundo de investimento
   const theme = useTheme()
   const styles = getStyle(theme)
 
@@ -58,7 +58,7 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", o
           fund={fund} 
           expanded={expanded} 
           type={expandedType} 
-          onSimulate={onSimulate ? onSimulate : () => {}} 
+          onSimulate={onSimulate ? onSimulate : () => {}}
         />
 
       </Pressable>

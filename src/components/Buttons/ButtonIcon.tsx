@@ -11,14 +11,14 @@ interface buttonIconProps {
   IconHeigth?: number
 }
 
-export const ButtonIcon = ({
-  route: route,
+export const ButtonIcon = ({//componente de botão com icone
+  route,
   text,
   iconName,
   IconHeigth,
 }: buttonIconProps) => {
-  const theme = useTheme()
-  const styles = getStyles(theme, IconHeigth)
+  const theme = useTheme();
+  const styles = getStyles(theme, IconHeigth);
 
   return (
     <Pressable style={styles.buttonContainer} onPress={route}>
@@ -33,7 +33,7 @@ const getStyles = (theme: StylesType, IconHeigth?: number) => {
     buttonContainer: {
       backgroundColor: theme.backgroundCards,
       borderRadius: 10,
-      height: 61,
+      height: IconHeigth? IconHeigth:61,
       width: 110,
       justifyContent: 'center',
       alignItems: 'center',

@@ -7,7 +7,7 @@ interface riskIconProps {
   risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'
 }
 
-export const RiskIcon = ({ risk }: riskIconProps) => {
+export const RiskIcon = ({ risk }: riskIconProps) => {//componente de risco de fundo 
   const theme = useTheme()
   const styles = getStyles(theme, risk)
   return (
