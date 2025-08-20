@@ -1,14 +1,14 @@
-import { useFilters } from '@/src/Context/filterContext'
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { router } from 'expo-router'
-import { ScrollView, StyleSheet, View, TextInput } from 'react-native'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { FiltersSelected } from './FiltersSelected'
+import { useFilters } from '@/src/Context/filterContext';
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { router } from 'expo-router';
+import { ScrollView, StyleSheet, View, TextInput } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { FiltersSelected } from './FiltersSelected';
 
 interface SearchBarProps {
   placeholder?: string;
-  value: string;//variavel para controle 
+  value: string; //variavel para controle
   onChangeText: (text: string) => void;
   filter?: boolean;
 }
@@ -16,7 +16,7 @@ interface SearchBarProps {
 export const SearchBar = ({
   placeholder,
   onChangeText,
-  filter: hasFilter = false,//variavel de controle se a filtragem já foi feita
+  filter: hasFilter = false, //variavel de controle se a filtragem já foi feita
 }: SearchBarProps) => {
   const theme = useTheme();
   const styles = getStyles(theme);
@@ -60,8 +60,8 @@ export const SearchBar = ({
         onPress={() => router.push('/fundosInvestimentos/filter')}
       />
     </View>
-  )
-}
+  );
+};
 
 const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
@@ -98,5 +98,5 @@ const getStyles = (theme: StylesType) => {
       alignSelf: 'center',
       marginRight: 18,
     },
-  })
-}
+  });
+};

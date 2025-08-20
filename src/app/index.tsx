@@ -1,6 +1,6 @@
-import EntrarButton from '@/src/components/Buttons/EntrarButton'
-import { router } from 'expo-router'
-import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native'
+import EntrarButton from '@/src/components/Buttons/EntrarButton';
+import { router } from 'expo-router';
+import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native';
 
 export default function App() {
   return (
@@ -22,7 +22,7 @@ export default function App() {
         </SafeAreaView>
       </ImageBackground>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
     height: 160,
     alignItems: 'center',
   },
-})
+});

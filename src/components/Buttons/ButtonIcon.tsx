@@ -1,17 +1,18 @@
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { Pressable, StyleSheet } from 'react-native'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { StyledText } from '../StyledText'
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { Pressable, StyleSheet } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { StyledText } from '../StyledText';
 
 interface buttonIconProps {
-  route: () => void
-  text: string
-  iconName: string
-  IconHeigth?: number
+  route: () => void;
+  text: string;
+  iconName: string;
+  IconHeigth?: number;
 }
 
-export const ButtonIcon = ({//componente de botão com icone
+export const ButtonIcon = ({
+  //componente de botão com icone
   route,
   text,
   iconName,
@@ -25,15 +26,15 @@ export const ButtonIcon = ({//componente de botão com icone
       <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth!} />
       <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
-  )
-}
+  );
+};
 
 const getStyles = (theme: StylesType, IconHeigth?: number) => {
   return StyleSheet.create({
     buttonContainer: {
       backgroundColor: theme.backgroundCards,
       borderRadius: 10,
-      height: IconHeigth? IconHeigth:61,
+      height: IconHeigth ? IconHeigth : 61,
       width: 110,
       justifyContent: 'center',
       alignItems: 'center',
@@ -54,5 +55,5 @@ const getStyles = (theme: StylesType, IconHeigth?: number) => {
     icon: {
       color: theme.tint,
     },
-  })
-}
+  });
+};

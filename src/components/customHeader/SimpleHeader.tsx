@@ -1,14 +1,14 @@
-import { Ionicons } from '@expo/vector-icons'
-import { useNavigation } from 'expo-router'
-import React from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { StyledText } from '../StyledText'
-import { StylesType } from '@/src/themes/Colors'
-import { useTheme } from '@/src/hooks/useTheme'
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from 'expo-router';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/themes/Colors';
+import { useTheme } from '@/src/hooks/useTheme';
 
 interface SimpleHeaderProps {
-  title: string
+  title: string;
 }
 
 export default function SimpleHeader({ title }: SimpleHeaderProps) {
@@ -30,33 +30,33 @@ export default function SimpleHeader({ title }: SimpleHeaderProps) {
       </View>
       <View style={styles.buttonContainer} />
     </View>
-  )
+  );
 }
 
 const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
-  container: {
-    height: 80,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: theme.background,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.backgroundCards,
-    paddingHorizontal: 5,
-  },
-  buttonContainer: {
-    width: 50,
-    alignItems: 'center',
-  },
-  titleContainer: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: theme.text,
-    textAlign: 'center',
-  },
-})
-}
+    container: {
+      height: 80,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: theme.background,
+      borderBottomWidth: 1,
+      borderBottomColor: theme.backgroundCards,
+      paddingHorizontal: 5,
+    },
+    buttonContainer: {
+      width: 50,
+      alignItems: 'center',
+    },
+    titleContainer: {
+      flex: 1,
+    },
+    title: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: theme.text,
+      textAlign: 'center',
+    },
+  });
+};

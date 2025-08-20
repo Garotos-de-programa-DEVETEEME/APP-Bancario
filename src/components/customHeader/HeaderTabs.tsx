@@ -5,15 +5,17 @@ import { StyledText } from '../StyledText';
 import { StylesType } from '@/src/themes/Colors';
 import { useTheme } from '@/src/hooks/useTheme';
 
-type ActiveTab = 'carteira' | 'fundos'
+type ActiveTab = 'carteira' | 'fundos';
 
 interface HeaderTabsProps {
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
 }
 
-export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps) {
-
+export default function HeaderTabs({
+  activeTab,
+  setActiveTab,
+}: HeaderTabsProps) {
   const router = useRouter();
   const theme = useTheme();
   const styles = getStyles(theme);
@@ -21,13 +23,12 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
   const handleCarteiraPress = () => {
     setActiveTab('carteira');
     router.push('/carteira');
-  }
+  };
 
   const handleFundosPress = () => {
     setActiveTab('fundos');
     router.push('/fundosInvestimentos');
   };
-
 
   return (
     <View style={styles.container}>
@@ -67,44 +68,44 @@ export default function HeaderTabs({ activeTab, setActiveTab }: HeaderTabsProps)
         {activeTab === 'fundos' && <View style={styles.activeIndicator} />}
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
-const getStyles = (theme:StylesType) =>{
+const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: theme.background,
-    paddingHorizontal: 16,
-    height: 50,
-    alignItems: 'center',
-  },
-  tabButton: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    borderRadius: 8,
-  },
-  activeTabButton: {
-    backgroundColor: theme.background,
-  },
-  tabText: {
-    fontSize: 16,
-    color: theme.text,
-  },
-  activeTabText: {
-    color: theme.tint,
-    fontWeight: 'bold',
-  },
-  activeIndicator: {
-    height: 3,
-    backgroundColor: theme.tint,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-})
-}
+    container: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      backgroundColor: theme.background,
+      paddingHorizontal: 16,
+      height: 50,
+      alignItems: 'center',
+    },
+    tabButton: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      borderRadius: 8,
+    },
+    activeTabButton: {
+      backgroundColor: theme.background,
+    },
+    tabText: {
+      fontSize: 16,
+      color: theme.text,
+    },
+    activeTabText: {
+      color: theme.tint,
+      fontWeight: 'bold',
+    },
+    activeIndicator: {
+      height: 3,
+      backgroundColor: theme.tint,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
+  });
+};

@@ -1,32 +1,32 @@
-const tintColor = '#3E75BC' //cor principal projeto
+const tintColor = '#3E75BC'; //cor principal projeto
 
 export type StylesType = {
-  text: string
-  textSecundary: string
-  alternativeText: string
-  whiteText: string
-  darkText: string
-  background: string
-  backgroundCards: string
-  tint: string
-  alternativeIcon: string
-  border: string
+  text: string;
+  textSecundary: string;
+  alternativeText: string;
+  whiteText: string;
+  darkText: string;
+  background: string;
+  backgroundCards: string;
+  tint: string;
+  alternativeIcon: string;
+  border: string;
   risk: {
-    veryLow: string
-    low: string
-    medium: string
-    high: string
-  }
-  fontFamily: string
-}
+    veryLow: string;
+    low: string;
+    medium: string;
+    high: string;
+  };
+  fontFamily: string;
+};
 
-type ThemeType =  {
-  light: StylesType,
-  dark: StylesType,
-}
+type ThemeType = {
+  light: StylesType;
+  dark: StylesType;
+};
 
-export const Styles:ThemeType = {
-  light:  {
+export const Styles: ThemeType = {
+  light: {
     text: '#2A2A2A',
     textSecundary: '#A5A5A5',
     alternativeText: '#2A2A2A',
@@ -64,4 +64,4 @@ export const Styles:ThemeType = {
     },
     fontFamily: 'Roboto_400Regular',
   },
-}
+};

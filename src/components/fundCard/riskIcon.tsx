@@ -1,15 +1,16 @@
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { StyleSheet, View } from 'react-native'
-import { StyledText } from '../StyledText'
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
 
 interface riskIconProps {
-  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'
+  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto';
 }
 
-export const RiskIcon = ({ risk }: riskIconProps) => {//componente de risco de fundo 
-  const theme = useTheme()
-  const styles = getStyles(theme, risk)
+export const RiskIcon = ({ risk }: riskIconProps) => {
+  //componente de risco de fundo
+  const theme = useTheme();
+  const styles = getStyles(theme, risk);
   return (
     <>
       <StyledText style={styles.fundRiskText}>
@@ -22,11 +23,11 @@ export const RiskIcon = ({ risk }: riskIconProps) => {//componente de risco de f
         <StyledText style={styles.fourthIcon}></StyledText>
       </View>
     </>
-  )
-}
+  );
+};
 
 const getStyles = (theme: StylesType, risk: string) => {
-  const ballSize = 10
+  const ballSize = 10;
 
   return StyleSheet.create({
     container: {
@@ -82,5 +83,5 @@ const getStyles = (theme: StylesType, risk: string) => {
       height: ballSize,
       borderRadius: ballSize / 2,
     },
-  })
-}
+  });
+};

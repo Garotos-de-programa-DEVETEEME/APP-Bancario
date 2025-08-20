@@ -1,14 +1,14 @@
-import { useTheme } from '@/src/hooks/useTheme'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { StyledText } from '../StyledText'
+import { useTheme } from '@/src/hooks/useTheme';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyledText } from '../StyledText';
 
 type EntrarButtonProps = {
-  title: string
-  onPress: () => void
-}
+  title: string;
+  onPress: () => void;
+};
 
 export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <View
@@ -29,7 +29,7 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
           },
         ]}
       >
-        Olá,{' '}{/*TODO trocar por variavel */}
+        Olá, {/*TODO trocar por variavel */}
         <StyledText style={{ fontWeight: 'bold', color: 'theme.text' }}>
           {title}
         </StyledText>
@@ -55,7 +55,7 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
         </TouchableOpacity>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-})
+});

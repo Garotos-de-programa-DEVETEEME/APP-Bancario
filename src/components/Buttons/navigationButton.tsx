@@ -1,25 +1,26 @@
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { Pressable, StyleSheet} from 'react-native'
-import { StyledText } from '../StyledText'
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { Pressable, StyleSheet } from 'react-native';
+import { StyledText } from '../StyledText';
 
 interface NavigationButtonProps {
-  onPress: () => void // a função aqui deve conter um () => router.push()
+  onPress: () => void; // a função aqui deve conter um () => router.push()
   text: string;
   transparentStyle?: boolean;
   disabled?: boolean;
   width?: number;
 }
 
-export const NavigationButton = ({//componente de botão de navegação
+export const NavigationButton = ({
+  //componente de botão de navegação
   onPress,
   text,
   transparentStyle,
   disabled,
   width,
 }: NavigationButtonProps) => {
-  const theme = useTheme()
-  const styles = getStyles(theme, transparentStyle, width)
+  const theme = useTheme();
+  const styles = getStyles(theme, transparentStyle, width);
 
   return (
     <Pressable
@@ -29,8 +30,8 @@ export const NavigationButton = ({//componente de botão de navegação
     >
       <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
-  )
-}
+  );
+};
 
 const getStyles = (
   theme: StylesType,
@@ -54,5 +55,5 @@ const getStyles = (
       fontSize: 18,
       fontWeight: 500,
     },
-  })
-}
+  });
+};

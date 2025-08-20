@@ -1,31 +1,40 @@
-import { fundsType } from '@/src/@Types/fundos'
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { coinFormat } from '@/src/utils/coinFormat'
-import { Pressable, StyleSheet, View } from 'react-native'
-import { StyledText } from '../StyledText'
-import { Expanded } from './expandedFund'
-import { RiskIcon } from './riskIcon'
+import { fundsType } from '@/src/@Types/fundos';
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { coinFormat } from '@/src/utils/coinFormat';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
+import { Expanded } from './expandedFund';
+import { RiskIcon } from './riskIcon';
 
 interface FundsCardProps {
-  fund: fundsType
-  onPress: () => void
-  expanded: boolean
-  expandedType?: "default" | "simular"
-  onSimulate?: () => void
+  fund: fundsType;
+  onPress: () => void;
+  expanded: boolean;
+  expandedType?: 'default' | 'simular';
+  onSimulate?: () => void;
 }
 
-export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", onSimulate }: FundsCardProps) => {//componente de card de fundo de investimento
-  const theme = useTheme()
-  const styles = getStyle(theme)
+export const FundsCard = ({
+  fund,
+  onPress,
+  expanded,
+  expandedType = 'default',
+  onSimulate,
+}: FundsCardProps) => {
+  //componente de card de fundo de investimento
+  const theme = useTheme();
+  const styles = getStyle(theme);
 
   return (
     <View style={styles.container}>
       <Pressable onPress={onPress}>
         <View style={styles.textContainer}>
-          <StyledText style={styles.fundTypeText}>{/*fund.type*/}</StyledText> {/* TODO: integrar quando tivermos api pronta */}
+          <StyledText style={styles.fundTypeText}>{/*fund.type*/}</StyledText>{' '}
+          {/* TODO: integrar quando tivermos api pronta */}
           <View style={styles.riskContainer}>
-            <RiskIcon risk={'alto' /*fund.risk*/} />{/*TODO integrar quando a api estiver pronta */}
+            <RiskIcon risk={'alto' /*fund.risk*/} />
+            {/*TODO integrar quando a api estiver pronta */}
           </View>
         </View>
         <View>
@@ -48,23 +57,23 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = "default", o
           <StyledText style={styles.text}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText style={styles.rentabilityText}>{/* TODO arrow icons */}
+          <StyledText style={styles.rentabilityText}>
+            {/* TODO arrow icons */}
             {`${fund.taxaRentabilidade}%`}
             {/*TODO consultar se este valor esta em porcentagem */}
           </StyledText>
         </View>
-        
-        <Expanded 
-          fund={fund} 
-          expanded={expanded} 
-          type={expandedType} 
+
+        <Expanded
+          fund={fund}
+          expanded={expanded}
+          type={expandedType}
           onSimulate={onSimulate ? onSimulate : () => {}}
         />
-
       </Pressable>
     </View>
-  )
-}
+  );
+};
 const getStyle = (theme: StylesType) => {
   return StyleSheet.create({
     container: {
@@ -111,5 +120,5 @@ const getStyle = (theme: StylesType) => {
       alignItems: 'center',
       gap: 10,
     },
-  })
-}
+  });
+};

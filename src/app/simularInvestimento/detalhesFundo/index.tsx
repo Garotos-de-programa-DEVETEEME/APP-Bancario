@@ -5,10 +5,10 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 //TODO: Trocar essa tela placeholder com a tela oficial
 
 export default function DetalhesInvestimento() {
-    const { fundData } = useLocalSearchParams();
-    
-    const fund: fundsType | null =
-    typeof fundData === 'string' ? JSON.parse(fundData) : null
+  const { fundData } = useLocalSearchParams();
+
+  const fund: fundsType | null =
+    typeof fundData === 'string' ? JSON.parse(fundData) : null;
 
   return (
     <ScrollView style={styles.scrollView}>
@@ -47,7 +47,7 @@ export default function DetalhesInvestimento() {
         )}
       </View>
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
   label: { fontSize: 16, color: '#4A5568' },
   value: { fontSize: 16, fontWeight: '600', color: '#2D3748' },
-})
+});

@@ -1,19 +1,19 @@
-import { FilterType } from '@/src/@Types/Filter'
-import { FavoriteButton } from '@/src/components/Buttons/favoriteButton'
-import { NavigationButton } from '@/src/components/Buttons/navigationButton'
-import { FilterOption } from '@/src/components/SearchBar/filterOption'
-import { StyledText } from '@/src/components/StyledText'
-import { useFilters } from '@/src/Context/filterContext'
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { router } from 'expo-router'
-import { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { FilterType } from '@/src/@Types/Filter';
+import { FavoriteButton } from '@/src/components/Buttons/favoriteButton';
+import { NavigationButton } from '@/src/components/Buttons/navigationButton';
+import { FilterOption } from '@/src/components/SearchBar/filterOption';
+import { StyledText } from '@/src/components/StyledText';
+import { useFilters } from '@/src/Context/filterContext';
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function FilterFundsPage() {
-  const { filters, setFilters } = useFilters()
-  const theme = useTheme()
-  const style = styles(theme)
+  const { filters, setFilters } = useFilters();
+  const theme = useTheme();
+  const style = styles(theme);
 
   const [valueFilters, setValueFilters] = useState<FilterType[]>([
     //filtros por valor monetario
@@ -35,7 +35,7 @@ export default function FilterFundsPage() {
       placeholder: '+ R$1000',
       selected: false,
     },
-  ])
+  ]);
   const [riskFilters, setRiskFilters] = useState<FilterType[]>([
     //filtros por risco
     {
@@ -66,33 +66,36 @@ export default function FilterFundsPage() {
       color: theme.risk.high,
       selected: false,
     },
-  ])
+  ]);
   const [starFilter, setStarFilter] = useState<FilterType>({
     id: 8,
     value: 'favoritos',
     placeholder: 'Favoritos',
     selected: false,
     color: '#F2C94C', //cor do filtro de favoritos
-  })
+  });
 
-    useEffect(()=> {
-            if(filters.length > 1){//atualiza os fltros com base no que foi selecionado anteriormente
-                const tempArrayRisk = [...riskFilters];//cria uma copia da array de filtros de risco
-                filters.forEach((e) => {
-                    if(e.id < 4){
-                        const tempArrayValue = [...valueFilters];
-                        tempArrayValue[e.id - 1] = e;
-                        setValueFilters(tempArrayValue);//define a risco de filtross igual a sua copia modifica pois pode conter mais de uma alteração
-                    } else if(e.id < 8){//caso o id esteja no intervalo de ids de filtros de risco altera a copia da array de riscos
-                        tempArrayRisk[e.id - 4] = e;
-                    } else {//filtro de favoritos
-                        setStarFilter(e);
-                    }
-                });
-                setRiskFilters(tempArrayRisk);//define os filtros de risco igual a sua copia modifica, pois pode conter mais de uma alteração
-            }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        },[])
+  useEffect(() => {
+    if (filters.length > 1) {
+      //atualiza os fltros com base no que foi selecionado anteriormente
+      const tempArrayRisk = [...riskFilters]; //cria uma copia da array de filtros de risco
+      filters.forEach((e) => {
+        if (e.id < 4) {
+          const tempArrayValue = [...valueFilters];
+          tempArrayValue[e.id - 1] = e;
+          setValueFilters(tempArrayValue); //define a risco de filtross igual a sua copia modifica pois pode conter mais de uma alteração
+        } else if (e.id < 8) {
+          //caso o id esteja no intervalo de ids de filtros de risco altera a copia da array de riscos
+          tempArrayRisk[e.id - 4] = e;
+        } else {
+          //filtro de favoritos
+          setStarFilter(e);
+        }
+      });
+      setRiskFilters(tempArrayRisk); //define os filtros de risco igual a sua copia modifica, pois pode conter mais de uma alteração
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const updateValueFilter = (id: number) => {
     // Atualiza o filtro de valor selecionado
@@ -105,8 +108,8 @@ export default function FilterFundsPage() {
             ? { ...filter, selected: !filter.selected }
             : { ...filter, selected: false }, //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos como false
       ),
-    )
-  }
+    );
+  };
 
   const updateRiskFilter = (id: number) => {
     // Atualiza o filtro de valor selecionado
@@ -117,29 +120,29 @@ export default function FilterFundsPage() {
         ) =>
           filter.id === id ? { ...filter, selected: !filter.selected } : filter, //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos retornamos o filtro sem alterações
       ),
-    )
-  }
+    );
+  };
 
   const updaterStarFilter = () => {
-    setStarFilter((prev) => prev! && { ...prev, selected: !prev.selected }) // Atualiza o filtro de favoritos
-  }
+    setStarFilter((prev) => prev! && { ...prev, selected: !prev.selected }); // Atualiza o filtro de favoritos
+  };
 
   const filterSelected = (list: FilterType[]) => {
-    return list.filter((e) => e.selected === true)
-  }
+    return list.filter((e) => e.selected === true);
+  };
 
   const updateFilters = () => {
     // Use a local variable instead of state
     let selectedFilters: FilterType[] = [
       ...filterSelected(valueFilters),
       ...filterSelected(riskFilters),
-    ]
+    ];
     if (starFilter.selected) {
-      selectedFilters = [...selectedFilters, starFilter]
+      selectedFilters = [...selectedFilters, starFilter];
     }
-    setFilters(selectedFilters)
-    router.push('/fundosInvestimentos')
-  }
+    setFilters(selectedFilters);
+    router.push('/fundosInvestimentos');
+  };
 
   return (
     <View style={style.pageTheme}>
@@ -185,7 +188,7 @@ export default function FilterFundsPage() {
         <NavigationButton onPress={() => updateFilters()} text='Filtrar' />
       </View>
     </View>
-  )
+  );
 }
 
 const styles = (theme: StylesType) => {
@@ -239,5 +242,5 @@ const styles = (theme: StylesType) => {
     redirectButton: {
       alignItems: 'center',
     },
-  })
-}
+  });
+};
