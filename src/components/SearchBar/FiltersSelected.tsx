@@ -30,7 +30,7 @@ function getStyle(theme: StylesType, data: FilterType) {
       justifyContent: 'center',
     },
     text: {
-      color: data.color ? theme.darkText : theme.whiteText,
+      color: theme.whiteText,
       fontFamily: theme.fontFamily,
       fontWeight: 500,
       fontSize: 14,

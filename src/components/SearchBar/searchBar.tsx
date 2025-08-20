@@ -7,21 +7,20 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { FiltersSelected } from './FiltersSelected'
 
 interface SearchBarProps {
-  placeholder?: string
-  value: string
-  onChangeText: (text: string) => void
-  filter?: boolean
+  placeholder?: string;
+  value: string;//variavel para controle 
+  onChangeText: (text: string) => void;
+  filter?: boolean;
 }
 
 export const SearchBar = ({
   placeholder,
-  value,
   onChangeText,
-  filter: hasFilter = false,
+  filter: hasFilter = false,//variavel de controle se a filtragem já foi feita
 }: SearchBarProps) => {
-  const theme = useTheme()
-  const styles = getStyles(theme, hasFilter)
-  const { filters } = useFilters()
+  const theme = useTheme();
+  const styles = getStyles(theme);
+  const { filters } = useFilters();
 
   return (
     <View style={styles.container}>
@@ -64,7 +63,7 @@ export const SearchBar = ({
   )
 }
 
-const getStyles = (theme: StylesType, filter: boolean) => {
+const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     container: {
       backgroundColor: theme.backgroundCards,
