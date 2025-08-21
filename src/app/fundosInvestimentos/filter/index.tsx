@@ -98,7 +98,7 @@ export default function FilterFundsPage() {
   }, []);
 
   const updateValueFilter = (id: number) => {
-    // Atualiza o filtro de valor selecionado
+    // Atualiza o filtro de valor conforme o selecionado
     setValueFilters((prev) =>
       prev.map(
         (
@@ -106,7 +106,7 @@ export default function FilterFundsPage() {
         ) =>
           filter.id === id
             ? { ...filter, selected: !filter.selected }
-            : { ...filter, selected: false }, //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos como false
+            : { ...filter, selected: false }, //caso o filter seja p procurado(id iguais) mudamos o valor do seu selected caso n definimos como false, pois só um filtro de valor pode estar definido por vez
       ),
     );
   };
@@ -128,19 +128,19 @@ export default function FilterFundsPage() {
   };
 
   const filterSelected = (list: FilterType[]) => {
-    return list.filter((e) => e.selected === true);
+    return list.filter((e) => e.selected === true);//separa os filtros que estão selecionados
   };
 
   const updateFilters = () => {
-    // Use a local variable instead of state
+    // cria uma array somente com os filtros selecionados
     let selectedFilters: FilterType[] = [
       ...filterSelected(valueFilters),
       ...filterSelected(riskFilters),
     ];
-    if (starFilter.selected) {
+    if (starFilter.selected) {//caso o filtro de favoritos esteja seleciionado adiciona-o no array de filtros selecionados
       selectedFilters = [...selectedFilters, starFilter];
     }
-    setFilters(selectedFilters);
+    setFilters(selectedFilters);//defini o valor dos filtros globais de acordo com os filtros selecionados
     router.push('/fundosInvestimentos');
   };
 

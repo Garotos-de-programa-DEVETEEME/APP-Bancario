@@ -8,15 +8,16 @@ import { FormatarFundosInvestimento } from '@/src/utils/fundosInvestimentoFormat
 import { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-export default function WalletPage() {
+export default function WalletPage() {//pagina de carteira de investimento
   const theme = useTheme();
   const styles = getStyles(theme);
   const [fundosInvestidos, setFundosInvestidos] = useState<FundosInvestidos[]>(
     [],
   ); //TODO fazer integração com base em API
   const { setFilters } = useFilters(); //importando para limpar os filtros
+
   useEffect(() => {
-    setFilters([]);
+    setFilters([]);//limpagem dos filtros de listagem de fundo
     //busca da API
     const fundosFormatados = FormatarFundosInvestimento(tempFunds); //TODO trocar por API
     setFundosInvestidos(fundosFormatados);

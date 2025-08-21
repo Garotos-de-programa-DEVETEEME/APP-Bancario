@@ -8,7 +8,7 @@ import { coinFormat } from '@/src/utils/coinFormat';
 
 type PatrimonyCardProps = {
   value: number;
-  cointaned?: boolean;
+  cointaned?: boolean;//variavel que quando verdadeira remove as margens
 };
 
 export default function PatrimonyCard({

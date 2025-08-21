@@ -4,9 +4,9 @@ import { Pressable, StyleSheet } from 'react-native';
 import { StyledText } from '../StyledText';
 
 interface NavigationButtonProps {
-  onPress: () => void; // a função aqui deve conter um () => router.push()
+  onPress: () => void;
   text: string;
-  transparentStyle?: boolean;
+  transparentStyle?: boolean;//parametro que controla o estilo do componente
   disabled?: boolean;
   width?: number;
 }
