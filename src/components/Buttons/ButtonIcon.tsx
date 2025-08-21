@@ -8,7 +8,7 @@ interface buttonIconProps {
   route: () => void;
   text: string;
   iconName: string;
-  IconHeigth?: number;
+  IconHeigth: number;
 }
 
 export const ButtonIcon = ({
@@ -19,22 +19,22 @@ export const ButtonIcon = ({
   IconHeigth,
 }: buttonIconProps) => {
   const theme = useTheme();
-  const styles = getStyles(theme, IconHeigth);
+  const styles = getStyles(theme);
 
   return (
     <Pressable style={styles.buttonContainer} onPress={route}>
-      <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth!} />
+      <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth} />
       <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
   );
 };
 
-const getStyles = (theme: StylesType, IconHeigth?: number) => {
+const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     buttonContainer: {
       backgroundColor: theme.backgroundCards,
       borderRadius: 10,
-      height: IconHeigth ? IconHeigth : 61,
+      height: 60,
       width: 110,
       justifyContent: 'center',
       alignItems: 'center',
