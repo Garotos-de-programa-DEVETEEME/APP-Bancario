@@ -7,24 +7,15 @@ interface favoriteButtonsProps {
   text?: string;
 }
 
-export const FavoriteButton = ({
-  //componente de botão de estrela
+export const FavoriteButton = ({//componente de botão de estrela
   onPress,
   selected,
   text,
 }: favoriteButtonsProps) => {
   return (
     <Pressable onPress={onPress} style={styles.buttonContainer}>
-      {selected ? (
-        <MaterialIcons name={'star'} size={32} style={styles.buttonIcon} />
-      ) : (
-        <MaterialIcons
-          name={'star-outline'}
-          size={32}
-          style={styles.buttonIcon}
-        />
-      )}
-      <StyledText style={styles.buttonText}>{text}</StyledText>
+        <MaterialIcons name={selected? 'star':'star-outline'} size={32} style={styles.buttonIcon} />
+        <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
   );
 };
