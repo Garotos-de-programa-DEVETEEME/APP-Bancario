@@ -20,19 +20,19 @@ export default function FilterFundsPage() {
     {
       id: 1,
       value: '500', //adaptar para como funcionara na api
-      placeholder: 'R$0 - R$500',
+      text: 'R$0 - R$500',
       selected: false,
     },
     {
       id: 2,
       value: '1000',
-      placeholder: 'R$500 - R$1000',
+      text: 'R$500 - R$1000',
       selected: false,
     },
     {
       id: 3,
       value: '1001',
-      placeholder: '+ R$1000',
+      text: '+ R$1000',
       selected: false,
     },
   ]);
@@ -41,28 +41,28 @@ export default function FilterFundsPage() {
     {
       id: 4,
       value: 'muito baixo',
-      placeholder: 'Muito Baixo',
+      text: 'Muito Baixo',
       color: theme.risk.veryLow,
       selected: false,
     },
     {
       id: 5,
       value: 'baixo',
-      placeholder: 'Baixo',
+      text: 'Baixo',
       color: theme.risk.low,
       selected: false,
     },
     {
       id: 6,
       value: 'medio',
-      placeholder: 'Médio',
+      text: 'Médio',
       color: theme.risk.medium,
       selected: false,
     },
     {
       id: 7,
       value: 'alto',
-      placeholder: 'Alto',
+      text: 'Alto',
       color: theme.risk.high,
       selected: false,
     },
@@ -70,7 +70,7 @@ export default function FilterFundsPage() {
   const [starFilter, setStarFilter] = useState<FilterType>({
     id: 8,
     value: 'favoritos',
-    placeholder: 'Favoritos',
+    text: 'Favoritos',
     selected: false,
     color: '#F2C94C', //cor do filtro de favoritos
   });

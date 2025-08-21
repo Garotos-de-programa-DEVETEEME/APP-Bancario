@@ -1,7 +1,7 @@
 export type FilterType = {
   id: number;
   value: string;
-  placeholder: string;
+  text: string;
   selected: boolean;
   color?: string;
 };

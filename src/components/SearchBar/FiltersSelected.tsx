@@ -14,7 +14,7 @@ export const FiltersSelected = ({ data }: filterSelectedProps) => {
 
   return (
     <View style={style.container}>
-      <StyledText style={style.text}>{data.placeholder}</StyledText>
+      <StyledText style={style.text}>{data.text}</StyledText>
     </View>
   );
 };
