@@ -20,32 +20,26 @@ export const FilterOption = ({
   width,
 }: filterOptionProps) => {
   const theme = useTheme();
-  const style = styles(theme, isSelected, info.color, height, width);
+  const style = styles(theme, info.color, height, width);
 
   return (
     <Pressable
       onPress={() => onSelect(info.id)}
-      style={style.filterOptionContainer}
+      style={[style.filterOptionContainer, isSelected? style.backgoundCardSelected:style.backgroundCardDefault]}
     >
-      <StyledText style={style.cardText}>{info.placeholder}</StyledText>
+      <StyledText style={isSelected? style.cardTextSelected:style.cardText}>{info.text}</StyledText>
     </Pressable>
   );
 };
 
 const styles = (
   theme: StylesType,
-  isSelected: boolean,
   colorIcon?: string,
   height?: number,
   width?: number,
 ) => {
   return StyleSheet.create({
     filterOptionContainer: {
-      backgroundColor: isSelected
-        ? colorIcon
-          ? colorIcon
-          : theme.tint
-        : theme.backgroundCards,
       color: theme.text,
       width: width ? width : 120,
       height: height ? height : 32,
@@ -56,12 +50,18 @@ const styles = (
       flexDirection: 'row',
       gap: 5,
     },
+    backgroundCardDefault: {
+      backgroundColor: theme.backgroundCards
+    },
+    backgoundCardSelected: {
+      backgroundColor: colorIcon? colorIcon: theme.tint
+    },
     cardText: {
-      color: colorIcon ? (isSelected ? theme.text : colorIcon) : theme.text,
+      color: colorIcon ? colorIcon:theme.text,
       fontSize: 14,
     },
     cardTextSelected: {
-      color: theme.text,
+      color: theme.background,
       fontSize: 14,
     },
   });
