@@ -1,6 +1,7 @@
-import { fundsType, tempFunds } from "@/src/@Types/fundos";
+import { FundoInvestimento } from "@/src/@Types/fundos";
 import { FundsCard } from "@/src/components/fundCard/fundCard";
 import { StyledText } from "@/src/components/StyledText";
+import { MOCK_FUNDOS } from "@/src/data/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { router } from "expo-router";
@@ -13,7 +14,7 @@ import {
 export default function SimularInvestimento() {
     const theme = useTheme();
     const styles = getStyles(theme);
-    const investmentFunds = tempFunds;
+    const investmentFunds = MOCK_FUNDOS;
 
     const [currentExpanded, setCurrentExpanded] = useState(-1);
 
@@ -25,7 +26,7 @@ export default function SimularInvestimento() {
         setCurrentExpanded(key);
     }
 
-    const handleSimulatePress = (fund: fundsType) => {
+    const handleSimulatePress = (fund: FundoInvestimento) => {
         router.push({
             pathname: "/simularInvestimento/detalhesFundo",
             params: { fundData: JSON.stringify(fund) }

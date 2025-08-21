@@ -1,4 +1,4 @@
-import { fundsType } from '@/src/@Types/fundos'
+import { FundoInvestimento } from '@/src/@Types/fundos'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
 import { coinFormat } from '@/src/utils/coinFormat'
@@ -8,7 +8,7 @@ import { Expanded } from './expandedFund'
 import { RiskIcon } from './riskIcon'
 
 interface FundsCardProps {
-  fund: fundsType
+  fund: FundoInvestimento
   onPress: () => void
   expanded: boolean
   expandedType?: "default" | "simular"
