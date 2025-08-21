@@ -128,7 +128,7 @@ export default function FilterFundsPage() {
   };
 
   const filterSelected = (list: FilterType[]) => {
-    return list.filter((e) => e.selected === true);//separa os filtros que estão selecionados
+    return list.filter((e) => e.selected === true); //separa os filtros que estão selecionados
   };
 
   const updateFilters = () => {
@@ -137,10 +137,11 @@ export default function FilterFundsPage() {
       ...filterSelected(valueFilters),
       ...filterSelected(riskFilters),
     ];
-    if (starFilter.selected) {//caso o filtro de favoritos esteja seleciionado adiciona-o no array de filtros selecionados
+    if (starFilter.selected) {
+      //caso o filtro de favoritos esteja seleciionado adiciona-o no array de filtros selecionados
       selectedFilters = [...selectedFilters, starFilter];
     }
-    setFilters(selectedFilters);//defini o valor dos filtros globais de acordo com os filtros selecionados
+    setFilters(selectedFilters); //defini o valor dos filtros globais de acordo com os filtros selecionados
     router.push('/fundosInvestimentos');
   };
 

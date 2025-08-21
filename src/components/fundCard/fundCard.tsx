@@ -1,18 +1,18 @@
-import { FundoInvestimento } from '@/src/@Types/fundos'
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { coinFormat } from '@/src/utils/coinFormat'
-import { Pressable, StyleSheet, View } from 'react-native'
-import { StyledText } from '../StyledText'
-import { Expanded } from './expandedFund'
-import { RiskIcon } from './riskIcon'
+import { FundoInvestimento } from '@/src/@Types/fundos';
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { coinFormat } from '@/src/utils/coinFormat';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
+import { Expanded } from './expandedFund';
+import { RiskIcon } from './riskIcon';
 
 interface FundsCardProps {
-  fund: FundoInvestimento
-  onPress: () => void
-  expanded: boolean
-  expandedType?: "default" | "simular"
-  onSimulate?: () => void
+  fund: FundoInvestimento;
+  onPress: () => void;
+  expanded: boolean;
+  expandedType?: 'default' | 'simular';
+  onSimulate?: () => void;
 }
 
 export const FundsCard = ({

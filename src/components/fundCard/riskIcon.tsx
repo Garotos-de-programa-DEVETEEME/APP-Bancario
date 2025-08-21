@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 
 interface riskIconProps {
-  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; //TODO alterar conforme resposata da API 
+  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; //TODO alterar conforme resposata da API
 }
 
 export const RiskIcon = ({ risk }: riskIconProps) => {
@@ -14,7 +14,9 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
   return (
     <>
       <StyledText style={styles.fundRiskText}>
-        {`Risco ${risk === 'medio' ? 'médio' : risk}:`} {/*expressão booleana para adiicionar acento no médio preferencialmente os risk deve vir da api já com o nome correto */} {/*TODO alterar conforme resposata da API */}
+        {`Risco ${risk === 'medio' ? 'médio' : risk}:`}{' '}
+        {/*expressão booleana para adiicionar acento no médio preferencialmente os risk deve vir da api já com o nome correto */}{' '}
+        {/*TODO alterar conforme resposata da API */}
       </StyledText>
       <View style={styles.container}>
         <StyledText style={[styles.firstIcon, styles.riskIcon]}></StyledText>
@@ -41,7 +43,7 @@ const getStyles = (theme: StylesType, risk: string) => {
       fontFamily: theme.fontFamily,
     },
     riskIcon: {
-        width: ballSize,
+      width: ballSize,
       height: ballSize,
       borderRadius: ballSize / 2,
     },

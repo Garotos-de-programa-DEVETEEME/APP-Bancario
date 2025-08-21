@@ -25,9 +25,14 @@ export const FilterOption = ({
   return (
     <Pressable
       onPress={() => onSelect(info.id)}
-      style={[style.filterOptionContainer, isSelected? style.backgoundCardSelected:style.backgroundCardDefault]}
+      style={[
+        style.filterOptionContainer,
+        isSelected ? style.backgoundCardSelected : style.backgroundCardDefault,
+      ]}
     >
-      <StyledText style={isSelected? style.cardTextSelected:style.cardText}>{info.text}</StyledText>
+      <StyledText style={isSelected ? style.cardTextSelected : style.cardText}>
+        {info.text}
+      </StyledText>
     </Pressable>
   );
 };
@@ -51,13 +56,13 @@ const styles = (
       gap: 5,
     },
     backgroundCardDefault: {
-      backgroundColor: theme.backgroundCards
+      backgroundColor: theme.backgroundCards,
     },
     backgoundCardSelected: {
-      backgroundColor: colorIcon? colorIcon: theme.tint
+      backgroundColor: colorIcon ? colorIcon : theme.tint,
     },
     cardText: {
-      color: colorIcon ? colorIcon:theme.text,
+      color: colorIcon ? colorIcon : theme.text,
       fontSize: 14,
     },
     cardTextSelected: {

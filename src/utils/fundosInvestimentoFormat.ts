@@ -1,9 +1,9 @@
 //codigo para converter fundsType para FundosInvestimento
 //TODO procurar outra forma de fazer isso na tipagem do fundo;
 
-import { FundoInvestimento } from "../@Types/fundos";
-import { FundosInvestidos } from "../@Types/fundosInvestidos";
-import { converterNumeroParaHora as hourFormat } from "./hourFormat";
+import { FundoInvestimento } from '../@Types/fundos';
+import { FundosInvestidos } from '../@Types/fundosInvestidos';
+import { converterNumeroParaHora as hourFormat } from './hourFormat';
 
 const cores = [
   { nome: 'BANESTES INVEST FACIL FI RF SIMPLES', cor: '#33609A' },
@@ -16,15 +16,16 @@ const addColor = (nomeFundo: string): string => {
   return cores.find((e) => e.nome === nomeFundo)?.cor || '#A79F9F';
 };
 
-export const FormatarFundosInvestimento = (funds: FundoInvestimento[]):FundosInvestidos[] => {
-    return funds.map(fundo => ({
-        nomeFundo: fundo.nome,
-        tipoFUndo: fundo.siglaFundo,
-        valorInvestido: fundo.valorAplicacaoInicial,//TODO alterar para valor correto
-        cor: addColor(fundo.nome),
-        saldoResgateAutomativco: fundo.valorResgatavelDia,//TODO conferir se é esse campo correto
-        valorMinimoResgate: fundo.valorMinimoResgatavel,
-        horarioLImiteResgate: hourFormat(fundo.horaLimiteAplicacaoInternet),
-    }));
-}
-
+export const FormatarFundosInvestimento = (
+  funds: FundoInvestimento[],
+): FundosInvestidos[] => {
+  return funds.map((fundo) => ({
+    nomeFundo: fundo.nome,
+    tipoFUndo: fundo.siglaFundo,
+    valorInvestido: fundo.valorAplicacaoInicial, //TODO alterar para valor correto
+    cor: addColor(fundo.nome),
+    saldoResgateAutomativco: fundo.valorResgatavelDia, //TODO conferir se é esse campo correto
+    valorMinimoResgate: fundo.valorMinimoResgatavel,
+    horarioLImiteResgate: hourFormat(fundo.horaLimiteAplicacaoInternet),
+  }));
+};

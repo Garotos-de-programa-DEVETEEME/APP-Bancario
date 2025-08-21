@@ -1,4 +1,4 @@
-import { StylesType } from "../@Types/stylesType";
+import { StylesType } from '../@Types/stylesType';
 
 const tintColor = '#3E75BC'; //cor principal projeto
 
@@ -48,4 +48,3 @@ export const Styles: ThemeType = {
   },
 };
 export { StylesType };
-

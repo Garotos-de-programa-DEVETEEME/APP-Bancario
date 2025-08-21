@@ -6,7 +6,7 @@ import { StyledText } from '../StyledText';
 interface NavigationButtonProps {
   onPress: () => void;
   text: string;
-  transparentStyle?: boolean;//parametro que controla o estilo do componente
+  transparentStyle?: boolean; //parametro que controla o estilo do componente
   disabled?: boolean;
   width?: number;
 }

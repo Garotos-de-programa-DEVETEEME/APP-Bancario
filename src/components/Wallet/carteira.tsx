@@ -9,14 +9,16 @@ interface walletInfoCardProps {
   fundosInvestidos: FundosInvestidos[];
 }
 
-export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {//componente de patrimonio dentro de carteira de investimentos
+export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {
+  //componente de patrimonio dentro de carteira de investimentos
   const theme = useTheme();
   const styles = getStyles(theme);
 
   return (
     <View>
       <View>
-        <PatrimonyCard value={100} cointaned={true} />{/*TODO aplicar no value o valor total investido pelo cliente */}
+        <PatrimonyCard value={100} cointaned={true} />
+        {/*TODO aplicar no value o valor total investido pelo cliente */}
       </View>
       <View>
         <View>
@@ -35,9 +37,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {//
                     borderRadius: 18 / 2,
                   }}
                 ></StyledText>
-                <StyledText style={styles.fundoTexto}>
-                  {e.nomeFundo}
-                </StyledText>
+                <StyledText style={styles.fundoTexto}>{e.nomeFundo}</StyledText>
               </View>
             );
           })}
