@@ -19,7 +19,7 @@ export default function TelaInicial() {
       <View style={styles.buttonbox}>
         <ButtonIcon
           key={1}
-          route={() => router.push('/fundosInvestimentos')} //TODO: criar a funcionalidade
+          route={() => router.push('/carteira')}
           text='Minha Carteira'
           iconName='wallet'
           IconHeigth={24}
