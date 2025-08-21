@@ -1,4 +1,4 @@
-import { fundsType } from '@/src/@Types/fundos'; // Verifique se este caminho está correto
+import { FundoInvestimento } from '@/src/@Types/fundos'; // Verifique se este caminho está correto
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -7,7 +7,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 export default function DetalhesInvestimento() {
     const { fundData } = useLocalSearchParams();
     
-    const fund: fundsType | null =
+    const fund: FundoInvestimento | null =
     typeof fundData === 'string' ? JSON.parse(fundData) : null
 
   return (

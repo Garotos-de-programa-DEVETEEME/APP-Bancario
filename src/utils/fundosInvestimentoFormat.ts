@@ -1,7 +1,7 @@
 //codigo para converter fundsType para FundosInvestimento
 //TODO procurar outra forma de fazer isso na tipagem do fundo;
 
-import { fundsType } from "../@Types/fundos";
+import { FundoInvestimento } from "../@Types/fundos";
 import { FundosInvestidos } from "../@Types/fundosInvestidos";
 import { converterNumeroParaHora as hourFormat } from "./hourFormat";
 
@@ -16,7 +16,7 @@ const addColor = (nomeFundo: string): string => {
     return (cores.find(e => e.nome === nomeFundo)?.cor || '#A79F9F');
 }
 
-export const FormatarFundosInvestimento = (funds: fundsType[]):FundosInvestidos[] => {
+export const FormatarFundosInvestimento = (funds: FundoInvestimento[]):FundosInvestidos[] => {
     return funds.map(fundo => ({
         nomeFundo: fundo.nome,
         tipoFUndo: fundo.siglaFundo,

@@ -1,4 +1,4 @@
-import { fundsType } from "@/src/@Types/fundos";
+import { FundoInvestimento } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/themes/Colors";
 import { converterNumeroParaHora } from "@/src/utils/hourFormat";
@@ -7,7 +7,7 @@ import { NavigationButton } from "../Buttons/navigationButton";
 import { StyledText } from "../StyledText";
 
 interface expandedProps{
-    fund: fundsType;
+    fund: FundoInvestimento;
     expanded: boolean;
     type?: "default" | "simular";
     onSimulate: () => void;
