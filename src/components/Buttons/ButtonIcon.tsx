@@ -35,7 +35,8 @@ const getStyles = (theme: StylesType) => {
       backgroundColor: theme.backgroundCards,
       borderRadius: 10,
       height: 60,
-      maxWidth:117,
+      width: 110,
+      justifyContent: 'center',
       alignItems: 'center',
       marginTop: 16,
       marginBottom: 8,
@@ -43,9 +44,9 @@ const getStyles = (theme: StylesType) => {
       borderWidth: 1,
       display: 'flex',
       flexDirection: 'row',
-      gap: 8,
-      paddingRight:12,
-      paddingLeft: 6
+      gap: 10,
+      padding: 8,
+      boxSizing: 'border-box',
     },
     buttonText: {
       color: theme.tint,
