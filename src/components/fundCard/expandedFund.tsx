@@ -28,24 +28,21 @@ export const Expanded = ({
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Taxa global: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {`${fund.taxaAdministracao}% a.a.`}{' '}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Hora limite de aplicação: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {`${converterNumeroParaHora(fund.horaLimite)}`}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {'R$ 1,00' /*`${coinFormat(fund.movimentation)}`*/}
+          {/*TODO adicionar movimentação */}
         </StyledText>
-        {/*adicionar movimentação */}
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
@@ -54,8 +51,7 @@ export const Expanded = ({
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
-          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}{' '}
+          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}  
         </StyledText>
       </View>
 

@@ -1,10 +1,10 @@
+import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
-import { StyledText } from '../StyledText';
+import { coinFormat } from '@/src/utils/coinFormat';
 import { useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { coinFormat } from '@/src/utils/coinFormat';
+import { StyledText } from '../StyledText';
 
 type PatrimonyCardProps = {
   value: number;

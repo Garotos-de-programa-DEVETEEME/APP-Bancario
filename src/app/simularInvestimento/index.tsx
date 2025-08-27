@@ -1,9 +1,9 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
-import { MOCK_FUNDOS } from '@/src/data/fundos';
+import { StylesType } from '@/src/@Types/stylesType';
 import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { StyledText } from '@/src/components/StyledText';
+import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
