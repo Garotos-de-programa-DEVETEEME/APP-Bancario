@@ -18,7 +18,7 @@ export const ButtonIcon = ({
   IconHeigth,
 }: buttonIconProps) => {
   const theme = useTheme()
-  const styles = getStyles(theme, IconHeigth)
+  const styles = getStyles(theme)
 
   return (
     <Pressable style={styles.buttonContainer} onPress={route}>
@@ -28,14 +28,13 @@ export const ButtonIcon = ({
   )
 }
 
-const getStyles = (theme: StylesType, IconHeigth?: number) => {
+const getStyles = (theme: StylesType,) => {
   return StyleSheet.create({
     buttonContainer: {
       backgroundColor: theme.backgroundCards,
       borderRadius: 10,
-      height: 61,
-      width: 110,
-      justifyContent: 'center',
+      height: 60,
+      maxWidth:117,
       alignItems: 'center',
       marginTop: 16,
       marginBottom: 8,
@@ -43,13 +42,14 @@ const getStyles = (theme: StylesType, IconHeigth?: number) => {
       borderWidth: 1,
       display: 'flex',
       flexDirection: 'row',
-      gap: 10,
-      padding: 8,
-      boxSizing: 'border-box',
+      gap: 8,
+      paddingRight:12,
+      paddingLeft: 6
     },
     buttonText: {
       color: theme.tint,
       fontSize: 11,
+      textAlign:'left',
     },
     icon: {
       color: theme.tint,
