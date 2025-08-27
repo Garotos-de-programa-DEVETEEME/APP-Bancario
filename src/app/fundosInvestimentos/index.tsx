@@ -1,27 +1,29 @@
-import { FundsCard } from '@/src/components/fundCard/fundCard'
-import { SearchBar } from '@/src/components/SearchBar/searchBar'
-import { MOCK_FUNDOS } from '@/src/data/fundos'
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { FundsCard } from '@/src/components/fundCard/fundCard';
+import { SearchBar } from '@/src/components/SearchBar/searchBar';
+import { MOCK_FUNDOS } from '@/src/data/fundos';
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function FundoInvestimento() {
-    const investmentFunds = MOCK_FUNDOS;//TODO : Fetch real data from API or context
-    const theme = useTheme();
-    const styles = getStyles(theme);
+  const investmentFunds = MOCK_FUNDOS; //TODO : Fetch real data from API or context
+  const theme = useTheme();
+  const styles = getStyles(theme);
 
-  const [currentExpanded, setCurrentExpanded] = useState(-1)
+  const [currentExpanded, setCurrentExpanded] = useState(-1); //variavel que controla o fundo expandido com base no seu ID
 
   const changeCurrentExpanded = (key: number) => {
+    //controla qual fundo esta expandido
     if (key === currentExpanded) {
-      setCurrentExpanded(-1)
-      return
+      //caso clique em um fundo já expandido fecha o mesmo
+      setCurrentExpanded(-1);
+      return;
     }
-    setCurrentExpanded(key)
-  }
+    setCurrentExpanded(key);
+  };
 
-  const [searchBarValue, setSearchBarValue] = useState('')
+  const [searchBarValue, setSearchBarValue] = useState('');
 
   return (
     <View style={styles.container}>
@@ -42,10 +44,10 @@ export default function FundoInvestimento() {
               expanded={currentExpanded === fund.codigo}
             />
           </>
-        )
+        );
       })}
     </View>
-  )
+  );
 }
 
 const getStyles = (theme: StylesType) => {
@@ -55,5 +57,5 @@ const getStyles = (theme: StylesType) => {
       height: '100%',
       gap: 20,
     },
-  })
-}
+  });
+};

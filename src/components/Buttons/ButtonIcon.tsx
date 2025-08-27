@@ -1,18 +1,19 @@
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { Pressable, StyleSheet } from 'react-native'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { StyledText } from '../StyledText'
+import { useTheme } from '@/src/hooks/useTheme';
+import { Pressable, StyleSheet } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/@Types/stylesType';
 
 interface buttonIconProps {
-  route: () => void
-  text: string
-  iconName: string
-  IconHeigth?: number
+  route: () => void;
+  text: string;
+  iconName: string;
+  IconHeigth: number;
 }
 
 export const ButtonIcon = ({
-  route: route,
+  //componente de botão com icone
+  route,
   text,
   iconName,
   IconHeigth,
@@ -22,13 +23,13 @@ export const ButtonIcon = ({
 
   return (
     <Pressable style={styles.buttonContainer} onPress={route}>
-      <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth!} />
+      <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth} />
       <StyledText style={styles.buttonText}>{text}</StyledText>
     </Pressable>
-  )
-}
+  );
+};
 
-const getStyles = (theme: StylesType,) => {
+const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     buttonContainer: {
       backgroundColor: theme.backgroundCards,
@@ -54,5 +55,5 @@ const getStyles = (theme: StylesType,) => {
     icon: {
       color: theme.tint,
     },
-  })
-}
+  });
+};

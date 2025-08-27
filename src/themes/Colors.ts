@@ -1,25 +1,14 @@
-const tintColor = '#3E75BC' //cor principal projeto
+import { StylesType } from '../@Types/stylesType';
 
-export type StylesType = {
-  text: string
-  textSecundary: string
-  alternativeText: string
-  whiteText: string
-  darkText: string
-  background: string
-  backgroundCards: string
-  tint: string
-  alternativeIcon: string
-  border: string
-}
+const tintColor = '#3E75BC'; //cor principal projeto
 
-type ThemeType =  {
-  light: StylesType,
-  dark: StylesType,
-}
+type ThemeType = {
+  light: StylesType;
+  dark: StylesType;
+};
 
-export const Styles:ThemeType = {
-  light:  {
+export const Styles: ThemeType = {
+  light: {
     text: '#2A2A2A',
     textSecundary: '#A5A5A5',
     alternativeText: '#2A2A2A',
@@ -30,6 +19,7 @@ export const Styles:ThemeType = {
     tint: tintColor,
     alternativeIcon: '#A5A5A5',
     border: '#C9C9C9',
+
   },
   dark: {
     text: '#FFFFFF',
@@ -43,4 +33,4 @@ export const Styles:ThemeType = {
     alternativeIcon: '#ABABAB',
     border: '#3C3C3C',
   },
-}
+};
