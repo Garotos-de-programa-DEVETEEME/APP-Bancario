@@ -29,6 +29,7 @@ yarn install
 ## Scripts Disponíveis
 
 - `npm start`: Inicia a aplicação
+- `npm run android`: Inicia a aplicação no android studio
 - `npm run test`: Executa os testes
 - `npm run lint`: Executa o linter para verificar o código
 

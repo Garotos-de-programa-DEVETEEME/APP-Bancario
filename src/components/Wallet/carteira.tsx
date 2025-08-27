@@ -1,72 +1,69 @@
-import { StyleSheet, View } from "react-native";
-import { StyledText } from "../StyledText";
-import PatrimonyCard from "../homeScreen/patrimonyCard";
-import { FundosInvestidos } from "@/src/@Types/fundosInvestidos";
-import { StylesType } from "@/src/themes/Colors";
-import { useTheme } from "@/src/hooks/useTheme";
+import { StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
+import PatrimonyCard from '../homeScreen/patrimonyCard';
+import { FundosInvestidos } from '@/src/@Types/fundosInvestidos';
+import { StylesType } from '@/src/themes/Colors';
+import { useTheme } from '@/src/hooks/useTheme';
 
-interface walletInfoCardProps{
-    fundosInvestidos: FundosInvestidos[];
+interface walletInfoCardProps {
+  fundosInvestidos: FundosInvestidos[];
 }
 
-export const WalletInfoCard = ({fundosInvestidos, }:walletInfoCardProps) => {
+export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {
+  //componente de patrimonio dentro de carteira de investimentos
+  const theme = useTheme();
+  const styles = getStyles(theme);
 
-    const theme = useTheme();
-    const styles = getStyles(theme);
-    const totalInvestido: number = fundosInvestidos.reduce((soma, e) => {
-        return e.valorInvestido + soma;
-    }, 0)
-
-    return (
+  return (
+    <View>
+      <View>
+        <PatrimonyCard value={100} cointaned={true} />
+        {/*TODO aplicar no value o valor total investido pelo cliente */}
+      </View>
+      <View>
         <View>
-            <View>
-                <PatrimonyCard value={totalInvestido} cointaned={true} />
-            </View>
-            <View>
-                <View>
-                    <StyledText>
-                        valores
-                    </StyledText>
-                    {/** TODO grafico pizza component*/}
-                </View>
-                <View style={{}}>
-                    {fundosInvestidos.map((e, index)=>{
-                        return(
-                            <View
-                                key={index}
-                                style={styles.fundoInfo}
-                            >
-                                <StyledText style={{backgroundColor: e.cor, width:18, height: 18, borderRadius: 18/2 }}></StyledText>
-                                <StyledText style={styles.fundoTexto}> {e.nomeFundo} </StyledText>
-                            </View>
-                        )
-                    })}
-                </View>
-            </View>
-                    
+          <StyledText>valores</StyledText>
+          {/*TODO grafico pizza component*/}
         </View>
-    )
-}
+        <View style={{}}>
+          {fundosInvestidos.map((e, index) => {
+            return (
+              <View key={index} style={styles.fundoInfo}>
+                <StyledText
+                  style={{
+                    backgroundColor: e.cor,
+                    width: 18,
+                    height: 18,
+                    borderRadius: 18 / 2,
+                  }}
+                ></StyledText>
+                <StyledText style={styles.fundoTexto}>{e.nomeFundo}</StyledText>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    </View>
+  );
+};
 
-const getStyles = (theme: StylesType) =>{
-    return (
-        StyleSheet.create({
-            fundoInfo:{
-                display:'flex',
-                flexDirection:'row',
-                justifyContent: 'flex-start',
-                alignSelf:'center',
-                width: 312,
-                borderBottomColor: theme.border,
-                borderBottomWidth: 1,
-                paddingBottom:8,
-                marginTop: 10,
-                gap: 9,
-            },
-            fundoTexto:{
-                fontSize:12,
-                color: theme.text,
-            }
-        })
-    )
-}
+const getStyles = (theme: StylesType) => {
+  return StyleSheet.create({
+    fundoInfo: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignSelf: 'center',
+      width: 312,
+      borderBottomColor: theme.border,
+      borderBottomWidth: 1,
+      paddingBottom: 8,
+      marginTop: 10,
+      gap: 9,
+    },
+    fundoTexto: {
+      fontSize: 12,
+      color: theme.text,
+    },
+  });
+};

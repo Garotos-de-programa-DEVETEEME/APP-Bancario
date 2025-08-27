@@ -1,23 +1,23 @@
-import { FilterType } from '@/src/@Types/Filter'
-import { useTheme } from '@/src/hooks/useTheme'
-import { StylesType } from '@/src/themes/Colors'
-import { StyleSheet, View } from 'react-native'
-import { StyledText } from '../StyledText'
+import { FilterType } from '@/src/@Types/Filter';
+import { useTheme } from '@/src/hooks/useTheme';
+import { StylesType } from '@/src/themes/Colors';
+import { StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
 
 interface filterSelectedProps {
-  data: FilterType
+  data: FilterType;
 }
 
 export const FiltersSelected = ({ data }: filterSelectedProps) => {
-  const theme = useTheme()
-  const style = getStyle(theme, data)
+  const theme = useTheme();
+  const style = getStyle(theme, data);
 
   return (
     <View style={style.container}>
-      <StyledText style={style.text}>{data.placeholder}</StyledText>
+      <StyledText style={style.text}>{data.text}</StyledText>
     </View>
-  )
-}
+  );
+};
 
 function getStyle(theme: StylesType, data: FilterType) {
   return StyleSheet.create({
@@ -30,10 +30,10 @@ function getStyle(theme: StylesType, data: FilterType) {
       justifyContent: 'center',
     },
     text: {
-      color: data.color ? theme.darkText : theme.whiteText,
+      color: theme.whiteText,
       fontFamily: theme.fontFamily,
       fontWeight: 500,
       fontSize: 14,
     },
-  })
+  });
 }
