@@ -89,7 +89,6 @@ const getStyles = (theme: StylesType, expanded:boolean) =>{
         text:{
             color:theme.alternativeText,
             fontSize:13,
-            fontFamily:theme.fontFamily,
         },
         textContainer:{
             display:'flex',

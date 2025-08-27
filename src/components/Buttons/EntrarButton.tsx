@@ -25,7 +25,6 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
           styles.text,
           {
             color: theme.text,
-            fontFamily: theme.fontFamily,
           },
         ]}
       >
@@ -46,7 +45,6 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
               styles.entrarText,
               {
                 color: theme.tint,
-                fontFamily: theme.fontFamily,
               },
             ]}
           >

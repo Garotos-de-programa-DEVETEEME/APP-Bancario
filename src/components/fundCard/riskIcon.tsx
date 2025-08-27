@@ -1,5 +1,6 @@
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
+import { riskTheme } from '@/src/themes/risk'
 import { StyleSheet, View } from 'react-native'
 import { StyledText } from '../StyledText'
 
@@ -37,17 +38,16 @@ const getStyles = (theme: StylesType, risk: string) => {
     fundRiskText: {
       color: theme.alternativeIcon,
       fontSize: 12,
-      fontFamily: theme.fontFamily,
     },
     firstIcon: {
       backgroundColor:
         risk === 'muito baixo'
-          ? theme.risk.veryLow
+          ? riskTheme.veryLow
           : risk === 'baixo'
-            ? theme.risk.low
+            ? riskTheme.low
             : risk === 'medio'
-              ? theme.risk.medium
-              : theme.risk.high,
+              ? riskTheme.medium
+              : riskTheme.high,
       width: ballSize,
       height: ballSize,
       borderRadius: ballSize / 2,
@@ -55,11 +55,11 @@ const getStyles = (theme: StylesType, risk: string) => {
     secondIcon: {
       backgroundColor:
         risk === 'baixo'
-          ? theme.risk.low
+          ? riskTheme.low
           : risk === 'medio'
-            ? theme.risk.medium
+            ? riskTheme.medium
             : risk === 'alto'
-              ? theme.risk.high
+              ? riskTheme.high
               : '',
       width: ballSize,
       height: ballSize,
@@ -68,16 +68,16 @@ const getStyles = (theme: StylesType, risk: string) => {
     thirdIcon: {
       backgroundColor:
         risk === 'medio'
-          ? theme.risk.medium
+          ? riskTheme.medium
           : risk === 'alto'
-            ? theme.risk.high
+            ? riskTheme.high
             : '',
       width: ballSize,
       height: ballSize,
       borderRadius: ballSize / 2,
     },
     fourthIcon: {
-      backgroundColor: risk === 'alto' ? theme.risk.high : '',
+      backgroundColor: risk === 'alto' ? riskTheme.high : '',
       width: ballSize,
       height: ballSize,
       borderRadius: ballSize / 2,

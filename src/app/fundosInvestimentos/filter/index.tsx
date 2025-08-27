@@ -6,6 +6,7 @@ import { StyledText } from '@/src/components/StyledText'
 import { useFilters } from '@/src/Context/filterContext'
 import { useTheme } from '@/src/hooks/useTheme'
 import { StylesType } from '@/src/themes/Colors'
+import { riskTheme } from '@/src/themes/risk'
 import { router } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
@@ -42,28 +43,28 @@ export default function FilterFundsPage() {
       id: 4,
       value: 'muito baixo',
       placeholder: 'Muito Baixo',
-      color: theme.risk.veryLow,
+      color: riskTheme.veryLow,
       selected: false,
     },
     {
       id: 5,
       value: 'baixo',
       placeholder: 'Baixo',
-      color: theme.risk.low,
+      color: riskTheme.low,
       selected: false,
     },
     {
       id: 6,
       value: 'medio',
       placeholder: 'Médio',
-      color: theme.risk.medium,
+      color: riskTheme.medium,
       selected: false,
     },
     {
       id: 7,
       value: 'alto',
       placeholder: 'Alto',
-      color: theme.risk.high,
+      color: riskTheme.high,
       selected: false,
     },
   ])

@@ -83,7 +83,6 @@ const getStyle = (theme: StylesType) => {
     fundTypeText: {
       color: theme.tint,
       fontSize: 12,
-      fontFamily: theme.fontFamily,
     },
     textContainer: {
       display: 'flex',
@@ -93,17 +92,14 @@ const getStyle = (theme: StylesType) => {
     title: {
       color: theme.text,
       fontSize: 17,
-      fontFamily: theme.fontFamily,
     },
     text: {
       color: theme.alternativeText,
       fontSize: 13,
-      fontFamily: theme.fontFamily,
     },
     rentabilityText: {
       color: theme.tint,
       fontSize: 17,
-      fontFamily: theme.fontFamily,
     },
     riskContainer: {
       display: 'flex',
