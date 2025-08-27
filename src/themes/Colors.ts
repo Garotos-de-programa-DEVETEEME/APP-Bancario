@@ -11,13 +11,6 @@ export type StylesType = {
   tint: string
   alternativeIcon: string
   border: string
-  risk: {
-    veryLow: string
-    low: string
-    medium: string
-    high: string
-  }
-  fontFamily: string
 }
 
 type ThemeType =  {
@@ -37,13 +30,6 @@ export const Styles:ThemeType = {
     tint: tintColor,
     alternativeIcon: '#A5A5A5',
     border: '#C9C9C9',
-    risk: {
-      veryLow: '#46FF59',
-      low: '#CFFF46',
-      medium: '#FF9F46',
-      high: '#FF4646',
-    },
-    fontFamily: 'Roboto_400Regular',
   },
   dark: {
     text: '#FFFFFF',
@@ -56,12 +42,5 @@ export const Styles:ThemeType = {
     tint: tintColor,
     alternativeIcon: '#ABABAB',
     border: '#3C3C3C',
-    risk: {
-      veryLow: '#46FF59',
-      low: '#CFFF46',
-      medium: '#FF9F46',
-      high: '#FF4646',
-    },
-    fontFamily: 'Roboto_400Regular',
   },
 }
