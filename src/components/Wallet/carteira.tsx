@@ -1,26 +1,22 @@
 import { StyleSheet, View } from "react-native";
 import { StyledText } from "../StyledText";
 import PatrimonyCard from "../homeScreen/patrimonyCard";
-import { FundosInvestidos } from "@/src/@Types/fundosInvestidos";
 import { StylesType } from "@/src/themes/Colors";
 import { useTheme } from "@/src/hooks/useTheme";
 
 interface walletInfoCardProps{
-    fundosInvestidos: FundosInvestidos[];
+    fundosInvestidos: any[];
 }
 
 export const WalletInfoCard = ({fundosInvestidos, }:walletInfoCardProps) => {
 
     const theme = useTheme();
     const styles = getStyles(theme);
-    const totalInvestido: number = fundosInvestidos.reduce((soma, e) => {
-        return e.valorInvestido + soma;
-    }, 0)
 
     return (
         <View>
             <View>
-                <PatrimonyCard value={totalInvestido} cointaned={true} />
+                <PatrimonyCard value={100} cointaned={true} />
             </View>
             <View>
                 <View>
