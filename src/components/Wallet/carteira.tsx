@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { StyledText } from "../StyledText";
 import PatrimonyCard from "../homeScreen/patrimonyCard";
 import { useTheme } from "@/src/hooks/useTheme";
+import { StylesType } from "@/src/@Types/stylesType";
 
 interface walletInfoCardProps{
     fundosInvestidos: any[];

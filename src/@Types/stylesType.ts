@@ -9,11 +9,4 @@ export type StylesType = {
   tint: string;
   alternativeIcon: string;
   border: string;
-  risk: {
-    veryLow: string;
-    low: string;
-    medium: string;
-    high: string;
-  };
-  fontFamily: string;
 };

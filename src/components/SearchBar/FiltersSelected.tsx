@@ -31,7 +31,6 @@ function getStyle(theme: StylesType, data: FilterType) {
     },
     text: {
       color: theme.whiteText,
-      fontFamily: theme.fontFamily,
       fontWeight: 500,
       fontSize: 14,
     },
