@@ -6,14 +6,17 @@ import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import DropdownInput from '@/src/components/Input/dropdownInput';
 import PriceInput from '@/src/components/Input/priceInput';
+import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 
 export default function DetalhesInvestimento() {
     const { fundData } = useLocalSearchParams();
     const theme = useTheme();
     const styles = getStyles(theme);
 
+    //Comunicação entre os inputs com o Pai
     const [valorSalvoDropdown, setValorSalvoDropdown] = useState('');
     const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
+    const [valorMensalOpcional, setValorMensalOpcional] = useState(0);
 
     const fund: FundoInvestimento | null = typeof fundData === 'string' ? JSON.parse(fundData) : null;
 
@@ -77,7 +80,7 @@ export default function DetalhesInvestimento() {
                         <PriceInput
                             value={valorAplicarEmCentavos}
                             onValueChange={setValorAplicarEmCentavos}
-                            placeholderValue={fund.valorAplicacaoInicial * 100}
+                            placeholder={fund.valorAplicacaoInicial * 100}
                         />
 
                         <Text style={styles.midLabel}>Data</Text> 
@@ -90,7 +93,44 @@ export default function DetalhesInvestimento() {
 
                         <Text style={styles.midLabel}>Aplicação Mensal</Text> 
 
-                        
+                        <PriceInput 
+                        value={valorMensalOpcional}
+                        onValueChange={setValorMensalOpcional}
+                        placeholder="Opcional"
+                        />
+
+                        <View style={styles.classArea}>
+                          <View style={styles.separator} />
+                            <View style={styles.detailRow}>
+                              <Text style={styles.className}>Classificação de risco</Text>
+                              <Text style={styles.classDetail}>PLACEHOLDER</Text>
+                            </View>
+                            <View style={styles.separator} />
+
+                            <View style={styles.detailRow}>
+                              <Text style={styles.className}>Classificação CVM</Text>
+                              <Text style={styles.classDetail}>PLACEHOLDER</Text>
+                            </View>
+                            <View style={styles.separator} />
+
+                            <View style={styles.detailRow}>
+                              <Text style={styles.className}>Subclasse CVM</Text>
+                              <Text style={styles.classDetail}>PLACEHOLDER</Text>
+                            </View>
+                            <View style={styles.separator} />
+
+                            <View style={styles.detailRow}>
+                              <Text style={styles.className}>Tipo ANBIMA</Text>
+                              <Text style={styles.classDetail}>PLACEHOLDER</Text>
+                            </View>
+                            <View style={styles.separator} />
+                        </View>
+
+                        <View>
+                          <NavigationButton onPress={() => console.log('Botão pressionado!')}
+                          text={'Simular'}
+                          width={261} />
+                        </View>
                     </>
                 )}
             </View>
@@ -111,7 +151,7 @@ const getStyles = (theme: StylesType) =>{
             fontSize: 28,
             color: theme.text,
             fontFamily: "Roboto",
-            marginBottom: 20,
+            marginBottom: 15,
             fontWeight: 'bold'
         },
         detailRow: {
@@ -121,8 +161,9 @@ const getStyles = (theme: StylesType) =>{
         },
         separator: {
             height: 1,
-            backgroundColor: '#2A2A2A',
+            backgroundColor: theme.border,
             marginBottom: 10,
+            marginTop: 10
         },
         label: {
             fontSize: 15, color: theme.text 	
@@ -138,7 +179,6 @@ const getStyles = (theme: StylesType) =>{
             borderRadius: 16,
             padding: 16,
             fontSize: 16,
-            // Cor do texto que o usuário digita
             color: theme.alternativeText, 
         },
         midLabel: {
@@ -156,15 +196,13 @@ const getStyles = (theme: StylesType) =>{
             justifyContent: 'space-between',
             alignItems: 'center',
         },
-        // Estilo para o texto de placeholder (cinza)
         dropdownPlaceholder: {
             fontSize: 16,
             color: theme.textSecundary,
         },
-        // NOVO: Estilo para o valor selecionado
         dropdownValue: {
             fontSize: 16,
-            color: theme.alternativeText, // Cor para o valor escolhido
+            color: theme.alternativeText,
             fontWeight: '600',
         },
         dropdownAbertoContainer: {
@@ -183,10 +221,21 @@ const getStyles = (theme: StylesType) =>{
         dropdownItem: {
             padding: 16,
         },
-        // Estilo para os itens na lista de seleção (cinza)
         dropdownItemText: {
             fontSize: 16,
             color: theme.textSecundary,
         },
+        classArea: {
+          marginTop: 20
+        },
+        className: {
+          fontSize: 16,
+          fontWeight: 500,
+
+        },
+        classDetail: {
+          fontSize: 15,
+          fontWeight: 300
+        }
     });
 };

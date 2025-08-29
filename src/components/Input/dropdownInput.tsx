@@ -71,38 +71,37 @@ const getStyles = (theme: StylesType) =>{
         dropdownFechado: {
             backgroundColor: theme.backgroundCards,
             borderRadius: 16,
-            padding: 16,
+            padding: 12,
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
+            height: 46
         },
         dropdownPlaceholder: {
-            fontSize: 16,
+            fontSize: 20,
             color: theme.textSecundary,
         },
         dropdownValue: {
-            fontSize: 16,
+            fontSize: 20,
             color: theme.alternativeText,
-            fontWeight: '600',
         },
         dropdownAbertoContainer: {
             backgroundColor: theme.backgroundCards,
-            borderRadius: 8,
+            borderRadius: 16,
             overflow: 'hidden',
         },
         dropdownHeader: {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: 16,
-            borderBottomWidth: 1,
-            borderBottomColor: theme.border,
+            padding: 12,
+            height: 46
         },
         dropdownItem: {
-            padding: 16,
+            padding: 12,
         },
         dropdownItemText: {
-            fontSize: 16,
+            fontSize: 20,
             color: theme.textSecundary,
         },
     });

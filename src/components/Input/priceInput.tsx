@@ -5,8 +5,10 @@ import { StyleSheet, TextInput } from 'react-native';
 interface PriceInputProps {
     value: number;
     onValueChange: (value: number) => void;
-    placeholderValue: number;
+    placeholder: number | string;
 }
+
+//Placeholder: const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
 
 const formatCurrency = (valueInCents: number) => {
     const valueInReais = valueInCents / 100;
@@ -19,7 +21,7 @@ const formatCurrency = (valueInCents: number) => {
 export default function PriceInput({
     value,
     onValueChange,
-    placeholderValue,
+    placeholder,
 }: PriceInputProps) {
     const theme = useTheme();
     const styles = getStyles(theme);
@@ -30,13 +32,22 @@ export default function PriceInput({
         onValueChange(valorEmCentavos);
     };
 
+    let placeholderText: string;
+    if (typeof placeholder === 'number') {
+        // Se for um número, formata como moeda
+        placeholderText = formatCurrency(placeholder);
+    } else {
+        // Se for texto, usa diretamente
+        placeholderText = placeholder;
+    }
+
     return (
         <TextInput
             style={styles.input}
             value={value > 0 ? formatCurrency(value) : ''}
             onChangeText={handleTextChange}
             keyboardType="numeric"
-            placeholder={formatCurrency(placeholderValue)}
+            placeholder={placeholderText}
             placeholderTextColor={theme.textSecundary}
         />
     );
@@ -47,9 +58,10 @@ const getStyles = (theme: StylesType) => {
         input: {
             backgroundColor: theme.backgroundCards,
             borderRadius: 16,
-            padding: 16,
-            fontSize: 16,
-            color: theme.alternativeText, 
+            padding: 12,
+            fontSize: 20,
+            color: theme.alternativeText,
+            height: 46
         },
     });
 };
