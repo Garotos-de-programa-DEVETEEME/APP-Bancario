@@ -28,7 +28,7 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
           },
         ]}
       >
-        Olá, {/*TODO trocar por variavel */}
+        Olá, {/*TODO trocar por variavel nome cliente*/}
         <StyledText style={{ fontWeight: 'bold', color: 'theme.text' }}>
           {title}
         </StyledText>

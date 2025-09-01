@@ -46,7 +46,7 @@ export const Expanded = ({
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
-        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>
+        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>{/*TODO colocar fund.dataCarenciaResgate */}
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
