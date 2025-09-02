@@ -41,12 +41,12 @@ export const Expanded = ({
         <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
         <StyledText style={styles.text}>
           {'R$ 1,00' /*`${coinFormat(fund.movimentation)}`*/}
-          {/*TODO adicionar movimentação */}
+          {/*TODO adicionar valorMinimoResgateInternet */}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
-        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>
+        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>{/*TODO colocar fund.dataCarenciaResgate */}
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
