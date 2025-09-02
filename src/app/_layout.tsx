@@ -72,6 +72,20 @@ export default function RootLayout() {
             }}
           />
 
+          <Stack.Screen
+            name='simularInvestimento/index'
+            options={{
+              header: () => <SimpleHeader title='Simular Investimento' />,
+            }}
+          />
+
+          <Stack.Screen
+            name='simularInvestimento/detalhesFundo/index'
+            options={{
+              header: () => <SimpleHeader title='Simular Investimento' />,
+            }}
+          />
+
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='auto' />
