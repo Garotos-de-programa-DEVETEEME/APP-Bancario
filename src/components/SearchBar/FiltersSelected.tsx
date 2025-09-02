@@ -1,8 +1,8 @@
 import { FilterType } from '@/src/@Types/Filter';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/@Types/stylesType';
 
 interface filterSelectedProps {
   data: FilterType;
@@ -31,7 +31,6 @@ function getStyle(theme: StylesType, data: FilterType) {
     },
     text: {
       color: theme.whiteText,
-      fontFamily: theme.fontFamily,
       fontWeight: 500,
       fontSize: 14,
     },

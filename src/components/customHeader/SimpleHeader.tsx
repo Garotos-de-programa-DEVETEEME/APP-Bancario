@@ -1,5 +1,5 @@
+import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';

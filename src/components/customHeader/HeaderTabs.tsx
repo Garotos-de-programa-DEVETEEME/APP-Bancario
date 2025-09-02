@@ -1,9 +1,9 @@
+import { StylesType } from '@/src/@Types/stylesType';
+import { useTheme } from '@/src/hooks/useTheme';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { StyledText } from '../StyledText';
-import { StylesType } from '@/src/themes/Colors';
-import { useTheme } from '@/src/hooks/useTheme';
 
 type ActiveTab = 'carteira' | 'fundos';
 

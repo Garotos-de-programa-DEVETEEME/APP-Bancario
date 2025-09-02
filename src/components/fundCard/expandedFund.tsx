@@ -1,10 +1,10 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { converterNumeroParaHora } from '@/src/utils/hourFormat';
 import { StyleSheet, View } from 'react-native';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/@Types/stylesType';
 
 interface expandedProps {
   fund: FundoInvestimento;
@@ -28,34 +28,30 @@ export const Expanded = ({
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Taxa global: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {`${fund.taxaAdministracao}% a.a.`}{' '}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Hora limite de aplicação: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {`${converterNumeroParaHora(fund.horaLimite)}`}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
         <StyledText style={styles.text}>
-          {' '}
           {'R$ 1,00' /*`${coinFormat(fund.movimentation)}`*/}
+          {/*TODO adicionar valorMinimoResgateInternet */}
         </StyledText>
-        {/*adicionar movimentação */}
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
-        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>
+        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>{/*TODO colocar fund.dataCarenciaResgate */}
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
         <StyledText style={styles.text}>
-          {' '}
-          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}{' '}
+          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}  
         </StyledText>
       </View>
 
@@ -89,7 +85,6 @@ const getStyles = (theme: StylesType, expanded: boolean) => {
     text: {
       color: theme.alternativeText,
       fontSize: 13,
-      fontFamily: theme.fontFamily,
     },
     textContainer: {
       display: 'flex',

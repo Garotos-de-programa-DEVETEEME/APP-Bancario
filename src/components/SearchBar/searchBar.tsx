@@ -1,8 +1,8 @@
+import { StylesType } from '@/src/@Types/stylesType';
 import { useFilters } from '@/src/Context/filterContext';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { router } from 'expo-router';
-import { ScrollView, StyleSheet, View, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FiltersSelected } from './FiltersSelected';
 
