@@ -1,59 +1,47 @@
-import { useTheme } from '@/src/hooks/useTheme';
-import { Pressable, StyleSheet } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { StyledText } from '../StyledText';
-import { StylesType } from '@/src/@Types/stylesType';
-
-interface buttonIconProps {
+import { useTheme } from "@/src/hooks/useTheme";
+import { Pressable, View } from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { StyledText } from "../StyledText";
+interface ButtonIconProps {
   route: () => void;
   text: string;
   iconName: string;
-  IconHeigth: number;
+  IconHeigth: number; 
 }
 
 export const ButtonIcon = ({
-  //componente de botão com icone
   route,
   text,
   iconName,
   IconHeigth,
-}: buttonIconProps) => {
-  const theme = useTheme()
-  const styles = getStyles(theme)
+}: ButtonIconProps) => {
+  const theme = useTheme();
 
   return (
-    <Pressable style={styles.buttonContainer} onPress={route}>
-      <MaterialIcons name={iconName} style={styles.icon} size={IconHeigth} />
-      <StyledText style={styles.buttonText}>{text}</StyledText>
+    <Pressable
+      onPress={route}
+      className="h-[60px] w-[117px] rounded-2xl flex-row items-center px-2.5 gap-2 shadow-md"
+      style={{
+        backgroundColor: theme.backgroundCards,
+        elevation: 4,
+        shadowColor: "#000",
+      }}
+    >
+      <View className="items-center justify-center">
+        <MaterialIcons
+          name={iconName}
+          size={IconHeigth}
+          style={{ color: theme.tint }}
+        />
+      </View>
+
+      <StyledText
+        className="text-[11px] leading-4 flex-1"
+        style={{ color: theme.tint, textAlign: "left" }}
+        numberOfLines={2}
+      >
+        {text}
+      </StyledText>
     </Pressable>
   );
-};
-
-const getStyles = (theme: StylesType) => {
-  return StyleSheet.create({
-    buttonContainer: {
-      backgroundColor: theme.backgroundCards,
-      borderRadius: 10,
-      height: 60,
-      maxWidth:117,
-      alignItems: 'center',
-      marginTop: 16,
-      marginBottom: 8,
-      borderColor: 'transparent',
-      borderWidth: 1,
-      display: 'flex',
-      flexDirection: 'row',
-      gap: 8,
-      paddingRight:12,
-      paddingLeft: 6
-    },
-    buttonText: {
-      color: theme.tint,
-      fontSize: 11,
-      textAlign:'left',
-    },
-    icon: {
-      color: theme.tint,
-    },
-  });
 };

@@ -8,9 +8,10 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
+import { useColorScheme } from 'react-native';
 import 'react-native-reanimated';
+import "../../global.css";
 
-import { useColorScheme } from '@/src/hooks/useColorScheme';
 import { FiltersProvider } from '../Context/filterContext';
 
 import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs';
