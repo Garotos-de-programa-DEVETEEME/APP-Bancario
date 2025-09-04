@@ -10,7 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/src/hooks/useColorScheme';
+import { useColorScheme } from 'react-native';
 import { FiltersProvider } from '../Context/filterContext';
 
 import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs';
