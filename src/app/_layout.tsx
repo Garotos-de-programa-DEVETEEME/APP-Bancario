@@ -12,6 +12,10 @@ import { useColorScheme } from 'react-native';
 import 'react-native-reanimated';
 import "../../global.css";
 
+<<<<<<< HEAD
+=======
+import { useColorScheme } from 'react-native';
+>>>>>>> f691c584457419096ec46ecb0a2756ac5091bcec
 import { FiltersProvider } from '../Context/filterContext';
 
 import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs';
