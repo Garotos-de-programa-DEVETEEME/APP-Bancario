@@ -1,5 +1,6 @@
-import { Styles, StylesType } from '@/src/themes/Colors';
+import { Styles } from '@/src/themes/Colors';
 import { Text, useColorScheme } from 'react-native';
+import { StylesType } from '../@Types/stylesType';
 
 export default function NotFoundScreen() {
   const colorScheme = useColorScheme();

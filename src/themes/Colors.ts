@@ -19,13 +19,7 @@ export const Styles: ThemeType = {
     tint: tintColor,
     alternativeIcon: '#A5A5A5',
     border: '#C9C9C9',
-    risk: {
-      veryLow: '#55ACE2',
-      low: '#49BB4F',
-      medium: '#FF9F46',
-      high: '#FF4646',
-    },
-    fontFamily: 'Roboto_400Regular',
+
   },
   dark: {
     text: '#FFFFFF',
@@ -38,13 +32,5 @@ export const Styles: ThemeType = {
     tint: tintColor,
     alternativeIcon: '#ABABAB',
     border: '#3C3C3C',
-    risk: {
-      veryLow: '#55ACE2',
-      low: '#49BB4F',
-      medium: '#FF9F46',
-      high: '#FF4646',
-    },
-    fontFamily: 'Roboto_400Regular',
   },
 };
-export { StylesType };

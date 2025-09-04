@@ -1,11 +1,11 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { coinFormat } from '@/src/utils/coinFormat';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
+import { StylesType } from '@/src/@Types/stylesType';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
@@ -30,10 +30,9 @@ export const FundsCard = ({
     <View style={styles.container}>
       <Pressable onPress={onPress}>
         <View style={styles.textContainer}>
-          <StyledText style={styles.fundTypeText}>{/*fund.type*/}</StyledText>{' '}
-          {/* TODO: integrar quando tivermos api pronta */}
+          <StyledText style={styles.fundTypeText}>{ 'Tipo'/*fund.type*/}</StyledText>
           <View style={styles.riskContainer}>
-            <RiskIcon risk={'alto' /*fund.risk*/} />
+            <RiskIcon risk={'alto'/*fund.risk*/} />
             {/*TODO integrar quando a api estiver pronta */}
           </View>
         </View>
@@ -92,7 +91,6 @@ const getStyle = (theme: StylesType) => {
     fundTypeText: {
       color: theme.tint,
       fontSize: 12,
-      fontFamily: theme.fontFamily,
     },
     textContainer: {
       display: 'flex',
@@ -102,17 +100,14 @@ const getStyle = (theme: StylesType) => {
     title: {
       color: theme.text,
       fontSize: 17,
-      fontFamily: theme.fontFamily,
     },
     text: {
       color: theme.alternativeText,
       fontSize: 13,
-      fontFamily: theme.fontFamily,
     },
     rentabilityText: {
       color: theme.tint,
       fontSize: 17,
-      fontFamily: theme.fontFamily,
     },
     riskContainer: {
       display: 'flex',

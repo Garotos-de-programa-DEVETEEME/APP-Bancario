@@ -25,11 +25,10 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
           styles.text,
           {
             color: theme.text,
-            fontFamily: theme.fontFamily,
           },
         ]}
       >
-        Olá, {/*TODO trocar por variavel */}
+        Olá, {/*TODO trocar por variavel nome cliente*/}
         <StyledText style={{ fontWeight: 'bold', color: 'theme.text' }}>
           {title}
         </StyledText>
@@ -46,7 +45,6 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
               styles.entrarText,
               {
                 color: theme.tint,
-                fontFamily: theme.fontFamily,
               },
             ]}
           >

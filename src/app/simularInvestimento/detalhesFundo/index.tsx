@@ -1,25 +1,26 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
+import { StylesType } from '@/src/@Types/stylesType';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 import DropdownInput from '@/src/components/Input/dropdownInput';
 import PriceInput from '@/src/components/Input/priceInput';
 import { useTheme } from "@/src/hooks/useTheme";
-import { StylesType } from "@/src/themes/Colors";
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default function DetalhesInvestimento() {
     const { fundData } = useLocalSearchParams();
     const theme = useTheme();
     const styles = getStyles(theme);
-    const fund: FundoInvestimento | null = typeof fundData === 'string' ? JSON.parse(fundData) : null;
 
     //Comunicação entre componentes inputs com o Pai
     const [valorSalvoDropdown, setValorSalvoDropdown] = useState('');
     const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
     const [valorMensalOpcional, setValorMensalOpcional] = useState(0);
-
     const [termoVisivel, setTermoVisivel] = useState(false);
+
+    const fund: FundoInvestimento | null = typeof fundData === 'string' ? JSON.parse(fundData) : null;
 
     //Retorno de erro (Tem que ser aqui se não dá erro no bloqueio do botão, pois ts pode achar que o fundo é null)
     if (!fund) {
@@ -33,7 +34,20 @@ export default function DetalhesInvestimento() {
     //Bloqueio do botãm sem informação e se for menor que o valor minimo
     const isButtonEnabled = valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== '';
 
-    
+    //Tela de resultados depois de aceitar o termo
+    const handleNavigateToResults = () => {
+        setTermoVisivel(false); 
+        const simulationData = {
+            fund: fund,
+            valorInicial: valorAplicarEmCentavos,
+            valorMensal: valorMensalOpcional,
+            periodo: valorSalvoDropdown,
+        };
+        router.push({
+            pathname: '/simularInvestimento/detalhesFundo/simuladorResultados',
+            params: { data: JSON.stringify(simulationData) } // Passa todos os dados como um objeto de texto
+        });
+    };
 
     return (
         <>
@@ -148,49 +162,56 @@ export default function DetalhesInvestimento() {
             </ScrollView>
 
             <Modal
-                animationType="fade"
                 transparent={true}
                 visible={termoVisivel}
                 onRequestClose={() => setTermoVisivel(false)}
             >
 
-                {/* //TODO Transformar isso em Sheet Modal e refazer tudo */}
+                {/* //TODO Transformar isso em Sheet Modal e refazer tudo (Precisa de mais bibliotecas) */}
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.termoContainer}>
+                        <View>
+                            <TouchableOpacity onPress={() => setTermoVisivel(false)}>
+                                <MaterialIcons
+                                    name="keyboard-arrow-left"
+                                    color="#4C9AFE"
+                                    size={26} />
+                            </TouchableOpacity>
+                        </View>
 
                         <Text style={styles.midLabel}>Termo de Aceite</Text>
 
-                        <text>
+                        <text style={styles.label}>
                             Prezado(a) Cliente, <br />
                             Antes de prosseguir com a utilização da nossa ferramenta de simulação de fundo de investimento, é fundamental que você leia, compreenda e concorde com os termos e condições descritos abaixo. Ao participar da Simulação, você manifesta sua plena e inequívoca aceitação a este Termo.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             1. Natureza da Simulação:
                             1.1. A Simulação é uma ferramenta desenvolvida com propósitos puramente educacionais e ilustrativos. Ela visa proporcionar uma experiência interativa para demonstrar o funcionamento hipotético de um fundo de investimento, com base em cenários e dados pré-definidos ou históricos. 1.2. A Simulação não envolve dinheiro real. Quaisquer valores, aportes, resgates, rentabilidades, saldos ou movimentações financeiras exibidas na Simulação são inteiramente fictícios e virtuais.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             2. Ausência de Ganhos ou Perdas Reais:
                             2.1. Os resultados apresentados na Simulação, sejam eles positivos (lucros) ou negativos (prejuízos), são meramente hipotéticos. Eles não geram qualquer direito a ganhos financeiros reais, nem implicam em qualquer obrigação de arcar com perdas financeiras reais.
                             2.2. A participação na Simulação não resultará em qualquer crédito, débito, ou impacto financeiro em suas contas bancárias ou investimentos reais.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             3. Finalidade Educacional e Ilustrativa – Não Constitui Aconselhamento:
                             3.1. A Simulação e todas as informações nela contidas são fornecidas exclusivamente para fins de aprendizado e familiarização com conceitos de investimento.
                             3.2. A Simulação não constitui, em nenhuma hipótese, aconselhamento financeiro, recomendação de investimento, oferta de produtos financeiros, análise de perfil de investidor, ou qualquer tipo de consultoria de investimentos.
                             3.3. As informações e resultados gerados pela Simulação não devem ser interpretados como uma sugestão para comprar, vender ou manter qualquer ativo financeiro real, nem como uma garantia de rentabilidade futura em investimentos reais.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             4. Desempenho Passado e Simulado Não é Garantia de Resultados Futuros:
                             4.1. Quaisquer dados históricos ou projeções utilizados na Simulação servem apenas para fins ilustrativos. O desempenho passado de mercados ou ativos, ou o desempenho simulado, não é garantia nem indicador confiável de resultados futuros em investimentos reais.
                             4.2. Investimentos reais estão sujeitos a diversos riscos de mercado, liquidez, crédito, entre outros, que podem resultar na perda parcial ou total do capital investido. Estes riscos podem não ser integralmente replicados ou abordados na Simulação.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             5. Isenção de Responsabilidade:
                             5.1. Nós não nos responsabilizamos por quaisquer decisões de investimento que você venha a tomar com base nas informações ou resultados obtidos através da Simulação.
                             5.2. Você é o único responsável por buscar aconselhamento financeiro profissional e qualificado antes de tomar qualquer decisão de investimento real.
                             5.3. Não garantimos a precisão, completude ou atualidade contínua dos dados utilizados na Simulação, embora envidemos esforços para utilizar informações confiáveis. A Simulação é oferecida "como está" e "conforme disponível".
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             6. Ausência de Relação Fiduciária:
                             6.1. A sua participação na Simulação não cria qualquer tipo de relação fiduciária, de clientela ou de consultoria entre você e nossa instituição, para além do estabelecido neste Termo para o uso da ferramenta de simulação.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             7. Aceitação do Cliente:
                             7.1. Ao marcar a caixa de seleção/clicar no botão "Concordo" / "Aceito" / "Iniciar Simulação" (ou funcionalidade similar), você declara que: a. Leu atentamente todos os termos e condições deste documento. b. Compreendeu integralmente a natureza e os objetivos da Simulação. c. Está ciente de que a Simulação não envolve dinheiro real e não gera quaisquer ganhos ou perdas financeiras reais. d. Entende que a Simulação não constitui aconselhamento ou recomendação de investimento. e. Concorda em isentar nossa instituição de qualquer responsabilidade por decisões de investimento que possa tomar com base no uso da Simulação.
-                        </text> <text>
+                        </text> <text style={styles.label}>
                             Caso não concorde com qualquer um dos termos aqui expostos, por favor, não prossiga com a utilização da Simulação.
                             Atenciosamente,
                             Banestes DTVM
@@ -200,8 +221,8 @@ export default function DetalhesInvestimento() {
                     {/* //TODO Adicionar Checkbox */}
                     <View style={styles.buttonBox}>
                         <NavigationButton
-                            onPress={() => setTermoVisivel(false)}
-                            text="Continuar"
+                            onPress={handleNavigateToResults}
+                            text="Aceitar e Continuar"
                             height={37}
                             width={261}
                         />
@@ -310,11 +331,12 @@ const getStyles = (theme: StylesType) => {
         className: {
             fontSize: 16,
             fontWeight: 500,
-
+            color: theme.text,
         },
         classDetail: {
             fontSize: 15,
-            fontWeight: 300
+            fontWeight: 300,
+            color: theme.text,
         },
         buttonBox: {
             alignItems: "center",

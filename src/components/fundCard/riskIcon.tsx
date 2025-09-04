@@ -1,7 +1,8 @@
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/@Types/stylesType';
+import { riskTheme } from '@/src/themes/risk';
 
 interface riskIconProps {
   risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; //TODO alterar conforme resposata da API
@@ -15,7 +16,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
     <>
       <StyledText style={styles.fundRiskText}>
         {`Risco ${risk === 'medio' ? 'médio' : risk}:`}{' '}
-        {/*expressão booleana para adiicionar acento no médio preferencialmente os risk deve vir da api já com o nome correto */}{' '}
+        {/*expressão booleana para adicionar acento no médio preferencialmente os risk deve vir da api já com o nome correto */}
         {/*TODO alterar conforme resposata da API */}
       </StyledText>
       <View style={styles.container}>
@@ -40,7 +41,6 @@ const getStyles = (theme: StylesType, risk: string) => {
     fundRiskText: {
       color: theme.alternativeIcon,
       fontSize: 12,
-      fontFamily: theme.fontFamily,
     },
     riskIcon: {
       width: ballSize,
@@ -51,33 +51,39 @@ const getStyles = (theme: StylesType, risk: string) => {
     firstIcon: {
       backgroundColor:
         risk === 'muito baixo'
-          ? theme.risk.veryLow
+          ? riskTheme.veryLow
           : risk === 'baixo'
-            ? theme.risk.low
+            ? riskTheme.low
             : risk === 'medio'
-              ? theme.risk.medium
-              : theme.risk.high,
+              ? riskTheme.medium
+              : riskTheme.high,
+      width: ballSize,
+      height: ballSize,
+      borderRadius: ballSize / 2,
     },
     secondIcon: {
       backgroundColor:
         risk === 'baixo'
-          ? theme.risk.low
+          ? riskTheme.low
           : risk === 'medio'
-            ? theme.risk.medium
+            ? riskTheme.medium
             : risk === 'alto'
-              ? theme.risk.high
+              ? riskTheme.high
               : '',
     },
     thirdIcon: {
       backgroundColor:
         risk === 'medio'
-          ? theme.risk.medium
+          ? riskTheme.medium
           : risk === 'alto'
-            ? theme.risk.high
+            ? riskTheme.high
             : '',
     },
     fourthIcon: {
-      backgroundColor: risk === 'alto' ? theme.risk.high : '',
+      backgroundColor: risk === 'alto' ? riskTheme.high : '',
+      width: ballSize,
+      height: ballSize,
+      borderRadius: ballSize / 2,
     },
   });
 };

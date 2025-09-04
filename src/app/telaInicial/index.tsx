@@ -1,7 +1,7 @@
+import { StylesType } from '@/src/@Types/stylesType';
 import { ButtonIcon } from '@/src/components/Buttons/ButtonIcon';
 import ClientHeader from '@/src/components/homeScreen/clientHeader';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 

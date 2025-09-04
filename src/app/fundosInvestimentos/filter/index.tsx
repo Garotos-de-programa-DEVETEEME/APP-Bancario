@@ -1,14 +1,15 @@
-import { FilterType } from '@/src/@Types/Filter';
-import { FavoriteButton } from '@/src/components/Buttons/favoriteButton';
-import { NavigationButton } from '@/src/components/Buttons/navigationButton';
-import { FilterOption } from '@/src/components/SearchBar/filterOption';
-import { StyledText } from '@/src/components/StyledText';
-import { useFilters } from '@/src/Context/filterContext';
-import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FilterType } from '@/src/@Types/Filter'
+import { StylesType } from '@/src/@Types/stylesType'
+import { FavoriteButton } from '@/src/components/Buttons/favoriteButton'
+import { NavigationButton } from '@/src/components/Buttons/navigationButton'
+import { FilterOption } from '@/src/components/SearchBar/filterOption'
+import { StyledText } from '@/src/components/StyledText'
+import { useFilters } from '@/src/Context/filterContext'
+import { useTheme } from '@/src/hooks/useTheme'
+import { riskTheme } from '@/src/themes/risk'
+import { router } from 'expo-router'
+import { useEffect, useState } from 'react'
+import { StyleSheet, View } from 'react-native'
 
 export default function FilterFundsPage() {
   const { filters, setFilters } = useFilters();
@@ -42,28 +43,28 @@ export default function FilterFundsPage() {
       id: 4,
       value: 'muito baixo',
       text: 'Muito Baixo',
-      color: theme.risk.veryLow,
+      color: riskTheme.veryLow,
       selected: false,
     },
     {
       id: 5,
       value: 'baixo',
       text: 'Baixo',
-      color: theme.risk.low,
+      color: riskTheme.low,
       selected: false,
     },
     {
       id: 6,
       value: 'medio',
       text: 'Médio',
-      color: theme.risk.medium,
+      color: riskTheme.medium,
       selected: false,
     },
     {
       id: 7,
       value: 'alto',
       text: 'Alto',
-      color: theme.risk.high,
+      color: riskTheme.high,
       selected: false,
     },
   ]);

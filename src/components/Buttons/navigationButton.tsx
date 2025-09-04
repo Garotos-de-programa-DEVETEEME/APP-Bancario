@@ -1,5 +1,5 @@
+import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { Pressable, StyleSheet } from 'react-native';
 import { StyledText } from '../StyledText';
 

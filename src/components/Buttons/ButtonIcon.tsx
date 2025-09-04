@@ -1,8 +1,8 @@
 import { useTheme } from '@/src/hooks/useTheme';
-import { StylesType } from '@/src/themes/Colors';
 import { Pressable, StyleSheet } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { StyledText } from '../StyledText';
+import { StylesType } from '@/src/@Types/stylesType';
 
 interface buttonIconProps {
   route: () => void;
@@ -18,8 +18,8 @@ export const ButtonIcon = ({
   iconName,
   IconHeigth,
 }: buttonIconProps) => {
-  const theme = useTheme();
-  const styles = getStyles(theme);
+  const theme = useTheme()
+  const styles = getStyles(theme)
 
   return (
     <Pressable style={styles.buttonContainer} onPress={route}>
@@ -35,8 +35,7 @@ const getStyles = (theme: StylesType) => {
       backgroundColor: theme.backgroundCards,
       borderRadius: 10,
       height: 60,
-      width: 110,
-      justifyContent: 'center',
+      maxWidth:117,
       alignItems: 'center',
       marginTop: 16,
       marginBottom: 8,
@@ -44,13 +43,14 @@ const getStyles = (theme: StylesType) => {
       borderWidth: 1,
       display: 'flex',
       flexDirection: 'row',
-      gap: 10,
-      padding: 8,
-      boxSizing: 'border-box',
+      gap: 8,
+      paddingRight:12,
+      paddingLeft: 6
     },
     buttonText: {
       color: theme.tint,
       fontSize: 11,
+      textAlign:'left',
     },
     icon: {
       color: theme.tint,
