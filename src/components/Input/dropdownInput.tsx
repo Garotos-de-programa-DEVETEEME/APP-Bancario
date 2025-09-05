@@ -1,13 +1,13 @@
+import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from "@/src/hooks/useTheme";
-import { StylesType } from "@/src/themes/Colors";
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface DropdownInputProps {
-    content: Array<string>;
+    content: string[];
     placeholder: string;
-    onValueChange?: (value: string) => void;
+    onValueChange: (value: string) => void;
 }
 
 //Página Pai: const [valorSalvo, setValorSalvo] = useState('');
@@ -51,9 +51,9 @@ export default function DropdownInput({
                         <Text style={styles.dropdownPlaceholder}>{placeholder}</Text>
                         <MaterialIcons name="keyboard-arrow-up" size={24} color={theme.textSecundary} />
                     </Pressable>
-                    {content.map((item) => (
+                    {content.map((item, index) => (
                         <Pressable
-                            key={item}
+                            key={index}
                             style={styles.dropdownItem}
                             onPress={() => handleSelect(item)}
                         >
