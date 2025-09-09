@@ -49,6 +49,7 @@ export default function PriceInput({
             keyboardType="numeric"
             placeholder={placeholderText}
             placeholderTextColor={theme.textSecundary}
+            multiline={false}
         />
     );
 }
@@ -61,7 +62,8 @@ const getStyles = (theme: StylesType) => {
             padding: 12,
             fontSize: 20,
             color: theme.alternativeText,
-            height: 46
+            height: 46,
+            textAlignVertical: 'center',
         },
     });
 };
