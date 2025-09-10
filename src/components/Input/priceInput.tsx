@@ -5,7 +5,8 @@ import { StyleSheet, TextInput } from 'react-native';
 interface PriceInputProps {
     value: number;
     onValueChange: (value: number) => void;
-    placeholder: number | string;
+    placeholder: number;
+    alternativeText?: string;
 }
 
 //Placeholder: const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
@@ -22,6 +23,7 @@ export default function PriceInput({
     value,
     onValueChange,
     placeholder,
+    alternativeText,
 }: PriceInputProps) {
     const theme = useTheme();
     const styles = getStyles(theme);
@@ -32,14 +34,7 @@ export default function PriceInput({
         onValueChange(valorEmCentavos);
     };
 
-    let placeholderText: string;
-    if (typeof placeholder === 'number') {
-        // Se for um número, formata como moeda
-        placeholderText = formatCurrency(placeholder);
-    } else {
-        // Se for texto, usa diretamente
-        placeholderText = placeholder;
-    }
+   const placeholderText = alternativeText ? alternativeText : formatCurrency(placeholder);
 
     return (
         <TextInput

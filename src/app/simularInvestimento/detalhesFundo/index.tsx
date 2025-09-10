@@ -71,7 +71,8 @@ export default function DetalhesInvestimento() {
                                 <PriceInput
                                     value={valorMensalOpcional}
                                     onValueChange={setValorMensalOpcional}
-                                    placeholder="Opcional"
+                                    placeholder={-1}
+                                    alternativeText='Opcional'
                                 />
 
                                 <FundClass fund={fund} />
@@ -161,8 +162,9 @@ export default function DetalhesInvestimento() {
                                         Resgate
                                     </Text>
                                     {/* //TODO Adicionar calculo do resultado */}
+                                    {/* RESULTADO PLACEHOLDER NÃO É VERDADE ESSE ! ! ! */}
                                     <Text style={styles.mainValues}>
-                                        PLACEHOLDER
+                                        {formatCurrency(valorAplicarEmCentavos + (valorAplicarEmCentavos * 0.10))}
                                     </Text>
                                 </View>
                             </View>

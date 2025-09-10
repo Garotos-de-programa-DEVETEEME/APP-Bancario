@@ -40,7 +40,7 @@ const getStyles = (
   transparentStyle?: boolean,
   disabled?: boolean,
   width: number = 180,
-  height?: number,
+  height: number = 29,
 ) => {
   const backgroundColor = disabled
         ? theme.disabledButton
