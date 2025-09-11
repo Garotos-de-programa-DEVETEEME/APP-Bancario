@@ -11,11 +11,6 @@ import React, { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import 'react-native-reanimated';
 import "../../global.css";
-
-<<<<<<< HEAD
-=======
-import { useColorScheme } from 'react-native';
->>>>>>> f691c584457419096ec46ecb0a2756ac5091bcec
 import { FiltersProvider } from '../Context/filterContext';
 
 import PageHeaderWithTabs from '../components/customHeader/PageHeaderWithTabs';
@@ -77,6 +72,20 @@ export default function RootLayout() {
             }}
           />
 
+          <Stack.Screen
+            name='simularInvestimento/index'
+            options={{
+              header: () => <SimpleHeader title='Simular Investimento' />,
+            }}
+          />
+
+          <Stack.Screen
+            name='simularInvestimento/detalhesFundo/index'
+            options={{
+              header: () => <SimpleHeader title='Simular Investimento' />,
+            }}
+          />
+          
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='auto' />

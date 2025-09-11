@@ -9,6 +9,7 @@ interface NavigationButtonProps {
   transparentStyle?: boolean; //parametro que controla o estilo do componente
   disabled?: boolean;
   width?: number;
+  height?: number;
 }
 
 export const NavigationButton = ({
@@ -18,9 +19,10 @@ export const NavigationButton = ({
   transparentStyle,
   disabled,
   width,
+  height,
 }: NavigationButtonProps) => {
   const theme = useTheme();
-  const styles = getStyles(theme, transparentStyle, width);
+  const styles = getStyles(theme, transparentStyle, disabled, width, height);
 
   return (
     <Pressable
@@ -36,19 +38,28 @@ export const NavigationButton = ({
 const getStyles = (
   theme: StylesType,
   transparentStyle?: boolean,
+  disabled?: boolean,
   width: number = 180,
+  height: number = 29,
 ) => {
+  const backgroundColor = disabled
+        ? theme.disabledButton
+        : transparentStyle
+            ? 'transparent'
+            : theme.tint;
+  const borderColor = disabled ? theme.disabledButton : theme.tint;
   return StyleSheet.create({
     buttonContainer: {
-      backgroundColor: transparentStyle ? 'transparent' : theme.tint,
+      backgroundColor: backgroundColor,
       borderRadius: 10,
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 16,
       marginBottom: 8,
-      borderColor: theme.tint,
+      borderColor: borderColor,
       borderWidth: 1,
       width: width,
+      height: height,
     },
     buttonText: {
       color: transparentStyle ? theme.tint : theme.whiteText,
