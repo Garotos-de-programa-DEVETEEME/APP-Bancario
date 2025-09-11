@@ -47,20 +47,28 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name='carteira/index'
+            options={{
+              header: () => (
+                <PageHeaderWithTabs title='Banetes DTVM' tabTitle='carteira' />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name='carteira/resgatar/index'
+            options={{
+              header: () => (
+                <SimpleHeader title='Resgatar' />
+              ),
+            }}
+          />
 
           <Stack.Screen
             name='fundosInvestimentos/index'
             options={{
               header: () => (
                 <PageHeaderWithTabs title='Banetes DTVM' tabTitle='fundos' />
-              ),
-            }}
-          />
-          <Stack.Screen
-            name='carteira/index'
-            options={{
-              header: () => (
-                <PageHeaderWithTabs title='Banetes DTVM' tabTitle='carteira' />
               ),
             }}
           />
