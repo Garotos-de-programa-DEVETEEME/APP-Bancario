@@ -1,19 +1,13 @@
 import { StylesType } from "@/src/@Types/stylesType";
+import { NavigationButton } from "@/src/components/Buttons/navigationButton";
 import { SwitchButton } from "@/src/components/Buttons/switch";
 import PriceInput from "@/src/components/Input/priceInput";
 import { StyledText } from "@/src/components/StyledText";
 import { useTheme } from "@/src/hooks/useTheme";
 import { coinFormat } from "@/src/utils/coinFormat";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-
-interface ResgatarPageProps {
-    saldo: number;
-    valorMinimoResgate: number;
-    valorMinimoPermanencia: number;
-
-}
 
 export default function ResgatarPage() {
   const theme = useTheme();
@@ -51,7 +45,7 @@ export default function ResgatarPage() {
           alternativeStyle={{...styles.input}}
         />
       </View>
-      <View style={[styles.subtitleContainer, { marginBottom: 64 }]}>
+      <View style={[styles.subtitleContainer, { marginBottom: 40 }]}>
         <StyledText style={{fontSize:20, color: theme.text}}>Resgatar valor total</StyledText>
         <SwitchButton value={resgatarTudo} onValueChange={setResgatarTudo}
         />
@@ -69,6 +63,13 @@ export default function ResgatarPage() {
           <StyledText style={styles.subtitle}>Valor mínimo de resgate</StyledText>
           <StyledText style={styles.subtitle}> {coinFormat(valorMinimoResgateNum)} </StyledText>
         </View>
+      </View>
+      <View style={styles.footerContainer}>
+        <View>
+          <StyledText style={styles.subtitle}>O resgate desse fundo pode ser realizado até </StyledText>
+          <StyledText style={{alignSelf:'center'}}>às <StyledText style={styles.textBold}>17:00 em dias úteis</StyledText></StyledText>
+        </View>
+        <NavigationButton onPress={() => router.push('/carteira') } text="Continuar" />
       </View>
     </View>
   );
@@ -105,6 +106,13 @@ const getStyles = (theme: StylesType) => {
     subtitle:{
       fontSize: 16,
       color: theme.text,
+    },
+    footerContainer:{
+      display:'flex',
+      flexDirection:'column',
+      alignItems:'center',
+      gap:32,
+      marginTop:160
     }
   });
 }
