@@ -58,14 +58,14 @@ const getStyles = (theme: StylesType) => {
       borderWidth: 1,
       borderColor: theme.border,
       borderRadius: 15,
-      paddingTop: 56,
       paddingBottom: 15,
       paddingHorizontal: 15,
       display: 'flex',
       flexDirection: 'column',
       gap: 20,
       width:'90%',
-      alignSelf:'center'
+      alignSelf:'center',
+      paddingTop:20
     },
   });
 };
