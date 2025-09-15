@@ -71,7 +71,6 @@ export default function DetalhesInvestimento() {
                                 <PriceInput
                                     value={valorMensalOpcional}
                                     onValueChange={setValorMensalOpcional}
-                                    placeholder={-1}
                                     alternativeText='Opcional'
                                 />
 

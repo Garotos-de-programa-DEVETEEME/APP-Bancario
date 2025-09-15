@@ -1,12 +1,13 @@
 import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from "@/src/hooks/useTheme";
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleProp, StyleSheet, TextInput, TextStyle } from 'react-native';
 
 interface PriceInputProps {
     value: number;
     onValueChange: (value: number) => void;
-    placeholder: number;
+    placeholder?: number;
     alternativeText?: string;
+    alternativeStyle?: StyleProp<TextStyle>;
 }
 
 //Placeholder: const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
@@ -24,6 +25,7 @@ export default function PriceInput({
     onValueChange,
     placeholder,
     alternativeText,
+    alternativeStyle
 }: PriceInputProps) {
     const theme = useTheme();
     const styles = getStyles(theme);
@@ -34,15 +36,14 @@ export default function PriceInput({
         onValueChange(valorEmCentavos);
     };
 
-   const placeholderText = alternativeText ? alternativeText : formatCurrency(placeholder);
 
     return (
         <TextInput
-            style={styles.input}
+            style={alternativeStyle ? alternativeStyle : styles.input}
             value={value > 0 ? formatCurrency(value) : ''}
             onChangeText={handleTextChange}
             keyboardType="numeric"
-            placeholder={placeholderText}
+            placeholder={alternativeText ? alternativeText : placeholder? formatCurrency(placeholder): 'R$ 0,00'}
             placeholderTextColor={theme.textSecundary}
             multiline={false}
         />
@@ -52,7 +53,7 @@ export default function PriceInput({
 const getStyles = (theme: StylesType) => {
     return StyleSheet.create({
         input: {
-            backgroundColor: theme.backgroundCards,
+            backgroundColor:theme.backgroundCards,
             borderRadius: 16,
             padding: 12,
             fontSize: 20,

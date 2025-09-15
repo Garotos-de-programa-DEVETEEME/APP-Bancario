@@ -7,6 +7,7 @@ import { useState } from "react";
 import { NavigationButton } from "../Buttons/navigationButton";
 import { coinFormat } from "@/src/utils/coinFormat";
 import { converterNumeroParaHora as hourFormater } from "@/src/utils/hourFormat";
+import { router } from "expo-router";
 
 interface FundoInvestidoProps {
   fundoData: FundoInvestimento;
@@ -65,7 +66,7 @@ export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
           }}
         >
           <NavigationButton
-            onPress={() => console.log("pressed")}
+            onPress={() => router.push({ pathname: "carteira/resgatar", params: { saldo: 10, valorMinimoPermanencia: fundoData.valorAplicacaoInicial, valorMinimoResgate: fundoData.valorMinimoResgateInternet,}})}
             text={"Resgatar"}
           />
         </View>
