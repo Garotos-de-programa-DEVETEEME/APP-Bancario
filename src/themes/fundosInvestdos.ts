@@ -24,4 +24,4 @@ export const fundsColor = [
     { id:'22', nome: 'Banestes IMA-B Títulos Públicos  FIF Renda Fixa', cor: '#09333F' },
     { id:'23', nome: 'Banestes Multiestratégia FIC de FIF Multimercado', cor: '#FFC574' },
     { id:'24', nome: 'Banestes Funses FIF Multimercado', cor: '#330196' },
-];//TODO adicionar uma cor por fundo existente (total de 15)
+];
