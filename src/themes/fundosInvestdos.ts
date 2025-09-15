@@ -1,9 +1,9 @@
 //codigo para converter fundsType para FundosInvestimento
 
 export const fundsColor = [
-    { id:'1', nome: 'Banestes BTG Pactual Absoluto Institucional', cor: '#33609A' },
-    { id:'2', nome: 'BCRI 11', cor: '#4C9AFE' },
-    { id:'3', nome: 'Banestes Selection FIF Renda FIxa', cor: '#318535' },
+    { id:'1', nome: 'INVEST FACIL SIMPLES', cor: '#33609A' },
+    { id:'2', nome: 'VIP DI FIC RF REF DI', cor: '#4C9AFE' },
+    { id:'3', nome: 'BANESTES R CLIMATICA', cor: '#318535' },
     { id:'4', nome: 'Banestes Dividendos FIC de FIF', cor: '#FF96BC' },
     { id:'5', nome: 'Banestes FIC de FIF Incentivados de Investimento', cor: '#2A2A2A' },
     { id:'6', nome: 'Banestes Tenax Ações FIF', cor: '#71339A' },

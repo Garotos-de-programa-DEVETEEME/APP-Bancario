@@ -29,7 +29,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {
               </View>
               <View>
                   {fundosInvestidos.map((fundo:FundoInvestimento, index)=>{
-                      const cor:string | undefined = fundsColor.find((i)=> i.nome === fundo.nome)?.cor;
+                      const cor:string | undefined = fundsColor.find((i)=> i.nome === fundo.nomeReduzido)?.cor;
                       return(
                           <View
                               key={index}
