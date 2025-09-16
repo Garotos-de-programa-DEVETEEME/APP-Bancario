@@ -5,6 +5,7 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { StylesType } from "@/src/@Types/stylesType";
 import { fundsColor } from "@/src/themes/fundosInvestdos";
 import { FundoInvestimento } from "@/src/@Types/fundos";
+import { GraficWallet } from "./grafico";
 
 interface walletInfoCardProps{
     fundosInvestidos: any[];
@@ -22,10 +23,10 @@ export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {
           </View>
           <View>
               <View >
-                  <StyledText>
+                  <StyledText style={[styles.fundoTexto, {margin: 13}]}>
                       valores
                   </StyledText>
-                  {/*TODO grafico pizza component*/}
+                  <GraficWallet data={fundosInvestidos}/>
               </View>
               <View>
                   {fundosInvestidos.map((fundo:FundoInvestimento, index)=>{
