@@ -56,6 +56,7 @@ const getStyles = (theme: StylesType) => {
       backgroundColor: theme.background,
       height: '100%',
       gap: 20,
+      paddingTop: 24,
     },
   });
 };
