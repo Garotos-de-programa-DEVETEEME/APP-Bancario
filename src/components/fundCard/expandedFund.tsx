@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
 import { StylesType } from '@/src/@Types/stylesType';
+import { coinFormat } from '@/src/utils/coinFormat';
 
 interface expandedProps {
   fund: FundoInvestimento;
@@ -40,13 +41,12 @@ export const Expanded = ({
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Movimentação (aplic/resg): </StyledText>
         <StyledText style={styles.text}>
-          {'R$ 1,00' /*`${coinFormat(fund.movimentation)}`*/}
-          {/*TODO adicionar valorMinimoResgateInternet */}
+          {coinFormat(fund.valorMinimoAplicacaoInternet)}
         </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
-        <StyledText style={styles.text}> {`D+30 (Dias Corridos)`} </StyledText>{/*TODO colocar fund.dataCarenciaResgate */}
+        <StyledText style={styles.text}> {`D+ ${fund.dataCarenciaResgate} (Dias Corridos)`} </StyledText>
       </View>
       <View style={styles.textContainer}>
         <StyledText style={styles.text}>Cotização de resgate: </StyledText>
