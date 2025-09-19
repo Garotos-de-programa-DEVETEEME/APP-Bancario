@@ -6,6 +6,7 @@ import { StyledText } from '../StyledText';
 import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
 import { StylesType } from '@/src/@Types/stylesType';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
@@ -58,6 +59,11 @@ export const FundsCard = ({
           </StyledText>
           <StyledText style={styles.rentabilityText}>
             {/* TODO arrow icons */}
+            {fund.taxaRentabilidade > 0 ? 
+              <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
+              <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
+
+            }
             {`${fund.taxaRentabilidade}%`}
             {/*TODO consultar se este valor esta em porcentagem */}
           </StyledText>

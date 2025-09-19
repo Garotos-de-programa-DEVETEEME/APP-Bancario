@@ -1,13 +1,23 @@
 import { StylesType } from '@/src/@Types/stylesType';
 import { ButtonIcon } from '@/src/components/Buttons/ButtonIcon';
 import ClientHeader from '@/src/components/homeScreen/clientHeader';
+import { HighlightFund } from '@/src/components/homeScreen/highligthFund';
+import { SearchBar } from '@/src/components/SearchBar/searchBar';
+import { StyledText } from '@/src/components/StyledText';
+import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 export default function TelaInicial() {
   const theme = useTheme();
   const styles = getStyles(theme);
+  const icons = [{name: 'trophy', color:'#FFAC33' }, {name: 'chart-line-variant', color:'#00FF6A' }, {name: 'leaf', color:'#00CC55' }]
+
+  const fundosDestaque = MOCK_FUNDOS;//TODO substituir por fundos em destaque
+
+  const [searchText, setSearchText] = useState(''); 
 
   return (
     <View style={styles.container}>
@@ -16,7 +26,7 @@ export default function TelaInicial() {
         image='https://legacy.reactjs.org/logo-og.png'
         value={-1}
       />
-      <View style={styles.buttonbox}>
+      <View style={styles.buttonContainer}>
         <ButtonIcon
           key={1}
           route={() => router.push('/carteira')}
@@ -39,6 +49,16 @@ export default function TelaInicial() {
           IconHeigth={24}
         />
       </View>
+      <View>
+        <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
+      </View>
+
+      <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
+      <View style={styles.buttonContainer}>
+        {fundosDestaque.map((fund, index) => (
+          <HighlightFund key={index} data={fund} iconName={icons[index % icons.length]} />
+        ))}
+      </View>
     </View>
   );
 }
@@ -49,11 +69,17 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
+      width: '100%',
     },
-    buttonbox: {
+    buttonContainer: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-around',
     },
+    titleText:{
+      fontSize: 20,
+      color: theme.text,
+      marginLeft: 8,
+    }
   });
 };

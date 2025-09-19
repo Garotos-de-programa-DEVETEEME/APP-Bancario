@@ -11,12 +11,14 @@ interface SearchBarProps {
   value: string; //variavel para controle
   onChangeText: (text: string) => void;
   filter?: boolean;
+  hasFilter?: boolean;
 }
 
 export const SearchBar = ({
   placeholder,
   onChangeText,
-  filter: hasFilter = false, //variavel de controle se a filtragem já foi feita
+  filter = false, //variavel de controle se a filtragem já foi feita
+  hasFilter = true,
 }: SearchBarProps) => {
   const theme = useTheme();
   const styles = getStyles(theme);
@@ -25,7 +27,7 @@ export const SearchBar = ({
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        {hasFilter && filters.length > 0 && (
+        {filter && filters.length > 0? (//confere se a filtragem foi feita e caso sim se há filtros selecionados
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -39,8 +41,8 @@ export const SearchBar = ({
               <FiltersSelected data={filter} key={filter.id} />
             ))}
           </ScrollView>
-        )}
-        {(!hasFilter || filters.length < 1) && (
+        ):
+        (
           <>
             <MaterialIcons name='search' style={styles.searchIcon} size={24} />
             <TextInput
@@ -53,12 +55,14 @@ export const SearchBar = ({
           </>
         )}
       </View>
-      <MaterialIcons
-        name='filter-list'
-        style={styles.filterIcon}
-        size={24}
-        onPress={() => router.push('/fundosInvestimentos/filter')}
-      />
+        {hasFilter && (
+          <MaterialIcons
+            name='filter-list'
+            style={styles.filterIcon}
+            size={24}
+            onPress={() => router.push('/fundosInvestimentos/filter')}
+          />
+        )}
     </View>
   );
 };
@@ -76,7 +80,6 @@ const getStyles = (theme: StylesType) => {
       justifyContent: 'space-between',
       alignContent: 'center',
       boxSizing: 'border-box',
-      marginTop: 24,
     },
     searchContainer: {
       alignSelf: 'center',
