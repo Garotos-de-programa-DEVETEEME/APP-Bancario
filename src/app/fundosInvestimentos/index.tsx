@@ -1,8 +1,10 @@
+import { FundoInvestimento as FundoInvestimentoType } from '@/src/@Types/fundos';
 import { StylesType } from '@/src/@Types/stylesType';
 import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { SearchBar } from '@/src/components/SearchBar/searchBar';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -12,6 +14,7 @@ export default function FundoInvestimento() {
   const styles = getStyles(theme);
 
   const [currentExpanded, setCurrentExpanded] = useState(-1); //variavel que controla o fundo expandido com base no seu ID
+  const [searchBarValue, setSearchBarValue] = useState('');
 
   const changeCurrentExpanded = (key: number) => {
     //controla qual fundo esta expandido
@@ -23,7 +26,14 @@ export default function FundoInvestimento() {
     setCurrentExpanded(key);
   };
 
-  const [searchBarValue, setSearchBarValue] = useState('');
+      const handleSimulatePress = (fund: FundoInvestimentoType) => {
+       // @ts-ignore
+      router.push({
+        pathname: '/fundosInvestimentos/saibaMais', // CORRETO: Use a URL sem '/index'
+        params: { fundData: JSON.stringify(fund) },
+      });
+    };
+  
 
   return (
     <View style={styles.container}>
@@ -42,6 +52,7 @@ export default function FundoInvestimento() {
               key={index}
               onPress={() => changeCurrentExpanded(fund.codigo)}
               expanded={currentExpanded === fund.codigo}
+              onSimulate={() => handleSimulatePress(fund)}
             />
           </>
         );

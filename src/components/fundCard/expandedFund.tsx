@@ -1,17 +1,18 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
+import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from '@/src/hooks/useTheme';
+import { coinFormat } from '@/src/utils/coinFormat';
 import { converterNumeroParaHora } from '@/src/utils/hourFormat';
 import { StyleSheet, View } from 'react-native';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
-import { StylesType } from '@/src/@Types/stylesType';
-import { coinFormat } from '@/src/utils/coinFormat';
 
 interface expandedProps {
   fund: FundoInvestimento;
   expanded: boolean;
   type?: 'default' | 'simular';
   onSimulate: () => void;
+  onSimulate2: () => void;
 }
 
 export const Expanded = ({
@@ -19,6 +20,7 @@ export const Expanded = ({
   expanded,
   type,
   onSimulate,
+  onSimulate2,
 }: expandedProps) => {
   //componente de fundo de investimento expandido
   const theme = useTheme();
@@ -62,12 +64,12 @@ export const Expanded = ({
       ) : (
         <View style={styles.textContainer}>
           <NavigationButton
-            onPress={() => console.log('Saiba mais')}
+            onPress={onSimulate}
             text={'Saiba Mais'}
             transparentStyle
           />
           <NavigationButton
-            onPress={() => console.log('Investir')}
+            onPress={onSimulate2}
             text={'Investir'}
           />
         </View>
