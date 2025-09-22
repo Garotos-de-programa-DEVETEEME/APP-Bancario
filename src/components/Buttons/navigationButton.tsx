@@ -1,59 +1,45 @@
-import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from '@/src/hooks/useTheme';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable } from 'react-native';
 import { StyledText } from '../StyledText';
 
 interface NavigationButtonProps {
   onPress: () => void;
   text: string;
-  transparentStyle?: boolean; //parametro que controla o estilo do componente
+  transparentStyle?: boolean; // parâmetro que controla o estilo do componente
   disabled?: boolean;
   width?: number;
 }
 
 export const NavigationButton = ({
-  //componente de botão de navegação
+  // componente de botão de navegação
   onPress,
   text,
   transparentStyle,
   disabled,
-  width,
+  width = 180,
 }: NavigationButtonProps) => {
   const theme = useTheme();
-  const styles = getStyles(theme, transparentStyle, width);
 
   return (
     <Pressable
-      style={styles.buttonContainer}
       onPress={onPress}
       disabled={disabled}
+      className="rounded-[10px] justify-center items-center mt-4 mb-2 border"
+      style={{
+        backgroundColor: transparentStyle ? 'transparent' : theme.tint,
+        borderColor: theme.tint,
+        borderWidth: 1,
+        width,
+      }}
     >
-      <StyledText style={styles.buttonText}>{text}</StyledText>
+      <StyledText
+        className="text-xl font-medium"
+        style={{
+          color: transparentStyle ? theme.tint : theme.whiteText,
+        }}
+      >
+        {text}
+      </StyledText>
     </Pressable>
   );
-};
-
-const getStyles = (
-  theme: StylesType,
-  transparentStyle?: boolean,
-  width: number = 180,
-) => {
-  return StyleSheet.create({
-    buttonContainer: {
-      backgroundColor: transparentStyle ? 'transparent' : theme.tint,
-      borderRadius: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 16,
-      marginBottom: 8,
-      borderColor: theme.tint,
-      borderWidth: 1,
-      width: width,
-    },
-    buttonText: {
-      color: transparentStyle ? theme.tint : theme.whiteText,
-      fontSize: 18,
-      fontWeight: 500,
-    },
-  });
 };

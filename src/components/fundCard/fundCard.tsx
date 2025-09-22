@@ -1,11 +1,13 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { coinFormat } from '@/src/utils/coinFormat';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
-import { StylesType } from '@/src/@Types/stylesType';
+
+// ✅ imports de animação
+import Animated, { FadeIn, FadeOut, Layout } from 'react-native-reanimated';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
@@ -22,98 +24,79 @@ export const FundsCard = ({
   expandedType = 'default',
   onSimulate,
 }: FundsCardProps) => {
-  //componente de card de fundo de investimento
   const theme = useTheme();
-  const styles = getStyle(theme);
 
   return (
-    <View style={styles.container}>
+    // 🔸 container agora é Animated.View, apenas para animar mudanças de layout
+    <Animated.View
+      layout={Layout.springify().damping(16).stiffness(140)}
+      className="w-[380px] rounded-[15px] border box-border pt-[4px] pb-[2px] pr-[11px] pl-[4px] self-center shadow-md elevation-4"
+      style={{ backgroundColor: theme.backgroundCards, borderColor: theme.border, borderWidth: 1 }}
+    >
       <Pressable onPress={onPress}>
-        <View style={styles.textContainer}>
-          <StyledText style={styles.fundTypeText}>{ 'Tipo'/*fund.type*/}</StyledText>
-          <View style={styles.riskContainer}>
-            <RiskIcon risk={'alto'/*fund.risk*/} />
-            {/*TODO integrar quando a api estiver pronta */}
+        <View className="flex flex-row justify-between">
+          <StyledText className="text-md" style={{ color: theme.tint }}>
+            {'Fundo' /* fund.type */}
+          </StyledText>
+
+          <View className="flex flex-row items-center gap-[10px]">
+            <RiskIcon risk={'alto' /* fund.risk */} />
+            {/* TODO integrar quando a api estiver pronta */}
           </View>
         </View>
+
         <View>
-          <StyledText style={styles.title}>{fund.nome}</StyledText>
+          <StyledText className="text-xl font-bold" style={{ color: theme.text }}>
+            {fund.nome}
+          </StyledText>
         </View>
-        <View
-          style={{
-            display: expanded ? 'flex' : 'none',
-            borderTopColor: theme.border,
-            borderTopWidth: 1,
-          }}
-        ></View>
-        <View style={styles.textContainer}>
-          <StyledText style={styles.text}>Aplicação incial: </StyledText>
-          <StyledText style={styles.text}>
+
+        {/* 🔸 divisor animado (entra/saí com fade; layout suave) */}
+        {expanded ? (
+          <Animated.View
+            entering={FadeIn.duration(90)}
+            exiting={FadeOut.duration(120)}
+            layout={Layout.springify().damping(18)}
+            style={{ borderTopColor: theme.border, borderTopWidth: 1 }}
+          />
+        ) : null}
+
+        <View className="flex flex-row justify-between">
+          <StyledText className="text-base" style={{ color: theme.alternativeText }}>
+            Aplicação incial:{' '}
+          </StyledText>
+          <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             {coinFormat(fund.valorAplicacaoInicial)}
           </StyledText>
         </View>
-        <View style={styles.textContainer}>
-          <StyledText style={styles.text}>
+
+        <View className="flex flex-row justify-between">
+          <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText style={styles.rentabilityText}>
+          <StyledText className="text-lg" style={{ color: theme.tint }}>
             {/* TODO arrow icons */}
             {`${fund.taxaRentabilidade}%`}
-            {/*TODO consultar se este valor esta em porcentagem */}
+            {/* TODO consultar se este valor esta em porcentagem */}
           </StyledText>
         </View>
 
-        <Expanded
-          fund={fund}
-          expanded={expanded}
-          type={expandedType}
-          onSimulate={onSimulate ? onSimulate : () => {}}
-        />
+        {/* 🔸 conteúdo expandido animado (sem mudar seu componente) */}
+        {expanded ? (
+          <Animated.View
+            entering={FadeIn.duration(160)}
+            exiting={FadeOut.duration(120)}
+            layout={Layout.springify().damping(16).stiffness(140)}
+          >
+            <Expanded
+              fund={fund}
+              expanded={expanded}
+              type={expandedType}
+              onSimulate={onSimulate ? onSimulate : () => {}}
+            />
+          </Animated.View>
+        ) : null}
       </Pressable>
-    </View>
+    </Animated.View>
   );
-};
-const getStyle = (theme: StylesType) => {
-  return StyleSheet.create({
-    container: {
-      backgroundColor: theme.backgroundCards,
-      width: 380,
-      borderRadius: 15,
-      borderColor: theme.border,
-      borderWidth: 1,
-      boxSizing: 'border-box',
-      paddingTop: 4,
-      paddingBottom: 2,
-      paddingRight: 11,
-      paddingLeft: 4,
-      alignSelf: 'center',
-    },
-    fundTypeText: {
-      color: theme.tint,
-      fontSize: 12,
-    },
-    textContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    title: {
-      color: theme.text,
-      fontSize: 17,
-    },
-    text: {
-      color: theme.alternativeText,
-      fontSize: 13,
-    },
-    rentabilityText: {
-      color: theme.tint,
-      fontSize: 17,
-    },
-    riskContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 10,
-    },
-  });
 };
