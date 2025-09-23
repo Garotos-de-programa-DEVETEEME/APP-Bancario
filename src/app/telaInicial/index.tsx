@@ -32,21 +32,21 @@ export default function TelaInicial() {
           route={() => router.push('/carteira')}
           text='Minha Carteira'
           iconName='wallet'
-          IconHeigth={24}
+          IconHeight={30}
         />
         <ButtonIcon
           key={2}
           route={() => router.push('/fundosInvestimentos')}
           text='Fundos de Investimento'
           iconName='inventory'
-          IconHeigth={24}
+          IconHeight={25}
         />
         <ButtonIcon
           key={3}
           route={() => router.push('/simularInvestimento')}
           text='Simular Investimento'
           iconName='timeline'
-          IconHeigth={24}
+          IconHeight={25}
         />
       </View>
       <View>

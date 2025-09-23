@@ -1,16 +1,14 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
-import { StylesType } from '@/src/@Types/stylesType';
 import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { StyledText } from '@/src/components/StyledText';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 export default function SimularInvestimento() {
   const theme = useTheme();
-  const styles = getStyles(theme);
   const investmentFunds = MOCK_FUNDOS;
 
   const [currentExpanded, setCurrentExpanded] = useState(-1);
@@ -31,17 +29,32 @@ export default function SimularInvestimento() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.aviso}>
-        <StyledText style={styles.avisotext}>
+    <View
+      className="items-center h-full"
+      style={{ backgroundColor: theme.background }}
+    >
+      <View
+        className="w-[380px] h-[75px] rounded-[15px] justify-center items-center mb-[45px] mt-5 px-5 s"
+        style={{ backgroundColor: theme.backgroundCards }}
+      >
+        <StyledText
+          className="text-sm italic text-start font-medium"
+          style={{ color: theme.alternativeText }}
+        >
           A simulação considera seu perfil de investidor previamente cadastrado,
           garantindo maior adequação às suas preferências e tolerância a risco.
         </StyledText>
       </View>
 
       <View>
-        <StyledText style={styles.fundstext}>Fundos</StyledText>
-        <View style={styles.fundsbox}>
+        <StyledText
+          className="mb-[10px] text-xl font-bold"
+          style={{ color: theme.darkText }}
+        >
+          Fundos
+        </StyledText>
+
+        <View className="gap-5">
           {investmentFunds.map((fund) => {
             return (
               <FundsCard
@@ -49,7 +62,7 @@ export default function SimularInvestimento() {
                 key={fund.codigo}
                 onPress={() => changeCurrentExpanded(fund.codigo)}
                 expanded={currentExpanded === fund.codigo}
-                expandedType='simular'
+                expandedType="simular"
                 onSimulate={() => handleSimulatePress(fund)}
               />
             );
@@ -59,38 +72,3 @@ export default function SimularInvestimento() {
     </View>
   );
 }
-
-const getStyles = (theme: StylesType) => {
-  return StyleSheet.create({
-    container: {
-      alignItems: 'center',
-      height: '100%',
-      backgroundColor: theme.background,
-    },
-    aviso: {
-      backgroundColor: theme.backgroundCards,
-      width: 380,
-      height: 75,
-      borderRadius: 15,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: 45,
-      marginTop: 20,
-      paddingHorizontal: 20,
-    },
-    avisotext: {
-      fontSize: 12,
-      fontStyle: 'italic',
-      textAlign: 'center',
-      verticalAlign: 'middle',
-      color: theme.alternativeText,
-    },
-    fundsbox: {
-      gap: 20,
-    },
-    fundstext: {
-      marginBottom: 10,
-      color: theme.textSecundary,
-    },
-  });
-};
