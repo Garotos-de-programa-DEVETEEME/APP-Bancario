@@ -13,11 +13,15 @@ import { StyleSheet, View } from 'react-native';
 export default function TelaInicial() {
   const theme = useTheme();
   const styles = getStyles(theme);
-  const icons = [{name: 'trophy', color:'#FFAC33' }, {name: 'chart-line-variant', color:'#00FF6A' }, {name: 'leaf', color:'#00CC55' }]
+  const icons = [
+    { name: 'trophy', color: '#FFAC33' },
+    { name: 'chart-line-variant', color: '#00FF6A' },
+    { name: 'leaf', color: '#00CC55' },
+  ];
 
-  const fundosDestaque = MOCK_FUNDOS;//TODO substituir por fundos em destaque
+  const fundosDestaque = MOCK_FUNDOS; //TODO substituir por fundos em destaque
 
-  const [searchText, setSearchText] = useState(''); 
+  const [searchText, setSearchText] = useState('');
 
   return (
     <View style={styles.container}>
@@ -50,13 +54,22 @@ export default function TelaInicial() {
         />
       </View>
       <View>
-        <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
+        <SearchBar
+          value={searchText}
+          onChangeText={setSearchText}
+          placeholder='Buscar fundos por nome ou categoria'
+          hasFilter={false}
+        />
       </View>
 
       <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
       <View style={styles.buttonContainer}>
         {fundosDestaque.map((fund, index) => (
-          <HighlightFund key={index} data={fund} iconName={icons[index % icons.length]} />
+          <HighlightFund
+            key={index}
+            data={fund}
+            iconName={icons[index % icons.length]}
+          />
         ))}
       </View>
     </View>
@@ -76,10 +89,10 @@ const getStyles = (theme: StylesType) => {
       flexDirection: 'row',
       justifyContent: 'space-around',
     },
-    titleText:{
+    titleText: {
       fontSize: 20,
       color: theme.text,
       marginLeft: 8,
-    }
+    },
   });
 };

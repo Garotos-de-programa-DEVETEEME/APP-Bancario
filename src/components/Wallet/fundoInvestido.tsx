@@ -1,13 +1,13 @@
-import { FundoInvestimento } from "@/src/@Types/fundos";
-import { StylesType as themeType } from "@/src/@Types/stylesType";
-import { useTheme } from "@/src/hooks/useTheme";
-import { Pressable, StyleSheet, View } from "react-native";
-import { StyledText } from "../StyledText";
-import { useState } from "react";
-import { NavigationButton } from "../Buttons/navigationButton";
-import { coinFormat } from "@/src/utils/coinFormat";
-import { converterNumeroParaHora as hourFormater } from "@/src/utils/hourFormat";
-import { router } from "expo-router";
+import { FundoInvestimento } from '@/src/@Types/fundos';
+import { StylesType as themeType } from '@/src/@Types/stylesType';
+import { useTheme } from '@/src/hooks/useTheme';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
+import { useState } from 'react';
+import { NavigationButton } from '../Buttons/navigationButton';
+import { coinFormat } from '@/src/utils/coinFormat';
+import { converterNumeroParaHora as hourFormater } from '@/src/utils/hourFormat';
+import { router } from 'expo-router';
 
 interface FundoInvestidoProps {
   fundoData: FundoInvestimento;
@@ -24,7 +24,7 @@ export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
         <View style={styles.titleContainer}>
           <View style={styles.titleContainerText}>
             <StyledText style={styles.subTitle}>
-              {"Fundo Simples"}
+              {'Fundo Simples'}
               {/*TODO alterar para tipo do fundo*/}
             </StyledText>
             <StyledText style={styles.title}>
@@ -48,7 +48,7 @@ export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
             {coinFormat(fundoData.valorMinimoResgatavel)}
           </StyledText>
         </View>
-        <View style={[styles.textContainer, {borderBottomWidth:0}]}>
+        <View style={[styles.textContainer, { borderBottomWidth: 0 }]}>
           <StyledText style={styles.textContainerTitle}>
             Horário limite de resgate
           </StyledText>
@@ -60,14 +60,23 @@ export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
       {expanded && (
         <View
           style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
           }}
         >
           <NavigationButton
-            onPress={() => router.push({ pathname: "carteira/resgatar", params: { saldo: 10, valorMinimoPermanencia: fundoData.valorAplicacaoInicial, valorMinimoResgate: fundoData.valorMinimoResgateInternet,}})}
-            text={"Resgatar"}
+            onPress={() =>
+              router.push({
+                pathname: 'carteira/resgatar',
+                params: {
+                  saldo: 10,
+                  valorMinimoPermanencia: fundoData.valorAplicacaoInicial,
+                  valorMinimoResgate: fundoData.valorMinimoResgateInternet,
+                },
+              })
+            }
+            text={'Resgatar'}
           />
         </View>
       )}
@@ -82,22 +91,22 @@ const getStyle = (theme: themeType) => {
       borderRadius: 15,
       borderColor: theme.border,
       borderWidth: 1,
-      boxSizing: "border-box",
-      display: "flex",
-      flexDirection: "column",
+      boxSizing: 'border-box',
+      display: 'flex',
+      flexDirection: 'column',
       gap: 4,
     },
     titleContainer: {
-      display: "flex",
-      flexDirection: "row",
+      display: 'flex',
+      flexDirection: 'row',
       borderBottomColor: theme.border,
       borderBottomWidth: 1,
       paddingLeft: 12,
-      paddingVertical:6
+      paddingVertical: 6,
     },
     titleContainerText: {
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
     },
     title: {
       color: theme.text,
@@ -110,9 +119,9 @@ const getStyle = (theme: themeType) => {
       fontWeight: 500,
     },
     textContainer: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-around",
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
       paddingTop: 8,
       paddingBottom: 2,
       borderBottomColor: theme.border,
@@ -126,7 +135,7 @@ const getStyle = (theme: themeType) => {
     textContainerValue: {
       color: theme.text,
       fontSize: 15,
-      fontWeight: "bold",
+      fontWeight: 'bold',
     },
   });
 };

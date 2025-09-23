@@ -18,7 +18,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
   return (
     <>
       <StyledText
-        className="text-base font-medium"
+        className='text-base font-medium'
         style={{ color: theme.alternativeText }}
       >
         {`Risco ${risk === 'medio' ? 'médio' : risk}`}{' '}
@@ -26,10 +26,10 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
         {/* TODO alterar conforme resposta da API */}
       </StyledText>
 
-      <View className="flex flex-row gap-[1px]">
+      <View className='flex flex-row gap-[1px]'>
         {/* firstIcon */}
         <StyledText
-          className="w-[10px] h-[10px]"
+          className='w-[10px] h-[10px]'
           style={{
             width: ballSize,
             height: ballSize,
@@ -38,16 +38,16 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
               risk === 'muito baixo'
                 ? riskTheme.veryLow
                 : risk === 'baixo'
-                ? riskTheme.low
-                : risk === 'medio'
-                ? riskTheme.medium
-                : riskTheme.high,
+                  ? riskTheme.low
+                  : risk === 'medio'
+                    ? riskTheme.medium
+                    : riskTheme.high,
           }}
         />
 
         {/* secondIcon */}
         <StyledText
-          className="w-[10px] h-[10px]"
+          className='w-[10px] h-[10px]'
           style={{
             width: ballSize,
             height: ballSize,
@@ -56,16 +56,16 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
               risk === 'baixo'
                 ? riskTheme.low
                 : risk === 'medio'
-                ? riskTheme.medium
-                : risk === 'alto'
-                ? riskTheme.high
-                : undefined,
+                  ? riskTheme.medium
+                  : risk === 'alto'
+                    ? riskTheme.high
+                    : undefined,
           }}
         />
 
         {/* thirdIcon */}
         <StyledText
-          className="w-[10px] h-[10px]"
+          className='w-[10px] h-[10px]'
           style={{
             width: ballSize,
             height: ballSize,
@@ -74,14 +74,14 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
               risk === 'medio'
                 ? riskTheme.medium
                 : risk === 'alto'
-                ? riskTheme.high
-                : undefined,
+                  ? riskTheme.high
+                  : undefined,
           }}
         />
 
         {/* fourthIcon */}
         <StyledText
-          className="w-[10px] h-[10px]"
+          className='w-[10px] h-[10px]'
           style={{
             width: ballSize,
             height: ballSize,

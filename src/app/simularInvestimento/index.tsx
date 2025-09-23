@@ -30,15 +30,15 @@ export default function SimularInvestimento() {
 
   return (
     <View
-      className="items-center h-full"
+      className='items-center h-full'
       style={{ backgroundColor: theme.background }}
     >
       <View
-        className="w-[380px] h-[75px] rounded-[15px] justify-center items-center mb-[45px] mt-5 px-5 s"
+        className='w-[380px] h-[75px] rounded-[15px] justify-center items-center mb-[45px] mt-5 px-5 s'
         style={{ backgroundColor: theme.backgroundCards }}
       >
         <StyledText
-          className="text-sm italic text-start font-medium"
+          className='text-sm italic text-start font-medium'
           style={{ color: theme.alternativeText }}
         >
           A simulação considera seu perfil de investidor previamente cadastrado,
@@ -48,13 +48,13 @@ export default function SimularInvestimento() {
 
       <View>
         <StyledText
-          className="mb-[10px] text-xl font-bold"
+          className='mb-[10px] text-xl font-bold'
           style={{ color: theme.darkText }}
         >
           Fundos
         </StyledText>
 
-        <View className="gap-5">
+        <View className='gap-5'>
           {investmentFunds.map((fund) => {
             return (
               <FundsCard
@@ -62,7 +62,7 @@ export default function SimularInvestimento() {
                 key={fund.codigo}
                 onPress={() => changeCurrentExpanded(fund.codigo)}
                 expanded={currentExpanded === fund.codigo}
-                expandedType="simular"
+                expandedType='simular'
                 onSimulate={() => handleSimulatePress(fund)}
               />
             );

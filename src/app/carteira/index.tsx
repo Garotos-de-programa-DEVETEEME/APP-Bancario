@@ -48,7 +48,7 @@ const getStyles = (theme: StylesType) => {
       width: '90%',
       alignSelf: 'center',
       borderRadius: 15,
-      marginBottom:12
+      marginBottom: 12,
     },
     patrimonio: {
       borderBottomColor: theme.border,
@@ -63,9 +63,9 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'column',
       gap: 20,
-      width:'90%',
-      alignSelf:'center',
-      paddingTop:20
+      width: '90%',
+      alignSelf: 'center',
+      paddingTop: 20,
     },
   });
 };

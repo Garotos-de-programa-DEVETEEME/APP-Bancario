@@ -1,15 +1,15 @@
-import { FilterType } from '@/src/@Types/Filter'
-import { StylesType } from '@/src/@Types/stylesType'
-import { FavoriteButton } from '@/src/components/Buttons/favoriteButton'
-import { NavigationButton } from '@/src/components/Buttons/navigationButton'
-import { FilterOption } from '@/src/components/SearchBar/filterOption'
-import { StyledText } from '@/src/components/StyledText'
-import { useFilters } from '@/src/Context/filterContext'
-import { useTheme } from '@/src/hooks/useTheme'
-import { riskTheme } from '@/src/themes/risk'
-import { router } from 'expo-router'
-import { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { FilterType } from '@/src/@Types/Filter';
+import { StylesType } from '@/src/@Types/stylesType';
+import { FavoriteButton } from '@/src/components/Buttons/favoriteButton';
+import { NavigationButton } from '@/src/components/Buttons/navigationButton';
+import { FilterOption } from '@/src/components/SearchBar/filterOption';
+import { StyledText } from '@/src/components/StyledText';
+import { useFilters } from '@/src/Context/filterContext';
+import { useTheme } from '@/src/hooks/useTheme';
+import { riskTheme } from '@/src/themes/risk';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function FilterFundsPage() {
   const { filters, setFilters } = useFilters();
