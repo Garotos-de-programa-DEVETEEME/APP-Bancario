@@ -2,6 +2,7 @@ import { StylesType } from '@/src/@Types/stylesType';
 import { ButtonIcon } from '@/src/components/Buttons/ButtonIcon';
 import ClientHeader from '@/src/components/homeScreen/clientHeader';
 import { HighlightFund } from '@/src/components/homeScreen/highligthFund';
+import { TodayMarket } from '@/src/components/homeScreen/todayMarket';
 import { SearchBar } from '@/src/components/SearchBar/searchBar';
 import { StyledText } from '@/src/components/StyledText';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
@@ -18,6 +19,11 @@ export default function TelaInicial() {
   const fundosDestaque = MOCK_FUNDOS;//TODO substituir por fundos em destaque
 
   const [searchText, setSearchText] = useState(''); 
+  const marketToday = {
+    nome: 'Dolar',
+    porcentagem: -3.4,
+    valor: 200,
+  }
 
   return (
     <View style={styles.container}>
@@ -57,6 +63,12 @@ export default function TelaInicial() {
       <View style={styles.buttonContainer}>
         {fundosDestaque.map((fund, index) => (
           <HighlightFund key={index} data={fund} iconName={icons[index % icons.length]} />
+        ))}
+      </View>
+      <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
+      <View style={styles.buttonContainer}>
+        {fundosDestaque.map((fund, index) => (
+          <TodayMarket key={index} fundoDestaque={marketToday}/>
         ))}
       </View>
     </View>
