@@ -13,12 +13,7 @@ interface expandedProps {
   onSimulate: () => void;
 }
 
-export const Expanded = ({
-  fund,
-  expanded,
-  type,
-  onSimulate,
-}: expandedProps) => {
+export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) => {
   const theme = useTheme();
 
   if (!expanded) return null;
@@ -29,98 +24,61 @@ export const Expanded = ({
       entering={FadeIn.duration(160)}
       exiting={FadeOut.duration(120)}
       layout={Layout.springify().damping(16).stiffness(140)}
-      className='flex flex-col'
+      className="flex flex-col"
     >
-      <View className='flex flex-row justify-between'>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+      <View className="flex flex-row justify-between">
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           Taxa global:
         </StyledText>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {`${fund.taxaAdministracao}% a.a.`}
         </StyledText>
       </View>
 
-      <View className='flex flex-row justify-between'>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+      <View className="flex flex-row justify-between">
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           Hora limite de aplicação:
         </StyledText>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {converterNumeroParaHora(fund.horaLimite)}
         </StyledText>
       </View>
 
-      <View className='flex flex-row justify-between'>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+      <View className="flex flex-row justify-between">
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           Movimentação (aplic/resg):
         </StyledText>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {'R$ 1,00'}
         </StyledText>
       </View>
 
-      <View className='flex flex-row justify-between'>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+      <View className="flex flex-row justify-between">
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           Cotização de resgate:
         </StyledText>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           D+30 (Dias Corridos)
         </StyledText>
       </View>
 
-      <View className='flex flex-row justify-between'>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+      <View className="flex flex-row justify-between">
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           Cotização de resgate:
         </StyledText>
-        <StyledText
-          className='text-[13px]'
-          style={{ color: theme.alternativeText }}
-        >
+        <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}
         </StyledText>
       </View>
 
       {type === 'simular' ? (
-        <View className='items-center justify-center mt-2.5'>
-          <NavigationButton onPress={onSimulate} text='Simular' />
+        <View className="items-center justify-center mt-2.5">
+          <NavigationButton onPress={onSimulate} text="Simular" />
         </View>
       ) : (
-        <View className='flex flex-row justify-between'>
-          <NavigationButton
-            onPress={() => console.log('Saiba mais')}
-            text='Saiba Mais'
-            transparentStyle
-          />
-          <NavigationButton
-            onPress={() => console.log('Investir')}
-            text='Investir'
-          />
+        <View className="flex flex-row justify-between">
+          <NavigationButton onPress={() => console.log('Saiba mais')} text="Saiba Mais" transparentStyle />
+          <NavigationButton onPress={() => console.log('Investir')} text="Investir" />
         </View>
       )}
     </Animated.View>

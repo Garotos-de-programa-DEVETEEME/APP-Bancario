@@ -16,14 +16,14 @@ export const FavoriteButton = ({
   return (
     <Pressable
       onPress={onPress}
-      className='flex flex-row items-center gap-[9px]'
+      className="flex flex-row items-center gap-[9px]"
     >
       <MaterialIcons
         name={selected ? 'star' : 'star-outline'}
         size={32}
         style={{ color: '#DF9F1C' }}
       />
-      <StyledText className='text-2xl' style={{ color: '#DF9F1C' }}>
+      <StyledText className="text-2xl" style={{ color: '#DF9F1C' }}>
         {text}
       </StyledText>
     </Pressable>

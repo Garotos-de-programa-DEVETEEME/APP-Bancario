@@ -31,30 +31,23 @@ export const FundsCard = ({
     // 🔸 container agora é Animated.View, apenas para animar mudanças de layout
     <Animated.View
       layout={Layout.springify().damping(16).stiffness(140)}
-      className='w-[380px] rounded-[15px] border box-border pt-[4px] pb-[2px] pr-[11px] pl-[4px] self-center shadow-md elevation-4'
-      style={{
-        backgroundColor: theme.backgroundCards,
-        borderColor: theme.border,
-        borderWidth: 1,
-      }}
+      className="w-[380px] rounded-[15px] border box-border pt-[4px] pb-[2px] pr-[11px] pl-[4px] self-center shadow-md elevation-4"
+      style={{ backgroundColor: theme.backgroundCards, borderColor: theme.border, borderWidth: 1 }}
     >
       <Pressable onPress={onPress}>
-        <View className='flex flex-row justify-between'>
-          <StyledText className='text-md' style={{ color: theme.tint }}>
+        <View className="flex flex-row justify-between">
+          <StyledText className="text-md" style={{ color: theme.tint }}>
             {'Fundo' /* fund.type */}
           </StyledText>
 
-          <View className='flex flex-row items-center gap-[10px]'>
+          <View className="flex flex-row items-center gap-[10px]">
             <RiskIcon risk={'alto' /* fund.risk */} />
             {/* TODO integrar quando a api estiver pronta */}
           </View>
         </View>
 
         <View>
-          <StyledText
-            className='text-xl font-bold'
-            style={{ color: theme.text }}
-          >
+          <StyledText className="text-xl font-bold" style={{ color: theme.text }}>
             {fund.nome}
           </StyledText>
         </View>
@@ -69,35 +62,26 @@ export const FundsCard = ({
           />
         ) : null}
 
-        <View className='flex flex-row justify-between'>
-          <StyledText
-            className='text-base'
-            style={{ color: theme.alternativeText }}
-          >
+        <View className="flex flex-row justify-between">
+          <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             Aplicação incial:{' '}
           </StyledText>
-          <StyledText
-            className='text-base'
-            style={{ color: theme.alternativeText }}
-          >
+          <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             {coinFormat(fund.valorAplicacaoInicial)}
           </StyledText>
         </View>
 
-        <View className='flex flex-row justify-between'>
-          <StyledText
-            className='text-base'
-            style={{ color: theme.alternativeText }}
-          >
+        <View className="flex flex-row justify-between">
+          <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText className='text-lg' style={{ color: theme.tint }}>
+          <StyledText className="text-lg" style={{ color: theme.tint }}>
             {/* TODO arrow icons */}
-            {fund.taxaRentabilidade > 0 ? (
-              <MaterialCommunityIcons name='arrow-up' size={16} color='green' />
-            ) : (
-              <MaterialCommunityIcons name='arrow-down' size={16} color='red' />
-            )}
+            {fund.taxaRentabilidade > 0 ? 
+              <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
+              <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
+
+            }
             {`${fund.taxaRentabilidade}%`}
             {/* TODO consultar se este valor esta em porcentagem */}
           </StyledText>

@@ -9,7 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import 'react-native-reanimated';
-import '../../global.css';
+import "../../global.css";
 
 import { useColorScheme } from 'react-native';
 import { FiltersProvider } from '../Context/filterContext';
@@ -59,7 +59,9 @@ export default function RootLayout() {
           <Stack.Screen
             name='carteira/resgatar/index'
             options={{
-              header: () => <SimpleHeader title='Resgatar' />,
+              header: () => (
+                <SimpleHeader title='Resgatar' />
+              ),
             }}
           />
 
@@ -92,7 +94,7 @@ export default function RootLayout() {
               header: () => <SimpleHeader title='Simular Investimento' />,
             }}
           />
-
+          
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='auto' />

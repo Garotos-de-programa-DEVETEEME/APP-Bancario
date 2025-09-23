@@ -25,7 +25,7 @@ export const NavigationButton = ({
     <Pressable
       onPress={onPress}
       disabled={disabled}
-      className='rounded-[10px] justify-center items-center mt-4 mb-2 border'
+      className="rounded-[10px] justify-center items-center mt-4 mb-2 border"
       style={{
         backgroundColor: transparentStyle ? 'transparent' : theme.tint,
         borderColor: theme.tint,
@@ -34,7 +34,7 @@ export const NavigationButton = ({
       }}
     >
       <StyledText
-        className='text-xl font-medium'
+        className="text-xl font-medium"
         style={{
           color: transparentStyle ? theme.tint : theme.whiteText,
         }}

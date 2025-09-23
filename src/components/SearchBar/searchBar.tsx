@@ -27,7 +27,7 @@ export const SearchBar = ({
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        {filter && filters.length > 0 ? ( //confere se a filtragem foi feita e caso sim se há filtros selecionados
+        {filter && filters.length > 0? (//confere se a filtragem foi feita e caso sim se há filtros selecionados
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -41,7 +41,8 @@ export const SearchBar = ({
               <FiltersSelected data={filter} key={filter.id} />
             ))}
           </ScrollView>
-        ) : (
+        ):
+        (
           <>
             <MaterialIcons name='search' style={styles.searchIcon} size={24} />
             <TextInput
@@ -54,14 +55,14 @@ export const SearchBar = ({
           </>
         )}
       </View>
-      {hasFilter && (
-        <MaterialIcons
-          name='filter-list'
-          style={styles.filterIcon}
-          size={24}
-          onPress={() => router.push('/fundosInvestimentos/filter')}
-        />
-      )}
+        {hasFilter && (
+          <MaterialIcons
+            name='filter-list'
+            style={styles.filterIcon}
+            size={24}
+            onPress={() => router.push('/fundosInvestimentos/filter')}
+          />
+        )}
     </View>
   );
 };
