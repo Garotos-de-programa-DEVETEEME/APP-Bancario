@@ -9,4 +9,5 @@ export type StylesType = {
   tint: string;
   alternativeIcon: string;
   border: string;
+  disabledButton: string;
 };

@@ -48,20 +48,28 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name='carteira/index'
+            options={{
+              header: () => (
+                <PageHeaderWithTabs title='Banetes DTVM' tabTitle='carteira' />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name='carteira/resgatar/index'
+            options={{
+              header: () => (
+                <SimpleHeader title='Resgatar' />
+              ),
+            }}
+          />
 
           <Stack.Screen
             name='fundosInvestimentos/index'
             options={{
               header: () => (
                 <PageHeaderWithTabs title='Banetes DTVM' tabTitle='fundos' />
-              ),
-            }}
-          />
-          <Stack.Screen
-            name='carteira/index'
-            options={{
-              header: () => (
-                <PageHeaderWithTabs title='Banetes DTVM' tabTitle='carteira' />
               ),
             }}
           />
@@ -73,6 +81,20 @@ export default function RootLayout() {
             }}
           />
 
+          <Stack.Screen
+            name='simularInvestimento/index'
+            options={{
+              header: () => <SimpleHeader title='Simular Investimento' />,
+            }}
+          />
+
+          <Stack.Screen
+            name='simularInvestimento/detalhesFundo/index'
+            options={{
+              header: () => <SimpleHeader title='Simular Investimento' />,
+            }}
+          />
+          
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='auto' />

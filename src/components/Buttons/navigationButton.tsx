@@ -8,6 +8,7 @@ interface NavigationButtonProps {
   transparentStyle?: boolean; // parâmetro que controla o estilo do componente
   disabled?: boolean;
   width?: number;
+  height?: number;
 }
 
 export const NavigationButton = ({

@@ -8,6 +8,7 @@ import { RiskIcon } from './riskIcon';
 
 // ✅ imports de animação
 import Animated, { FadeIn, FadeOut, Layout } from 'react-native-reanimated';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
@@ -76,6 +77,11 @@ export const FundsCard = ({
           </StyledText>
           <StyledText className="text-lg" style={{ color: theme.tint }}>
             {/* TODO arrow icons */}
+            {fund.taxaRentabilidade > 0 ? 
+              <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
+              <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
+
+            }
             {`${fund.taxaRentabilidade}%`}
             {/* TODO consultar se este valor esta em porcentagem */}
           </StyledText>
