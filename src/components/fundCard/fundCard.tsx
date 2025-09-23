@@ -13,7 +13,6 @@ interface FundsCardProps {
   onPress: () => void;
   expanded: boolean;
   expandedType?: 'default' | 'simular';
-  onSimulate?: () => void;
 }
 
 export const FundsCard = ({
@@ -21,7 +20,6 @@ export const FundsCard = ({
   onPress,
   expanded,
   expandedType = 'default',
-  onSimulate,
 }: FundsCardProps) => {
   //componente de card de fundo de investimento
   const theme = useTheme();
@@ -58,7 +56,6 @@ export const FundsCard = ({
             Rentabilidade dos ultimos 12 meses
           </StyledText>
           <StyledText style={styles.rentabilityText}>
-            {/* TODO arrow icons */}
             {fund.taxaRentabilidade > 0 ? 
               <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
               <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
@@ -73,7 +70,6 @@ export const FundsCard = ({
           fund={fund}
           expanded={expanded}
           type={expandedType}
-          onSimulate={onSimulate ? onSimulate : () => {}}
         />
       </Pressable>
     </View>

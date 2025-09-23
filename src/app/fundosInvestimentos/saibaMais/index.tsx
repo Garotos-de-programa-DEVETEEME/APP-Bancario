@@ -10,24 +10,12 @@ export default function SaibaMais() {
   const theme = useTheme();
   const styles = getStyles(theme);
 
-  const fund: FundoInvestimento | null = typeof fundData === 'string' ? JSON.parse(fundData) : null;
 
   return (
     <>
-      {fund ? (
-        <>
-          <ScrollView style={styles.scrollView} showsHorizontalScrollIndicator={false}>
-            <View style={styles.container}>
-
-              <FundDetails fund={fund} />
-            </View>
-          </ScrollView>
-        </>
-      ) : (
-        <View style={styles.container}>
-          <Text>Erro: Dados do fundo não encontrados.</Text>
-        </View>
-      )}
+      <View style={styles.container}>
+        <Text>Erro: Dados do fundo não encontrados.</Text>
+      </View>
     </>
   )
 }

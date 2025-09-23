@@ -6,21 +6,18 @@ import { converterNumeroParaHora } from '@/src/utils/hourFormat';
 import { StyleSheet, View } from 'react-native';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
+import { router } from 'expo-router';
 
 interface expandedProps {
   fund: FundoInvestimento;
   expanded: boolean;
   type?: 'default' | 'simular';
-  onSimulate: () => void;
-  onSimulate2: () => void;
 }
 
 export const Expanded = ({
   fund,
   expanded,
   type,
-  onSimulate,
-  onSimulate2,
 }: expandedProps) => {
   //componente de fundo de investimento expandido
   const theme = useTheme();
@@ -59,18 +56,27 @@ export const Expanded = ({
 
       {type === 'simular' ? (
         <View style={styles.buttonContainer}>
-          <NavigationButton onPress={onSimulate} text={'Simular'} />
+          <NavigationButton 
+            onPress={() => router.push({
+              pathname:'simularInvestimento/detalhesFundo/',
+              params: { fundData: JSON.stringify(fund) },
+            })} 
+            text='Simular'
+          />
         </View>
       ) : (
         <View style={styles.textContainer}>
           <NavigationButton
-            onPress={onSimulate}
-            text={'Saiba Mais'}
+            onPress={() => router.push({
+              pathname: '/fundosInvestimentos/saibaMais', // CORRETO: Use a URL sem '/index'
+              params: { fundData: JSON.stringify(fund) },
+            })}
+            text='Saiba Mais'
             transparentStyle
-          />
+            />
           <NavigationButton
-            onPress={onSimulate2}
-            text={'Investir'}
+            onPress={()=>{}}
+            text='Investir'
           />
         </View>
       )}

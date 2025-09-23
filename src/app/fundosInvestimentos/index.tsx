@@ -26,15 +26,6 @@ export default function FundoInvestimento() {
     setCurrentExpanded(key);
   };
 
-      const handleSimulatePress = (fund: FundoInvestimentoType) => {
-       // @ts-ignore
-      router.push({
-        pathname: '/fundosInvestimentos/saibaMais', // CORRETO: Use a URL sem '/index'
-        params: { fundData: JSON.stringify(fund) },
-      });
-    };
-  
-
   return (
     <View style={styles.container}>
       <SearchBar
@@ -52,7 +43,6 @@ export default function FundoInvestimento() {
               key={index}
               onPress={() => changeCurrentExpanded(fund.codigo)}
               expanded={currentExpanded === fund.codigo}
-              onSimulate={() => handleSimulatePress(fund)}
             />
           </>
         );

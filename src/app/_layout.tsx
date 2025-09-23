@@ -83,7 +83,7 @@ export default function RootLayout() {
           <Stack.Screen
             name='fundosInvestimentos/saibaMais/index'
             options={{
-              header: () => <SimpleHeader title='Saiba Mais' />,
+              header: () => <SimpleHeader title='Fundo de Investimentos' />,
             }}
           />
 
