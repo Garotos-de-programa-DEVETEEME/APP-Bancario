@@ -26,12 +26,16 @@ export const NavigationButton = ({
       onPress={onPress}
       disabled={disabled}
       className="rounded-[10px] justify-center items-center mt-4 mb-2 border"
-      style={{
+      style={[disabled? {
+        backgroundColor: theme.disabledButton,
+        borderColor: theme.disabledButton
+      }:{
         backgroundColor: transparentStyle ? 'transparent' : theme.tint,
         borderColor: theme.tint,
+      }, {
         borderWidth: 1,
         width,
-      }}
+      }]}
     >
       <StyledText
         className="text-xl font-medium"
