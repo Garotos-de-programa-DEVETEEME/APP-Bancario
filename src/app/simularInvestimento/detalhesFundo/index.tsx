@@ -1,5 +1,6 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
+import { DataLess } from '@/src/components/Dataless';
 import { AcceptanceTerm } from '@/src/components/InfoTexts/acceptanceTerm';
 import { FundClass } from '@/src/components/InfoTexts/fundClass';
 import { FundDetails } from '@/src/components/InfoTexts/fundDetails';
@@ -7,7 +8,7 @@ import DropdownInput from '@/src/components/Input/dropdownInput';
 import PriceInput from '@/src/components/Input/priceInput';
 import { useTheme } from '@/src/hooks/useTheme';
 import { useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import Animated, {
     FadeIn,
@@ -35,27 +36,24 @@ export default function DetalhesInvestimento() {
     typeof fundData === 'string' ? JSON.parse(fundData) : null;
 
   // Bloqueio do botão sem info e se for menor que o mínimo
-  const isButtonEnabled =
-    fund
-      ? valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== ''
-      : false;
+  const [isButtonEnabled, setButtonEnabbled] = useState(false);
+
+  useEffect(() =>{
+    setButtonEnabbled(fund
+        ? valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== ''
+        : false);
+
+  },[valorSalvoDropdown, valorAplicarEmCentavos])
 
   const handleShowResults = () => {
     setTermoVisivel(false);
     setMostrarResultados(true);
   };
 
-  if (!fund) {
-    return (
-      <View className="flex-1 items-center justify-center" style={{ backgroundColor: theme.background }}>
-        <Text style={{ color: theme.text }}>Erro: Dados do fundo não encontrados.</Text>
-      </View>
-    );
-  }
-
   return (
     <>
-      {!mostrarResultados ? (
+      {!fund? (<DataLess/>):
+      !mostrarResultados ? (
         // ===== TELA DE SIMULAÇÃO =====
         <ScrollView
           className="flex-1"
@@ -298,7 +296,7 @@ export default function DetalhesInvestimento() {
               className="items-center mt-2"
             >
               <NavigationButton
-                onPress={() => console.log('Pressionado')}
+                onPress={() => console.log('Pressionado')}/* TODO redirecionar pagina investir */
                 text="Aplicar Investimento"
                 width={261}
                 height={37}
