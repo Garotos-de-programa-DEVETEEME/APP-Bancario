@@ -34,6 +34,7 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = 'default', o
           </StyledText>
           <View className="flex flex-row items-center gap-[10px]">
             <RiskIcon risk={'alto'} />
+            {/* TODO integrar quando a api estiver pronta */}
           </View>
         </View>
 
