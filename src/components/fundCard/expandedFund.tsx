@@ -2,7 +2,7 @@ import { FundoInvestimento } from '@/src/@Types/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { converterNumeroParaHora } from '@/src/utils/hourFormat';
 import { View } from 'react-native';
-import Animated, { FadeIn, FadeOut, Layout } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
 
@@ -20,15 +20,14 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
   return (
     <Animated.View
-      // anima o "montar/desmontar" + realocação do layout
-      entering={FadeIn.duration(160)}
-      exiting={FadeOut.duration(120)}
-      layout={Layout.springify().damping(16).stiffness(140)}
+      entering={FadeInDown.duration(180)}
+      exiting={FadeOutUp.duration(140)}
+      layout={LinearTransition.springify().damping(16).stiffness(140)}
       className="flex flex-col"
     >
       <View className="flex flex-row justify-between">
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
-          Taxa global:
+          Taxa global:{' '}
         </StyledText>
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {`${fund.taxaAdministracao}% a.a.`}
@@ -37,7 +36,7 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
       <View className="flex flex-row justify-between">
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
-          Hora limite de aplicação:
+          Hora limite de aplicação:{' '}
         </StyledText>
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {converterNumeroParaHora(fund.horaLimite)}
@@ -46,7 +45,7 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
       <View className="flex flex-row justify-between">
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
-          Movimentação (aplic/resg):
+          Movimentação (aplic/resg):{' '}
         </StyledText>
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {'R$ 1,00'}
@@ -55,7 +54,7 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
       <View className="flex flex-row justify-between">
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
-          Cotização de resgate:
+          Cotização de resgate:{' '}
         </StyledText>
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           D+30 (Dias Corridos)
@@ -64,7 +63,7 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
       <View className="flex flex-row justify-between">
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
-          Cotização de resgate:
+          Cotização de resgate:{' '}
         </StyledText>
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}
@@ -73,12 +72,12 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
       {type === 'simular' ? (
         <View className="items-center justify-center mt-2.5">
-          <NavigationButton onPress={onSimulate} text="Simular" />
+          <NavigationButton onPress={onSimulate} text={'Simular'} />
         </View>
       ) : (
         <View className="flex flex-row justify-between">
-          <NavigationButton onPress={() => console.log('Saiba mais')} text="Saiba Mais" transparentStyle />
-          <NavigationButton onPress={() => console.log('Investir')} text="Investir" />
+          <NavigationButton onPress={() => console.log('Saiba mais')} text={'Saiba Mais'} transparentStyle />
+          <NavigationButton onPress={() => console.log('Investir')} text={'Investir'} />
         </View>
       )}
     </Animated.View>
