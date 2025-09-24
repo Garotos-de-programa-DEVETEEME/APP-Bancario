@@ -7,8 +7,7 @@ import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
 
 // ✅ imports de animação
-import Animated, { FadeIn, FadeOut, Layout } from 'react-native-reanimated';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
@@ -18,31 +17,23 @@ interface FundsCardProps {
   onSimulate?: () => void;
 }
 
-export const FundsCard = ({
-  fund,
-  onPress,
-  expanded,
-  expandedType = 'default',
-  onSimulate,
-}: FundsCardProps) => {
+export const FundsCard = ({ fund, onPress, expanded, expandedType = 'default', onSimulate }: FundsCardProps) => {
   const theme = useTheme();
 
   return (
-    // 🔸 container agora é Animated.View, apenas para animar mudanças de layout
     <Animated.View
-      layout={Layout.springify().damping(16).stiffness(140)}
+      // ⬇️ substitui Layout.springify() por LinearTransition.springify()
+      layout={LinearTransition.springify().damping(16).stiffness(140)}
       className="w-[380px] rounded-[15px] border box-border pt-[4px] pb-[2px] pr-[11px] pl-[4px] self-center shadow-md elevation-4"
       style={{ backgroundColor: theme.backgroundCards, borderColor: theme.border, borderWidth: 1 }}
     >
       <Pressable onPress={onPress}>
         <View className="flex flex-row justify-between">
           <StyledText className="text-md" style={{ color: theme.tint }}>
-            {'Fundo' /* fund.type */}
+            {'Fundo'}
           </StyledText>
-
           <View className="flex flex-row items-center gap-[10px]">
-            <RiskIcon risk={'alto' /* fund.risk */} />
-            {/* TODO integrar quando a api estiver pronta */}
+            <RiskIcon risk={'alto'} />
           </View>
         </View>
 
@@ -52,12 +43,12 @@ export const FundsCard = ({
           </StyledText>
         </View>
 
-        {/* 🔸 divisor animado (entra/saí com fade; layout suave) */}
+        {/* divisor animado */}
         {expanded ? (
           <Animated.View
-            entering={FadeIn.duration(90)}
-            exiting={FadeOut.duration(120)}
-            layout={Layout.springify().damping(18)}
+            entering={FadeInDown.duration(140)}
+            exiting={FadeOutUp.duration(120)}
+            layout={LinearTransition.springify().damping(18)}
             style={{ borderTopColor: theme.border, borderTopWidth: 1 }}
           />
         ) : null}
@@ -76,23 +67,16 @@ export const FundsCard = ({
             Rentabilidade dos ultimos 12 meses
           </StyledText>
           <StyledText className="text-lg" style={{ color: theme.tint }}>
-            {/* TODO arrow icons */}
-            {fund.taxaRentabilidade > 0 ? 
-              <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
-              <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
-
-            }
             {`${fund.taxaRentabilidade}%`}
-            {/* TODO consultar se este valor esta em porcentagem */}
           </StyledText>
         </View>
 
-        {/* 🔸 conteúdo expandido animado (sem mudar seu componente) */}
+        {/* conteúdo expandido, agora com FadeInDown/FadeOutUp */}
         {expanded ? (
           <Animated.View
-            entering={FadeIn.duration(160)}
-            exiting={FadeOut.duration(120)}
-            layout={Layout.springify().damping(16).stiffness(140)}
+            entering={FadeInDown.duration(180)}
+            exiting={FadeOutUp.duration(140)}
+            layout={LinearTransition.springify().damping(16).stiffness(140)}
           >
             <Expanded
               fund={fund}
