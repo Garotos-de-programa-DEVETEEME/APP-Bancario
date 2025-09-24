@@ -9,7 +9,7 @@ import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function TelaInicial() {
   const theme = useTheme();
@@ -19,59 +19,87 @@ export default function TelaInicial() {
   const fundosDestaque = MOCK_FUNDOS;//TODO substituir por fundos em destaque
 
   const [searchText, setSearchText] = useState(''); 
-  const marketToday = {
-    nome: 'Dolar',
-    porcentagem: -3.4,
-    valor: 200,
-  }
+  const marketToday = [
+    {
+      nome: 'Dolar',
+      porcentagem: -3.4,
+      valor: 200,
+    },
+    {
+      nome: 'IBOVESTA',
+      porcentagem: 10.3,
+      valor: 185.9,
+    },
+    {
+      nome: 'BCRI11',
+      porcentagem: -5,
+      valor: 10,
+    }
+  ]
+
+  const images = [require('../../assets/Images/image-34.png'), require('../../assets/Images/banestes-56-anos.png')];
 
   return (
-    <View style={styles.container}>
-      <ClientHeader
-        title='Cliente'
-        image='https://legacy.reactjs.org/logo-og.png'
-        value={-1}
-      />
-      <View style={styles.buttonContainer}>
-        <ButtonIcon
-          key={1}
-          route={() => router.push('/carteira')}
-          text='Minha Carteira'
-          iconName='wallet'
-          IconHeigth={24}
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+    >
+      <View style={styles.container}>
+        <ClientHeader
+          title='Cliente'
+          image='https://legacy.reactjs.org/logo-og.png'
+          value={-1}
         />
-        <ButtonIcon
-          key={2}
-          route={() => router.push('/fundosInvestimentos')}
-          text='Fundos de Investimento'
-          iconName='inventory'
-          IconHeigth={24}
-        />
-        <ButtonIcon
-          key={3}
-          route={() => router.push('/simularInvestimento')}
-          text='Simular Investimento'
-          iconName='timeline'
-          IconHeigth={24}
-        />
-      </View>
-      <View>
-        <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
-      </View>
+        <View style={styles.buttonContainer}>
+          <ButtonIcon
+            key={1}
+            route={() => router.push('/carteira')}
+            text='Minha Carteira'
+            iconName='wallet'
+            IconHeigth={24}
+          />
+          <ButtonIcon
+            key={2}
+            route={() => router.push('/fundosInvestimentos')}
+            text='Fundos de Investimento'
+            iconName='inventory'
+            IconHeigth={24}
+          />
+          <ButtonIcon
+            key={3}
+            route={() => router.push('/simularInvestimento')}
+            text='Simular Investimento'
+            iconName='timeline'
+            IconHeigth={24}
+          />
+        </View>
+        <View>
+          <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
+        </View>
 
-      <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
-      <View style={styles.buttonContainer}>
-        {fundosDestaque.map((fund, index) => (
-          <HighlightFund key={index} data={fund} iconName={icons[index % icons.length]} />
-        ))}
+        <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
+        <View style={styles.buttonContainer}>
+          {fundosDestaque.map((fund, index) => (
+            <HighlightFund key={index} data={fund} iconName={icons[index % icons.length]} />
+          ))}
+        </View>
+        <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
+        <View style={styles.buttonContainer}>
+          {marketToday.map((fund, index) => (
+            <TodayMarket key={index} fundoDestaque={fund}/>
+          ))}
+        </View>
+        <View style={styles.line}></View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          {images.map((image, index) => (
+            <Image source={image} key={index} style={{borderRadius:16, width:280, height:136, marginLeft:16}}/>
+          ))}
+        </ScrollView>
+        <View style={styles.line}></View>
       </View>
-      <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
-      <View style={styles.buttonContainer}>
-        {fundosDestaque.map((fund, index) => (
-          <TodayMarket key={index} fundoDestaque={marketToday}/>
-        ))}
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -81,7 +109,7 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
-      width: '100%',
+      backgroundColor:theme.background
     },
     buttonContainer: {
       display: 'flex',
@@ -92,6 +120,10 @@ const getStyles = (theme: StylesType) => {
       fontSize: 20,
       color: theme.text,
       marginLeft: 8,
+    },
+    line:{
+      borderBottomColor:theme.border,
+      borderBottomWidth:1
     }
   });
 };
