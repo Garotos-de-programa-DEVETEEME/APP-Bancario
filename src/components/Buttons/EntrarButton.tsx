@@ -1,5 +1,5 @@
 import { useTheme } from '@/src/hooks/useTheme';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { StyledText } from '../StyledText';
 
 type EntrarButtonProps = {
@@ -12,42 +12,27 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
 
   return (
     <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: theme.background,
-          shadowColor: theme.text,
-        },
-      ]}
+      className="w-[251px] h-[53px] rounded-[10px] flex-row items-center justify-between py-[10px] px-4 shadow"
+      style={{
+        backgroundColor: theme.background,
+        shadowColor: theme.text,
+      }}
     >
-      <StyledText
-        style={[
-          styles.text,
-          {
-            color: theme.text,
-          },
-        ]}
-      >
-        Olá, {/*TODO trocar por variavel nome cliente*/}
-        <StyledText style={{ fontWeight: 'bold', color: 'theme.text' }}>
+      <StyledText className="text-base" style={{ color: theme.text }}>
+        Olá, {/* TODO trocar por variavel nome cliente */}
+        <StyledText style={{ fontWeight: 'bold', color: theme.text }}>
           {title}
         </StyledText>
       </StyledText>
 
-      <View style={[styles.dividerbox]}>
+      <View className="flex-row items-center">
         <View
-          style={[styles.divider, { backgroundColor: theme.alternativeIcon }]}
+          className="w-[2px] h-[26px] mx-3"
+          style={{ backgroundColor: theme.alternativeIcon }}
         />
 
         <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-          <StyledText
-            style={[
-              styles.entrarText,
-              {
-                color: theme.tint,
-              },
-            ]}
-          >
+          <StyledText className="text-base font-medium" style={{ color: theme.tint }}>
             Entrar
           </StyledText>
         </TouchableOpacity>
@@ -55,32 +40,3 @@ export default function EntrarButton({ title, onPress }: EntrarButtonProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: 251,
-    height: 53,
-    borderRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    justifyContent: 'space-between',
-  },
-  text: {
-    fontSize: 16,
-  },
-  entrarText: {
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  divider: {
-    width: 2,
-    height: 26,
-    marginHorizontal: 12,
-  },
-  dividerbox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-});

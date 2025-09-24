@@ -40,41 +40,38 @@ export default function TelaInicial() {
   const images = [require('../../assets/Images/image-34.png'), require('../../assets/Images/banestes-56-anos.png')];
 
   return (
-    <ScrollView
-      showsHorizontalScrollIndicator={false}
-    >
-      <View style={styles.container}>
-        <ClientHeader
-          title='Cliente'
-          image='https://legacy.reactjs.org/logo-og.png'
-          value={-1}
+    <View style={styles.container}>
+      <ClientHeader
+        title='Cliente'
+        image='https://legacy.reactjs.org/logo-og.png'
+        value={-1}
+      />
+      <View style={styles.buttonContainer}>
+        <ButtonIcon
+          key={1}
+          route={() => router.push('/carteira')}
+          text='Minha Carteira'
+          iconName='wallet'
+          IconHeight={30}
         />
-        <View style={styles.buttonContainer}>
-          <ButtonIcon
-            key={1}
-            route={() => router.push('/carteira')}
-            text='Minha Carteira'
-            iconName='wallet'
-            IconHeigth={24}
-          />
-          <ButtonIcon
-            key={2}
-            route={() => router.push('/fundosInvestimentos')}
-            text='Fundos de Investimento'
-            iconName='inventory'
-            IconHeigth={24}
-          />
-          <ButtonIcon
-            key={3}
-            route={() => router.push('/simularInvestimento')}
-            text='Simular Investimento'
-            iconName='timeline'
-            IconHeigth={24}
-          />
-        </View>
-        <View>
-          <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
-        </View>
+        <ButtonIcon
+          key={2}
+          route={() => router.push('/fundosInvestimentos')}
+          text='Fundos de Investimento'
+          iconName='inventory'
+          IconHeight={25}
+        />
+        <ButtonIcon
+          key={3}
+          route={() => router.push('/simularInvestimento')}
+          text='Simular Investimento'
+          iconName='timeline'
+          IconHeight={25}
+        />
+      </View>
+      <View>
+        <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
+      </View>
 
         <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
         <View style={styles.buttonContainer}>

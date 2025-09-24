@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { StyledText } from '../StyledText';
+
 interface favoriteButtonsProps {
   onPress: () => void;
   selected: boolean;
@@ -8,35 +9,23 @@ interface favoriteButtonsProps {
 }
 
 export const FavoriteButton = ({
-  //componente de botão de estrela
   onPress,
   selected,
   text,
 }: favoriteButtonsProps) => {
   return (
-    <Pressable onPress={onPress} style={styles.buttonContainer}>
+    <Pressable
+      onPress={onPress}
+      className="flex flex-row items-center gap-[9px]"
+    >
       <MaterialIcons
         name={selected ? 'star' : 'star-outline'}
         size={32}
-        style={styles.buttonIcon}
+        style={{ color: '#DF9F1C' }}
       />
-      <StyledText style={styles.buttonText}>{text}</StyledText>
+      <StyledText className="text-2xl" style={{ color: '#DF9F1C' }}>
+        {text}
+      </StyledText>
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 9,
-    alignItems: 'center',
-  },
-  buttonIcon: {
-    color: '#DF9F1C',
-  },
-  buttonText: {
-    color: '#DF9F1C',
-    fontSize: 16,
-  },
-});

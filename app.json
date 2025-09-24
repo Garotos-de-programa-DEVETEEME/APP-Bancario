@@ -4,7 +4,6 @@
     "slug": "app-banestes-dtvm",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "appbanestesdtvm",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

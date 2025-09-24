@@ -11,11 +11,26 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
   extend: {
+     elevation: {
+      1: 1,
+      2: 2,
+      4: 4,
+      8: 8,
+    },
     fontFamily: {
       whitneyRegular: ["Whitney-Regular"],
       whitneyBold: ["Whitney-Bold"],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+    addUtilities({
+      '.elevation-1': { elevation: 1 },
+      '.elevation-2': { elevation: 2 },
+      '.elevation-4': { elevation: 4 },
+      '.elevation-8': { elevation: 8 },
+    });
+  },
+  ],
 };

@@ -6,14 +6,14 @@ interface ButtonIconProps {
   route: () => void;
   text: string;
   iconName: string;
-  IconHeigth: number; 
+  IconHeight: number; 
 }
 
 export const ButtonIcon = ({
   route,
   text,
   iconName,
-  IconHeigth,
+  IconHeight,
 }: ButtonIconProps) => {
   const theme = useTheme();
 
@@ -30,13 +30,13 @@ export const ButtonIcon = ({
       <View className="items-center justify-center">
         <MaterialIcons
           name={iconName}
-          size={IconHeigth}
+          size={IconHeight}
           style={{ color: theme.tint }}
         />
       </View>
 
       <StyledText
-        className="text-[11px] leading-4 flex-1"
+        className="text-[12px] leading-4 flex-1"
         style={{ color: theme.tint, textAlign: "left" }}
         numberOfLines={2}
       >
