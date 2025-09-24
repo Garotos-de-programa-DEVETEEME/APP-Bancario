@@ -40,35 +40,36 @@ export default function TelaInicial() {
   const images = [require('../../assets/Images/image-34.png'), require('../../assets/Images/banestes-56-anos.png')];
 
   return (
-    <View style={styles.container}>
-      <ClientHeader
-        title='Cliente'
-        image='https://legacy.reactjs.org/logo-og.png'
-        value={-1}
-      />
-      <View style={styles.buttonContainer}>
-        <ButtonIcon
-          key={1}
-          route={() => router.push('/carteira')}
-          text='Minha Carteira'
-          iconName='wallet'
-          IconHeight={30}
+    <ScrollView>
+      <View style={styles.container}>
+        <ClientHeader
+          title='Cliente'
+          image='https://legacy.reactjs.org/logo-og.png'
+          value={-1}
         />
-        <ButtonIcon
-          key={2}
-          route={() => router.push('/fundosInvestimentos')}
-          text='Fundos de Investimento'
-          iconName='inventory'
-          IconHeight={25}
-        />
-        <ButtonIcon
-          key={3}
-          route={() => router.push('/simularInvestimento')}
-          text='Simular Investimento'
-          iconName='timeline'
-          IconHeight={25}
-        />
-      </View>
+        <View style={styles.buttonContainer}>
+          <ButtonIcon
+            key={1}
+            route={() => router.push('/carteira')}
+            text='Minha Carteira'
+            iconName='wallet'
+            IconHeight={30}
+          />
+          <ButtonIcon
+            key={2}
+            route={() => router.push('/fundosInvestimentos')}
+            text='Fundos de Investimento'
+            iconName='inventory'
+            IconHeight={25}
+          />
+          <ButtonIcon
+            key={3}
+            route={() => router.push('/simularInvestimento')}
+            text='Simular Investimento'
+            iconName='timeline'
+            IconHeight={25}
+          />
+        </View>
       <View>
         <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
       </View>
