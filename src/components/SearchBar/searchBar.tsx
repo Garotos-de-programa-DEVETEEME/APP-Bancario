@@ -12,6 +12,7 @@ interface SearchBarProps {
   onChangeText: (text: string) => void;
   filter?: boolean;
   hasFilter?: boolean;
+  transparent?: boolean; //se true, o fundo da search bar será transparente
 }
 
 export const SearchBar = ({
@@ -19,13 +20,14 @@ export const SearchBar = ({
   onChangeText,
   filter = false, //variavel de controle se a filtragem já foi feita
   hasFilter = true,
+  transparent = false,
 }: SearchBarProps) => {
   const theme = useTheme();
   const styles = getStyles(theme);
   const { filters } = useFilters();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, transparent ? { backgroundColor: 'transparent', borderWidth:1, borderColor:theme.border } : { backgroundColor: theme.backgroundCards, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',}]}>
       <View style={styles.searchContainer}>
         {filter && filters.length > 0? (//confere se a filtragem foi feita e caso sim se há filtros selecionados
           <ScrollView
@@ -70,7 +72,6 @@ export const SearchBar = ({
 const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     container: {
-      backgroundColor: theme.backgroundCards,
       width: 380,
       height: 38,
       borderRadius: 10,
@@ -80,6 +81,7 @@ const getStyles = (theme: StylesType) => {
       justifyContent: 'space-between',
       alignContent: 'center',
       boxSizing: 'border-box',
+
     },
     searchContainer: {
       alignSelf: 'center',

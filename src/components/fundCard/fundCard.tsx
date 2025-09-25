@@ -8,16 +8,22 @@ import { RiskIcon } from './riskIcon';
 
 // ✅ imports de animação
 import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
   onPress: () => void;
   expanded: boolean;
   expandedType?: 'default' | 'simular';
-  onSimulate?: () => void;
 }
 
-export const FundsCard = ({ fund, onPress, expanded, expandedType = 'default', onSimulate }: FundsCardProps) => {
+export const FundsCard = ({
+  fund,
+  onPress,
+  expanded,
+  expandedType = 'default',
+}: FundsCardProps) => {
+  //componente de card de fundo de investimento
   const theme = useTheme();
 
   return (
@@ -67,9 +73,16 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = 'default', o
           <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
-          <StyledText className="text-lg" style={{ color: theme.tint }}>
-            {`${fund.taxaRentabilidade}%`}
-          </StyledText>
+          <View className="flex flex-row items-center">
+            {fund.taxaRentabilidade > 0 ? 
+              <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
+              <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
+
+            }
+            <StyledText className="text-lg" style={{ color: theme.tint }}>
+              {`${fund.taxaRentabilidade}%`}
+            </StyledText>
+          </View>
         </View>
 
         {/* conteúdo expandido, agora com FadeInDown/FadeOutUp */}
@@ -83,7 +96,6 @@ export const FundsCard = ({ fund, onPress, expanded, expandedType = 'default', o
               fund={fund}
               expanded={expanded}
               type={expandedType}
-              onSimulate={onSimulate ? onSimulate : () => {}}
             />
           </Animated.View>
         ) : null}

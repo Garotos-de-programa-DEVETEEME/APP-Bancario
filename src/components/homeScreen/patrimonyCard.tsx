@@ -67,6 +67,7 @@ const getStyles = (theme: StylesType) => {
       width: '100%',
       justifyContent: 'center',
       borderRadius: 15,
+      boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     },
     contained: {
       backgroundColor: 'transparent',

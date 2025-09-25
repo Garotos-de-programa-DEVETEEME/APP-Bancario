@@ -5,15 +5,20 @@ import { View } from 'react-native';
 import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
+import { router } from 'expo-router';
 
 interface expandedProps {
   fund: FundoInvestimento;
   expanded: boolean;
   type?: 'default' | 'simular';
-  onSimulate: () => void;
 }
 
-export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) => {
+export const Expanded = ({
+  fund,
+  expanded,
+  type,
+}: expandedProps) => {
+  //componente de fundo de investimento expandido
   const theme = useTheme();
 
   if (!expanded) return null;
@@ -72,12 +77,28 @@ export const Expanded = ({ fund, expanded, type, onSimulate }: expandedProps) =>
 
       {type === 'simular' ? (
         <View className="items-center justify-center mt-2.5">
-          <NavigationButton onPress={onSimulate} text={'Simular'} />
+          <NavigationButton 
+            onPress={() => router.push({
+              pathname:'simularInvestimento/detalhesFundo/',
+              params: { fundData: JSON.stringify(fund) },
+            })} 
+            text='Simular'
+          />
         </View>
       ) : (
         <View className="flex flex-row justify-between">
-          <NavigationButton onPress={() => console.log('Saiba mais')} text={'Saiba Mais'} transparentStyle />
-          <NavigationButton onPress={() => console.log('Investir')} text={'Investir'} />
+          <NavigationButton
+            onPress={() => router.push({
+              pathname: '/fundosInvestimentos/saibaMais', // CORRETO: Use a URL sem '/index'
+              params: { fundData: JSON.stringify(fund) },
+            })}
+            text='Saiba Mais'
+            transparentStyle
+            />
+          <NavigationButton
+            onPress={()=>{}}
+            text='Investir'
+          />
         </View>
       )}
     </Animated.View>
