@@ -73,14 +73,16 @@ export const FundsCard = ({
           <StyledText className="text-base" style={{ color: theme.alternativeText }}>
             Rentabilidade dos ultimos 12 meses
           </StyledText>
+          <View className="flex flex-row items-center">
             {fund.taxaRentabilidade > 0 ? 
               <MaterialCommunityIcons name="arrow-up" size={16} color="green" />:
               <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
 
             }
-          <StyledText className="text-lg" style={{ color: theme.tint }}>
-            {`${fund.taxaRentabilidade}%`}
-          </StyledText>
+            <StyledText className="text-lg" style={{ color: theme.tint }}>
+              {`${fund.taxaRentabilidade}%`}
+            </StyledText>
+          </View>
         </View>
 
         {/* conteúdo expandido, agora com FadeInDown/FadeOutUp */}
