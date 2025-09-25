@@ -1,11 +1,11 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { converterNumeroParaHora } from '@/src/utils/hourFormat';
+import { router } from 'expo-router';
 import { View } from 'react-native';
 import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
-import { router } from 'expo-router';
 
 interface expandedProps {
   fund: FundoInvestimento;
@@ -96,7 +96,10 @@ export const Expanded = ({
             transparentStyle
             />
           <NavigationButton
-            onPress={()=>{}}
+            onPress={() => router.push({
+              pathname: '/fundosInvestimentos/investir',
+              params: { fundData: JSON.stringify(fund) },
+            })}
             text='Investir'
           />
         </View>

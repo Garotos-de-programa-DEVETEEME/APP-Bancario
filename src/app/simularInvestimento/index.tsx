@@ -63,7 +63,6 @@ export default function SimularInvestimento() {
                 onPress={() => changeCurrentExpanded(fund.codigo)}
                 expanded={currentExpanded === fund.codigo}
                 expandedType="simular"
-                onSimulate={() => handleSimulatePress(fund)}
               />
             );
           })}

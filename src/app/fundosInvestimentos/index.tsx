@@ -1,10 +1,8 @@
-import { FundoInvestimento as FundoInvestimentoType } from '@/src/@Types/fundos';
 import { StylesType } from '@/src/@Types/stylesType';
 import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { SearchBar } from '@/src/components/SearchBar/searchBar';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -39,11 +37,11 @@ export default function FundoInvestimento() {
         return (
           <>
             <FundsCard
-              fund={fund}
-              key={index}
-              onPress={() => changeCurrentExpanded(fund.codigo)}
-              expanded={currentExpanded === fund.codigo}
-            />
+                fund={fund}
+                key={fund.codigo}
+                onPress={() => changeCurrentExpanded(fund.codigo)}
+                expanded={currentExpanded === fund.codigo}
+              />
           </>
         );
       })}
