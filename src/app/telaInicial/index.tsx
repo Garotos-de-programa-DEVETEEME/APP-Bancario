@@ -40,7 +40,9 @@ export default function TelaInicial() {
   const images = [require('../../assets/Images/image-34.png'), require('../../assets/Images/banestes-56-anos.png')];
 
   return (
-    <ScrollView>
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+    >
       <View style={styles.container}>
         <ClientHeader
           title='Cliente'
