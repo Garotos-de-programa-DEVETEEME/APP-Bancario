@@ -30,11 +30,11 @@ export const WalletInfoCard = ({ fundosInvestidos }: walletInfoCardProps) => {
               </View>
               <View>
                   {fundosInvestidos.map((fundo:FundoInvestimento, index)=>{
-                      const cor:string | undefined = fundsColor.find((i)=> i.nome === fundo.nomeReduzido)?.cor;
+                      const cor:string | undefined = fundsColor.find((i)=> i.nome === fundo.nomeReduzido)?.cor;//busca a cor do fundo no array de cores pelo nome reduzido
                       return(
                           <View
                               key={index}
-                              style={[styles.fundoInfo, index !== fundosInvestidos.length - 1 && styles.border,]}
+                              style={[styles.fundoInfo, index !== fundosInvestidos.length - 1 && styles.border,]}//não adiciona borda inferior caso seja o ultimo elemento
                           >
                               <StyledText style={{backgroundColor: cor, width:18, height: 18, borderRadius: 18/2 }}></StyledText>
                               <StyledText style={styles.fundoTexto}> {fundo.nome} </StyledText> {/*não adiciona borda inferior caso seja o ultimo elemento */}
