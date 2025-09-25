@@ -36,7 +36,7 @@ const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     container: {
         height: 72,
-        width: 122,
+        width: 118,
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius:16,
     },

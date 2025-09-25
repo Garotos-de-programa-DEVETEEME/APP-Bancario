@@ -14,11 +14,15 @@ import { Image, ScrollView, StyleSheet, View } from 'react-native';
 export default function TelaInicial() {
   const theme = useTheme();
   const styles = getStyles(theme);
-  const icons = [{name: 'trophy', color:'#FFAC33' }, {name: 'chart-line-variant', color:'#00FF6A' }, {name: 'leaf', color:'#00CC55' }]
+  const icons = [
+    { name: 'trophy', color: '#FFAC33' },
+    { name: 'chart-line-variant', color: '#00FF6A' },
+    { name: 'leaf', color: '#00CC55' },
+  ];
 
-  const fundosDestaque = MOCK_FUNDOS;//TODO substituir por fundos em destaque
+  const fundosDestaque = MOCK_FUNDOS; //TODO substituir por fundos em destaque
 
-  const [searchText, setSearchText] = useState(''); 
+  const [searchText, setSearchText] = useState('');
   const marketToday = [
     {
       nome: 'Dolar',
@@ -34,15 +38,16 @@ export default function TelaInicial() {
       nome: 'BCRI11',
       porcentagem: -5,
       valor: 10,
-    }
-  ]
+    },
+  ];
 
-  const images = [require('../../assets/Images/image-34.png'), require('../../assets/Images/banestes-56-anos.png')];
+  const images = [
+    require('../../assets/Images/image-34.png'),
+    require('../../assets/Images/banestes-56-anos.png'),
+  ];
 
   return (
-    <ScrollView
-      showsHorizontalScrollIndicator={false}
-    >
+    <ScrollView showsHorizontalScrollIndicator={false}>
       <View style={styles.container}>
         <ClientHeader
           title='Cliente'
@@ -72,29 +77,45 @@ export default function TelaInicial() {
             IconHeight={25}
           />
         </View>
-      <View>
-        <SearchBar value={searchText} onChangeText={setSearchText} placeholder='Buscar fundos por nome ou categoria' hasFilter={false} />
-      </View>
+        <View style={{width:'90%', alignSelf:'center'}}>
+          <SearchBar
+            value={searchText}
+            onChangeText={setSearchText}
+            placeholder='Buscar fundos por nome ou categoria'
+            hasFilter={false}
+            transparent
+          />
+        </View>
 
         <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
         <View style={styles.buttonContainer}>
           {fundosDestaque.map((fund, index) => (
-            <HighlightFund key={index} data={fund} iconName={icons[index % icons.length]} />
+            <HighlightFund
+              key={index}
+              data={fund}
+              iconName={icons[index % icons.length]}
+            />
           ))}
         </View>
         <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
         <View style={styles.buttonContainer}>
           {marketToday.map((fund, index) => (
-            <TodayMarket key={index} fundoDestaque={fund}/>
+            <TodayMarket key={index} fundoDestaque={fund} />
           ))}
         </View>
         <View style={styles.line}></View>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {images.map((image, index) => (
-            <Image source={image} key={index} style={{borderRadius:16, width:280, height:136, marginLeft:16}}/>
+            <Image
+              source={image}
+              key={index}
+              style={{
+                borderRadius: 16,
+                width: 280,
+                height: 136,
+                marginLeft: 16,
+              }}
+            />
           ))}
         </ScrollView>
         <View style={styles.line}></View>
@@ -109,21 +130,23 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
-      backgroundColor:theme.background
+      backgroundColor: theme.background,
     },
     buttonContainer: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-around',
+      justifyContent: 'space-between',
+      width:'90%',
+      alignSelf:'center'
     },
-    titleText:{
+    titleText: {
       fontSize: 20,
       color: theme.text,
-      marginLeft: 8,
+      marginLeft: 24,
     },
-    line:{
-      borderBottomColor:theme.border,
-      borderBottomWidth:1
-    }
+    line: {
+      borderBottomColor: theme.border,
+      borderBottomWidth: 1,
+    },
   });
 };
