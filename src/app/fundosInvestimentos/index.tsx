@@ -4,8 +4,8 @@ import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { SearchBar } from '@/src/components/SearchBar/searchBar';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { router } from 'expo-router';
-import { useState } from 'react';
+import { useLocalSearchParams} from 'expo-router/build/hooks';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 export default function FundoInvestimento() {
@@ -14,7 +14,20 @@ export default function FundoInvestimento() {
   const styles = getStyles(theme);
 
   const [currentExpanded, setCurrentExpanded] = useState(-1); //variavel que controla o fundo expandido com base no seu ID
-  const [searchBarValue, setSearchBarValue] = useState('');
+  const { searchDefaultValue } = useLocalSearchParams();
+  const [searchBarValue, setSearchBarValue] = useState<string>('');
+
+  const searchByText = (searchText:string) =>{
+    console.log('pesquisando: ' + searchText);
+    console.log(searchBarValue)
+  }//TODO implementar funcionalidade de pesquisa de texto
+
+  useEffect(() =>{
+    if(typeof(searchDefaultValue) === 'string'){
+      setSearchBarValue(searchDefaultValue);
+      searchByText(searchDefaultValue);
+    }
+  }, [searchDefaultValue])
 
   const changeCurrentExpanded = (key: number) => {
     //controla qual fundo esta expandido
@@ -32,6 +45,7 @@ export default function FundoInvestimento() {
         placeholder='Buscar fundo'
         value={searchBarValue}
         onChangeText={(e) => setSearchBarValue(e)}
+        onIconPress={() => searchByText(searchBarValue)}
         filter
       />
 

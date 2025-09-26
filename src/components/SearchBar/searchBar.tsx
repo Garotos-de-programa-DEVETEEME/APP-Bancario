@@ -2,7 +2,13 @@ import { StylesType } from '@/src/@Types/stylesType';
 import { useFilters } from '@/src/Context/filterContext';
 import { useTheme } from '@/src/hooks/useTheme';
 import { router } from 'expo-router';
-import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FiltersSelected } from './FiltersSelected';
 
@@ -10,6 +16,7 @@ interface SearchBarProps {
   placeholder?: string;
   value: string; //variavel para controle
   onChangeText: (text: string) => void;
+  onIconPress: () => void;
   filter?: boolean;
   hasFilter?: boolean;
   transparent?: boolean; //se true, o fundo da search bar será transparente
@@ -17,7 +24,9 @@ interface SearchBarProps {
 
 export const SearchBar = ({
   placeholder,
+  value,
   onChangeText,
+  onIconPress,
   filter = false, //variavel de controle se a filtragem já foi feita
   hasFilter = true,
   transparent = false,
@@ -27,9 +36,23 @@ export const SearchBar = ({
   const { filters } = useFilters();
 
   return (
-    <View style={[styles.container, transparent ? { backgroundColor: 'transparent', borderWidth:1, borderColor:theme.border } : { backgroundColor: theme.backgroundCards, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',}]}>
+    <View
+      style={[
+        styles.container,
+        transparent
+          ? {
+              backgroundColor: 'transparent',
+              borderWidth: 1,
+              borderColor: theme.border,
+            }
+          : {
+              backgroundColor: theme.backgroundCards,
+              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+            },
+      ]}
+    >
       <View style={styles.searchContainer}>
-        {filter && filters.length > 0? (//confere se a filtragem foi feita e caso sim se há filtros selecionados
+        {filter && filters.length > 0 ? ( //confere se a filtragem foi feita e caso sim se há filtros selecionados
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -43,28 +66,33 @@ export const SearchBar = ({
               <FiltersSelected data={filter} key={filter.id} />
             ))}
           </ScrollView>
-        ):
-        (
+        ) : (
           <>
-            <MaterialIcons name='search' style={styles.searchIcon} size={24} />
+            <Pressable onPress={onIconPress}>
+              <MaterialIcons
+                name='search'
+                style={styles.searchIcon}
+                size={24}
+              />
+            </Pressable>
             <TextInput
               style={styles.searchTextInput}
               placeholder={placeholder}
               placeholderTextColor={theme.alternativeIcon}
-              value={filters[0]?.value}
+              value={value}
               onChangeText={onChangeText}
             />
           </>
         )}
       </View>
-        {hasFilter && (
-          <MaterialIcons
-            name='filter-list'
-            style={styles.filterIcon}
-            size={24}
-            onPress={() => router.push('/fundosInvestimentos/filter')}
-          />
-        )}
+      {hasFilter && (
+        <MaterialIcons
+          name='filter-list'
+          style={styles.filterIcon}
+          size={24}
+          onPress={() => router.push('/fundosInvestimentos/filter')}
+        />
+      )}
     </View>
   );
 };
@@ -81,7 +109,6 @@ const getStyles = (theme: StylesType) => {
       justifyContent: 'space-between',
       alignContent: 'center',
       boxSizing: 'border-box',
-
     },
     searchContainer: {
       alignSelf: 'center',
