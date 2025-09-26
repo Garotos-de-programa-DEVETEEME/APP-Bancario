@@ -1,19 +1,19 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 import { DataLess } from '@/src/components/Dataless';
-import { AcceptanceTerm } from '@/src/components/InfoTexts/acceptanceTerm';
 import { FundClass } from '@/src/components/InfoTexts/fundClass';
 import { FundDetails } from '@/src/components/InfoTexts/fundDetails';
 import DropdownInput from '@/src/components/Input/dropdownInput';
+import { InvestorProfile } from '@/src/components/Input/investorProfile';
 import PriceInput from '@/src/components/Input/priceInput';
 import { useTheme } from '@/src/hooks/useTheme';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import Animated, {
-    FadeIn,
-    FadeInDown,
-    LinearTransition
+  FadeIn,
+  FadeInDown,
+  LinearTransition
 } from 'react-native-reanimated';
 
 const formatCurrency = (valueInCents: number) => {
@@ -25,12 +25,17 @@ export default function DetalhesInvestimento() {
   const { fundData } = useLocalSearchParams();
   const theme = useTheme();
 
+  const [perfilPreenchido, setPerfilPreenchido] = useState(false);
+
   // Comunicação entre inputs e Pai
   const [valorSalvoDropdown, setValorSalvoDropdown] = useState('');
   const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
   const [valorMensalOpcional, setValorMensalOpcional] = useState(0);
   const [termoVisivel, setTermoVisivel] = useState(false);
   const [mostrarResultados, setMostrarResultados] = useState(false);
+
+  const [dataAplicacao, setDataAplicacao] = useState('');
+  const [dataResgate, setDataResgate] = useState('');
 
   const fund: FundoInvestimento | null =
     typeof fundData === 'string' ? JSON.parse(fundData) : null;
@@ -46,15 +51,52 @@ export default function DetalhesInvestimento() {
   },[valorSalvoDropdown, valorAplicarEmCentavos])
 
   const handleShowResults = () => {
-    setTermoVisivel(false);
+    const hoje = new Date();
+    // Formata a data de aplicação com dia, mês e ano
+    const diaAplicacao = String(hoje.getDate()).padStart(2, '0');
+    const mesAplicacao = String(hoje.getMonth() + 1).padStart(2, '0');
+    const anoAplicacao = hoje.getFullYear();
+    setDataAplicacao(`${diaAplicacao}/${mesAplicacao}/${anoAplicacao}`);
+
+    // Calcula a data de resgate
+    const [quantidade, unidade] = valorSalvoDropdown.split(' ');
+    const numQuantidade = parseInt(quantidade, 10);
+    const dataFutura = new Date(hoje);
+
+    if (unidade.includes('mês') || unidade.includes('mes')) {
+      dataFutura.setMonth(hoje.getMonth() + numQuantidade);
+    } else if (unidade.includes('ano')) {
+      dataFutura.setFullYear(hoje.getFullYear() + numQuantidade);
+    }
+
+    // Formata a data de resgate com dia, mês e ano
+    const diaFuturo = String(dataFutura.getDate()).padStart(2, '0');
+    const mesFuturo = String(dataFutura.getMonth() + 1).padStart(2, '0');
+    const anoFuturo = dataFutura.getFullYear();
+    setDataResgate(`${diaFuturo}/${mesFuturo}/${anoFuturo}`);
+    
     setMostrarResultados(true);
+  };
+
+  const handleProfileAccept = () => {
+    setPerfilPreenchido(true);
   };
 
   return (
     <>
+       <InvestorProfile
+        visible={!perfilPreenchido}
+        onClose={() => router.back()}
+        onAccept={handleProfileAccept}
+        clientName='Cliente'
+        image='https://legacy.reactjs.org/logo-og.png'
+        />
+
+    {perfilPreenchido && (
+      <>
       {!fund? (<DataLess/>):
       !mostrarResultados ? (
-        // ===== TELA DE SIMULAÇÃO =====
+        // ===== TELA DE INVESTIMENTO =====
         <ScrollView
           className="flex-1"
           style={{ backgroundColor: theme.background }}
@@ -136,15 +178,14 @@ export default function DetalhesInvestimento() {
               <FundClass fund={fund} />
             </Animated.View>
 
-            {/* Botão Simular */}
             <Animated.View
               layout={LinearTransition.springify().damping(16)}
               entering={FadeInDown.duration(160)}
               className="items-center mt-4"
             >
               <NavigationButton
-                onPress={() => setTermoVisivel(true)}
-                text="Simular"
+                onPress={handleShowResults}
+                text="Investir"
                 width={261}
                 height={37}
                 disabled={!isButtonEnabled}
@@ -153,13 +194,6 @@ export default function DetalhesInvestimento() {
 
             <View className="h-8" />
           </View>
-
-          {/* Termo de Aceite (modal) */}
-          <AcceptanceTerm
-            visible={termoVisivel}
-            onClose={() => setTermoVisivel(false)}
-            onAccept={handleShowResults}
-          />
         </ScrollView>
       ) : (
         // ===== TELA DE RESULTADOS =====
@@ -273,40 +307,35 @@ export default function DetalhesInvestimento() {
                 style={{ backgroundColor: theme.backgroundCards }}
               >
                 <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  Resgate
+                  Data de aplicação
                 </Text>
                 <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  {/* Placeholder do resultado */}
-                  {formatCurrency(valorAplicarEmCentavos + valorAplicarEmCentavos * 0.1)}
+                  {dataAplicacao}
                 </Text>
               </Animated.View>
-            </Animated.View>
 
-            {/* Pitch */}
-            <View className="items-center mb-2">
-              <Text style={{ fontSize: 12, fontStyle: 'italic', color: theme.textSecundary }}>
-                Deseja utilizar esses valores para um investimento real?
-              </Text>
-            </View>
+              <Animated.View
+                entering={FadeInDown.duration(160)}
+                layout={LinearTransition.springify().damping(18)}
+                className="rounded-2xl p-4 min-h-[46px] flex-row items-center justify-between shadow elevation-2"
+                style={{ backgroundColor: theme.backgroundCards }}
+              >
+                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
+                  Data limite de resgate
+                </Text>
+                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
+                  {dataResgate}
+                </Text>
+              </Animated.View>
 
-            {/* CTA */}
-            <Animated.View
-              layout={LinearTransition.springify().damping(16)}
-              entering={FadeInDown.duration(140)}
-              className="items-center mt-2"
-            >
-              <NavigationButton
-                onPress={() => console.log('Pressionado')}/* TODO redirecionar pagina investir */
-                text="Aplicar Investimento"
-                width={261}
-                height={37}
-              />
             </Animated.View>
 
             <View className="h-8" />
           </View>
         </ScrollView>
       )}
+    </>
+    )}
     </>
   );
 }
