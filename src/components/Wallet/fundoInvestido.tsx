@@ -90,7 +90,7 @@ export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
             <NavigationButton
               onPress={() =>
                 router.push({
-                  pathname: "carteira/resgatar",
+                  pathname: "/carteira/resgatar",
                   params: {
                     saldo: 10,
                     valorMinimoPermanencia: fundoData.valorAplicacaoInicial,
