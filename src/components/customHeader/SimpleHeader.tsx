@@ -5,16 +5,27 @@ import { useNavigation } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StyledText } from '../StyledText';
+import { FavoriteButton } from '../Buttons/favoriteButton';
+import { useEffect, useState } from 'react';
 
 interface SimpleHeaderProps {
   title: string;
+  favorite?: boolean;
 }
 
-export default function SimpleHeader({ title }: SimpleHeaderProps) {
+export default function SimpleHeader({ title, favorite= false }: SimpleHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   const styles = getStyles(theme);
+
+  const [favoriteFund, setFavoriteFund] = useState(false);
+
+  useEffect(() => {
+    if(favorite){{/* TODO fazer com base nos favoritados pelo cliente */}
+      setFavoriteFund(false);
+    }
+  },[])
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -27,6 +38,9 @@ export default function SimpleHeader({ title }: SimpleHeaderProps) {
       <View style={styles.titleContainer}>
         <StyledText style={styles.title}>{title}</StyledText>
       </View>
+      {favorite && (
+          <FavoriteButton onPress={() => setFavoriteFund(prev => !prev)} selected={favoriteFund}/>
+      )}
       <View style={styles.buttonContainer} />
     </View>
   );
