@@ -4,8 +4,7 @@ import { DataLess } from '@/src/components/Dataless';
 import { StyledText } from '@/src/components/StyledText';
 import { useTheme } from "@/src/hooks/useTheme";
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 export default function SaibaMais() {
   const { fundData } = useLocalSearchParams();
