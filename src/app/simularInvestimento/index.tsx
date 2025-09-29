@@ -1,9 +1,7 @@
-import { FundoInvestimento } from '@/src/@Types/fundos';
 import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { StyledText } from '@/src/components/StyledText';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { router } from 'expo-router';
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -19,13 +17,6 @@ export default function SimularInvestimento() {
       return;
     }
     setCurrentExpanded(key);
-  };
-
-  const handleSimulatePress = (fund: FundoInvestimento) => {
-    router.push({
-      pathname: '/simularInvestimento/detalhesFundo',
-      params: { fundData: JSON.stringify(fund) },
-    });
   };
 
   return (
@@ -63,7 +54,6 @@ export default function SimularInvestimento() {
                 onPress={() => changeCurrentExpanded(fund.codigo)}
                 expanded={currentExpanded === fund.codigo}
                 expandedType="simular"
-                onSimulate={() => handleSimulatePress(fund)}
               />
             );
           })}

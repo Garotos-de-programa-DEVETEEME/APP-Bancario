@@ -39,14 +39,14 @@ export default function TelaInicial() {
         <View style={styles.buttonContainer}>
           <ButtonIcon
             key={1}
-            route={() => router.push('/carteira')}
+            route={() => router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})}
             text='Minha Carteira'
             iconName='wallet'
             IconHeight={30}
           />
           <ButtonIcon
             key={2}
-            route={() => router.push('/fundosInvestimentos')}
+            route={() => router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})}
             text='Fundos de Investimento'
             iconName='inventory'
             IconHeight={25}

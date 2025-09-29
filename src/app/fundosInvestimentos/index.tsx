@@ -18,8 +18,6 @@ export default function FundoInvestimento() {
   const [searchBarValue, setSearchBarValue] = useState<string>('');
 
   const searchByText = (searchText:string) =>{
-    console.log('pesquisando: ' + searchText);
-    console.log(searchBarValue)
   }//TODO implementar funcionalidade de pesquisa de texto
 
   useEffect(() =>{
