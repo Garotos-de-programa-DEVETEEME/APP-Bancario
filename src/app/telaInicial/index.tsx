@@ -119,8 +119,9 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      width:'90%',
-      alignSelf:'center'
+      width:'100%',
+      alignSelf:'center',
+      paddingHorizontal: 10
     },
     titleText: {
       fontSize: 20,
