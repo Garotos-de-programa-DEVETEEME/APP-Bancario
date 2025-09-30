@@ -1,6 +1,7 @@
 import { StylesType } from '@/src/@Types/stylesType';
 import { useFilters } from '@/src/Context/filterContext';
 import { useTheme } from '@/src/hooks/useTheme';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import {
   Pressable,
@@ -33,7 +34,7 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const theme = useTheme();
   const styles = getStyles(theme);
-  const { filters } = useFilters();
+  const { filters, setFilters } = useFilters();
 
   return (
     <View
@@ -53,19 +54,20 @@ export const SearchBar = ({
     >
       <View style={styles.searchContainer}>
         {filter && filters.length > 0 ? ( //confere se a filtragem foi feita e caso sim se há filtros selecionados
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={{ maxWidth: 306, flexGrow: 0 }}
-            contentContainerStyle={{
-              flexDirection: 'row',
-              gap: 10,
-            }}
-          >
-            {filters.map((filter) => (
-              <FiltersSelected data={filter} key={filter.id} />
-            ))}
-          </ScrollView>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ maxWidth: 306, flexGrow: 0 }}
+              contentContainerStyle={{
+                flexDirection: 'row',
+                gap: 10,
+              }}
+            >
+              {filters.map((filter) => (
+                <FiltersSelected data={filter} key={filter.id} />
+              ))}
+              
+            </ScrollView>
         ) : (
           <>
             <Pressable onPress={onIconPress}>
@@ -86,12 +88,19 @@ export const SearchBar = ({
         )}
       </View>
       {hasFilter && (
-        <MaterialIcons
-          name='filter-list'
-          style={styles.filterIcon}
-          size={24}
-          onPress={() => router.push('/fundosInvestimentos/filter')}
-        />
+        <View style={{display:'flex', flexDirection:'row', alignItems:'center', gap:15 }}>
+          {(filter && filters.length > 0) && (//caso a filtragem tenha sido feita adiciona o botão de remover filtros
+            <Pressable onPress={() => setFilters([])}>
+                <MaterialCommunityIcons name="close-circle-outline" color={theme.border} size={24} />
+              </Pressable>
+          )}
+          <MaterialIcons
+            name='filter-list'
+            style={styles.filterIcon}
+            size={24}
+            onPress={() => router.push('/fundosInvestimentos/filter')}
+          />
+        </View>
       )}
     </View>
   );
