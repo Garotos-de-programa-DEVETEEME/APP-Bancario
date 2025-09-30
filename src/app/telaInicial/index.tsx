@@ -65,7 +65,7 @@ export default function TelaInicial() {
             onChangeText={(e) => setSearchText(e)}
             placeholder='Buscar fundos por nome ou categoria'
             hasFilter={false}
-            onIconPress={() => router.push({pathname:'/fundosInvestimentos', params:{ searchDefaultValue:searchText }})}
+            onIconPress={() => router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})}
             transparent
           />
         </View>
