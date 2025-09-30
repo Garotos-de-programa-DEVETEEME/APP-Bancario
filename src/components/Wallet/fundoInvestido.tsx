@@ -21,11 +21,12 @@ import { StyledText } from "../StyledText";
 
 interface FundoInvestidoProps {
   fundoData: FundoInvestimento;
+  expanded: boolean;
+  setExpanded: () => void
 }
 
-export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
+export const FundoInvestido = ({ fundoData, expanded, setExpanded }: FundoInvestidoProps) => {
   const theme = useTheme();
-  const [expanded, setExpanded] = useState(false);
 
   const scale = useSharedValue(1);
   const aScale = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
@@ -34,7 +35,7 @@ export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
   const aChevron = useAnimatedStyle(() => ({ transform: [{ rotate: `${rot.value}deg` }] }));
 
   const toggle = () => {
-    setExpanded((p) => !p);
+    setExpanded();
     rot.value = withTiming(expanded ? 0 : 180, { duration: 220, easing: Easing.out(Easing.cubic) });
   };
 

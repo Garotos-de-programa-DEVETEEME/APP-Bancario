@@ -143,7 +143,7 @@ export default function FilterFundsPage() {
       selectedFilters = [...selectedFilters, starFilter];
     }
     setFilters(selectedFilters); //defini o valor dos filtros globais de acordo com os filtros selecionados
-    router.push('/fundosInvestimentos');
+    router.push({pathname: '/pagesWithTabs', params:{defaultTab:'fundos'}});
   };
 
   return (

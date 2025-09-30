@@ -6,10 +6,22 @@ import { WalletInfoCard } from "@/src/components/Wallet/carteira";
 import { FundoInvestido } from "@/src/components/Wallet/fundoInvestido";
 import { MOCK_FUNDOS } from "@/src/data/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
+import { FundoInvestimento } from "@/src/@Types/fundos";
 
 export default function WalletPage() {
   const theme = useTheme();
-  const [fundosInvestidos, setFundosInvestidos] = useState<any[]>([]); // TODO: integrar com API
+  const [fundosInvestidos, setFundosInvestidos] = useState<FundoInvestimento[]>([]); // TODO: integrar com API
+  const [currentExpanded, setCurrentExpanded] = useState<string | null>(null);
+
+  const changeCurrentExpanded = (key: string) => {
+    //controla qual fundo esta expandido
+    if (key === currentExpanded) {
+      //caso clique em um fundo já expandido fecha o mesmo
+      setCurrentExpanded(null);
+      return;
+    }
+    setCurrentExpanded(key);
+  };
 
   useEffect(() => {
     setFundosInvestidos(MOCK_FUNDOS);
@@ -45,8 +57,6 @@ export default function WalletPage() {
         <View className="flex-col gap-5">
           {fundosInvestidos.map((fundo, index) => {
             const key =
-              (fundo?.id as string) ||
-              (fundo?.codigo as string) ||
               `${fundo?.nome ?? "fundo"}-${index}`;
 
             return (
@@ -54,7 +64,7 @@ export default function WalletPage() {
                 key={key}
                 entering={FadeInDown.duration(400).delay(120 + index * 70).springify()}
               >
-                <FundoInvestido fundoData={fundo} />
+                <FundoInvestido expanded={currentExpanded === key} fundoData={fundo} setExpanded={() => changeCurrentExpanded(key)}/>
               </Animated.View>
             );
           })}
