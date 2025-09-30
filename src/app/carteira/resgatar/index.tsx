@@ -98,7 +98,8 @@ export default function ResgatarPage() {
             </StyledText>
           </View>
 
-          <NavigationButton onPress={() => router.push({pathname:'/pagesWithTabs', params:{defaultTab:'carteira'}})} text="Continuar" />
+          {/* LINHA CORRIGIDA ABAIXO */}
+          <NavigationButton onPress={() => router.push('/carteira')} text="Continuar" />
         </View>
       </View>
     </View>
