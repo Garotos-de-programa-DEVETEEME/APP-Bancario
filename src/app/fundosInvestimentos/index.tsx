@@ -56,7 +56,7 @@ export default function FundoInvestimento({ filters }: FundoInvestimentoProps) {
           <>
             <FundsCard
               fund={fund}
-              key={index}
+              key={fund.codigo}
               onPress={() => changeCurrentExpanded(fund.codigo)}
               expanded={currentExpanded === fund.codigo}
             />
