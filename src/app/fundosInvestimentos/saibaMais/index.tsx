@@ -1,5 +1,6 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { StylesType } from '@/src/@Types/stylesType';
+import { DocumentButton } from '@/src/components/Buttons/DocumentButton';
 import { DataLess } from '@/src/components/Dataless';
 import { ExpandedText } from '@/src/components/InfoTexts/expandText';
 import { TextRow } from '@/src/components/InfoTexts/rowText';
@@ -22,17 +23,17 @@ export default function SaibaMais() {
     { left: 'Resgate mínimo', right: fundo.valorMinimoResgatavel },
     { left: 'Saldo mínimo para permanência', right: fundo.valorSaldoMinimo },
     { left: 'Tipo de cota', right: 'Abertura' },
-    { left: 'Carência', rigth: fundo.dataCarenciaResgate },
+    { left: 'Carência', right: fundo.dataCarenciaResgate },
     { left: 'Cota de aplicação', right: 'D+0' },
     { left: 'Cota de resgate', right: `D+${fundo.prazoConversaoResgate}` },
     { left: 'Débito em conta corrente', right: `D+${fundo.prazoConversaoResgate}` },
     { left: 'Crédito em conta corrente', right: `D+${fundo.fundoPrazoCreditoConta}` },
     { left: 'Taxa de gestão', right: `${fundo.taxaAdministracao}% a.a.` },
     { left: 'Taxa de distribuição', right:  `40% a.a. ` },
-    { left: 'Taxa de performance', rigth:`${fundo.taxaRentabilidade}` },
-    { left: 'Taxa de ingresso',  },
-    { left: 'Taxa de saída', rigth:`${fundo.taxaRentabilidade}` },
-    { left: 'Horário limite para aplicação e resgate', rigth:`${fundo.horaLimiteAplicacaoInternet}:00` },
+    { left: 'Taxa de performance', right:`${fundo.taxaRentabilidade}% a.a.` },
+    { left: 'Taxa de ingresso', right:`${fundo.taxaRentabilidade}% a.a.` },
+    { left: 'Taxa de saída', right:`${fundo.taxaRentabilidade}% a.a.` },
+    { left: 'Horário limite para aplicação e resgate', right:`${fundo.horaLimiteAplicacaoInternet}:00` },
   ]:[];
   return (
     <View style={styles.container}>
@@ -51,13 +52,24 @@ export default function SaibaMais() {
           </View>
           <View style={{borderBottomColor: theme.border, borderBottomWidth: 1, marginBottom: 16 }}>
             <ExpandedText title='Condições Comerciais' expandedItens={fundInformation}/>
+            <DocumentButton type={'row'} title='Principais Fatores de Risco do Fundo' documentoUri={''}/>
+            <DocumentButton type={'row'} title='Tributação' documentoUri={''}/>
             <ExpandedText title='Documentos do fundo' expandedItens={[]}/>
             <ExpandedText title='Comunicado aos Cotistas' expandedItens={[]}/>
             <ExpandedText title='Avisos Importantes' expandedItens={[]}/>
           </View>
-          <View style={{marginTop: 24, marginBottom: 12}}>
-            <StyledText style={{fontSize: 32, fontWeight: 'bold', color:theme.text}}>Sobre o fundo</StyledText>
-            <StyledText style={{fontSize: 32, fontWeight: 'bold', color:theme.text}}> {/*TODO adicionar descrição */} </StyledText>
+          <View style={{marginTop: 24, marginBottom:16, gap:8}}>
+            <StyledText style={{fontSize: 32, fontWeight: '500', color:theme.text}}>Sobre o fundo</StyledText>
+            <StyledText style={{fontSize: 14, fontWeight: '400', color:theme.text, marginBottom: 12}}>
+              Este fundo de investimento é destinado a investidores, pessoas físicas ou jurídicas, interessados em aplicar recursos no mercado de renda fixa com uma estratégia voltada para acompanhar a taxa SELIC. O fundo tem como objetivo proporcionar valorização das cotas dos seus cotistas por meio de aplicações em ativos financeiros de baixo risco, sendo classificado como renda fixa simples.
+            </StyledText>
+            <StyledText style={{fontSize: 14, fontWeight: '400', color:theme.text}}>
+              A política de investimento estabelece que, no mínimo, 95% do patrimônio líquido do fundo seja composto por títulos da dívida pública federal ou operações compromissadas lastreadas nesses títulos, assegurando maior segurança e previsibilidade ao investimento. No entanto, a rentabilidade do fundo está sujeita a deduções de custos e despesas, incluindo a taxa de administração, que impactam diretamente o retorno final para o investidor. {/*TODO adicionar descrição */} 
+            </StyledText>
+          </View>
+          <View style={{marginBottom:80, display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+            <DocumentButton title='Regulamento' type='default' documentoUri={''} />
+            <DocumentButton title='Documentação' type='default' documentoUri={''} alternativeIcon />
           </View>
         </ScrollView>
       ):(
