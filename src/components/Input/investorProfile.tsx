@@ -166,9 +166,17 @@ const getStyles = (theme: StylesType) => {
             alignItems: 'center',
             justifyContent: 'space-between',
         },
-        backButton: { width: 40 },
-        titleContainer: { flex: 1, alignItems: 'center' },
-        title: { fontSize: 18, fontWeight: 'bold', color: theme.text },
+        backButton: {
+            width: 40
+        },
+        titleContainer: {
+            flex: 1, alignItems: 'center'
+        },
+        title: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: theme.text 
+        },
         content: {
             flex: 1,
             justifyContent: 'center',
@@ -184,10 +192,29 @@ const getStyles = (theme: StylesType) => {
             gap: 20,
             elevation: 5,
         },
-        cardGreeting: { fontSize: 28, color: theme.text, fontWeight: 'bold' },
-        image: { height: 200, width: 200, borderRadius: 100 },
-        cardTitle: { fontSize: 24, fontWeight: 'bold', color: theme.text, textAlign: 'center' },
-        footer: { alignItems: "center", paddingBottom: 20 },
-        progressText: { color: theme.textSecundary, marginBottom: 10 },
+        cardGreeting: {
+            fontSize: 28,
+            color: theme.text,
+            fontWeight: 'bold' 
+        },
+        image: {
+            height: 200,
+            width: 200,
+            borderRadius: 100
+        },
+        cardTitle: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            color: theme.text,
+            textAlign: 'center' 
+        },
+        footer: {
+            alignItems: "center",
+            paddingBottom: 20 
+        },
+        progressText: {
+            color: theme.textSecundary,
+            marginBottom: 10 
+        },
     });
 };
