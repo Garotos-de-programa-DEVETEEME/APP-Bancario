@@ -5,7 +5,7 @@ import HeaderTabs from "@/src/components/customHeader/HeaderTabs";
 import WalletPage from "../carteira";
 
 export default function PageWithTabs(){
-    const { defaultTab } = useLocalSearchParams();
+    const { defaultTab, filter='' } = useLocalSearchParams();
     const [currentTab, setCurrentTab] = useState<string>('');
 
     useEffect(()=>{
@@ -15,7 +15,7 @@ export default function PageWithTabs(){
         <>
             <HeaderTabs activeTab={currentTab} setActiveTab={(e) => setCurrentTab(e)} />
             {currentTab === 'fundos' && (
-                <FundoInvestimento/>
+                <FundoInvestimento filters={filter}/>
             )}
             {currentTab === 'carteira' &&
                 <WalletPage/>

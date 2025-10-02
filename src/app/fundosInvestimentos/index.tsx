@@ -8,24 +8,28 @@ import { useLocalSearchParams} from 'expo-router/build/hooks';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export default function FundoInvestimento() {
+interface FundoInvestimentoProps {
+  filters?: string | string[];
+}
+
+
+export default function FundoInvestimento({ filters }: FundoInvestimentoProps) {
   const investmentFunds = MOCK_FUNDOS; //TODO : Fetch real data from API or context
   const theme = useTheme();
   const styles = getStyles(theme);
 
   const [currentExpanded, setCurrentExpanded] = useState(-1); //variavel que controla o fundo expandido com base no seu ID
-  const { searchDefaultValue } = useLocalSearchParams();
   const [searchBarValue, setSearchBarValue] = useState<string>('');
 
   const searchByText = (searchText:string) =>{
   }//TODO implementar funcionalidade de pesquisa de texto
 
   useEffect(() =>{
-    if(typeof(searchDefaultValue) === 'string'){
-      setSearchBarValue(searchDefaultValue);
-      searchByText(searchDefaultValue);
+    if(typeof(filters) === 'string'){
+      setSearchBarValue(filters);
+      searchByText(filters);
     }
-  }, [searchDefaultValue])
+  }, [filters])
 
   const changeCurrentExpanded = (key: number) => {
     //controla qual fundo esta expandido
@@ -52,7 +56,7 @@ export default function FundoInvestimento() {
           <>
             <FundsCard
               fund={fund}
-              key={index}
+              key={fund.codigo}
               onPress={() => changeCurrentExpanded(fund.codigo)}
               expanded={currentExpanded === fund.codigo}
             />
