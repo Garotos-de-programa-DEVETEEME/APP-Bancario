@@ -6,6 +6,8 @@ import { TodayMarket } from '@/src/components/homeScreen/todayMarket';
 import { SearchBar } from '@/src/components/SearchBar/searchBar';
 import { StyledText } from '@/src/components/StyledText';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
+import { iconsFundoDestaque } from '@/src/data/fundosDestaqueIcon';
+import { marketTodayData } from '@/src/data/MarketToday';
 import { useTheme } from '@/src/hooks/useTheme';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -14,32 +16,12 @@ import { Image, ScrollView, StyleSheet, View } from 'react-native';
 export default function TelaInicial() {
   const theme = useTheme();
   const styles = getStyles(theme);
-  const icons = [
-    { name: 'trophy', color: '#FFAC33' },
-    { name: 'chart-line-variant', color: '#00FF6A' },
-    { name: 'leaf', color: '#00CC55' },
-  ];
+  const icons = iconsFundoDestaque;
 
   const fundosDestaque = MOCK_FUNDOS; //TODO substituir por fundos em destaque
 
   const [searchText, setSearchText] = useState('');
-  const marketToday = [
-    {
-      nome: 'Dolar',
-      porcentagem: -3.4,
-      valor: 200,
-    },
-    {
-      nome: 'IBOVESTA',
-      porcentagem: 10.3,
-      valor: 185.9,
-    },
-    {
-      nome: 'BCRI11',
-      porcentagem: -5,
-      valor: 10,
-    },
-  ];
+  const marketToday = marketTodayData;
 
   const images = [
     require('../../assets/Images/image-34.png'),
@@ -57,14 +39,14 @@ export default function TelaInicial() {
         <View style={styles.buttonContainer}>
           <ButtonIcon
             key={1}
-            route={() => router.push('/carteira')}
+            route={() => router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})}
             text='Minha Carteira'
             iconName='wallet'
             IconHeight={30}
           />
           <ButtonIcon
             key={2}
-            route={() => router.push('/fundosInvestimentos')}
+            route={() => router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})}
             text='Fundos de Investimento'
             iconName='inventory'
             IconHeight={25}
@@ -80,9 +62,10 @@ export default function TelaInicial() {
         <View style={{width:'90%', alignSelf:'center'}}>
           <SearchBar
             value={searchText}
-            onChangeText={setSearchText}
+            onChangeText={(e) => setSearchText(e)}
             placeholder='Buscar fundos por nome ou categoria'
             hasFilter={false}
+            onIconPress={() => router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})}
             transparent
           />
         </View>
@@ -136,8 +119,9 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      width:'90%',
-      alignSelf:'center'
+      width:'100%',
+      alignSelf:'center',
+      paddingHorizontal:10,
     },
     titleText: {
       fontSize: 20,

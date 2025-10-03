@@ -3,16 +3,31 @@ import { FundsCard } from '@/src/components/fundCard/fundCard';
 import { SearchBar } from '@/src/components/SearchBar/searchBar';
 import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export default function FundoInvestimento() {
+interface FundoInvestimentoProps {
+  filters?: string | string[];
+}
+
+
+export default function FundoInvestimento({ filters }: FundoInvestimentoProps) {
   const investmentFunds = MOCK_FUNDOS; //TODO : Fetch real data from API or context
   const theme = useTheme();
   const styles = getStyles(theme);
 
   const [currentExpanded, setCurrentExpanded] = useState(-1); //variavel que controla o fundo expandido com base no seu ID
-  const [searchBarValue, setSearchBarValue] = useState('');
+  const [searchBarValue, setSearchBarValue] = useState<string>('');
+
+  const searchByText = (searchText:string) =>{
+  }//TODO implementar funcionalidade de pesquisa de texto
+
+  useEffect(() =>{
+    if(typeof(filters) === 'string'){
+      setSearchBarValue(filters);
+      searchByText(filters);
+    }
+  }, [filters])
 
   const changeCurrentExpanded = (key: number) => {
     //controla qual fundo esta expandido
@@ -30,6 +45,7 @@ export default function FundoInvestimento() {
         placeholder='Buscar fundo'
         value={searchBarValue}
         onChangeText={(e) => setSearchBarValue(e)}
+        onIconPress={() => searchByText(searchBarValue)}
         filter
       />
 
@@ -37,11 +53,11 @@ export default function FundoInvestimento() {
         return (
           <>
             <FundsCard
-                fund={fund}
-                key={fund.codigo}
-                onPress={() => changeCurrentExpanded(fund.codigo)}
-                expanded={currentExpanded === fund.codigo}
-              />
+              fund={fund}
+              key={fund.codigo}
+              onPress={() => changeCurrentExpanded(fund.codigo)}
+              expanded={currentExpanded === fund.codigo}
+            />
           </>
         );
       })}

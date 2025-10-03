@@ -5,7 +5,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { StyledText } from '../StyledText';
 
-type ActiveTab = 'carteira' | 'fundos';
+type ActiveTab = 'carteira' | 'fundos' | string;
 
 interface HeaderTabsProps {
   activeTab: ActiveTab;
@@ -22,12 +22,10 @@ export default function HeaderTabs({
 
   const handleCarteiraPress = () => {
     setActiveTab('carteira');
-    router.push('/carteira');
   };
 
   const handleFundosPress = () => {
     setActiveTab('fundos');
-    router.push('/fundosInvestimentos');
   };
 
   return (

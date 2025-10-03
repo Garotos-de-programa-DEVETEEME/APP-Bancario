@@ -1,96 +1,155 @@
-import { FundoInvestimento } from '@/src/@Types/fundos';
-import { useTheme } from '@/src/hooks/useTheme';
-import { fundsColor } from '@/src/themes/fundosInvestdos';
-import React, {  useMemo } from 'react';
-import { View, StyleSheet } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import React, { useEffect, useMemo } from "react";
+import { View } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedProps,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import Svg, { Circle } from "react-native-svg";
+
+import { FundoInvestimento } from "@/src/@Types/fundos";
+import { useTheme } from "@/src/hooks/useTheme";
+import { fundsColor } from "@/src/themes/fundosInvestdos";
+
+// Componente animado do Circle
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 interface InvestmentChartProps {
   data: FundoInvestimento[];
+  embedded?: boolean; // <- novo
 }
 
-// Descreve a estrutura dos dados calculados para cada fatia do gráfico
-interface ChartSlice {
-  pathData: string;
+interface SliceInfo {
   color: string;
+  pct: number;     // 0..1
+  offsetPct: number; // 0..1 (acumulado)
 }
-
 
 export const GraficWallet = ({ data }: InvestmentChartProps) => {
   const theme = useTheme();
-  const styles  = getStyles();
 
+  // === Dimensões do gráfico ===
   const size = 200;
   const strokeWidth = 30;
   const center = size / 2;
   const radius = (size - strokeWidth) / 2;
-  
-  const graphicData = useMemo<ChartSlice[]>(() => {
-    const totalValue = data.reduce((sum, item) => sum + item.codigo, 0)
-  
-    if(!data || data.length === 0) return []
-        let cumulativeAngle = 0;
-        
-        return data.map((item): ChartSlice => {
-            const color = fundsColor.find(object => object.nome === item.nomeReduzido)?.cor?? '';
+  const circumference = 2 * Math.PI * radius;
 
-            const percentage = item.codigo / totalValue;//TODO alterar para patrimonio investido
-            const angle = percentage * 360;
-        
-            const startAngleRad = (cumulativeAngle - 90) * (Math.PI / 180);
-            const endAngleRad = (cumulativeAngle + angle - 90) * (Math.PI / 180);
-        
-            const startX = center + radius * Math.cos(startAngleRad);
-            const startY = center + radius * Math.sin(startAngleRad);
-            const endX = center + radius * Math.cos(endAngleRad);
-            const endY = center + radius * Math.sin(endAngleRad);
-        
-            const largeArcFlag = angle > 180 ? 1 : 0;
-        
-            const pathData = [
-            `M ${startX} ${startY}`,
-            `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`,
-            ].join(' ');
-            
-            cumulativeAngle += angle;
-        
-            return {
-                pathData,
-                color,
-            };
-        });
-  }, [data])
-  console.log(graphicData)
+  // === Normaliza dados em porcentagens e offsets ===
+  const slices = useMemo<SliceInfo[]>(() => {
+    if (!data || data.length === 0) return [];
+    // TODO: alterar para patrimônio investido ao invés de `codigo`
+    const totalValue = data.reduce((sum, item) => sum + item.codigo, 0);
+    if (totalValue === 0) return [];
+
+    let acc = 0;
+    return data.map((item) => {
+      const color = fundsColor.find((o) => o.nome === item.nomeReduzido)?.cor ?? "#999";
+      const pct = item.codigo / totalValue; // 0..1
+      const info: SliceInfo = { color, pct, offsetPct: acc };
+      acc += pct;
+      return info;
+    });
+  }, [data]);
+
+  // === Animação global de "desenho" ===
+  const progress = useSharedValue(0);
+  useEffect(() => {
+    progress.value = 0;
+    progress.value = withTiming(1, {
+      duration: 900,
+      easing: Easing.out(Easing.cubic),
+    });
+  }, [data]);
 
   return (
-      <View style={styles.chartContainer}>
-        <Svg width={size} height={size}>
-          <Path
-            d={`M ${center} ${center - radius} A ${radius} ${radius} 0 1 1 ${center - 0.01} ${center - radius}`}
-            stroke="#e6e6e6"
+    <View className="items-center justify-center mb-5">
+      <Svg width={size} height={size}>
+        {/* Trilha de fundo */}
+        <Circle
+          cx={center}
+          cy={center}
+          r={radius}
+          strokeWidth={strokeWidth}
+          stroke={theme?.border ?? "#e6e6e6"}
+          fill="none"
+          strokeLinecap="round"
+        />
+
+        {/* Fatias animadas */}
+        {slices.map((slice, idx) => (
+          <SliceArc
+            key={`slice-${idx}`}
+            cx={center}
+            cy={center}
+            radius={radius}
             strokeWidth={strokeWidth}
-            fill="none"
+            circumference={circumference}
+            color={slice.color}
+            pct={slice.pct}
+            offsetPct={slice.offsetPct}
+            progress={progress}
           />
-          {graphicData.map((slice: ChartSlice, index) => (
-            <Path
-              key={index}
-              d={slice.pathData}
-              stroke={slice.color}
-              strokeWidth={strokeWidth}
-              fill="none"
-            />
-          ))}
-        </Svg>
-      </View>
+        ))}
+      </Svg>
+    </View>
   );
 };
 
-// Os estilos continuam os mesmos
-const getStyles = () =>{
-  return StyleSheet.create({
-  chartContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-})};
+// Desenha 1 fatia com animação do comprimento
+function SliceArc({
+  cx,
+  cy,
+  radius,
+  strokeWidth,
+  circumference,
+  color,
+  pct,
+  offsetPct,
+  progress,
+}: {
+  cx: number;
+  cy: number;
+  radius: number;
+  strokeWidth: number;
+  circumference: number;
+  color: string;
+  pct: number;        // 0..1
+  offsetPct: number;  // 0..1
+  progress: Animated.SharedValue<number>;
+}) {
+  const animatedProps = useAnimatedProps(() => {
+    // comprimento "alvo" da fatia
+    const length = pct * circumference * progress.value;
+    // gap é o resto do círculo
+    const gap = circumference - length;
+
+    // offset começa no topo (-90°) -> convertemos em deslocamento no dash
+    const baseOffset = -offsetPct * circumference;
+    // enquanto desenha, faz sentido animar ligeiro fade do início:
+    const dashOffset = baseOffset;
+
+    return {
+      strokeDasharray: [length, gap] as unknown as string,
+      strokeDashoffset: dashOffset,
+      opacity: 0.3 + 0.7 * progress.value, // pequeno fade-in
+    } as any;
+  });
+
+  return (
+    <AnimatedCircle
+      cx={cx}
+      cy={cy}
+      r={radius}
+      strokeWidth={strokeWidth}
+      stroke={color}
+      fill="none"
+      // começa no topo
+      rotation={-90}
+      originX={cx}
+      originY={cy}
+      animatedProps={animatedProps}
+    />
+  );
+}

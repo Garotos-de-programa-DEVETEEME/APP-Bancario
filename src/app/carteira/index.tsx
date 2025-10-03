@@ -1,71 +1,75 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { WalletInfoCard } from '@/src/components/Wallet/carteira';
-import { FundoInvestido } from '@/src/components/Wallet/fundoInvestido';
-import { MOCK_FUNDOS } from '@/src/data/fundos';
-import { useTheme } from '@/src/hooks/useTheme';
-import { useEffect, useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { useEffect, useState } from "react";
+import { ScrollView, View } from "react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
+
+import { WalletInfoCard } from "@/src/components/Wallet/carteira";
+import { FundoInvestido } from "@/src/components/Wallet/fundoInvestido";
+import { MOCK_FUNDOS } from "@/src/data/fundos";
+import { useTheme } from "@/src/hooks/useTheme";
+import { FundoInvestimento } from "@/src/@Types/fundos";
 
 export default function WalletPage() {
   const theme = useTheme();
-  const styles = getStyles(theme);
-  const [fundosInvestidos, setFundosInvestidos] = useState<any[]>([]); //TODO fazer integração com base em API
+  const [fundosInvestidos, setFundosInvestidos] = useState<FundoInvestimento[]>([]); // TODO: integrar com API
+  const [currentExpanded, setCurrentExpanded] = useState<string | null>(null);
+
+  const changeCurrentExpanded = (key: string) => {
+    //controla qual fundo esta expandido
+    if (key === currentExpanded) {
+      //caso clique em um fundo já expandido fecha o mesmo
+      setCurrentExpanded(null);
+      return;
+    }
+    setCurrentExpanded(key);
+  };
+
   useEffect(() => {
     setFundosInvestidos(MOCK_FUNDOS);
   }, []);
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={styles.cateira}>
+    <ScrollView
+      style={{ backgroundColor: theme.background }}
+      contentContainerStyle={{ paddingBottom: 24 }}
+      showsVerticalScrollIndicator={false}
+    >
+      {/* Card "Carteira" */}
+      <Animated.View
+        entering={FadeInDown.duration(450).springify()}
+        className="mt-9 mb-3 self-center w-[90%] rounded-2xl"
+        style={{ backgroundColor: theme.backgroundCards }}
+      >
         <WalletInfoCard fundosInvestidos={fundosInvestidos} />
-      </View>
-      <View>
-        <View style={styles.fundosInvestidos}>
-          {fundosInvestidos.map((e, index) => {
+      </Animated.View>
+
+      {/* Lista de Fundos Investidos */}
+      <Animated.View
+        entering={FadeInDown.duration(450).delay(80).springify()}
+        className="self-center w-[90%] rounded-2xl"
+        style={{
+          borderColor: theme.border,
+          borderWidth: 1,
+          paddingTop: 20,
+          paddingBottom: 15,
+          paddingHorizontal: 15,
+        }}
+      >
+        <View className="flex-col gap-5">
+          {fundosInvestidos.map((fundo, index) => {
+            const key =
+              `${fundo?.nome ?? "fundo"}-${index}`;
+
             return (
-              <>
-                <FundoInvestido key={index} fundoData={e} />
-              </>
+              <Animated.View
+                key={key}
+                entering={FadeInDown.duration(400).delay(120 + index * 70).springify()}
+              >
+                <FundoInvestido expanded={currentExpanded === key} fundoData={fundo} setExpanded={() => changeCurrentExpanded(key)}/>
+              </Animated.View>
             );
           })}
         </View>
-      </View>
+      </Animated.View>
     </ScrollView>
   );
 }
-
-const getStyles = (theme: StylesType) => {
-  return StyleSheet.create({
-    container: {
-      backgroundColor: theme.background,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 14,
-    },
-    cateira: {
-      backgroundColor: theme.backgroundCards,
-      marginTop: 35,
-      width: '90%',
-      alignSelf: 'center',
-      borderRadius: 15,
-      marginBottom:12
-    },
-    patrimonio: {
-      borderBottomColor: theme.border,
-      borderBottomWidth: 1,
-    },
-    fundosInvestidos: {
-      borderWidth: 1,
-      borderColor: theme.border,
-      borderRadius: 15,
-      paddingBottom: 15,
-      paddingHorizontal: 15,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 20,
-      width:'90%',
-      alignSelf:'center',
-      paddingTop:20
-    },
-  });
-};

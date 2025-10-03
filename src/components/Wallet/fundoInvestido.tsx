@@ -1,132 +1,138 @@
+import { useMemo, useState } from "react";
+import { Pressable, View } from "react-native";
+import Animated, {
+  Easing,
+  FadeInDown,
+  FadeOutUp,
+  Layout,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+
 import { FundoInvestimento } from "@/src/@Types/fundos";
 import { StylesType as themeType } from "@/src/@Types/stylesType";
 import { useTheme } from "@/src/hooks/useTheme";
-import { Pressable, StyleSheet, View } from "react-native";
-import { StyledText } from "../StyledText";
-import { useState } from "react";
-import { NavigationButton } from "../Buttons/navigationButton";
 import { coinFormat } from "@/src/utils/coinFormat";
 import { converterNumeroParaHora as hourFormater } from "@/src/utils/hourFormat";
 import { router } from "expo-router";
+import { NavigationButton } from "../Buttons/navigationButton";
+import { StyledText } from "../StyledText";
 
 interface FundoInvestidoProps {
   fundoData: FundoInvestimento;
+  expanded: boolean;
+  setExpanded: () => void
 }
 
-export const FundoInvestido = ({ fundoData }: FundoInvestidoProps) => {
+export const FundoInvestido = ({ fundoData, expanded, setExpanded }: FundoInvestidoProps) => {
   const theme = useTheme();
-  const styles = getStyle(theme);
-  const [expanded, setExpanded] = useState(false);
+
+  const scale = useSharedValue(1);
+  const aScale = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
+
+  const rot = useSharedValue(0);
+  const aChevron = useAnimatedStyle(() => ({ transform: [{ rotate: `${rot.value}deg` }] }));
+
+  const toggle = () => {
+    setExpanded();
+    rot.value = withTiming(expanded ? 0 : 180, { duration: 220, easing: Easing.out(Easing.cubic) });
+  };
+
+  const cardShadow = useMemo(
+    () => ({ elevation: 4, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 4 } }),
+    []
+  );
 
   return (
-    <View style={styles.container}>
-      <Pressable onPress={() => setExpanded((prev) => !prev)}>
-        <View style={styles.titleContainer}>
-          <View style={styles.titleContainerText}>
-            <StyledText style={styles.subTitle}>
-              {"Fundo Simples"}
-              {/*TODO alterar para tipo do fundo*/}
-            </StyledText>
-            <StyledText style={styles.title}>
-              {fundoData.nomeReduzido}
-            </StyledText>
+    <Animated.View
+      entering={FadeInDown.duration(320)}
+      layout={Layout.springify().damping(18)}
+      className="rounded-2xl overflow-hidden"
+      style={{ backgroundColor: theme.backgroundCards, borderColor: theme.border, borderWidth: 1, ...cardShadow }}
+    >
+      {/* header (sem linha inferior e sem ripple) */}
+      <Pressable
+        onPressIn={() => (scale.value = withTiming(0.98, { duration: 100 }))}
+        onPressOut={() => (scale.value = withTiming(1, { duration: 100 }))}
+        onPress={toggle}
+      >
+        <Animated.View style={[aScale]} className="px-4 py-3.5">
+          <View className="flex-row items-center">
+            <View className="flex-1">
+              <StyledText className="text-[12px]" style={{ color: theme.tint, fontWeight: "500" as any }}>
+                Fundo Simples
+              </StyledText>
+              <StyledText className="text-[20px] mt-0.5" style={{ color: theme.text, fontWeight: "600" as any }} numberOfLines={1}>
+                {fundoData.nomeReduzido}
+              </StyledText>
+            </View>
           </View>
-        </View>
-        <View style={styles.textContainer}>
-          <StyledText style={styles.textContainerTitle}>
-            Saldo resgate automático
-          </StyledText>
-          <StyledText style={styles.textContainerValue}>
-            {coinFormat(fundoData.valorMinimoResgatavel)}
-          </StyledText>
-        </View>
-        <View style={[styles.textContainer, { marginTop: 5 }]}>
-          <StyledText style={styles.textContainerTitle}>
-            Valor mínimo de resgate
-          </StyledText>
-          <StyledText style={styles.textContainerValue}>
-            {coinFormat(fundoData.valorMinimoResgatavel)}
-          </StyledText>
-        </View>
-        <View style={[styles.textContainer, {borderBottomWidth:0}]}>
-          <StyledText style={styles.textContainerTitle}>
-            Horário limite de resgate
-          </StyledText>
-          <StyledText style={styles.textContainerValue}>
-            {hourFormater(fundoData.horaLimite)}
-          </StyledText>
-        </View>
-      </Pressable>
+        </Animated.View>
+      
+
+      {/* linhas */}
+      <View className="px-4 pt-3 pb-1">
+        <InfoRow theme={theme} title="Saldo resgate automático" value={coinFormat(fundoData.valorMinimoResgatavel)} />
+        <Divider color={theme.border} />
+        <InfoRow theme={theme} title="Valor mínimo de resgate" value={coinFormat(fundoData.valorMinimoResgatavel)} />
+        <Divider color={theme.border} />
+        <InfoRow theme={theme} title="Horário limite de resgate" value={hourFormater(fundoData.horaLimite)} noBottom />
+      </View>
+
+      {/* expandido — saída mais suave */}
       {expanded && (
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
+        <Animated.View
+          entering={FadeInDown.duration(260).easing(Easing.out(Easing.cubic))}
+          exiting={FadeOutUp.duration(260).easing(Easing.inOut(Easing.cubic))}
+          className="px-4 pb-4"
         >
-          <NavigationButton
-            onPress={() => router.push({ pathname: "carteira/resgatar", params: { saldo: 10, valorMinimoPermanencia: fundoData.valorAplicacaoInicial, valorMinimoResgate: fundoData.valorMinimoResgateInternet,}})}
-            text={"Resgatar"}
-          />
-        </View>
+          <View className="flex-row justify-center mt-1.5">
+            <NavigationButton
+              onPress={() =>
+                router.push({
+                  pathname: "/carteira/resgatar",
+                  params: {
+                    saldo: 10,
+                    valorMinimoPermanencia: fundoData.valorAplicacaoInicial,
+                    valorMinimoResgate: fundoData.valorMinimoResgateInternet,
+                  },
+                })
+              }
+              text="Resgatar"
+            />
+          </View>
+        </Animated.View>
       )}
-    </View>
+      </Pressable>
+    </Animated.View>
+    
   );
 };
 
-const getStyle = (theme: themeType) => {
-  return StyleSheet.create({
-    container: {
-      backgroundColor: theme.backgroundCards,
-      borderRadius: 15,
-      borderColor: theme.border,
-      borderWidth: 1,
-      boxSizing: "border-box",
-      display: "flex",
-      flexDirection: "column",
-      gap: 4,
-    },
-    titleContainer: {
-      display: "flex",
-      flexDirection: "row",
-      borderBottomColor: theme.border,
-      borderBottomWidth: 1,
-      paddingLeft: 12,
-      paddingVertical:6
-    },
-    titleContainerText: {
-      display: "flex",
-      flexDirection: "column",
-    },
-    title: {
-      color: theme.text,
-      fontSize: 20,
-      fontWeight: 500,
-    },
-    subTitle: {
-      color: theme.tint,
-      fontSize: 12,
-      fontWeight: 500,
-    },
-    textContainer: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-around",
-      paddingTop: 8,
-      paddingBottom: 2,
-      borderBottomColor: theme.border,
-      borderBottomWidth: 1,
-      marginHorizontal: 15,
-    },
-    textContainerTitle: {
-      color: theme.text,
-      fontSize: 13,
-    },
-    textContainerValue: {
-      color: theme.text,
-      fontSize: 15,
-      fontWeight: "bold",
-    },
-  });
-};
+function InfoRow({
+  title,
+  value,
+  theme,
+  noBottom,
+}: {
+  title: string;
+  value: string;
+  theme: themeType;
+  noBottom?: boolean;
+}) {
+  return (
+    <View className={noBottom ? "flex-row items-baseline justify-between py-1.5" : "flex-row items-baseline justify-between py-1.5 mb-1"}>
+      <StyledText className="text-[13px]" style={{ color: theme.text }}>
+        {title}
+      </StyledText>
+      <StyledText className="text-[15px]" style={{ color: theme.text, fontWeight: "700" as any }}>
+        {value}
+      </StyledText>
+    </View>
+  );
+}
+
+function Divider({ color }: { color: string }) {
+  return <View className="my-1" style={{ height: 1, backgroundColor: color }} />;
+}

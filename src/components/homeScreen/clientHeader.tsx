@@ -49,7 +49,7 @@ export default function ClientHeader({
         </View>
       </View>
       <View style={styles.cardcontainer}>
-        <PatrimonyCard value={value} />
+        <PatrimonyCard value={100} />
       </View>
     </View>
   );
