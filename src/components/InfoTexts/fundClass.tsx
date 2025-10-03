@@ -1,47 +1,24 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { StylesType } from '@/src/@Types/stylesType';
 import { useTheme } from "@/src/hooks/useTheme";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { TextRow } from './rowText';
 
 interface FundClassProps {
     fund: FundoInvestimento;
 }
 
-export function FundClass({ fund }: FundClassProps) {
+export function FundClass({ fund }: FundClassProps) {//componente de fundo classificação de risco do fundo para tela de investir e saiba mais
     const theme = useTheme();
     const styles = getStyles(theme);
 
     {/* //TODO: TROCAR PLACEHOLDERS */}
     return (
-            <View style={styles.classArea}>
-                <View style={styles.separator} />
-                <View style={styles.detailRow}>
-                    <Text style={styles.className}>Classificação de risco</Text>
-                    {/* Esse é PLACEHOLDER */}
-                    <Text style={styles.classDetail}>Muito Baixo</Text> 
-                </View>
-                <View style={styles.separator} />
-
-                <View style={styles.detailRow}>
-                    <Text style={styles.className}>Classificação CVM</Text>
-                    {/* Esse é PLACEHOLDER */}
-                    <Text style={styles.classDetail}>Renda Fixa Simples</Text>
-                </View>
-                <View style={styles.separator} />
-
-                <View style={styles.detailRow}>
-                    <Text style={styles.className}>Subclasse CVM</Text>
-                    {/* Esse é PLACEHOLDER */}
-                    <Text style={styles.classDetail}>Renda Fixa Simples</Text>
-                </View>
-                <View style={styles.separator} />
-
-                <View style={styles.detailRow}>
-                    <Text style={styles.className}>Tipo ANBIMA</Text>
-                    {/* Esse é PLACEHOLDER */}
-                    <Text style={styles.classDetail}>Renda Fixa Simples</Text>
-                </View>
-                <View style={styles.separator} />
+            <View>
+                <TextRow left={'Classificação de risco'} right={'Muito Baixo'}  bold />
+                <TextRow left={'Classificação CVM'} right={'Renda Fixa Simples'}  bold />
+                <TextRow left={'Subclassse CVM'} right={'Renda Fixa Simples'}  bold />
+                <TextRow left={'Tipo ANBIMA'} right={'Renda Fixa Simples'}  bold />
             </View>
     );
 }
@@ -58,9 +35,6 @@ const getStyles = (theme: StylesType) => {
             backgroundColor: theme.border,
             marginBottom: 10,
             marginTop: 10
-        },
-        classArea: {
-            marginTop: 20
         },
         className: {
             fontSize: 16,
