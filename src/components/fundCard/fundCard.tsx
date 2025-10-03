@@ -7,8 +7,8 @@ import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
 
 // ✅ imports de animação
-import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 
 interface FundsCardProps {
   fund: FundoInvestimento;

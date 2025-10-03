@@ -1,6 +1,7 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 import { DataLess } from '@/src/components/Dataless';
+import { AlertModal } from '@/src/components/InfoTexts/alertModal';
 import { FundClass } from '@/src/components/InfoTexts/fundClass';
 import { FundDetails } from '@/src/components/InfoTexts/fundDetails';
 import DropdownInput from '@/src/components/Input/dropdownInput';
@@ -26,28 +27,25 @@ export default function DetalhesInvestimento() {
   const theme = useTheme();
 
   const [perfilPreenchido, setPerfilPreenchido] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(true);
 
   // Comunicação entre inputs e Pai
   const [valorSalvoDropdown, setValorSalvoDropdown] = useState('');
   const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
   const [valorMensalOpcional, setValorMensalOpcional] = useState(0);
-  const [termoVisivel, setTermoVisivel] = useState(false);
   const [mostrarResultados, setMostrarResultados] = useState(false);
-
   const [dataAplicacao, setDataAplicacao] = useState('');
   const [dataResgate, setDataResgate] = useState('');
+  // Bloqueio do botão sem info e se for menor que o mínimo
+  const [isButtonEnabled, setButtonEnabbled] = useState(false);
 
   const fund: FundoInvestimento | null =
     typeof fundData === 'string' ? JSON.parse(fundData) : null;
-
-  // Bloqueio do botão sem info e se for menor que o mínimo
-  const [isButtonEnabled, setButtonEnabbled] = useState(false);
 
   useEffect(() =>{
     setButtonEnabbled(fund
         ? valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== ''
         : false);
-
   },[valorSalvoDropdown, valorAplicarEmCentavos])
 
   const handleShowResults = () => {
@@ -82,10 +80,19 @@ export default function DetalhesInvestimento() {
     setPerfilPreenchido(true);
   };
 
+  const handleAlertContinue = () => {
+    setAlertVisible(false);
+  };
+
   return (
     <>
+      <AlertModal
+        visible={alertVisible && !perfilPreenchido}
+        onContinue={handleAlertContinue}
+        onClose={() => router.back()}
+      />
        <InvestorProfile
-        visible={!perfilPreenchido}
+        visible={!alertVisible && !perfilPreenchido}
         onClose={() => router.back()}
         onAccept={handleProfileAccept}
         clientName='Cliente'
