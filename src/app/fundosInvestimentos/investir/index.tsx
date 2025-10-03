@@ -181,7 +181,8 @@ export default function DetalhesInvestimento() {
             <Animated.View
               layout={LinearTransition.springify().damping(18)}
               entering={FadeInDown.duration(160)}
-              className="mt-5"
+              className="mt-8"
+              style={{borderTopColor:theme.border, borderTopWidth:1}}
             >
               <FundClass fund={fund} />
             </Animated.View>
