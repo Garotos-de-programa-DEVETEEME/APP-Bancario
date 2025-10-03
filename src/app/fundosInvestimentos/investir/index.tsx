@@ -1,4 +1,5 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
+import { DocumentButton } from '@/src/components/Buttons/DocumentButton';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 import { DataLess } from '@/src/components/Dataless';
 import { AlertModal } from '@/src/components/InfoTexts/alertModal';
@@ -336,7 +337,14 @@ export default function DetalhesInvestimento() {
               </Animated.View>
 
             </Animated.View>
-
+            <View style={{alignItems:'center', marginTop:40}}>
+              <DocumentButton
+                title='Gerar Comprovante'
+                type='default' 
+                documentoUri={''}            
+                alternativeIcon 
+              />
+            </View>
             <View className="h-8" />
           </View>
         </ScrollView>
