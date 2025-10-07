@@ -1,7 +1,6 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 import { DataLess } from '@/src/components/Dataless';
-import { AlertModal } from '@/src/components/InfoTexts/alertModal';
 import { FundClass } from '@/src/components/InfoTexts/fundClass';
 import { FundDetails } from '@/src/components/InfoTexts/fundDetails';
 import { ResultRow } from '@/src/components/InfoTexts/resultRow';
@@ -28,7 +27,6 @@ export default function DetalhesInvestimento() {
   const theme = useTheme();
 
   const [perfilPreenchido, setPerfilPreenchido] = useState(false);
-  const [alertVisible, setAlertVisible] = useState(true);
 
   // Comunicação entre inputs e Pai
   const [valorSalvoDropdown, setValorSalvoDropdown] = useState('');
@@ -81,19 +79,10 @@ export default function DetalhesInvestimento() {
     setPerfilPreenchido(true);
   };
 
-  const handleAlertContinue = () => {
-    setAlertVisible(false);
-  };
-
   return (
     <>
-      <AlertModal
-        visible={alertVisible && !perfilPreenchido}
-        onContinue={handleAlertContinue}
-        onClose={() => router.back()}
-      />
        <InvestorProfile
-        visible={!alertVisible && !perfilPreenchido}
+        visible={!perfilPreenchido}
         onClose={() => router.back()}
         onAccept={handleProfileAccept}
         clientName='Cliente'
