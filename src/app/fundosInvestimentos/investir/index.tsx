@@ -1,4 +1,5 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
+import { DocumentButton } from '@/src/components/Buttons/DocumentButton';
 import { NavigationButton } from '@/src/components/Buttons/navigationButton';
 import { DataLess } from '@/src/components/Dataless';
 import { FundClass } from '@/src/components/InfoTexts/fundClass';
@@ -170,7 +171,8 @@ export default function DetalhesInvestimento() {
             <Animated.View
               layout={LinearTransition.springify().damping(18)}
               entering={FadeInDown.duration(160)}
-              className="mt-5"
+              className="mt-8"
+              style={{borderTopColor:theme.border, borderTopWidth:1}}
             >
               <FundClass fund={fund} />
             </Animated.View>
@@ -222,7 +224,14 @@ export default function DetalhesInvestimento() {
                 value={dataResgate}
               />
             </Animated.View>
-
+            <View style={{alignItems:'center', marginTop:40}}>
+              <DocumentButton
+                title='Gerar Comprovante'
+                type='default' 
+                documentoUri={''}            
+                alternativeIcon 
+              />
+            </View>
             <View className="h-8" />
           </View>
         </ScrollView>
