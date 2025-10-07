@@ -4,6 +4,7 @@ import { DataLess } from '@/src/components/Dataless';
 import { AlertModal } from '@/src/components/InfoTexts/alertModal';
 import { FundClass } from '@/src/components/InfoTexts/fundClass';
 import { FundDetails } from '@/src/components/InfoTexts/fundDetails';
+import { ResultRow } from '@/src/components/InfoTexts/resultRow';
 import DropdownInput from '@/src/components/Input/dropdownInput';
 import { InvestorProfile } from '@/src/components/Input/investorProfile';
 import PriceInput from '@/src/components/Input/priceInput';
@@ -46,7 +47,7 @@ export default function DetalhesInvestimento() {
     setButtonEnabbled(fund
         ? valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== ''
         : false);
-  },[valorSalvoDropdown, valorAplicarEmCentavos])
+  },[valorSalvoDropdown, valorAplicarEmCentavos, fund])
 
   const handleShowResults = () => {
     const hoje = new Date();
@@ -206,135 +207,31 @@ export default function DetalhesInvestimento() {
         // ===== TELA DE RESULTADOS =====
         <ScrollView className="flex-1" style={{ backgroundColor: theme.background }}>
           <View className="flex-1 px-[25px] pb-[25px] pt-1">
-            {/* Título */}
-            <Animated.View
-              layout={LinearTransition.springify().damping(18).stiffness(140)}
-              entering={FadeInDown.duration(160)}
-              className="mb-2"
-            >
-              <Text
-                className="font-bold"
-                style={{ fontSize: 28, color: theme.text, fontFamily: 'Roboto', marginBottom: 15 }}
-              >
-                {fund.nome}
-              </Text>
-            </Animated.View>
 
-            {/* Separador */}
-            <Animated.View
-              layout={LinearTransition.springify().damping(20)}
-              entering={FadeIn.duration(140)}
-              style={{ height: 1, backgroundColor: theme.border, marginBottom: 10, marginTop: 10 }}
-            />
-
-            {/* Linhas de detalhes */}
             <Animated.View
               layout={LinearTransition.springify().damping(18)}
               entering={FadeInDown.duration(140)}
-              className="gap-1"
             >
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Aplicação Inicial:</Text>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
-                    fund.valorAplicacaoInicial
-                  )}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Rentabilidade dos últimos 12 meses:</Text>
-                <Text style={{ fontSize: 15, color: '#4C9AFE' }}>{fund.taxaRentabilidade}%</Text>
-              </View>
-
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Taxa Global:</Text>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  {fund.taxaAdministracao}% a.a.
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Hora limite da aplicação:</Text>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  {fund.horaLimite}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Movimentação (aplic/resg):</Text>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  {/* evita divisão por 0/undefined */}
-                  {(() => {
-                    const a = fund.valorMinimoAplicacaoInternet ?? 0;
-                    const r = fund.valorMinimoResgateInternet ?? 1;
-                    return `R$ ${(a / r).toFixed(2)}`;
-                  })()}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Cotatização de resgate:</Text>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  D+30 (Dias Corridos)
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Cotatização de resgate:</Text>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  D+{fund.prazoConversaoResgate} (Dias Úteis)
-                </Text>
-              </View>
+              <FundDetails fund={fund} />
             </Animated.View>
-
+            
             {/* Resultados */}
             <Animated.View
               layout={LinearTransition.springify().damping(18)}
               className="mt-6 mb-6 gap-4"
             >
-              <Animated.View
-                entering={FadeInDown.duration(140)}
-                layout={LinearTransition.springify().damping(18)}
-                className="rounded-2xl p-4 min-h-[46px] flex-row items-center justify-between shadow elevation-2"
-                style={{ backgroundColor: theme.backgroundCards }}
-              >
-                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  Aplicação inicial
-                </Text>
-                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  {formatCurrency(valorAplicarEmCentavos)}
-                </Text>
-              </Animated.View>
-
-              <Animated.View
-                entering={FadeInDown.duration(160)}
-                layout={LinearTransition.springify().damping(18)}
-                className="rounded-2xl p-4 min-h-[46px] flex-row items-center justify-between shadow elevation-2"
-                style={{ backgroundColor: theme.backgroundCards }}
-              >
-                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  Data de aplicação
-                </Text>
-                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  {dataAplicacao}
-                </Text>
-              </Animated.View>
-
-              <Animated.View
-                entering={FadeInDown.duration(160)}
-                layout={LinearTransition.springify().damping(18)}
-                className="rounded-2xl p-4 min-h-[46px] flex-row items-center justify-between shadow elevation-2"
-                style={{ backgroundColor: theme.backgroundCards }}
-              >
-                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  Data limite de resgate
-                </Text>
-                <Text className="font-bold" style={{ fontSize: 18, color: theme.text }}>
-                  {dataResgate}
-                </Text>
-              </Animated.View>
-
+              <ResultRow
+                label="Aplicação inicial"
+                value={formatCurrency(valorAplicarEmCentavos)}
+              />
+              <ResultRow
+                label="Data de aplicação"
+                value={dataAplicacao}
+              />
+              <ResultRow
+                label="Data limite de resgate"
+                value={dataResgate}
+              />
             </Animated.View>
 
             <View className="h-8" />
