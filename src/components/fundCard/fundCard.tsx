@@ -7,14 +7,16 @@ import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
 
 // ✅ imports de animação
-import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 
 interface FundsCardProps {
   fund: FundoInvestimento;
   onPress: () => void;
   expanded: boolean;
   expandedType?: 'default' | 'simular';
+  requireInvestorProfileCheck?: boolean;
+  onProfileCheckRequested?: () => void;
 }
 
 export const FundsCard = ({
@@ -22,6 +24,8 @@ export const FundsCard = ({
   onPress,
   expanded,
   expandedType = 'default',
+  requireInvestorProfileCheck,
+  onProfileCheckRequested,
 }: FundsCardProps) => {
   //componente de card de fundo de investimento
   const theme = useTheme();
@@ -96,6 +100,8 @@ export const FundsCard = ({
               fund={fund}
               expanded={expanded}
               type={expandedType}
+              requireInvestorProfileCheck={requireInvestorProfileCheck}
+              onProfileCheckRequested={onProfileCheckRequested}
             />
           </Animated.View>
         ) : null}

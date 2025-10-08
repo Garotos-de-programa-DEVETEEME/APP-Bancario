@@ -1,27 +1,42 @@
 import { FundoInvestimento } from '@/src/@Types/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { converterNumeroParaHora } from '@/src/utils/hourFormat';
+import { router } from 'expo-router';
 import { View } from 'react-native';
 import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
-import { router } from 'expo-router';
 
 interface expandedProps {
   fund: FundoInvestimento;
   expanded: boolean;
   type?: 'default' | 'simular';
+  requireInvestorProfileCheck?: boolean;
+  onProfileCheckRequested?: () => void;
 }
 
 export const Expanded = ({
   fund,
   expanded,
   type,
+  requireInvestorProfileCheck = false,
+  onProfileCheckRequested,
 }: expandedProps) => {
   //componente de fundo de investimento expandido
   const theme = useTheme();
 
   if (!expanded) return null;
+
+  const handleInvestPress = () => {
+    if (requireInvestorProfileCheck && onProfileCheckRequested) {
+      onProfileCheckRequested();
+    } else {
+      router.push({
+        pathname: '/fundosInvestimentos/investir',
+        params: { fundData: JSON.stringify(fund) },
+      });
+    }
+  };
 
   return (
     <Animated.View
@@ -77,11 +92,11 @@ export const Expanded = ({
 
       {type === 'simular' ? (
         <View className="items-center justify-center mt-2.5">
-          <NavigationButton 
+          <NavigationButton
             onPress={() => router.push({
               pathname:'simularInvestimento/detalhesFundo/',
               params: { fundData: JSON.stringify(fund) },
-            })} 
+            })}
             text='Simular'
           />
         </View>
@@ -89,14 +104,14 @@ export const Expanded = ({
         <View className="flex flex-row justify-between">
           <NavigationButton
             onPress={() => router.push({
-              pathname: '/fundosInvestimentos/saibaMais', // CORRETO: Use a URL sem '/index'
+              pathname: '/fundosInvestimentos/saibaMais',
               params: { fundData: JSON.stringify(fund) },
             })}
             text='Saiba Mais'
             transparentStyle
-            />
+          />
           <NavigationButton
-            onPress={()=>{}}
+            onPress={handleInvestPress}
             text='Investir'
           />
         </View>

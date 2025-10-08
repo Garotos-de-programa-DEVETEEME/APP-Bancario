@@ -3,6 +3,7 @@ import { StylesType } from '@/src/@Types/stylesType';
 import { DocumentButton } from '@/src/components/Buttons/DocumentButton';
 import { DataLess } from '@/src/components/Dataless';
 import { ExpandedText } from '@/src/components/InfoTexts/expandText';
+import { FundClass } from '@/src/components/InfoTexts/fundClass';
 import { TextRow } from '@/src/components/InfoTexts/rowText';
 import { StyledText } from '@/src/components/StyledText';
 import { useTheme } from "@/src/hooks/useTheme";
@@ -45,10 +46,7 @@ export default function SaibaMais() {
           </View>
           <View>
               <TextRow left={'Saldo líquido'} right={coinFormat(fundo.valorAplicacaoInicial)}  bold />
-              <TextRow left={'Classificação de risco'} right={'Muito Baixo'}  bold />
-              <TextRow left={'Classificação CVM'} right={'Renda Fixa Simples'}  bold />
-              <TextRow left={'Subclassse CVM'} right={'Renda Fixa Simples'}  bold />
-              <TextRow left={'Tipo ANBIMA'} right={'Renda Fixa Simples'}  bold />
+              <FundClass fund={fundo}/>
           </View>
           <View style={{borderBottomColor: theme.border, borderBottomWidth: 1, marginBottom: 16 }}>
             <ExpandedText title='Condições Comerciais' expandedItens={fundInformation}/>
