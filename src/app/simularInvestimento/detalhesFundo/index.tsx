@@ -8,12 +8,13 @@ import DropdownInput from '@/src/components/Input/dropdownInput';
 import PriceInput from '@/src/components/Input/priceInput';
 import { useTheme } from '@/src/hooks/useTheme';
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { Modalize } from 'react-native-modalize';
 import Animated, {
-    FadeIn,
-    FadeInDown,
-    LinearTransition
+  FadeIn,
+  FadeInDown,
+  LinearTransition
 } from 'react-native-reanimated';
 
 const formatCurrency = (valueInCents: number) => {
@@ -25,11 +26,14 @@ export default function DetalhesInvestimento() {
   const { fundData } = useLocalSearchParams();
   const theme = useTheme();
 
+  const modalizeRef = useRef<Modalize>(null);
+  const [isChecked, setIsChecked] = useState(false);
+
   // Comunicação entre inputs e Pai
   const [valorSalvoDropdown, setValorSalvoDropdown] = useState('');
   const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
   const [valorMensalOpcional, setValorMensalOpcional] = useState(0);
-  const [termoVisivel, setTermoVisivel] = useState(false);
+  
   const [mostrarResultados, setMostrarResultados] = useState(false);
 
   const fund: FundoInvestimento | null =
@@ -42,11 +46,14 @@ export default function DetalhesInvestimento() {
     setButtonEnabbled(fund
         ? valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== ''
         : false);
+  },[valorSalvoDropdown, valorAplicarEmCentavos, fund]);
 
-  },[valorSalvoDropdown, valorAplicarEmCentavos])
-
+  const onOpenTermo = () => {
+    modalizeRef.current?.open();
+  };
+  
   const handleShowResults = () => {
-    setTermoVisivel(false);
+    modalizeRef.current?.close();
     setMostrarResultados(true);
   };
 
@@ -143,7 +150,7 @@ export default function DetalhesInvestimento() {
               className="items-center mt-4"
             >
               <NavigationButton
-                onPress={() => setTermoVisivel(true)}
+                onPress={onOpenTermo}
                 text="Simular"
                 width={261}
                 height={37}
@@ -154,12 +161,19 @@ export default function DetalhesInvestimento() {
             <View className="h-8" />
           </View>
 
-          {/* Termo de Aceite (modal) */}
-          <AcceptanceTerm
-            visible={termoVisivel}
-            onClose={() => setTermoVisivel(false)}
-            onAccept={handleShowResults}
-          />
+          <Modalize
+                ref={modalizeRef}
+                modalHeight={600}
+                handleStyle={{ backgroundColor: theme.textSecundary }}
+                modalStyle={{ backgroundColor: theme.backgroundCards }}
+            >
+                <AcceptanceTerm
+                    isChecked={isChecked}
+                    onToggleChecked={() => setIsChecked(!isChecked)}
+                    onAccept={handleShowResults}
+                />
+            </Modalize>
+
         </ScrollView>
       ) : (
         // ===== TELA DE RESULTADOS =====
@@ -240,7 +254,7 @@ export default function DetalhesInvestimento() {
               </View>
 
               <View className="flex-row justify-between mb-[2px]">
-                <Text style={{ fontSize: 15, color: theme.text }}>Cotatização de resgate:</Text>
+                <Text style={{ fontSize: 15, color: theme.text }}>Liquidação de resgate:</Text>
                 <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
                   D+{fund.prazoConversaoResgate} (Dias Úteis)
                 </Text>

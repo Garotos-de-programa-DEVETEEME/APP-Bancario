@@ -83,7 +83,7 @@ export const Expanded = ({
 
       <View className="flex flex-row justify-between">
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
-          Cotização de resgate:{' '}
+          Liquidação de resgate:{' '}
         </StyledText>
         <StyledText className="text-[13px]" style={{ color: theme.alternativeText }}>
           {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}
