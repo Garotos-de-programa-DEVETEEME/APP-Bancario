@@ -3,7 +3,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getAuthHeader } from '@/src/services/authUtils'
 import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation'
 
-interface LoginResponse {
+//TODO: REMOVER DEPOIS QUE BACK ESTIVER PRONTO
+import { mockSignIn } from '@/mock/mockAuth'
+
+export interface LoginResponse {
     token: string
     id: number
 }
@@ -17,9 +20,12 @@ interface LoginResponse {
  */
 export async function signIn(email: string, password: string): Promise<LoginResponse> {
     try {
-        const response = await api.post<LoginResponse>('/session', { username: email, password });
+        //TODO: REMOVER DEPOIS QUE BACK ESTIVER PRONTO - DADOS MOCKADOS
+        const response = await mockSignIn(email, password);
+        const { token, id } = response;
 
-        const { token, id } = response.data;
+        // const response = await api.post<LoginResponse>('/session', { username: email, password });
+        // const { token, id } = response.data;
 
         await AsyncStorage.setItem('userToken', token);
         await AsyncStorage.setItem('userId', id.toString());
