@@ -10,7 +10,7 @@ import colors from '@/constants/colors'
 import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Toast from 'react-native-toast-message'
-import { signIn } from '@/src/services/authService' // Ajuste o caminho
+import { signIn } from '@/src/services/authService'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -59,6 +59,7 @@ export default function Login() {
                             onChangeText={setEmail}
                             keyboardType="email-address"
                             autoCapitalize="none"
+                            testID="login-input-email"
                         />
                     </View>
 
@@ -70,10 +71,15 @@ export default function Login() {
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry
+                            testID="login-input-senha"
                         />
                     </View>
 
-                    <Pressable style={styles.button} onPress={handleSignIn}>
+                    <Pressable
+                        style={styles.button}
+                        onPress={handleSignIn}
+                        testID="login-botao-entrar"
+                    >
                         <Text style={styles.buttonText}>Entrar</Text>
                     </Pressable>
                 </View>
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-end',
-        backgroundColor: colors.zinc
+        backgroundColor: colors.zinc,
     },
     form: {
         backgroundColor: colors.white,
@@ -117,7 +123,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         borderRadius: 8,
-        marginBottom: 20
+        marginBottom: 20,
     },
     buttonText: {
         color: colors.white,
@@ -129,4 +135,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 30,
     },
-});
+})
