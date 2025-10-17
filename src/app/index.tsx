@@ -1,26 +1,132 @@
-import EntrarButton from '@/src/components/Buttons/EntrarButton';
-import { router } from 'expo-router';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import {
+    ImageBackground,
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
+} from 'react-native'
+import colors from '@/constants/colors'
+import { useState } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Toast from 'react-native-toast-message'
+import { signIn } from '@/src/services/authService' // Ajuste o caminho
 
-export default function App() {
-  return (
-    <View className="flex-1">
-      <ImageBackground
-        source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
-        className="flex-1"
-        resizeMode="cover"
-      >
-        <SafeAreaView className="flex-1 justify-end px-5 pb-10">
-          <View className="flex-1" />
+export default function Login() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-          <View className="h-40 items-center">
-            <EntrarButton
-              title="Cliente"
-              onPress={() => router.push('/telaInicial')}
-            />
-          </View>
-        </SafeAreaView>
-      </ImageBackground>
-    </View>
-  );
+    const handleSignIn = async () => {
+        try {
+            if (!email || !password) {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Erro de login',
+                    text2: 'Por favor, preencha todos os campos.',
+                })
+                return
+            }
+
+            await signIn(email, password)
+        } catch (error) {
+            const errorMessage =
+                error instanceof Error
+                    ? error.message
+                    : 'Falha desconhecida no login.'
+
+            Toast.show({
+                type: 'error',
+                text1: 'Erro de login',
+                text2: errorMessage,
+            })
+        }
+    }
+
+    return (
+        <ImageBackground
+            source={require('../../assets/images/home/banestes-home.jpg')}
+            style={styles.backgroundImage}
+            resizeMode="cover"
+        >
+            <SafeAreaView style={styles.container}>
+                <View style={styles.form}>
+                    <View>
+                        <Text style={styles.label}>Email</Text>
+                        <TextInput
+                            placeholder="Digite seu email..."
+                            style={styles.input}
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                        />
+                    </View>
+
+                    <View>
+                        <Text style={styles.label}>Senha</Text>
+                        <TextInput
+                            placeholder="Digite sua senha..."
+                            style={styles.input}
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry
+                        />
+                    </View>
+
+                    <Pressable style={styles.button} onPress={handleSignIn}>
+                        <Text style={styles.buttonText}>Entrar</Text>
+                    </Pressable>
+                </View>
+            </SafeAreaView>
+        </ImageBackground>
+    )
 }
+
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        backgroundColor: colors.zinc
+    },
+    form: {
+        backgroundColor: colors.white,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        paddingTop: 24,
+        paddingHorizontal: 14,
+    },
+    label: {
+        color: colors.zinc,
+        marginBottom: 4,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: colors.gray,
+        borderRadius: 8,
+        marginBottom: 16,
+        paddingHorizontal: 8,
+        paddingVertical: 14,
+    },
+    button: {
+        backgroundColor: colors.zinc,
+        paddingVertical: 14,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        borderRadius: 8,
+        marginBottom: 20
+    },
+    buttonText: {
+        color: colors.white,
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+    link: {
+        marginTop: 16,
+        textAlign: 'center',
+        marginBottom: 30,
+    },
+});
