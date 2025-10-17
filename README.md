@@ -1,3 +1,8 @@
+# Rodar projeto antigo em outra porta enquanto o novo roda na porta principal
+
+npx expo start -w -p NUMERO_DA_PORTA
+
+
 # Front-end Asset
 
 ## Descrição
