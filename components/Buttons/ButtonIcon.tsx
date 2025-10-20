@@ -3,6 +3,7 @@ import { Pressable, View, Text, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyledText } from '../StyledText';
 import { useTheme } from '@/hooks/useTheme';
+import { StylesType } from '@/@Types/stylesType';
 
 interface ButtonIconProps {
   route: () => void;
@@ -18,11 +19,11 @@ export const ButtonIcon = ({ route, text, iconName, IconHeight = 24 }: ButtonIco
   return (
     <Pressable onPress={route} style={styles.button}>
       <View style={styles.iconWrapper}>
-        <MaterialIcons name={iconName as any} size={IconHeight} color={theme.text} />
+        <MaterialIcons name={iconName as any} size={IconHeight} color={theme.tint} />
       </View>
 
       <StyledText
-        style={[styles.text,{ color: theme.tint, textAlign: "left" }]}
+        style={[styles.text,{ color: theme.tint, textAlign: "left", maxWidth:70 }]}
         numberOfLines={2}
       >
         {text}
@@ -31,15 +32,20 @@ export const ButtonIcon = ({ route, text, iconName, IconHeight = 24 }: ButtonIco
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: StylesType) =>
   StyleSheet.create({
     button: {
-      width: 100,
+      width: 112,
       height: 64,
       borderRadius: 12,
-      justifyContent: 'center',
+      display:'flex',
+      flexDirection:'row',
       alignItems: 'center',
-      backgroundColor: 'transparent',
+      justifyContent:'center',
+      backgroundColor: theme.backgroundCards,
+      boxSizing:'border-box',
+      padding:4,
+      gap:2
     },
     buttonPressed: {
       opacity: 0.8,
