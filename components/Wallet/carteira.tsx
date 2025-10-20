@@ -43,7 +43,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
         </StyledText>
 
         <View className="items-center justify-center">
-          <GraficWallet data={fundosInvestidos} embedded />
+          {/*<GraficWallet data={fundosInvestidos} embedded />*/}
         </View>
       </View>
 
