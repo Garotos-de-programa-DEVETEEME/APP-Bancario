@@ -1,18 +1,18 @@
-import { useTheme } from '@/src/hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { StyledText } from '../StyledText';
-import { FavoriteButton } from '../Buttons/favoriteButton';
 import { useEffect, useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { FavoriteButton } from '../Buttons/favoriteButton';
+import { StyledText } from '../StyledText';
 
 interface SimpleHeaderProps {
   title: string;
   favorite?: boolean;
 }
 
-export default function SimpleHeader({ title, favorite= false }: SimpleHeaderProps) {
+export default function SimpleHeader({ title, favorite = false }: SimpleHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const theme = useTheme();
@@ -20,45 +20,72 @@ export default function SimpleHeader({ title, favorite= false }: SimpleHeaderPro
   const [favoriteFund, setFavoriteFund] = useState(false);
 
   useEffect(() => {
-    if(favorite){{/* TODO fazer com base nos favoritados pelo cliente */}
+    if (favorite) {
+      /* TODO fazer com base nos favoritados pelo cliente */
       setFavoriteFund(false);
     }
-  },[])
+  }, [favorite]);
 
   return (
     <View
-      className="w-full flex-row items-center justify-between px-3"
-      style={{
-        paddingTop: insets.top,
-        backgroundColor: theme.background, // fundo do header
-      }}
+      style={[
+        styles.container,
+        { paddingTop: insets.top, backgroundColor: theme.background },
+      ]}
     >
       {/* Botão voltar */}
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.goBack()}
-        hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-        className="w-12 h-12 items-center justify-center"
-        activeOpacity={0.7}
+        style={styles.backButton}
       >
-        <Ionicons name="arrow-back" size={24} color={theme.tint ?? "#005A9C"} />
-      </TouchableOpacity>
+        <Ionicons name="arrow-back" size={24} color={theme.tint} />
+      </Pressable>
 
       {/* Título centralizado */}
-      <View className="flex-1 items-center">
+      <View style={styles.titleContainer}>
         <StyledText
-          className="text-[18px] font-bold"
-          style={{ color: theme.text }}
+          style={[styles.titleText, { color: theme.text }]} 
           numberOfLines={1}
         >
           {title}
         </StyledText>
       </View>
-      {favorite? (
-          <FavoriteButton onPress={() => setFavoriteFund(prev => !prev)} selected={favoriteFund}/>
-        ):(
-          <View className="w-12 h-12" />
-        )}
-        
+
+      {favorite ? (
+        <FavoriteButton onPress={() => setFavoriteFund(prev => !prev)} selected={favoriteFund} />
+      ) : (
+        <View style={styles.rightPlaceholder} />
+      )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12,
+  },
+  backButton: {
+    width: 48,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  rightPlaceholder: {
+    width: 48,
+    height: 48,
+  },
+});
