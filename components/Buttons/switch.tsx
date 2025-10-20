@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react';
-import { View, Pressable, StyleSheet, Animated } from 'react-native';
-import { StylesType } from "@/src/@Types/stylesType";
-import { useTheme } from "@/src/hooks/useTheme";
+import { StylesType } from '@/@Types/stylesType';
+import { useTheme } from '@/hooks/useTheme';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Pressable, StyleSheet, View } from 'react-native';
 
 interface SwitchButtonProps {
     value: boolean;
@@ -48,6 +48,7 @@ const getStyles = (theme: StylesType) => {
             borderRadius: 11,
             backgroundColor: theme.border,
             justifyContent: 'center',
+            position: 'relative',
         },
         trackEnabled: {
             backgroundColor: '#3478F6', // Azul do design
@@ -58,7 +59,13 @@ const getStyles = (theme: StylesType) => {
             borderRadius: 9,
             backgroundColor: theme.backgroundCards,
             position: 'absolute',
+            top: 2,
+        },
+        thumbInactive: {
             left: 2,
+        },
+        thumbActive: {
+            left: 22,
         },
     });
 };

@@ -1,27 +1,62 @@
-import { Pressable, View } from "react-native";
-import { StyledText } from "../StyledText";
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { useTheme } from "@/src/hooks/useTheme";
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { useTheme } from '@/hooks/useTheme';
+import {StyledText} from '../StyledText';
 
-interface DocumentButtonProps{
-    type: 'default' | 'row';
-    title: string;
-    documentoUri: string; 
-    alternativeIcon?: boolean;
+interface DocumentButtonProps {
+  type?: 'default' | 'row';
+  alternativeIcon?: boolean;
+  title: string;
+  documentoUri?: string;
 }
 
-export const DocumentButton = ({type, title, alternativeIcon=false, documentoUri}:DocumentButtonProps) =>{
-    const theme = useTheme();
-    return(
-        <View>
-            <Pressable style={[{display:'flex', flexDirection:'row', alignItems:'center', width:160, height:64 }, type === 'default'? {boxSizing:'content-box' ,justifyContent:'center', borderWidth:2, borderColor:theme.text, borderRadius:10, }:{justifyContent:'flex-start', borderBottomColor:theme.border, borderBottomWidth:1, width:'100%', height:48, gap:16, paddingLeft:8,}]}>{/*TODO adicionar navegação para o documentoUri */}
-                {alternativeIcon? (
-                    <Ionicons name="receipt-outline" color={theme.text} size={type ==='row'? 14:26} />
-                ):(
-                    <MaterialCommunityIcons name="file" color={theme.text} size={type ==='row'? 14:26} />
-                )}
-                <StyledText style={{fontSize:16, fontWeight:'500'}}> {title} </StyledText>
-            </Pressable>
-        </View>
-    );    
-}
+export const DocumentButton = ({ type = 'default', title, alternativeIcon = false }: DocumentButtonProps) => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
+
+  return (
+    <View style={styles.wrapper}>
+      <Pressable style={[styles.container, type === 'row' && styles.rowContainer]} onPress={() => { /* navegar para documento */ }}>
+        {alternativeIcon ? (
+          <Ionicons name="receipt" size={type === 'row' ? 14 : 26} color={theme.text} style={styles.icon} />
+        ) : (
+          <Image source={require('@/src/assets/Document.png')} style={[styles.image, { width: type === 'row' ? 14 : 26, height: type === 'row' ? 14 : 26 }]} />
+        )}
+        <StyledText style={styles.title}>{title}</StyledText>
+      </Pressable>
+    </View>
+  );
+};
+
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    wrapper: {
+      width: '100%',
+    },
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: 'transparent',
+      borderRadius: 10,
+      padding: 12,
+    },
+    rowContainer: {
+      justifyContent: 'flex-start',
+      borderBottomWidth: 1,
+      borderBottomColor: theme.border,
+      paddingVertical: 8,
+    },
+    icon: {
+      marginRight: 8,
+    },
+    image: {
+      resizeMode: 'contain',
+      marginRight: 8,
+    },
+    title: {
+      fontSize: 14,
+    },
+  });
