@@ -1,7 +1,7 @@
-import { useTheme } from '@/src/hooks/useTheme';
-import { riskTheme } from '@/src/themes/risk';
 import { View } from 'react-native';
 import { StyledText } from '../StyledText';
+import { useTheme } from '@/hooks/useTheme';
+import { riskTheme } from '@/constants/risk';
 
 interface riskIconProps {
   risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; // TODO alterar conforme resposta da API

@@ -1,8 +1,8 @@
-import { FilterType } from '@/src/@Types/Filter';
-import { useTheme } from '@/src/hooks/useTheme';
 import { StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
-import { StylesType } from '@/src/@Types/stylesType';
+import { useTheme } from '@/hooks/useTheme';
+import { StylesType } from '@/@Types/stylesType';
+import { FilterType } from '@/@Types/Filter';
 
 interface filterSelectedProps {
   data: FilterType;

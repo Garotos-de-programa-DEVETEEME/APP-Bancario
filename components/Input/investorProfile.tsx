@@ -1,12 +1,12 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { formSteps } from '@/src/data/investidorPerfilPergunta';
-import { useTheme } from "@/src/hooks/useTheme";
 import { useState } from 'react';
 import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
 import { QuestionBox } from './questionBox';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '@/hooks/useTheme';
+import { StylesType } from '@/@Types/stylesType';
+import { formSteps } from '@/constants/investidorPerfilPergunta';
 
 interface InvestorProfileProps {
     visible: boolean;
@@ -25,7 +25,7 @@ export function InvestorProfile({ visible, onClose, onAccept, clientName, image 
     const [step, setStep] = useState(1);
     const [answers, setAnswers] = useState<Record<number, string | null>>({});
 
-    const currentStepData = formSteps.find(s => s.id === step);
+    const currentStepData = formSteps.find((s: { id: number }) => s.id === step);
 
     const handleBack = () => {
         if (step > 1) {

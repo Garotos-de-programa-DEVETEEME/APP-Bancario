@@ -1,4 +1,4 @@
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { Text } from "react-native";
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 

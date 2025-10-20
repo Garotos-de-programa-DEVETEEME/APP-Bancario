@@ -10,14 +10,14 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-import { FundoInvestimento } from "@/src/@Types/fundos";
-import { StylesType as themeType } from "@/src/@Types/stylesType";
-import { useTheme } from "@/src/hooks/useTheme";
-import { coinFormat } from "@/src/utils/coinFormat";
-import { converterNumeroParaHora as hourFormater } from "@/src/utils/hourFormat";
 import { router } from "expo-router";
 import { NavigationButton } from "../Buttons/navigationButton";
 import { StyledText } from "../StyledText";
+import { useTheme } from "@/hooks/useTheme";
+import { FundoInvestimento } from "@/@Types/fundos";
+import { converterNumeroParaHora } from "@/utils/hourFormat";
+import { coinFormat } from "@/utils/coinFormat";
+import { StylesType } from "@/@Types/stylesType";
 
 interface FundoInvestidoProps {
   fundoData: FundoInvestimento;
@@ -77,7 +77,7 @@ export const FundoInvestido = ({ fundoData, expanded, setExpanded }: FundoInvest
         <Divider color={theme.border} />
         <InfoRow theme={theme} title="Valor mínimo de resgate" value={coinFormat(fundoData.valorMinimoResgatavel)} />
         <Divider color={theme.border} />
-        <InfoRow theme={theme} title="Horário limite de resgate" value={hourFormater(fundoData.horaLimite)} noBottom />
+        <InfoRow theme={theme} title="Horário limite de resgate" value={converterNumeroParaHora(fundoData.horaLimite)} noBottom />
       </View>
 
       {/* expandido — saída mais suave */}
@@ -89,15 +89,15 @@ export const FundoInvestido = ({ fundoData, expanded, setExpanded }: FundoInvest
         >
           <View className="flex-row justify-center mt-1.5">
             <NavigationButton
-              onPress={() =>
-                router.push({
+              onPress={() => 
+                {/*router.push({
                   pathname: "/carteira/resgatar",
                   params: {
                     saldo: 10,
                     valorMinimoPermanencia: fundoData.valorAplicacaoInicial,
                     valorMinimoResgate: fundoData.valorMinimoResgateInternet,
                   },
-                })
+                })*/}
               }
               text="Resgatar"
             />
@@ -118,7 +118,7 @@ function InfoRow({
 }: {
   title: string;
   value: string;
-  theme: themeType;
+  theme: StylesType;
   noBottom?: boolean;
 }) {
   return (

@@ -1,9 +1,9 @@
-import { useTheme } from "@/src/hooks/useTheme";
 import { View, StyleSheet, Pressable } from "react-native";
 import { StyledText } from "../StyledText";
-import { FundoInvestimento } from "@/src/@Types/fundos";
-import { StylesType } from "@/src/@Types/stylesType";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useTheme } from "@/hooks/useTheme";
+import { FundoInvestimento } from "@/@Types/fundos";
+import { StylesType } from "@/@Types/stylesType";
 
 interface HighlightFundProps {
     data: FundoInvestimento;
@@ -19,7 +19,7 @@ export const HighlightFund = ({data, iconName}: HighlightFundProps) => {
     <Pressable onPress={() => {}}>{/*TODO redirecionar para a pagina de saiba mais ou investir do fundo */}
         <View style={styles.container}>
             <View style={styles.titleContainer}>
-                <MaterialCommunityIcons  name={iconName.name} color={iconName.color} size={22}/>
+                <MaterialCommunityIcons  name={iconName.name as any} color={iconName.color} size={22}/>
                 <View style={{maxWidth: 80}}>
                     <StyledText style={{fontSize: 9, color:theme.whiteText}}> {data.nome} </StyledText>
                 </View>

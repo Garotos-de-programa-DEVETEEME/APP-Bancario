@@ -1,6 +1,6 @@
-import { FundoInvestimento } from '@/src/@Types/fundos';
-import { StylesType } from '@/src/@Types/stylesType';
-import { useTheme } from "@/src/hooks/useTheme";
+import { FundoInvestimento } from '@/@Types/fundos';
+import { StylesType } from '@/@Types/stylesType';
+import { useTheme } from '@/hooks/useTheme';
 import { StyleSheet, Text, View } from 'react-native';
 
 interface FundDetailsProps {

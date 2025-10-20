@@ -1,7 +1,4 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { useFilters } from '@/src/Context/filterContext';
-import { useTheme } from '@/src/hooks/useTheme';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import {
   Pressable,
@@ -10,8 +7,10 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FiltersSelected } from './FiltersSelected';
+import { useTheme } from '@/hooks/useTheme';
+import { StylesType } from '@/@Types/stylesType';
+import { useFilters } from '@/src/contexts/filterContext';
 
 interface SearchBarProps {
   value: string; //variavel para controle
@@ -98,7 +97,7 @@ export const SearchBar = ({
             name='filter-list'
             style={styles.filterIcon}
             size={24}
-            onPress={() => router.push('/fundosInvestimentos/filter')}
+            //onPress={() => router.push('/fundosInvestimentos/filter')}
           />
         </View>
       )}

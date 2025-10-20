@@ -1,7 +1,6 @@
 import {View, StyleSheet, Alert, Text} from 'react-native';
 import Header from "@/components/home/Header";
 import PatrimonyCard from "@/components/home/PatrimonyCard";
-import CardButton from "@/components/buttons/CardButton";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBar from "@/components/search/SearchBar";
 import FundHighlightCard from "@/components/fundo/FundHighlightCard";
@@ -20,7 +19,7 @@ export default function Home() {
                 <PatrimonyCard />
 
                 <View style={styles.buttonsContainer}>
-                    <CardButton
+                    {/*<CardButton
                         iconName="wallet"
                         text="Minha Carteira"
                         onPress={() => console.log('Botão Minha Carteira pressionado')}
@@ -34,7 +33,7 @@ export default function Home() {
                         iconName="line-chart"
                         text="Simular Investimento"
                         onPress={() => console.log('Botão Simular Investimento pressionado')}
-                    />
+                    />*/}
                 </View>
 
                 <SearchBar onSearch={handleSearch}/>

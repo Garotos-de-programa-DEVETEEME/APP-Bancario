@@ -1,8 +1,8 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { useTheme } from "@/src/hooks/useTheme";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { NavigationButton } from '../Buttons/navigationButton';
+import { useTheme } from '@/hooks/useTheme';
+import { MaterialIcons } from '@expo/vector-icons';
+import { StylesType } from '@/@Types/stylesType';
 
 interface AcceptanceTermProps {
     onAccept: () => void;

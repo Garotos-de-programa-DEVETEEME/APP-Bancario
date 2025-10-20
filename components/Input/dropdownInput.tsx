@@ -1,8 +1,8 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { useTheme } from "@/src/hooks/useTheme";
+import { StylesType } from '@/@Types/stylesType';
+import { useTheme } from '@/hooks/useTheme';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface DropdownInputProps {
     content: string[];

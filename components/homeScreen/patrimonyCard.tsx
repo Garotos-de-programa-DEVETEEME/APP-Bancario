@@ -6,11 +6,11 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import { useTheme } from "@/src/hooks/useTheme";
-import { coinFormat } from "@/src/utils/coinFormat";
 import { StyledText } from "../StyledText";
+import { useTheme } from "@/hooks/useTheme";
+import { coinFormat } from "@/utils/coinFormat";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type PatrimonyCardProps = {
   value: number;

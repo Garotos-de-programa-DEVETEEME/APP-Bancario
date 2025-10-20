@@ -1,11 +1,11 @@
-import { FundoInvestimento } from '@/src/@Types/fundos';
-import { useTheme } from '@/src/hooks/useTheme';
-import { converterNumeroParaHora } from '@/src/utils/hourFormat';
 import { router } from 'expo-router';
 import { View } from 'react-native';
 import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
 import { NavigationButton } from '../Buttons/navigationButton';
 import { StyledText } from '../StyledText';
+import { converterNumeroParaHora } from '@/utils/hourFormat';
+import { useTheme } from '@/hooks/useTheme';
+import { FundoInvestimento } from '@/@Types/fundos';
 
 interface expandedProps {
   fund: FundoInvestimento;

@@ -1,3 +1,6 @@
+import { FundoInvestimento } from "@/@Types/fundos";
+import { fundosColor } from "@/constants/fundosInvestdos";
+import { useTheme } from "@/hooks/useTheme";
 import React, { useEffect, useMemo } from "react";
 import { View } from "react-native";
 import Animated, {
@@ -8,9 +11,6 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 
-import { FundoInvestimento } from "@/src/@Types/fundos";
-import { useTheme } from "@/src/hooks/useTheme";
-import { fundsColor } from "@/src/themes/fundosInvestdos";
 
 // Componente animado do Circle
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -45,7 +45,7 @@ export const GraficWallet = ({ data }: InvestmentChartProps) => {
 
     let acc = 0;
     return data.map((item) => {
-      const color = fundsColor.find((o) => o.nome === item.nomeReduzido)?.cor ?? "#999";
+      const color = fundosColor.find((o) => o.nome === item.nomeReduzido)?.cor ?? "#999";
       const pct = item.codigo / totalValue; // 0..1
       const info: SliceInfo = { color, pct, offsetPct: acc };
       acc += pct;
@@ -117,7 +117,6 @@ function SliceArc({
   color: string;
   pct: number;        // 0..1
   offsetPct: number;  // 0..1
-  progress: Animated.SharedValue<number>;
 }) {
   const animatedProps = useAnimatedProps(() => {
     // comprimento "alvo" da fatia

@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { StyledText } from "../StyledText";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 interface TextRowProps{
     left: string; 

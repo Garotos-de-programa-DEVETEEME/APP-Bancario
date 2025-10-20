@@ -1,5 +1,5 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { useTheme } from "@/src/hooks/useTheme";
+import { StylesType } from '@/@Types/stylesType';
+import { useTheme } from '@/hooks/useTheme';
 import { StyleProp, StyleSheet, TextInput, TextStyle } from 'react-native';
 
 interface PriceInputProps {

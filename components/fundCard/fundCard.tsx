@@ -1,6 +1,3 @@
-import { FundoInvestimento } from '@/src/@Types/fundos';
-import { useTheme } from '@/src/hooks/useTheme';
-import { coinFormat } from '@/src/utils/coinFormat';
 import { Pressable, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import { Expanded } from './expandedFund';
@@ -9,6 +6,9 @@ import { RiskIcon } from './riskIcon';
 // ✅ imports de animação
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Animated, { FadeInDown, FadeOutUp, LinearTransition } from 'react-native-reanimated';
+import { FundoInvestimento } from '@/@Types/fundos';
+import { useTheme } from '@/hooks/useTheme';
+import { coinFormat } from '@/utils/coinFormat';
 
 interface FundsCardProps {
   fund: FundoInvestimento;

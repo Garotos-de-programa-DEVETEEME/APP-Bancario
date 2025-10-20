@@ -1,7 +1,7 @@
-import { StylesType } from '@/src/@Types/stylesType';
-import { useTheme } from "@/src/hooks/useTheme";
 import { Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
+import { useTheme } from '@/hooks/useTheme';
+import { StylesType } from '@/@Types/stylesType';
 
 const RadioButtonOption = ({ label, selected, onPress }: { label: string, selected: boolean, onPress: () => void }) => {
     const theme = useTheme();

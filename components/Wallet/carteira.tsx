@@ -1,11 +1,11 @@
-import { FundoInvestimento } from "@/src/@Types/fundos";
-import { useTheme } from "@/src/hooks/useTheme";
-import { fundsColor } from "@/src/themes/fundosInvestdos";
 import { useMemo } from "react";
 import { View } from "react-native";
 import { StyledText } from "../StyledText";
 import PatrimonyCard from "../homeScreen/patrimonyCard";
 import { GraficWallet } from "./grafico";
+import { useTheme } from "@/hooks/useTheme";
+import { FundoInvestimento } from "@/@Types/fundos";
+import { fundosColor } from "@/constants/fundosInvestdos";
 
 interface WalletInfoCardProps {
   fundosInvestidos: FundoInvestimento[];
@@ -56,7 +56,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
         ) : (
           fundosInvestidos.map((fundo, index) => {
             const cor =
-              fundsColor.find((i) => i.nome === fundo.nomeReduzido)?.cor ??
+              fundosColor.find((i) => i.nome === fundo.nomeReduzido)?.cor ??
               theme.tint;
 
             const isLast = index === fundosInvestidos.length - 1;

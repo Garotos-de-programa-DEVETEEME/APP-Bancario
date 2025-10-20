@@ -1,9 +1,9 @@
-import { useTheme } from "@/src/hooks/useTheme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
 import { StyledText } from "../StyledText";
 import { TextRow } from "./rowText";
+import { useTheme } from "@/hooks/useTheme";
 
 interface ExpandTextProps{
     title: string,

@@ -1,8 +1,8 @@
-import { useTheme } from "@/src/hooks/useTheme";
 import { Pressable, View } from "react-native";
 import { StyledText } from "../StyledText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { coinFormat } from "@/src/utils/coinFormat";
+import { useTheme } from "@/hooks/useTheme";
+import { coinFormat } from "@/utils/coinFormat";
 
 interface TodayMarketProps{
     fundoDestaque: {

@@ -1,8 +1,8 @@
-import { useTheme } from '@/src/hooks/useTheme';
 import { Image, StyleSheet, View } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '@/hooks/useTheme';
 
 type ClientHeaderProps = {
   title: string;
