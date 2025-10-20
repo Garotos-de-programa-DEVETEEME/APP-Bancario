@@ -1,5 +1,7 @@
 import { FundoInvestimento } from '@/@Types/fundos';
 import { StylesType } from '@/@Types/stylesType';
+import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
+import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import { ButtonIcon } from '@/components/Buttons/ButtonIcon';
 import ClientHeader from '@/components/homeScreen/clientHeader';
 import { HighlightFund } from '@/components/homeScreen/highligthFund';
@@ -9,7 +11,7 @@ import { StyledText } from '@/components/StyledText';
 import { fundosDestaque } from '@/constants/fundosDestaque';
 import { useTheme } from '@/hooks/useTheme';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function TelaInicial() {
@@ -42,91 +44,104 @@ export default function TelaInicial() {
     { name: 'chart-line-variant', color: '#00FF6A' },
     { name: 'leaf', color: '#00CC55' },
   ];
-  const images = [
+  const imagesCard = [
     require('../../../../assets/images/home/image-34.png'),
     require('../../../../assets/images/home/banestes-56-anos.png')
   ];
 
-  return (
-    <ScrollView showsHorizontalScrollIndicator={false}>
-      <View style={styles.container}>
-        <ClientHeader
-          title='Cliente'
-          image='https://legacy.reactjs.org/logo-og.png'
-          value={-1}
-        />
-        <View style={styles.buttonContainer}>
-          <ButtonIcon
-            key={1}
-            route={() =>{/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})*/}}
-            text='Minha Carteira'
-            iconName='wallet'
-            IconHeight={30}
-          />
-          <ButtonIcon
-            key={2}
-            route={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})*/}}
-            text='Fundos de Investimento'
-            iconName='inventory'
-            IconHeight={25}
-          />
-          <ButtonIcon
-            key={3}
-            route={() => {/*router.push('/simularInvestimento')*/}}
-            text='Simular Investimento'
-            iconName='timeline'
-            IconHeight={25}
-          />
-        </View>
-        <View style={{width:'90%', alignSelf:'center'}}>
-          <SearchBar
-            value={searchText}
-            onChangeText={(e) => setSearchText(e)}
-            placeholder='Buscar fundos por nome ou categoria'
-            hasFilter={false}
-            onIconPress={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})*/}}
-            transparent
-          />
-        </View>
+    const [screenState, setScreenState] = useState(ScreenStates.loading())
+    
+    useEffect(() => {
+        setScreenState(ScreenStates.content())
+    }, []);
 
-        <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
-        <View style={styles.buttonContainer}>
-          <View style={styles.buttonContainer}>
-          {fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
-                <HighlightFund
-                    key={index}
-                    data={fund}
-                    iconName={iconsFundoDestaque[index].name}
-                    color={iconsFundoDestaque[index].color}
+  return (
+     BaseScreen({
+        state: screenState,
+        children: (
+            <ScrollView showsHorizontalScrollIndicator={false}>
+            <View style={styles.container}>
+                <ClientHeader
+                    title='Cliente'
+                    image='https://legacy.reactjs.org/logo-og.png'
+                    value={-1}
                 />
-            ))}
+                <View style={styles.buttonContainer}>
+                <ButtonIcon
+                    key={1}
+                    route={() =>{/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})*/}}
+                    text='Minha Carteira'
+                    iconName='wallet'
+                    IconHeight={30}
+                />
+                <ButtonIcon
+                    key={2}
+                    route={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})*/}}
+                    text='Fundos de Investimento'
+                    iconName='inventory'
+                    IconHeight={25}
+                />
+                <ButtonIcon
+                    key={3}
+                    route={() => {/*router.push('/simularInvestimento')*/}}
+                    text='Simular Investimento'
+                    iconName='timeline'
+                    IconHeight={25}
+                />
+                </View>
+                <View style={{width:'90%', alignSelf:'center'}}>
+                <SearchBar
+                    value={searchText}
+                    onChangeText={(e) => setSearchText(e)}
+                    placeholder='Buscar fundos por nome ou categoria'
+                    hasFilter={false}
+                    onIconPress={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})*/}}
+                    transparent
+                />
+                </View>
+                <View>
+                    <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
+                    <View style={styles.buttonContainer}>
+                        {fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
+                                <HighlightFund
+                                    key={index}
+                                    data={fund}
+                                    iconName={iconsFundoDestaque[index].name}
+                                    color={iconsFundoDestaque[index].color}
+                                />
+                            ))}
+                        </View>
+                </View>
+                <View>
+                    <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
+                    <View style={styles.buttonContainer}>
+                    {marketToday.map((fund, index) => (
+                        <TodayMarket key={index} fundoDestaque={fund} />
+                    ))}
+                    </View>
+                </View>
+                <View style={styles.line}></View>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {imagesCard.map((image, index) => (
+                    <Image
+                    source={image}
+                    key={index}
+                    style={{
+                        borderRadius: 16,
+                        width: 280,
+                        height: 136,
+                        marginLeft: 16,
+                    }}
+                    />
+                ))}
+                </ScrollView>
+                <View style={styles.line}></View>
             </View>
-        </View>
-        <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
-        <View style={styles.buttonContainer}>
-          {marketToday.map((fund, index) => (
-            <TodayMarket key={index} fundoDestaque={fund} />
-          ))}
-        </View>
-        <View style={styles.line}></View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {images.map((image, index) => (
-            <Image
-              source={image}
-              key={index}
-              style={{
-                borderRadius: 16,
-                width: 280,
-                height: 136,
-                marginLeft: 16,
-              }}
-            />
-          ))}
-        </ScrollView>
-        <View style={styles.line}></View>
-      </View>
-    </ScrollView>
-  );
+            </ScrollView>
+        )
+    })
+    );
+
 }
 
 const getStyles = (theme: StylesType) => {
@@ -149,6 +164,7 @@ const getStyles = (theme: StylesType) => {
       fontSize: 20,
       color: theme.text,
       marginLeft: 24,
+      marginBottom:12
     },
     line: {
       borderBottomColor: theme.border,
