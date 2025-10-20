@@ -1,69 +1,81 @@
-import {View, StyleSheet, Alert, Text} from 'react-native';
+import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
+import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
+import CardButton from "@/components/buttons/CardButton";
+import FundHighlightCard from "@/components/fundo/FundHighlightCard";
 import Header from "@/components/home/Header";
 import PatrimonyCard from "@/components/home/PatrimonyCard";
-import CardButton from "@/components/buttons/CardButton";
-import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBar from "@/components/search/SearchBar";
-import FundHighlightCard from "@/components/fundo/FundHighlightCard";
+import { useEffect, useState } from 'react';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Home() {
+    const [screenState, setScreenState] = useState(ScreenStates.loading())
+    
+    useEffect(() => {
+        setScreenState(ScreenStates.content())
+    }, []);
 
     const handleSearch = (text: string) => {
         Alert.alert('Busca realizada', `Você buscou por: ${text}`);
         console.log('Texto de busca:', text);
     };
 
-    return (
-        <View style={styles.container}>
-            <SafeAreaView style={styles.safeArea}>
-                <Header />
-                <PatrimonyCard />
+    return ( 
+        BaseScreen({
+            state: screenState,
+            children: (
+            <View style={styles.container}>
+                <SafeAreaView style={styles.safeArea}>
+                    <Header />
+                    <PatrimonyCard />
 
-                <View style={styles.buttonsContainer}>
-                    <CardButton
-                        iconName="wallet"
-                        text="Minha Carteira"
-                        onPress={() => console.log('Botão Minha Carteira pressionado')}
-                    />
-                    <CardButton
-                        iconName="folder1"
-                        text="Fundos de Investimento"
-                        onPress={() => console.log('Botão Fundos de Investimento pressionado')}
-                    />
-                    <CardButton
-                        iconName="line-chart"
-                        text="Simular Investimento"
-                        onPress={() => console.log('Botão Simular Investimento pressionado')}
-                    />
-                </View>
-
-                <SearchBar onSearch={handleSearch}/>
-
-                <View style={styles.highlightSection}>
-                    <Text style={styles.highlightTitle}>Fundos em Destaque</Text>
-                    <View style={styles.cardsContainer}>
-                        <FundHighlightCard
-                            iconName="trophy"
-                            title="Banestes VIP DI FIC de FI"
-                            percentage="+76,38 %"
-                            color="#007aff"
+                    <View style={styles.buttonsContainer}>
+                        <CardButton
+                            iconName="wallet"
+                            text="Minha Carteira"
+                            onPress={() => console.log('Botão Minha Carteira pressionado')}
                         />
-                        <FundHighlightCard
+                        <CardButton
+                            iconName="folder1"
+                            text="Fundos de Investimento"
+                            onPress={() => console.log('Botão Fundos de Investimento pressionado')}
+                        />
+                        <CardButton
                             iconName="line-chart"
-                            title="Banestes Invest Money FI Renda Fixa"
-                            percentage="+13,50 %"
-                            color="#00C853" // Exemplo de cor verde
-                        />
-                        <FundHighlightCard
-                            iconName="leaf-circle"
-                            title="Banestes Reserva Climática"
-                            percentage="+9,00 %"
-                            color="#007aff"
+                            text="Simular Investimento"
+                            onPress={() => console.log('Botão Simular Investimento pressionado')}
                         />
                     </View>
-                </View>
-            </SafeAreaView>
-        </View>
+
+                    <SearchBar onSearch={handleSearch}/>
+
+                    <View style={styles.highlightSection}>
+                        <Text style={styles.highlightTitle}>Fundos em Destaque</Text>
+                        <View style={styles.cardsContainer}>
+                            <FundHighlightCard
+                                iconName="trophy"
+                                title="Banestes VIP DI FIC de FI"
+                                percentage="+76,38 %"
+                                color="#007aff"
+                            />
+                            <FundHighlightCard
+                                iconName="line-chart"
+                                title="Banestes Invest Money FI Renda Fixa"
+                                percentage="+13,50 %"
+                                color="#00C853" // Exemplo de cor verde
+                            />
+                            <FundHighlightCard
+                                iconName="leaf-circle"
+                                title="Banestes Reserva Climática"
+                                percentage="+9,00 %"
+                                color="#007aff"
+                            />
+                        </View>
+                    </View>
+                </SafeAreaView>
+            </View>)
+        })
     );
 }
 
