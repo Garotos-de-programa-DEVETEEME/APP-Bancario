@@ -14,10 +14,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FiltersSelected } from './FiltersSelected';
 
 interface SearchBarProps {
-  placeholder?: string;
   value: string; //variavel para controle
   onChangeText: (text: string) => void;
-  onIconPress: () => void;
+  onIconPress?: () => void;
+  placeholder?: string;
   filter?: boolean;
   hasFilter?: boolean;
   transparent?: boolean; //se true, o fundo da search bar será transparente
