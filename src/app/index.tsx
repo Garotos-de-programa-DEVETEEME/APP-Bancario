@@ -1,3 +1,8 @@
+import { BaseScreen } from '@/components/BaseScreen/BaseScreen'
+import { ScreenStates } from '@/components/BaseScreen/ScreenStates'
+import colors from '@/constants/colors'
+import { signIn } from '@/src/services/authService'
+import { useState } from 'react'
 import {
     ImageBackground,
     Pressable,
@@ -6,13 +11,11 @@ import {
     TextInput,
     View,
 } from 'react-native'
-import colors from '@/constants/colors'
-import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Toast from 'react-native-toast-message'
-import { signIn } from '@/src/services/authService'
 
 export default function Login() {
+    const [screenState, setScreenState] = useState(ScreenStates.content())
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -27,8 +30,10 @@ export default function Login() {
                 return
             }
 
+            setScreenState(ScreenStates.loading())
             await signIn(email, password)
         } catch (error) {
+            setScreenState(ScreenStates.content())
             const errorMessage =
                 error instanceof Error
                     ? error.message
@@ -43,48 +48,52 @@ export default function Login() {
     }
 
     return (
-        <ImageBackground
-            source={require('../../assets/images/home/banestes-home.jpg')}
-            style={styles.backgroundImage}
-            resizeMode="cover"
-        >
-            <SafeAreaView style={styles.container}>
-                <View style={styles.form}>
-                    <View>
-                        <Text style={styles.label}>Email</Text>
-                        <TextInput
-                            placeholder="Digite seu email..."
-                            style={styles.input}
-                            value={email}
-                            onChangeText={setEmail}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            testID="login-input-email"
-                        />
-                    </View>
+        BaseScreen({
+            state: screenState,
+            children: (
+            <ImageBackground
+                source={require('../../assets/images/home/banestes-home.jpg')}
+                style={styles.backgroundImage}
+                resizeMode="cover"
+            >
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.form}>
+                        <View>
+                            <Text style={styles.label}>Email</Text>
+                            <TextInput
+                                placeholder="Digite seu email..."
+                                style={styles.input}
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                testID="login-input-email"
+                            />
+                        </View>
 
-                    <View>
-                        <Text style={styles.label}>Senha</Text>
-                        <TextInput
-                            placeholder="Digite sua senha..."
-                            style={styles.input}
-                            value={password}
-                            onChangeText={setPassword}
-                            secureTextEntry
-                            testID="login-input-senha"
-                        />
-                    </View>
+                        <View>
+                            <Text style={styles.label}>Senha</Text>
+                            <TextInput
+                                placeholder="Digite sua senha..."
+                                style={styles.input}
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry
+                                testID="login-input-senha"
+                            />
+                        </View>
 
-                    <Pressable
-                        style={styles.button}
-                        onPress={handleSignIn}
-                        testID="login-botao-entrar"
-                    >
-                        <Text style={styles.buttonText}>Entrar</Text>
-                    </Pressable>
-                </View>
-            </SafeAreaView>
-        </ImageBackground>
+                        <Pressable
+                            style={styles.button}
+                            onPress={handleSignIn}
+                            testID="login-botao-entrar"
+                        >
+                            <Text style={styles.buttonText}>Entrar</Text>
+                        </Pressable>
+                    </View>
+                </SafeAreaView>
+            </ImageBackground>)
+        })
     )
 }
 
