@@ -16,7 +16,7 @@ export const ButtonIcon = ({ route, text, iconName, IconHeight = 24 }: ButtonIco
   const styles = getStyles(theme);
 
   return (
-    <Pressable onPress={route} style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}>
+    <Pressable onPress={route} style={styles.button}>
       <View style={styles.iconWrapper}>
         <MaterialIcons name={iconName as any} size={IconHeight} color={theme.text} />
       </View>

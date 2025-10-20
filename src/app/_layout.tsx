@@ -7,6 +7,7 @@ import { StyleSheet } from 'react-native'
 import Toast from 'react-native-toast-message'
 import toastConfig from '@/components/toast/toastConfig'
 import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation'
+import { FiltersProvider } from '../contexts/filterContext'
 
 export default function RootLayout() {
     return (
@@ -34,6 +35,7 @@ function MainLayout() {
     }, [])
 
     return (
+      <FiltersProvider>
         <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
 
@@ -47,6 +49,7 @@ function MainLayout() {
                 options={{ headerShown: false }}
             />
         </Stack>
+        </FiltersProvider>
     )
 }
 
