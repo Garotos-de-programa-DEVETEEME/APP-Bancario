@@ -23,7 +23,7 @@ export default function ClientHeader({
       <View style={styles.header}>
         <View style={styles.container}>
           <View style={styles.left}>
-            <Image src={require(image)} alt='Foto Cliente' style={styles.image} />
+            <Image src={image} alt='Foto Cliente' style={styles.image} />
             <View style={styles.textbox}>
               <StyledText
                 style={{
