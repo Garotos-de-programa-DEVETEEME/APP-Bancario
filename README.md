@@ -20,7 +20,7 @@ Este é o front-end do projeto Asset, desenvolvido com React Native e TypeScript
 1. Clone o repositório:
 
 ```bash
-git clone https://gitlab.com/ti-banestes-asset/front-end.git
+git clone https://gitlab.labes.inf.ufes.br/dtvm/dtvm-app-frontend.git
 ```
 
 2. Instale as dependências:

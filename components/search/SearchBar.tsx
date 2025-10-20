@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 interface SearchBarProps {
     onSearch: (text: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar2: React.FC<SearchBarProps> = ({ onSearch }) => {
     const [searchText, setSearchText] = useState('');
 
     const handleSearch = () => {
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SearchBar;
+export default SearchBar2;
