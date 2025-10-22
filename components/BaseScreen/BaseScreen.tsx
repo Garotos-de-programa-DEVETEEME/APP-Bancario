@@ -1,5 +1,6 @@
 import { ScreenState } from '@/@Types/ScreenState';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
+import { useTheme } from '@/hooks/useTheme';
 import React from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
 
@@ -45,10 +46,11 @@ export const BaseScreen: React.FC<BaseScreenProps> = ({
   }
 };
 
+const theme = useTheme();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.background,
   },
   center: {
     flex: 1,
