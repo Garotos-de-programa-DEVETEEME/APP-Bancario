@@ -1,8 +1,9 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
+import { router } from 'expo-router';
 
 type ClientHeaderProps = {
   title: string;
@@ -23,7 +24,11 @@ export default function ClientHeader({
       <View style={styles.header}>
         <View style={styles.container}>
           <View style={styles.left}>
-            <Image src={image} alt='Foto Cliente' style={styles.image} />
+            <Pressable
+              onPress={() => router.push({pathname:'(panel)/home/PerfilCliente/page', params:{clientImage:image}})}
+            >
+              <Image src={image} alt='Foto Cliente' style={styles.image} />
+            </Pressable>
             <View style={styles.textbox}>
               <StyledText
                 style={{
