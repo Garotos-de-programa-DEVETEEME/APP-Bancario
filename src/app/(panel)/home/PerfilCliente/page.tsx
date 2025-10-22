@@ -1,6 +1,7 @@
 import { StylesType } from "@/@Types/stylesType";
 import { BaseScreen } from "@/components/BaseScreen/BaseScreen";
 import { ScreenStates } from "@/components/BaseScreen/ScreenStates";
+import { ContaCard } from "@/components/homeScreen/contaCard";
 import { StyledText } from "@/components/StyledText";
 import { useTheme } from "@/hooks/useTheme";
 import { useLocalSearchParams } from "expo-router/build/hooks";
@@ -10,7 +11,7 @@ import { View, Image, StyleSheet, ImageBackground } from "react-native";
 export default function PerfilClientePage(){
 
     const [screenState, setScreenState] = useState(ScreenStates.loading())
-    const { clientImage, name='Cliente' } = useLocalSearchParams();
+    const { clientImage, name='Cliente', clientData } = useLocalSearchParams();
     const imageUri = typeof clientImage === 'string' ? clientImage : '';
     useEffect(() => {
         setScreenState(ScreenStates.content())
@@ -23,14 +24,14 @@ export default function PerfilClientePage(){
         BaseScreen({
             state: screenState,
             children: (
-                <View>
+                <View style={{display:'flex', gap:15, marginTop:10}}>
                     <ImageBackground source={require('../../../../../assets/images/home/banestes-56-anos.png')} style={style.backgroundImage} imageStyle={{ borderRadius: 10, }}/>
                     <View style={style.imageContainer}>
                         <Image source={require('../../../../../assets/images/home/banestes-home.jpg')} style={style.clientImage}/>
-                        <StyledText style={style.text}> {name} </StyledText>
+                        <StyledText style={style.title}> {name} </StyledText>
                     </View>
-                    <View>
-                        <StyledText style={{color:'#000'}}>olaaa</StyledText>
+                    <View style={{width:'85%', alignSelf:'center'}}>
+                        <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                     </View>
                     <View>
                         
@@ -60,12 +61,14 @@ const getStyles = (theme:StylesType) => {
             borderRadius:100/2,
             width:100,
             height:100,
-            borderColor:theme.text,
-            borderWidth:1,
+            borderColor:theme.background,
+            borderWidth:2,
         },
-        text:{
+        title:{
             color:theme.text,
-            fontSize:16,
+            fontSize:18,
+            fontWeight:'bold',
+
         }
     })
 }
