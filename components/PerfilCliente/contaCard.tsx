@@ -27,7 +27,7 @@ export const ContaCard = ({numeroAgencia,numeroConta}:ContaCardProps) => {
                 </View>
             </View>
             <View style={styles.iconsContainer}>
-                <MaterialCommunityIcons name="content-copy" color={theme.tint} size={15}/>
+                <MaterialCommunityIcons name="content-copy" color={theme.tint} size={16}/>
                 <MaterialCommunityIcons name="share-variant" color={theme.tint} size={16} onPress={()=>{}} />
             </View>
         </View>
