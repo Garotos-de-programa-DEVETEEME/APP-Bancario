@@ -1,7 +1,8 @@
 import { StylesType } from "@/@Types/stylesType";
 import { BaseScreen } from "@/components/BaseScreen/BaseScreen";
 import { ScreenStates } from "@/components/BaseScreen/ScreenStates";
-import { ContaCard } from "@/components/homeScreen/contaCard";
+import { ClientImage } from "@/components/PerfilCliente/clientImage";
+import { ContaCard } from "@/components/PerfilCliente/contaCard";
 import { StyledText } from "@/components/StyledText";
 import { useTheme } from "@/hooks/useTheme";
 import { useLocalSearchParams } from "expo-router/build/hooks";
@@ -24,12 +25,8 @@ export default function PerfilClientePage(){
         BaseScreen({
             state: screenState,
             children: (
-                <View style={{display:'flex', gap:15, marginTop:10}}>
-                    <ImageBackground source={require('../../../../../assets/images/home/banestes-56-anos.png')} style={style.backgroundImage} imageStyle={{ borderRadius: 10, }}/>
-                    <View style={style.imageContainer}>
-                        <Image source={require('../../../../../assets/images/home/banestes-home.jpg')} style={style.clientImage}/>
-                        <StyledText style={style.title}> {name} </StyledText>
-                    </View>
+                <View style={{display:'flex', gap:10, marginTop:10}}>
+                    <ClientImage name={''} image={imageUri} />
                     <View style={{width:'85%', alignSelf:'center'}}>
                         <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                     </View>
