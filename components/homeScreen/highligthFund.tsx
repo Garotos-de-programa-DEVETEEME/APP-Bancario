@@ -22,7 +22,7 @@ export const HighlightFund = ({data, iconName, color}: HighlightFundProps) => {
             <View style={styles.titleContainer}>
                 <MaterialCommunityIcons  name={iconName as any} color={color} size={22}/>
                 <View style={{maxWidth: 80}}>
-                    <StyledText style={{fontSize: 9, color:theme.whiteText}}> {data.nome} </StyledText>
+                    <StyledText style={{fontSize: 9, color:theme.text}}> {data.nome} </StyledText>
                 </View>
             </View>
             <View style={{backgroundColor:theme.background, height: 24, borderBottomLeftRadius:16, borderBottomRightRadius:16, justifyContent:'center',}}>
