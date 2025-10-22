@@ -8,6 +8,7 @@ import Toast from 'react-native-toast-message'
 import toastConfig from '@/components/toast/toastConfig'
 import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation'
 import { FiltersProvider } from '../contexts/filterContext'
+import SimpleHeader from '@/components/customHeader/SimpleHeader'
 
 export default function RootLayout() {
     return (
@@ -47,6 +48,10 @@ function MainLayout() {
             <Stack.Screen
                 name="(panel)/home/page"
                 options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="(panel)/home/PerfilCliente/page"
+                options={{ header: () => <SimpleHeader title='Perfil' /> }}
             />
         </Stack>
         </FiltersProvider>
