@@ -5,7 +5,7 @@ export type AppTheme = "dark" | "light";
 
 interface ThemeContextType {
   theme: AppTheme;
-  setTheme: (t: AppTheme) => void;
+  changeTheme: (t: AppTheme) => void;
   toggleTheme: () => void;
 }
 
@@ -14,16 +14,27 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const system = useColorScheme();
   const [theme, setTheme] = useState<AppTheme>(system === "dark" ? "dark" : "light");
+  const [manualOverride, setManualOverride] = useState(false);
 
   useEffect(() => {
-    // Atualiza o tema automaticamente quando o sistema muda
-    setTheme(system === "dark" ? "dark" : "light");
-  }, [system]);
+    // Atualiza o tema automaticamente quando o sistema muda, a menos que o usuário tenha alterado manualmente
+    if (!manualOverride) {
+      setTheme(system === "dark" ? "dark" : "light");
+    }
+  }, [system, manualOverride]);
 
-  const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  const changeTheme = (t: AppTheme) => {
+    setManualOverride(true);
+    setTheme(t);
+  };
+
+  const toggleTheme = () => {
+    setManualOverride(true);
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, changeTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

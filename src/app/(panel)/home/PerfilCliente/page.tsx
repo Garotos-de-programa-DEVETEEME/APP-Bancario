@@ -6,38 +6,47 @@ import { ClientImage } from "@/components/PerfilCliente/clientImage";
 import { ContaCard } from "@/components/PerfilCliente/contaCard";
 import { StyledText } from "@/components/StyledText";
 import { useTheme } from "@/hooks/useTheme";
+import { useThemeContext } from "@/src/contexts/themeContext";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 import { useEffect, useState } from "react";
-import { View, StyleSheet, ImageBackground, Appearance, useColorScheme } from "react-native";
+import { View, StyleSheet } from "react-native";
 
-export default function PerfilClientePage(){
+export default function PerfilClientePage() {
+  const [screenState, setScreenState] = useState(ScreenStates.loading());
+  const { clientImage, name = "Cliente" } = useLocalSearchParams();
+  const imageUri = typeof clientImage === "string" ? clientImage : "";
 
-    const [screenState, setScreenState] = useState(ScreenStates.loading())
-    const { clientImage, name='Cliente', clientData } = useLocalSearchParams();
-    const imageUri = typeof clientImage === 'string' ? clientImage : '';
-    useEffect(() => {
-        setScreenState(ScreenStates.content())
-    }, []);
+  useEffect(() => {
+    setScreenState(ScreenStates.content());
+  }, []);
 
-    const theme = useTheme();
-    const style = getStyles(theme);
+  const theme = useTheme();
+  const style = getStyles(theme);
 
-    const [ligthTheme, setLigthTheme] = useState<boolean>(useColorScheme() === 'dark');
+  const { theme: currentTheme, changeTheme } = useThemeContext();
+    const [darkTheme, setDarkTheme] = useState<boolean>(false);
 
-    //TODO corrijir mudança de tema
-    // useEffect(()=>{
-    //     if(ligthTheme){
-    //         Appearance.setColorScheme('dark');
-    //     }
-    //     Appearance.setColorScheme('light');
-    // }, [ligthTheme])
+  useEffect(()=>{
+    setDarkTheme(currentTheme == "dark");
+  },[])
+
+  // Sincronizar `darkTheme` com `currentTheme`
+  useEffect(() => {
+        changeTheme(darkTheme ?  "dark":"light");
+  }, [currentTheme, darkTheme]);
+
+
+  // Alterar o tema global quando `darkTheme` mudar
+  useEffect(() => {
+    }, [darkTheme, changeTheme]);
 
     return(
         BaseScreen({
             state: screenState,
             children: (
                 <View style={style.container}>
-                    <ClientImage name={''} image={imageUri} />
+                    <ClientImage name={'Juliana'} image={imageUri} />
+
                     <View style={style.contentContainer}>
                         <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                     </View>
@@ -45,7 +54,7 @@ export default function PerfilClientePage(){
                         <StyledText style={{color:theme.text, fontSize:18}}>Minhas Configurações</StyledText>
                         <View style={style.switchRow}>
                             <StyledText style={{color:theme.text, fontSize:16}}>Modo Escuro</StyledText>
-                            <SwitchButton value={ligthTheme} onValueChange={setLigthTheme} />
+                            <SwitchButton value={darkTheme} onValueChange={setDarkTheme} />
                         </View>
                         <View style={style.switchRow}>
                             <StyledText style={{color:theme.text, fontSize:16}}>Alana mode</StyledText>
@@ -77,6 +86,11 @@ const getStyles = (theme:StylesType) => {
             borderBottomColor:theme.border,
             borderBottomWidth:1,
             paddingBottom:12,
-        }
+        },
+          title:{
+            color:theme.text,
+            fontSize:18,
+            fontWeight:'bold',
+        },
     })
 }
