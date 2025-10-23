@@ -103,13 +103,13 @@ export default function TelaInicial() {
                     <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
                     <View style={styles.buttonContainer}>
                         {fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
-                                <HighlightFund
-                                    key={index}
-                                    data={fund}
-                                    iconName={iconsFundoDestaque[index].name}
-                                    color={iconsFundoDestaque[index].color}
-                                />
-                            ))}
+                          <HighlightFund
+                              key={index}
+                              data={fund}
+                              iconName={iconsFundoDestaque[index].name}
+                              color={iconsFundoDestaque[index].color}
+                          />
+                        ))}
                         </View>
                 </View>
                 <View>
@@ -150,7 +150,6 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
-      backgroundColor: theme.background,
     },
     buttonContainer: {
       display: 'flex',
