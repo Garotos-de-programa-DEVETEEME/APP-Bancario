@@ -17,6 +17,15 @@ export const BaseScreen: React.FC<BaseScreenProps> = ({
   ErrorComponent,
   onRetry,
 }) => {
+  const theme = useTheme(); // Mover o hook para dentro do componente
+
+  const dynamicStyles = {
+    container: {
+      flex:1,
+      backgroundColor: theme.background, // Aplicar o background dinamicamente
+    },
+  };
+
   switch (state.type) {
     case ScreenStates.loading().type:
       return (
@@ -42,16 +51,11 @@ export const BaseScreen: React.FC<BaseScreenProps> = ({
 
     case ScreenStates.content().type:
     default:
-      return <View style={styles.container}>{children}</View>;
+      return <View style={dynamicStyles.container}>{children}</View>;
   }
 };
 
-const theme = useTheme();
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.background,
-  },
   center: {
     flex: 1,
     justifyContent: 'center',
