@@ -7,11 +7,12 @@ import { StylesType } from "@/@Types/stylesType";
 
 interface HighlightFundProps {
     data: FundoInvestimento;
-    iconName: { name: string; color: string};
+    iconName: string
+    color: string
 }
 
 
-export const HighlightFund = ({data, iconName}: HighlightFundProps) => { 
+export const HighlightFund = ({data, iconName, color}: HighlightFundProps) => { 
     const theme = useTheme();
     const styles = getStyles(theme);
 
@@ -19,7 +20,7 @@ export const HighlightFund = ({data, iconName}: HighlightFundProps) => {
     <Pressable onPress={() => {}}>{/*TODO redirecionar para a pagina de saiba mais ou investir do fundo */}
         <View style={styles.container}>
             <View style={styles.titleContainer}>
-                <MaterialCommunityIcons  name={iconName.name as any} color={iconName.color} size={22}/>
+                <MaterialCommunityIcons  name={iconName as any} color={color} size={22}/>
                 <View style={{maxWidth: 80}}>
                     <StyledText style={{fontSize: 9, color:theme.whiteText}}> {data.nome} </StyledText>
                 </View>

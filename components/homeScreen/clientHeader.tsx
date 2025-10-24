@@ -38,14 +38,6 @@ export default function ClientHeader({
               </StyledText>
             </View>
           </View>
-          <View style={styles.right}>
-            <MaterialCommunityIcons
-              name='bell-outline'
-              color='#FFF'
-              size={24}
-            />
-            <MaterialCommunityIcons name='exit-to-app' color='#FFF' size={24} />
-          </View>
         </View>
       </View>
       <View style={styles.cardcontainer}>
