@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { TouchableOpacity, View, StyleSheet } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -11,7 +11,6 @@ import { StyledText } from "../StyledText";
 import { useTheme } from "@/hooks/useTheme";
 import { coinFormat } from "@/utils/coinFormat";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { StylesType } from "@/@Types/stylesType";
 
 type PatrimonyCardProps = {
   value: number;
@@ -20,7 +19,6 @@ type PatrimonyCardProps = {
 
 export default function PatrimonyCard({ value, cointaned = false }: PatrimonyCardProps) {
   const theme = useTheme();
-  const style = getStyles(theme);
   const [isVisible, setIsVisible] = useState(true);
 
   // animação de crossfade (0 = mascarado, 1 = visível)
@@ -28,6 +26,18 @@ export default function PatrimonyCard({ value, cointaned = false }: PatrimonyCar
 
   // escala no botão do olho
   const eyeScale = useSharedValue(1);
+
+  const containerStyle = useMemo(() => {
+    if (cointaned) return { backgroundColor: "transparent" };
+    return {
+      backgroundColor: theme.background,
+      elevation: 4,
+      shadowColor: "#000",
+      shadowOpacity: 0.08,
+      shadowRadius: 8,
+      shadowOffset: { width: 0, height: 4 },
+    };
+  }, [cointaned, theme.background]);
 
   const onToggle = () => {
     const next = !isVisible;
@@ -38,26 +48,44 @@ export default function PatrimonyCard({ value, cointaned = false }: PatrimonyCar
     });
   };
 
+  const aValue = useAnimatedStyle(() => ({
+    opacity: progress.value,
+  }));
+  const aMask = useAnimatedStyle(() => ({
+    opacity: 1 - progress.value,
+  }));
+
+  const aEye = useAnimatedStyle(() => ({
+    transform: [{ scale: eyeScale.value }],
+  }));
+
   return (
     <View
-      style={[cointaned? style.contained:style.defaultContainer , style.container]}
+      className={cointaned ? "w-full h-[90px] justify-center" : "w-full h-[90px] justify-center rounded-2xl"}
+      style={containerStyle}
     >
-      <View style={style.textContainer}>
-        <View style={{marginLeft:4}}>
-          <StyledText style={{ color: theme.text, fontWeight: "700" as any, fontSize:18 }}>
+      <View className="flex-row items-start justify-between pb-2 px-4">
+        <View className="ml-1">
+          <StyledText className="text-[18px]" style={{ color: theme.text, fontWeight: "700" as any }}>
             Meu Patrimônio
           </StyledText>
 
-          <StyledText className="mt-1" style={{ color: theme.text, fontWeight: "400" as any, fontSize: 15, marginTop: 4 }}>
+          <StyledText className="text-[15px] mt-1" style={{ color: theme.text, fontWeight: "400" as any }}>
             Saldo líquido
           </StyledText>
 
-          <View style={{ height: 22, position:'relative', marginTop:2}}>
-            <View style={[{ position: "absolute", left: 0, right: 0 }]}>
-              <StyledText style={{ color: theme.text, fontWeight: "700" as any,fontSize:18 }}>
-                {isVisible? "R$ ••••••":coinFormat(value)}
+          <View className="mt-0.5 relative" style={{ height: 22 }}>
+            <Animated.View style={[aValue, { position: "absolute", left: 0, right: 0 }]}>
+              <StyledText className="text-[18px]" style={{ color: theme.text, fontWeight: "700" as any }}>
+                {coinFormat(value)}
               </StyledText>
-            </View>
+            </Animated.View>
+
+            <Animated.View style={[aMask, { position: "absolute", left: 0, right: 0 }]}>
+              <StyledText className="text-[18px]" style={{ color: theme.text, fontWeight: "700" as any }}>
+                R$ ••••••
+              </StyledText>
+            </Animated.View>
           </View>
         </View>
 
@@ -66,48 +94,17 @@ export default function PatrimonyCard({ value, cointaned = false }: PatrimonyCar
           onPressIn={() => (eyeScale.value = withTiming(0.92, { duration: 80 }))}
           onPressOut={() => (eyeScale.value = withTiming(1, { duration: 80 }))}
           onPress={onToggle}
-          style={{marginTop:4, marginRight:4, padding:4}}
+          className="mt-1 mr-1 p-1"
         >
-          <View>
+          <Animated.View style={aEye}>
             <MaterialCommunityIcons
               name={isVisible ? "eye" : "eye-off"}
               size={20}
               color={theme.alternativeIcon}
             />
-          </View>
+          </Animated.View>
         </TouchableOpacity>
       </View>
     </View>
   );
-}
-
-const getStyles = (theme:StylesType) => {
-  return StyleSheet.create({
-    container:{
-      width:'100%',
-      height:90,
-      justifyContent:'center',
-    },
-    contained:{
-      backgroundColor:'transparenth',
-      borderRadius: 0,
-    },
-    defaultContainer:{
-      backgroundColor:theme.background,
-      elevation: 4,
-      shadowColor: "#000",
-      shadowOpacity: 0.08,
-      shadowRadius: 8,
-      shadowOffset: { width: 0, height: 4 },
-      borderRadius:16
-    },
-    textContainer:{
-      display:'flex',
-      flexDirection:'row',
-      justifyContent:'space-between',
-      marginHorizontal:12,
-      marginVertical:20
-    }
-
-  })
 }
