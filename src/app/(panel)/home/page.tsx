@@ -1,5 +1,6 @@
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
+import CardButton from "@/components/buttons/CardButton";
 import FundHighlightCard from "@/components/fundo/FundHighlightCard";
 import Header from "@/components/home/Header";
 import PatrimonyCard from "@/components/home/PatrimonyCard";
@@ -29,36 +30,13 @@ export default function Home() {
                     <Header />
                     <PatrimonyCard />
 
-                <View style={styles.buttonsContainer}>
-                    {/*<CardButton
-                        iconName="wallet"
-                        text="Minha Carteira"
-                        onPress={() => console.log('Botão Minha Carteira pressionado')}
-                    />
-                    <CardButton
-                        iconName="folder1"
-                        text="Fundos de Investimento"
-                        onPress={() => console.log('Botão Fundos de Investimento pressionado')}
-                    />
-                    <CardButton
-                        iconName="line-chart"
-                        text="Simular Investimento"
-                        onPress={() => console.log('Botão Simular Investimento pressionado')}
-                    />*/}
-                </View>
-
-                <SearchBar onSearch={handleSearch}/>
-
-                <View style={styles.highlightSection}>
-                    <Text style={styles.highlightTitle}>Fundos em Destaque</Text>
-                    <View style={styles.cardsContainer}>
-                        <FundHighlightCard
-                            iconName="trophy"
-                            title="Banestes VIP DI FIC de FI"
-                            percentage="+76,38 %"
-                            color="#007aff"
+                    <View style={styles.buttonsContainer}>
+                        <CardButton
+                            iconName="wallet"
+                            text="Minha Carteira"
+                            onPress={() => console.log('Botão Minha Carteira pressionado')}
                         />
-                       {/* <CardButton
+                        <CardButton
                             iconName="folder1"
                             text="Fundos de Investimento"
                             onPress={() => console.log('Botão Fundos de Investimento pressionado')}
@@ -67,8 +45,7 @@ export default function Home() {
                             iconName="line-chart"
                             text="Simular Investimento"
                             onPress={() => console.log('Botão Simular Investimento pressionado')}
-                        />*/}
-                    </View>
+                        />
                     </View>
 
                     <SearchBar onSearch={handleSearch}/>
