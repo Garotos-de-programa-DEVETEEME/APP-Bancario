@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type AppTheme = "dark" | "light";
 
@@ -16,21 +17,33 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<AppTheme>(system === "dark" ? "dark" : "light");
   const [manualOverride, setManualOverride] = useState(false);
 
+  // Carregar o tema salvo ao iniciar o aplicativo
   useEffect(() => {
-    // Atualiza o tema automaticamente quando o sistema muda, a menos que o usuário tenha alterado manualmente
-    if (!manualOverride) {
-      setTheme(system === "dark" ? "dark" : "light");
-    }
-  }, [system, manualOverride]);
+    const loadTheme = async () => {
+      const savedTheme = await AsyncStorage.getItem("userTheme");
+      if (savedTheme === "dark" || savedTheme === "light") {
+        setManualOverride(true);
+        setTheme(savedTheme as AppTheme); // Define o tema salvo
+      } else {
+        setTheme(system === "dark" ? "dark" : "light"); // Usa o tema do sistema como fallback
+      }
+    };
 
-  const changeTheme = (t: AppTheme) => {
+    loadTheme();
+  }, [system]);
+
+  // Salvar o tema no AsyncStorage ao alterá-lo
+  const changeTheme = async (t: AppTheme) => {
     setManualOverride(true);
     setTheme(t);
+    await AsyncStorage.setItem("userTheme", t); // Salva o tema no AsyncStorage
   };
 
-  const toggleTheme = () => {
+  const toggleTheme = async () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
     setManualOverride(true);
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    setTheme(newTheme);
+    await AsyncStorage.setItem("userTheme", newTheme); // Salva o tema no AsyncStorage
   };
 
   return (
