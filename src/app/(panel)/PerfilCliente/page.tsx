@@ -2,11 +2,13 @@ import { StylesType } from "@/@Types/stylesType";
 import { BaseScreen } from "@/components/BaseScreen/BaseScreen";
 import { ScreenStates } from "@/components/BaseScreen/ScreenStates";
 import { SwitchButton } from "@/components/Buttons/switch";
-import { ClientImage } from "@/components/PerfilCliente/clientImage";
-import { ContaCard } from "@/components/PerfilCliente/contaCard";
+import { ClientImage } from "@/components/ClientProfile/clientImage";
+import { ContaCard } from "@/components/ClientProfile/contaCard";
+import { SwitchRow } from "@/components/ClientProfile/switchRow";
 import { StyledText } from "@/components/StyledText";
 import { useTheme } from "@/hooks/useTheme";
 import { useThemeContext } from "@/src/contexts/themeContext";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
@@ -24,42 +26,31 @@ export default function PerfilClientePage() {
   const style = getStyles(theme);
 
   const { theme: currentTheme, changeTheme } = useThemeContext();
-    const [darkTheme, setDarkTheme] = useState<boolean>(false);
+  const [themeSwitch, setThemeSwitch] = useState<boolean>(false);
 
-  useEffect(()=>{
-    setDarkTheme(currentTheme == "dark");
+  useEffect(()=>{//sincroniza o switchTheme com o tem atual do aplicativo ao navegar para esta pagina
+    setThemeSwitch(currentTheme == "dark");
   },[])
 
   // Sincronizar `darkTheme` com `currentTheme`
   useEffect(() => {
-        changeTheme(darkTheme ?  "dark":"light");
-  }, [currentTheme, darkTheme]);
-
-
-  // Alterar o tema global quando `darkTheme` mudar
-  useEffect(() => {
-    }, [darkTheme, changeTheme]);
+        changeTheme(themeSwitch ?  "dark":"light");
+  }, [currentTheme, themeSwitch]);
 
     return(
         BaseScreen({
             state: screenState,
             children: (
                 <View style={style.container}>
-                    <ClientImage name={'Juliana'} image={imageUri} />
+                    <ClientImage name={name} image={imageUri} />
 
                     <View style={style.contentContainer}>
                         <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                     </View>
-                    <View style={[style.contentContainer, { gap:10 }]}>
+                    <View style={[style.contentContainer, { gap:10, marginTop:10 }]}>
                         <StyledText style={{color:theme.text, fontSize:18}}>Minhas Configurações</StyledText>
-                        <View style={style.switchRow}>
-                            <StyledText style={{color:theme.text, fontSize:16}}>Modo Escuro</StyledText>
-                            <SwitchButton value={darkTheme} onValueChange={setDarkTheme} />
-                        </View>
-                        <View style={style.switchRow}>
-                            <StyledText style={{color:theme.text, fontSize:16}}>Alana mode</StyledText>
-                            <SwitchButton value={false} onValueChange={()=>{}} />
-                        </View>
+                        <SwitchRow title={"Modo Escuro"} iconName="dark-mode" switchValue={themeSwitch} setSwitch={setThemeSwitch}/>
+                        <SwitchRow title={"Modo ALANA"} iconName={"assessment"} switchValue={false} setSwitch={()=> {}} iconSize={18}/>
                     </View>
                 </View>
             )
@@ -87,7 +78,13 @@ const getStyles = (theme:StylesType) => {
             borderBottomWidth:1,
             paddingBottom:12,
         },
-          title:{
+        textSwitch:{
+            display:'flex',
+            flexDirection:'row',
+            gap:8,
+            alignItems:'center'
+        },
+        title:{
             color:theme.text,
             fontSize:18,
             fontWeight:'bold',

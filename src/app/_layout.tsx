@@ -45,7 +45,7 @@ function MainLayout() {
                 <Stack.Screen name="(panel)/profile/page" options={{ headerShown: false }} />
                 <Stack.Screen name="(panel)/home/page" options={{ headerShown: false }} />
                 <Stack.Screen
-                    name="(panel)/home/PerfilCliente/page"
+                    name="(panel)/PerfilCliente/page"
                     options={{ header: () => <SimpleHeader title="Perfil" /> }}
                 />
             </Stack>

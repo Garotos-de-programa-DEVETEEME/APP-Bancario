@@ -25,7 +25,7 @@ export default function ClientHeader({
         <View style={styles.container}>
           <View style={styles.left}>
             <Pressable
-              onPress={() => router.push({pathname:'(panel)/home/PerfilCliente/page', params:{clientImage:image}})}
+              onPress={() => router.push({pathname:'(panel)/PerfilCliente/page', params:{clientImage:image}})}
             >
               <Image src={image} alt='Foto Cliente' style={styles.image} />
             </Pressable>
