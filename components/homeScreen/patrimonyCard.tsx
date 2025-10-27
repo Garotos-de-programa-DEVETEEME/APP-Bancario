@@ -52,13 +52,9 @@ export default function PatrimonyCard({ value, cointaned = false }: PatrimonyCar
             Saldo líquido
           </StyledText>
 
-          <View style={{ height: 22, position:'relative', marginTop:2}}>
-            <View style={[{ position: "absolute", left: 0, right: 0 }]}>
-              <StyledText style={{ color: theme.text, fontWeight: "700" as any,fontSize:18 }}>
-                {isVisible? "R$ ••••••":coinFormat(value)}
-              </StyledText>
-            </View>
-          </View>
+          <StyledText style={{ color: theme.text, fontWeight: "700" as any,fontSize:18, marginTop:2, height:22 }}>
+            {isVisible? "R$ ••••••":coinFormat(value)}
+          </StyledText>
         </View>
 
         <TouchableOpacity

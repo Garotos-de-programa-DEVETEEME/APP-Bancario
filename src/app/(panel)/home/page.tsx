@@ -10,6 +10,7 @@ import { SearchBar } from '@/components/SearchBar/searchBar';
 import { StyledText } from '@/components/StyledText';
 import { fundosDestaque } from '@/constants/fundosDestaque';
 import { useTheme } from '@/hooks/useTheme';
+import { consultarSaldo } from '@/services/fundos.service';
 import { useAlanaContext } from '@/src/contexts/alanaContext';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -52,11 +53,27 @@ export default function TelaInicial() {
     require('../../../../assets/images/home/banestes-56-anos.png')
   ];
 
-    const [screenState, setScreenState] = useState(ScreenStates.loading())
-    
-    useEffect(() => {
-        setScreenState(ScreenStates.content())
-    }, []);
+  const [screenState, setScreenState] = useState(ScreenStates.loading())
+  const [saldo, setSaldo]  = useState<number>(0);
+  
+  useEffect(() => {
+    setScreenState(ScreenStates.content())
+    const getData = async () =>{
+      try{
+        const resposta = await consultarSaldo();
+        setSaldo(resposta.totalGeral);
+      }catch (error) {
+        console.error("Falha ao carregar dados da tela inicial:", error);
+        // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
+      }
+    }
+
+    getData();
+
+  }, []);
+
+  
+
 
   return (
      BaseScreen({
@@ -67,7 +84,7 @@ export default function TelaInicial() {
                 <ClientHeader
                     title='Cliente'
                     image='https://legacy.reactjs.org/logo-og.png'
-                    value={-1}
+                    value={saldo}
                 />
                 <View style={styles.buttonContainer}>
                   <ButtonIcon
