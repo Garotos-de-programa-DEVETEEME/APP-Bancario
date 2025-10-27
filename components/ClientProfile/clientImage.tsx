@@ -20,7 +20,7 @@ export const ClientImage = ({name, image}:ClienteImageProps) => {
             <View style={style.imageContainer}>
                 <Image source={require('../../assets/images/home/banestes-home.jpg')} style={style.clientImage}/>
                 <View style={style.editContainer}>
-                    <MaterialCommunityIcons name="pencil" color={theme.tint} onPress={()=>{}} />
+                    <MaterialCommunityIcons name="pencil" color={theme.icon} onPress={()=>{}} />
                 </View>
                 <StyledText style={style.title}> {name} </StyledText>
             </View>

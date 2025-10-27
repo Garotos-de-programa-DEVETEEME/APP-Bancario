@@ -18,12 +18,11 @@ interface SwitchRowProps{
 export const SwitchRow = ({title, iconName, switchValue, setSwitch, iconSize=16, disabled=false }:SwitchRowProps) =>{
     const theme = useTheme();
     const style = getStyles(theme, disabled);
-    const userProfile = useAlanaContext().userProfile;
-
+    
     return(
         <View style={style.switchRow}>{/*TODO implementar o alana mode */}
             <View style={style.textSwitch}>
-                <MaterialIcons name={iconName as any} color={disabled? theme.backgroundCards:userProfile=="Alana"? theme.text:theme.tint} size={iconSize} />
+                <MaterialIcons name={iconName as any} color={disabled? theme.backgroundCards:theme.icon} size={iconSize} />
                 <StyledText style={style.title}>{title}</StyledText>
             </View>
             <SwitchButton value={switchValue} onValueChange={setSwitch} disabled={disabled} />

@@ -3,6 +3,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, StyleSheet } from "react-native";
 import { StyledText } from "../StyledText";
+import { useAlanaContext } from "@/src/contexts/alanaContext";
 
 interface ContaCardProps{
     numeroAgencia: number;
@@ -27,8 +28,8 @@ export const ContaCard = ({numeroAgencia,numeroConta}:ContaCardProps) => {
                 </View>
             </View>
             <View style={styles.iconsContainer}>
-                <MaterialCommunityIcons name="content-copy" color={theme.tint} size={16}/>
-                <MaterialCommunityIcons name="share-variant" color={theme.tint} size={16} onPress={()=>{}} />
+                <MaterialCommunityIcons name="content-copy" color={theme.icon} size={16}/>
+                <MaterialCommunityIcons name="share-variant" color={theme.icon} size={16} onPress={()=>{}} />
             </View>
         </View>
     );
