@@ -47,31 +47,16 @@ export const StylesAsset: ThemeType = {
 const tintColorAlana = '#E8E6FF'; //cor principal projeto
 
 
-export const StylesAlana: ThemeType = {
-  light: {
-    text: '#003366',
-    textSecundary: '#6200EA',
-    alternativeText: '#2A2A2A',
-    whiteText: '#EDEDED',
-    darkText: '#343434',
-    background: '#FFFFFF',
-    backgroundCards: '#E8E6FF',
-    tint: tintColorAlana,
-    alternativeIcon: '#A5A5A5',
-    border: '#C9C9C9',
-    disabledButton: '#9BD1FF',
-  },
-  dark: {
-    text: '#FFFFFF',
-    textSecundary: '#EEEEEE',
-    alternativeText: '#D5D5D5',
-    whiteText: '#FFFFFF',
-    darkText: '#343434',
-    background: '#212121',
-    backgroundCards: '#2A2A2A',
-    tint: tintColorAlana,
-    alternativeIcon: '#ABABAB',
-    border: '#3C3C3C',
-    disabledButton: '#9BD1FF',
-  },
+export const StylesAlana: StylesType = {
+  text: '#003366',
+  textSecundary: '#6200EA',
+  alternativeText: '#2A2A2A',
+  whiteText: '#EDEDED',
+  darkText: '#343434',
+  background: '#FFFFFF',
+  backgroundCards: '#E8E6FF',
+  tint: tintColorAlana,
+  alternativeIcon: '#A5A5A5',
+  border: '#C9C9C9',
+  disabledButton: '#9BD1FF',
 };

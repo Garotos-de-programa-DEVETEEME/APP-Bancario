@@ -11,7 +11,7 @@ export const useTheme = () => {
   //define como common se userProfile não estiver definido
   const profile = userPofile?.userProfile ?? "common";
   if(profile == "Alana"){
-    return theme === "dark" ? StylesAlana.dark : StylesAlana.light;
+    return StylesAlana;
   }
   //caso o tema não seja alana (só podendo ser common) retorn paleta de cores asset
   return theme === "dark" ? StylesAsset.dark : StylesAsset.light;
