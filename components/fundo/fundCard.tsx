@@ -1,14 +1,16 @@
-import { FundoInvestimento } from '@/@Types/fundos';
 import { useTheme } from '@/hooks/useTheme';
-import { coinFormat } from '@/utils/coinFormat';
+import { FundoAFA } from '@/services/afa-fundos.service';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { StyledText } from '../StyledText';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
 
+const formatCurrency = (value: number) => {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+};
+
 interface FundsCardProps {
-  fund: FundoInvestimento;
+  fund: FundoAFA; 
   onPress: () => void;
   expanded: boolean;
   expandedType?: 'default' | 'simular';
@@ -24,7 +26,6 @@ export const FundsCard = ({
   requireInvestorProfileCheck,
   onProfileCheckRequested,
 }: FundsCardProps) => {
-  //componente de card de fundo de investimento
   const theme = useTheme();
 
   return (
@@ -36,58 +37,55 @@ export const FundsCard = ({
     >
       <Pressable onPress={onPress}>
         <View style={styles.rowBetween}>
-          <StyledText style={[styles.textMd, { color: theme.tint }]}>
+          <Text style={[styles.textMd, { color: theme.tint }]}>
             {'Fundo'}
-          </StyledText>
+          </Text>
           <View style={styles.riskContainer}>
-            <RiskIcon risk={'alto'} />
-            {/* TODO integrar quando a api estiver pronta */}
+            <RiskIcon risk={'alto'} /> 
           </View>
         </View>
 
         <View>
-          <StyledText style={[styles.textXlBold, { color: theme.text }]}>
-            {fund.nome}
-          </StyledText>
+          <Text style={[styles.textXlBold, { color: theme.text }]}>
+            {fund.nome} 
+          </Text>
         </View>
 
-        {/* divisor */}
         {expanded ? (
           <View
-            style={{ borderTopColor: theme.border, borderTopWidth: 1 }}
+            style={[styles.divider, { borderTopColor: theme.border }]} 
           />
         ) : null}
 
         <View style={styles.rowBetween}>
-          <StyledText style={[styles.textBase, { color: theme.alternativeText }]}>
-            Aplicação incial:{' '}
-          </StyledText>
-          <StyledText style={[styles.textBase, { color: theme.alternativeText }]}>
-            {coinFormat(fund.valorAplicacaoInicial)}
-          </StyledText>
+          <Text style={[styles.textBase, { color: theme.alternativeText }]}>
+            Aplicação inicial:{' '}
+          </Text>
+          <Text style={[styles.textBase, { color: theme.alternativeText }]}>
+            {formatCurrency(fund.valorAplicacaoInicial)}
+          </Text>
         </View>
 
         <View style={styles.rowBetween}>
-          <StyledText style={[styles.textBase, { color: theme.alternativeText }]}>
-            Rentabilidade dos ultimos 12 meses
-          </StyledText>
+          <Text style={[styles.textBase, { color: theme.alternativeText }]}>
+            Rentabilidade dos últimos 12 meses
+          </Text>
           <View style={styles.rentabilityValueContainer}>
-            {fund.taxaRentabilidade > 0 ? (
+            {fund.taxaRentabilidade > 0 ? ( 
               <MaterialCommunityIcons name="arrow-up" size={16} color="green" />
             ) : (
               <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
             )}
-            <StyledText style={[styles.textLg, { color: theme.tint }]}>
-              {`${fund.taxaRentabilidade}%`}
-            </StyledText>
+            <Text style={[styles.textLg, { color: theme.tint }]}>
+              {`${fund.taxaRentabilidade.toFixed(2)}%`} 
+            </Text>
           </View>
         </View>
 
-        {/* conteúdo expandido */}
         {expanded ? (
           <View>
             <Expanded
-              fund={fund}
+              fund={fund} 
               expanded={expanded}
               type={expandedType}
               requireInvestorProfileCheck={requireInvestorProfileCheck}
@@ -142,4 +140,10 @@ const styles = StyleSheet.create({
   textLg: {
     fontSize: 18,
   },
+  divider: {
+    borderTopWidth: 1,
+    marginVertical: 8,
+  },
 });
+
+

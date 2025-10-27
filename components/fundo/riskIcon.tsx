@@ -1,33 +1,26 @@
 import { riskTheme } from '@/constants/risk';
 import { useTheme } from '@/hooks/useTheme';
-import { StyleSheet, View } from 'react-native';
-import { StyledText } from '../StyledText';
+import { StyleSheet, Text, View } from 'react-native';
 
 interface riskIconProps {
-  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; // TODO alterar conforme resposta da API
+  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; 
 }
 
 export const RiskIcon = ({ risk }: riskIconProps) => {
-  // componente de risco de fundo
   const theme = useTheme();
   const ballSize = 10;
-
-  // helper para arredondamento baseado no ballSize
   const radius = ballSize / 2;
 
   return (
     <>
-      <StyledText
+      <Text
         style={[styles.riskText, { color: theme.alternativeText }]}
       >
         {`Risco ${risk === 'medio' ? 'médio' : risk}`}{' '}
-        {/* expressão booleana para adicionar acento no médio preferencialmente os risk deve vir da api já com o nome correto */}
-        {/* TODO alterar conforme resposta da API */}
-      </StyledText>
+      </Text>
 
       <View style={styles.ballsContainer}>
-        {/* firstIcon */}
-        <StyledText
+        <Text
           style={{
             width: ballSize,
             height: ballSize,
@@ -42,9 +35,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
                 : riskTheme.high,
           }}
         />
-
-        {/* secondIcon */}
-        <StyledText
+        <Text
           style={{
             width: ballSize,
             height: ballSize,
@@ -59,9 +50,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
                 : undefined,
           }}
         />
-
-        {/* thirdIcon */}
-        <StyledText
+        <Text
           style={{
             width: ballSize,
             height: ballSize,
@@ -74,9 +63,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
                 : undefined,
           }}
         />
-
-        {/* fourthIcon */}
-        <StyledText
+        <Text
           style={{
             width: ballSize,
             height: ballSize,

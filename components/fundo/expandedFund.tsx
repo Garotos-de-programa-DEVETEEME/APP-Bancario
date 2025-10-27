@@ -1,13 +1,22 @@
-import { FundoInvestimento } from '@/@Types/fundos';
 import { useTheme } from '@/hooks/useTheme';
-import { converterNumeroParaHora } from '@/utils/hourFormat';
+import { FundoAFA } from '@/services/afa-fundos.service';
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-import { NavigationButton } from '../Buttons/navigationButton';
-import { StyledText } from '../StyledText';
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationButton } from '../buttons/navigationButton';
 
-interface expandedProps {
-  fund: FundoInvestimento;
+const formatHour = (hourNumber: number): string => {
+  if (hourNumber == null || isNaN(hourNumber)) {
+    return '--:--'; 
+  }
+  const hourString = String(hourNumber).padStart(4, '0'); 
+  const hours = hourString.substring(0, 2);
+  const minutes = hourString.substring(2, 4);
+  return `${hours}:${minutes}`;
+};
+
+
+interface ExpandedProps {
+  fund: FundoAFA; 
   expanded: boolean;
   type?: 'default' | 'simular';
   requireInvestorProfileCheck?: boolean;
@@ -20,7 +29,7 @@ export const Expanded = ({
   type,
   requireInvestorProfileCheck = false,
   onProfileCheckRequested,
-}: expandedProps) => {
+}: ExpandedProps) => {
   const theme = useTheme();
 
   if (!expanded) return null;
@@ -31,7 +40,7 @@ export const Expanded = ({
     } else {
       router.push({
         pathname: '/(panel)/home/page', //TODO: Colocar caminho novo investir
-        params: { fundData: JSON.stringify(fund) },
+        params: { fundData: JSON.stringify(fund) }, 
       });
     }
   };
@@ -39,48 +48,50 @@ export const Expanded = ({
   return (
     <View style={styles.container}>
       <View style={styles.rowBetween}>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           Taxa global:{' '}
-        </StyledText>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        </Text>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           {`${fund.taxaAdministracao}% a.a.`}
-        </StyledText>
+        </Text>
       </View>
 
       <View style={styles.rowBetween}>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           Hora limite de aplicação:{' '}
-        </StyledText>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
-          {converterNumeroParaHora(fund.horaLimite)}
-        </StyledText>
+        </Text>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
+          {formatHour(fund.horaLimite)} 
+        </Text>
       </View>
 
       <View style={styles.rowBetween}>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           Movimentação (aplic/resg):{' '}
-        </StyledText>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        </Text>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
+           {/* TODO: Verificar se essa lógica ainda é R$ 1,00 ou vem do FundoAFA */}
           {'R$ 1,00'}
-        </StyledText>
+        </Text>
       </View>
 
       <View style={styles.rowBetween}>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           Cotização de resgate:{' '}
-        </StyledText>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
-          D+30 (Dias Corridos)
-        </StyledText>
+        </Text>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
+          {/* TODO: Verificar se isso ainda é fixo ou vem do FundoAFA */}
+          D+30 (Dias Corridos) 
+        </Text>
       </View>
 
       <View style={styles.rowBetween}>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           Liquidação de resgate:{' '}
-        </StyledText>
-        <StyledText style={[styles.textDetail, { color: theme.alternativeText }]}>
+        </Text>
+        <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
           {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}
-        </StyledText>
+        </Text>
       </View>
 
       {type === 'simular' ? (
@@ -88,7 +99,7 @@ export const Expanded = ({
           <NavigationButton
             onPress={() => router.push({
               pathname: '/(panel)/simular-investimento/detalhes',
-              params: { fundData: JSON.stringify(fund) },
+              params: { fundData: JSON.stringify(fund) }, 
             })}
             text='Simular'
           />
@@ -98,7 +109,7 @@ export const Expanded = ({
           <NavigationButton
             onPress={() => router.push({
               pathname: '/(panel)/home/page', //TODO: Colocar caminho novo saiba mais
-              params: { fundData: JSON.stringify(fund) },
+              params: { fundData: JSON.stringify(fund) }, 
             })}
             text='Saiba Mais'
             transparentStyle

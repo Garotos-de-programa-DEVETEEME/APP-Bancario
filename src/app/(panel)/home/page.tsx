@@ -5,6 +5,7 @@ import FundHighlightCard from "@/components/fundo/FundHighlightCard";
 import Header from '@/components/home/Header';
 import PatrimonyCard from "@/components/home/PatrimonyCard";
 import SearchBar from "@/components/search/SearchBar";
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -44,7 +45,7 @@ export default function Home() {
                         <CardButton
                             iconName="line-chart"
                             text="Simular Investimento"
-                            onPress={() => console.log('Botão Simular Investimento pressionado')}
+                            onPress={() => router.push('/(panel)/simular-investimento/page')} 
                         />
                     </View>
 

@@ -3,19 +3,15 @@ import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import { FundsCard } from '@/components/fundo/fundCard';
 import { useTheme } from '@/hooks/useTheme';
 import { mockConsultarListaFundosAFA } from '@/mock/afa-fundos.mock';
-import { ListaFundosAFAResponse } from '@/services/afa-fundos.service';
+import { FundoAFA } from '@/services/afa-fundos.service';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-
-type FundoAFAType = ListaFundosAFAResponse[0];
-
 
 export default function SimularInvestimento() {
   const [screenState, setScreenState] = useState(ScreenStates.loading());
   const theme = useTheme();
   
-  const [investmentFunds, setInvestmentFunds] = useState<FundoAFAType[]>([]);
-
+  const [investmentFunds, setInvestmentFunds] = useState<FundoAFA[]>([]);
   const [currentExpanded, setCurrentExpanded] = useState(-1);
 
   const changeCurrentExpanded = (key: number) => {
@@ -61,7 +57,7 @@ export default function SimularInvestimento() {
               </Text>
             </View>
 
-            <View>
+            <View style={styles.listContainer}>
               <Text
                 style={[styles.title, { color: theme.darkText || theme.text }]}
               >
@@ -93,33 +89,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingBottom: 40,
+    paddingBottom: 40, 
   },
   infoBox: {
-    width: 380,
-    minHeight: 75,
+    width: '90%', 
+    maxWidth: 380,
+    minHeight: 75, 
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 45,
     marginTop: 20,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 10, 
   },
   infoText: {
     fontSize: 14,
     fontStyle: 'italic',
     textAlign: 'left',
     fontWeight: '500',
+    width: '100%', 
+  },
+  listContainer: {
+    width: '90%', 
+    maxWidth: 380, 
   },
   title: {
     marginBottom: 10,
     fontSize: 20,
     fontWeight: 'bold',
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-start', 
   },
   cardList: {
     gap: 20,
+    width: '100%', 
   },
 });
 
