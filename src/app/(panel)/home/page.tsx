@@ -2,7 +2,7 @@ import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import CardButton from "@/components/buttons/CardButton";
 import FundHighlightCard from "@/components/fundo/FundHighlightCard";
-import Header from "@/components/home/Header";
+import Header from '@/components/home/Header';
 import PatrimonyCard from "@/components/home/PatrimonyCard";
 import SearchBar from "@/components/search/SearchBar";
 import { useEffect, useState } from 'react';
