@@ -28,6 +28,7 @@ export const StylesAsset: ThemeType = {
         alternativeIcon: '#A5A5A5',
         border: '#C9C9C9',
         disabledButton: '#9BD1FF',
+        icon: tintColorAsset,
     },
     dark: {
         text: '#FFFFFF',
@@ -41,6 +42,7 @@ export const StylesAsset: ThemeType = {
         alternativeIcon: '#ABABAB',
         border: '#3C3C3C',
         disabledButton: '#9BD1FF',
+        icon: tintColorAsset,
     },
 }
 
@@ -59,4 +61,5 @@ export const StylesAlana: StylesType = {
   alternativeIcon: '#A5A5A5',
   border: '#C9C9C9',
   disabledButton: '#9BD1FF',
+  icon: '#003366',
 };

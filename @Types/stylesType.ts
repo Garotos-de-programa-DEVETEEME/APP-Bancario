@@ -10,4 +10,5 @@ export type StylesType = {
     alternativeIcon: string
     border: string
     disabledButton: string
+    icon: string
 }
