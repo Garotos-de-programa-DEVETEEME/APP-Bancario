@@ -15,14 +15,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const system = useColorScheme();
   const [theme, setTheme] = useState<AppTheme>(system === "dark" ? "dark" : "light");
-  const [manualOverride, setManualOverride] = useState(false);
 
   // Carregar o tema salvo ao iniciar o aplicativo
   useEffect(() => {
     const loadTheme = async () => {
       const savedTheme = await AsyncStorage.getItem("userTheme");
       if (savedTheme === "dark" || savedTheme === "light") {
-        setManualOverride(true);
         setTheme(savedTheme as AppTheme); // Define o tema salvo
       } else {
         setTheme(system === "dark" ? "dark" : "light"); // Usa o tema do sistema como fallback
@@ -34,14 +32,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Salvar o tema no AsyncStorage ao alterá-lo
   const changeTheme = async (t: AppTheme) => {
-    setManualOverride(true);
     setTheme(t);
     await AsyncStorage.setItem("userTheme", t); // Salva o tema no AsyncStorage
   };
 
   const toggleTheme = async () => {
     const newTheme = theme === "dark" ? "light" : "dark";
-    setManualOverride(true);
     setTheme(newTheme);
     await AsyncStorage.setItem("userTheme", newTheme); // Salva o tema no AsyncStorage
   };
