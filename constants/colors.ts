@@ -8,14 +8,14 @@ export default {
     gray: '#dddddd',
 }
 
-const tintColor = '#3E75BC' //cor principal projeto
+const tintColorAsset = '#3E75BC' //cor principal projeto
 
 type ThemeType = {
     light: StylesType
     dark: StylesType
 }
 
-export const Styles: ThemeType = {
+export const StylesAsset: ThemeType = {
     light: {
         text: '#2A2A2A',
         textSecundary: '#A5A5A5',
@@ -24,7 +24,7 @@ export const Styles: ThemeType = {
         darkText: '#343434',
         background: '#FFFFFF',
         backgroundCards: '#EDEDED',
-        tint: tintColor,
+        tint: tintColorAsset,
         alternativeIcon: '#A5A5A5',
         border: '#C9C9C9',
         disabledButton: '#9BD1FF',
@@ -37,9 +37,41 @@ export const Styles: ThemeType = {
         darkText: '#343434',
         background: '#212121',
         backgroundCards: '#2A2A2A',
-        tint: tintColor,
+        tint: tintColorAsset,
         alternativeIcon: '#ABABAB',
         border: '#3C3C3C',
         disabledButton: '#9BD1FF',
     },
 }
+
+const tintColorAlana = '#E8E6FF'; //cor principal projeto
+
+
+export const StylesAlana: ThemeType = {
+  light: {
+    text: '#003366',
+    textSecundary: '#6200EA',
+    alternativeText: '#2A2A2A',
+    whiteText: '#EDEDED',
+    darkText: '#343434',
+    background: '#FFFFFF',
+    backgroundCards: '#E8E6FF',
+    tint: tintColorAlana,
+    alternativeIcon: '#A5A5A5',
+    border: '#C9C9C9',
+    disabledButton: '#9BD1FF',
+  },
+  dark: {
+    text: '#FFFFFF',
+    textSecundary: '#EEEEEE',
+    alternativeText: '#D5D5D5',
+    whiteText: '#FFFFFF',
+    darkText: '#343434',
+    background: '#212121',
+    backgroundCards: '#2A2A2A',
+    tint: tintColorAlana,
+    alternativeIcon: '#ABABAB',
+    border: '#3C3C3C',
+    disabledButton: '#9BD1FF',
+  },
+};

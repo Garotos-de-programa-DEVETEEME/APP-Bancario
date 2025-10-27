@@ -10,16 +10,19 @@ import { StyleSheet } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Toast from 'react-native-toast-message'
 import { FiltersProvider } from '../contexts/filterContext'
+import { AlanaProvider } from '../contexts/alanaContext'
 
 export default function RootLayout() {
     return (
         <SafeAreaProvider style={styles.container}>
-            <ThemeProvider>
-                <AuthProvider>
-                    <MainLayout />
-                </AuthProvider>
-                <Toast config={toastConfig} />
-            </ThemeProvider>
+            <AlanaProvider>
+                <ThemeProvider>
+                    <AuthProvider>
+                        <MainLayout />
+                    </AuthProvider>
+                    <Toast config={toastConfig} />
+                </ThemeProvider>
+            </AlanaProvider>
         </SafeAreaProvider>
     )
 }

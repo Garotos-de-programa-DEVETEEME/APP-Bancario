@@ -1,11 +1,19 @@
-import { useContext } from "react";
-import { Styles } from "@/constants/colors";
+import { StylesAlana, StylesAsset } from "@/constants/colors";
+import AlanaProvider from "@/src/contexts/alanaContext";
 import ThemeContext from "@/src/contexts/themeContext";
+import { useContext } from "react";
 
 export const useTheme = () => {
-  const ctx = useContext(ThemeContext);
+  const userTheme = useContext(ThemeContext);
+  const userPofile = useContext(AlanaProvider);
   // fallback to light if provider missing
-  const theme = ctx?.theme ?? "light";
-  return theme === "dark" ? Styles.dark : Styles.light;
+  const theme = userTheme?.theme ?? "light";
+  //define como common se userProfile não estiver definido
+  const profile = userPofile?.userProfile ?? "common";
+  if(profile == "Alana"){
+    return theme === "dark" ? StylesAlana.dark : StylesAlana.light;
+  }
+  //caso o tema não seja alana (só podendo ser common) retorn paleta de cores asset
+  return theme === "dark" ? StylesAsset.dark : StylesAsset.light;
 };
 
