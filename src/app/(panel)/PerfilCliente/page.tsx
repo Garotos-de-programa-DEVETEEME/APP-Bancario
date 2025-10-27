@@ -7,8 +7,8 @@ import { ContaCard } from "@/components/ClientProfile/contaCard";
 import { SwitchRow } from "@/components/ClientProfile/switchRow";
 import { StyledText } from "@/components/StyledText";
 import { useTheme } from "@/hooks/useTheme";
+import { useAlanaContext } from "@/src/contexts/alanaContext";
 import { useThemeContext } from "@/src/contexts/themeContext";
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
@@ -27,15 +27,25 @@ export default function PerfilClientePage() {
 
   const { theme: currentTheme, changeTheme } = useThemeContext();
   const [themeSwitch, setThemeSwitch] = useState<boolean>(false);
+  
+  const { userProfile, changeUserProfile } = useAlanaContext();
+  const [alanaSwitch, setAlanaSwitch] = useState<boolean>(true);
 
-  useEffect(()=>{//sincroniza o switchTheme com o tem atual do aplicativo ao navegar para esta pagina
+  useEffect(()=>{//sincroniza o switchTheme e alanaSwitch com suas definições no aplicativo
     setThemeSwitch(currentTheme == "dark");
+    setAlanaSwitch(userProfile == "Alana");
   },[])
 
-  // Sincronizar `darkTheme` com `currentTheme`
   useEffect(() => {
         changeTheme(themeSwitch ?  "dark":"light");
-  }, [currentTheme, themeSwitch]);
+  }, [themeSwitch]);
+
+  useEffect(() => {
+        changeUserProfile(alanaSwitch ?  "Alana":"common");
+        if(alanaSwitch){
+            setThemeSwitch(false);
+        }
+  }, [alanaSwitch]);
 
     return(
         BaseScreen({
@@ -49,8 +59,8 @@ export default function PerfilClientePage() {
                     </View>
                     <View style={[style.contentContainer, { gap:10, marginTop:10 }]}>
                         <StyledText style={{color:theme.text, fontSize:18}}>Minhas Configurações</StyledText>
-                        <SwitchRow title={"Modo Escuro"} iconName="dark-mode" switchValue={themeSwitch} setSwitch={setThemeSwitch}/>
-                        <SwitchRow title={"Modo ALANA"} iconName={"assessment"} switchValue={false} setSwitch={()=> {}} iconSize={18}/>
+                        <SwitchRow title={"Modo Escuro"} iconName="dark-mode" switchValue={themeSwitch} setSwitch={setThemeSwitch} disabled={userProfile === "Alana"} />
+                        <SwitchRow title={"Modo ALANA"} iconName={"assessment"} switchValue={alanaSwitch} setSwitch={setAlanaSwitch} iconSize={18}/>
                     </View>
                 </View>
             )
