@@ -40,7 +40,7 @@ export default function PerfilClientePage() {
   }, [themeSwitch]);
 
   useEffect(() => {
-        changeUserProfile(alanaSwitch ?  "Alana":"Common");
+        changeUserProfile(alanaSwitch ?  "Alana":"Default");
         if(alanaSwitch){
             setThemeSwitch(false);
         }
