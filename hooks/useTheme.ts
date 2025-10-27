@@ -9,7 +9,7 @@ export const useTheme = () => {
   // fallback to light if provider missing
   const theme = userTheme?.theme ?? "light";
   //define como common se userProfile não estiver definido
-  const profile = userPofile?.userProfile ?? "common";
+  const profile = userPofile?.userProfile ?? "Default";
   if(profile == "Alana"){
     return StylesAlana;
   }

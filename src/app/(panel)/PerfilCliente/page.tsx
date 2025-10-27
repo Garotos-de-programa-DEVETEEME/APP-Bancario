@@ -1,7 +1,6 @@
 import { StylesType } from "@/@Types/stylesType";
 import { BaseScreen } from "@/components/BaseScreen/BaseScreen";
 import { ScreenStates } from "@/components/BaseScreen/ScreenStates";
-import { SwitchButton } from "@/components/Buttons/switch";
 import { ClientImage } from "@/components/ClientProfile/clientImage";
 import { ContaCard } from "@/components/ClientProfile/contaCard";
 import { SwitchRow } from "@/components/ClientProfile/switchRow";
@@ -11,7 +10,7 @@ import { useAlanaContext } from "@/src/contexts/alanaContext";
 import { useThemeContext } from "@/src/contexts/themeContext";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 import { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function PerfilClientePage() {
   const [screenState, setScreenState] = useState(ScreenStates.loading());
@@ -41,7 +40,7 @@ export default function PerfilClientePage() {
   }, [themeSwitch]);
 
   useEffect(() => {
-        changeUserProfile(alanaSwitch ?  "Alana":"common");
+        changeUserProfile(alanaSwitch ?  "Alana":"Common");
         if(alanaSwitch){
             setThemeSwitch(false);
         }

@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-export type UserProfileType = "common" | "Alana";
+export type UserProfileType = "Default" | "Alana";
 
 interface AlanaContextType {
   userProfile: UserProfileType;
@@ -12,13 +12,13 @@ interface AlanaContextType {
 const AlanaContext = createContext<AlanaContextType | undefined>(undefined);
 
 export const AlanaProvider = ({ children }: { children: React.ReactNode }) => {
-  const [userProfile, serUserProfile] = useState<UserProfileType>("common");
+  const [userProfile, serUserProfile] = useState<UserProfileType>("Default");
 
   // Carregar o tema salvo ao iniciar o aplicativo
   useEffect(() => {
     const loadTheme = async () => {
       const savedProfile = await AsyncStorage.getItem("userProfile");
-      if (savedProfile === "Alana" || savedProfile === "common") {
+      if (savedProfile === "Alana" || savedProfile === "Default") {
         serUserProfile(savedProfile as UserProfileType); // Define o tema salvo
       }
     };
