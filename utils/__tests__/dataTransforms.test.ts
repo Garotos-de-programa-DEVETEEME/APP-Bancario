@@ -2,7 +2,7 @@ import {
     convertApiDateToDate,
     formatDateTimeToBr,
     formatDateToBr,
-} from '../dataTransforms'
+} from '../data-transforms.utils'
 
 describe('Data Transforms (Utilitários)', () => {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import {router} from "expo-router";
-import { signOut } from '@/src/services/authService'
+import { signOut } from '@/services/auth.service'
 
 const Header: React.FC = () => {
 

@@ -1,10 +1,10 @@
 import api from './api'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { getAuthHeader } from '@/src/services/authUtils'
-import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation'
+import { getAuthHeader } from '@/utils/auth.utils'
+import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation.utils'
 
 //TODO: REMOVER DEPOIS QUE BACK ESTIVER PRONTO
-import { mockSignIn } from '@/mock/mockAuth'
+import { mockSignIn } from '@/mock/auth.mock'
 
 export interface LoginResponse {
     token: string

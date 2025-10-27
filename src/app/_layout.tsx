@@ -1,12 +1,12 @@
 import { Stack } from 'expo-router'
 import { AuthProvider } from '@/src/contexts/AuthContext'
 import { useEffect } from 'react'
-import { checkTokenValidity } from '@/src/services/authService'
+import { checkTokenValidity } from '@/services/auth.service'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StyleSheet } from 'react-native'
 import Toast from 'react-native-toast-message'
 import toastConfig from '@/components/toast/toastConfig'
-import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation'
+import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation.utils'
 
 export default function RootLayout() {
     return (

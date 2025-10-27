@@ -1,4 +1,4 @@
-import { LoginResponse } from '@/src/services/authService'
+import { LoginResponse } from '@/services/auth.service'
 
 const MOCK_LOGIN_RESPONSE: LoginResponse = {
     token: 'mock-token-12345-dev',
