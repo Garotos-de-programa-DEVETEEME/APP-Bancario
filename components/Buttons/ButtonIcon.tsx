@@ -21,11 +21,11 @@ export const ButtonIcon = ({ route, text, iconName, IconHeight = 24 }: ButtonIco
   return (
     <Pressable onPress={route} style={styles.button}>
       <View style={styles.iconWrapper}>
-        <MaterialIcons name={iconName as any} size={IconHeight} color={userProfile =='Common'? theme.tint:theme.text} />
+        <MaterialIcons name={iconName as any} size={IconHeight} color={theme.icon} />
       </View>
 
       <StyledText
-        style={[styles.text,{ color: userProfile =='Common'? theme.tint:theme.text, textAlign: "left", maxWidth:70 }]}
+        style={[styles.text,{ color: userProfile =='Default'? theme.tint:theme.text, textAlign: "left", maxWidth:70 }]}
         numberOfLines={2}
       >
         {text}
