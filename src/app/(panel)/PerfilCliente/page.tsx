@@ -29,7 +29,7 @@ export default function PerfilClientePage() {
   const [themeSwitch, setThemeSwitch] = useState<boolean>(false);
   
   const { userProfile, changeUserProfile } = useAlanaContext();
-  const [alanaSwitch, setAlanaSwitch] = useState<boolean>(true);
+  const [alanaSwitch, setAlanaSwitch] = useState<boolean>(false);
 
   useEffect(()=>{//sincroniza o switchTheme e alanaSwitch com suas definições no aplicativo
     setThemeSwitch(currentTheme == "dark");
