@@ -4,6 +4,7 @@ import { StyledText } from "../StyledText"
 import { SwitchButton } from "../Buttons/switch"
 import { useTheme } from "@/hooks/useTheme";
 import { StylesType } from "@/@Types/stylesType";
+import { useAlanaContext } from "@/src/contexts/alanaContext";
 
 interface SwitchRowProps{
     title: string;
@@ -11,26 +12,28 @@ interface SwitchRowProps{
     switchValue:boolean;
     setSwitch: (e:boolean) => void;
     iconSize?:number;
+    disabled?: boolean;
 }
 
-export const SwitchRow = ({title, iconName, switchValue, setSwitch, iconSize=16 }:SwitchRowProps) =>{
+export const SwitchRow = ({title, iconName, switchValue, setSwitch, iconSize=16, disabled=false }:SwitchRowProps) =>{
     const theme = useTheme();
-    const style = getStyles(theme);
+    const style = getStyles(theme, disabled);
+    const userProfile = useAlanaContext().userProfile;
 
     return(
         <View style={style.switchRow}>{/*TODO implementar o alana mode */}
             <View style={style.textSwitch}>
-                <MaterialIcons name={iconName as any} color={theme.tint} size={iconSize} />
+                <MaterialIcons name={iconName as any} color={disabled? theme.backgroundCards:userProfile=="Alana"? theme.text:theme.tint} size={iconSize} />
                 <StyledText style={style.title}>{title}</StyledText>
             </View>
-            <SwitchButton value={switchValue} onValueChange={setSwitch} />
+            <SwitchButton value={switchValue} onValueChange={setSwitch} disabled={disabled} />
         </View>
 
     )
 }
 
 
-const getStyles = (theme:StylesType) => {
+const getStyles = (theme:StylesType, disabled:boolean) => {
     return StyleSheet.create({
         container:{
             display:'flex', 
@@ -57,7 +60,7 @@ const getStyles = (theme:StylesType) => {
             alignItems:'center'
         },
         title:{
-            color:theme.text,
+            color:disabled? theme.backgroundCards:theme.text,
             fontSize:16,
         },
     })

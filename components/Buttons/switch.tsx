@@ -6,11 +6,12 @@ import { Animated, Pressable, StyleSheet, View } from 'react-native';
 interface SwitchButtonProps {
     value: boolean;
     onValueChange: (value: boolean) => void;
+    disabled?:boolean;
 }
 
-export const SwitchButton = ({ value, onValueChange }: SwitchButtonProps) => {
+export const SwitchButton = ({ value, onValueChange, disabled=false }: SwitchButtonProps) => {
     const theme = useTheme();
-    const styles = getStyles(theme);
+    const styles = getStyles(theme, disabled);
 
     // Animated value para a posição do 'thumb'
     const thumbPosition = useRef(new Animated.Value(value ? 1 : 0)).current;
@@ -31,8 +32,14 @@ export const SwitchButton = ({ value, onValueChange }: SwitchButtonProps) => {
         outputRange: [2, 22],
     });
 
+    const changeValue = () =>{
+        if(!disabled){
+            onValueChange(!value)
+        }
+    };
+
     return (
-        <Pressable onPress={() => onValueChange(!value)}>
+        <Pressable onPress={changeValue}>
             <View style={[styles.track, value && styles.trackEnabled]}>
                 <Animated.View style={[styles.thumb, { transform: [{ translateX }] }]} />
             </View>
@@ -40,7 +47,7 @@ export const SwitchButton = ({ value, onValueChange }: SwitchButtonProps) => {
     );
 };
 
-const getStyles = (theme: StylesType) => {
+const getStyles = (theme: StylesType, disabled:boolean) => {
     return StyleSheet.create({
         track: {
             width: 44,
@@ -57,7 +64,7 @@ const getStyles = (theme: StylesType) => {
             width: 18,
             height: 18,
             borderRadius: 9,
-            backgroundColor: theme.backgroundCards,
+            backgroundColor:theme.backgroundCards,
             position: 'absolute',
             top: 2,
         },
