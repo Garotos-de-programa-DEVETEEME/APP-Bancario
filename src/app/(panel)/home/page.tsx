@@ -10,6 +10,7 @@ import { SearchBar } from '@/components/SearchBar/searchBar';
 import { StyledText } from '@/components/StyledText';
 import { fundosDestaque } from '@/constants/fundosDestaque';
 import { useTheme } from '@/hooks/useTheme';
+import { useAlanaContext } from '@/src/contexts/alanaContext';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
@@ -20,6 +21,7 @@ export default function TelaInicial() {
 
   const [searchText, setSearchText] = useState('');
   const fundosEmDestaque:FundoInvestimento[] =  fundosDestaque //TODO substituir por fundos em destaque
+  const userProfile = useAlanaContext().userProfile;
 
   const marketToday = [
     {
@@ -44,6 +46,7 @@ export default function TelaInicial() {
     { name: 'chart-line-variant', color: '#00FF6A' },
     { name: 'leaf', color: '#00CC55' },
   ];
+
   const imagesCard = [
     require('../../../../assets/images/home/image-34.png'),
     require('../../../../assets/images/home/banestes-56-anos.png')
@@ -67,75 +70,84 @@ export default function TelaInicial() {
                     value={-1}
                 />
                 <View style={styles.buttonContainer}>
-                <ButtonIcon
-                    key={1}
-                    route={() =>{/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})*/}}
-                    text='Minha Carteira'
-                    iconName='wallet'
-                    IconHeight={30}
-                />
-                <ButtonIcon
-                    key={2}
-                    route={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})*/}}
-                    text='Fundos de Investimento'
-                    iconName='inventory'
-                    IconHeight={25}
-                />
-                <ButtonIcon
-                    key={3}
-                    route={() => {/*router.push('/simularInvestimento')*/}}
-                    text='Simular Investimento'
-                    iconName='timeline'
-                    IconHeight={25}
-                />
+                  <ButtonIcon
+                      key={1}
+                      route={() =>{/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})*/}}
+                      text='Minha Carteira'
+                      iconName='wallet'
+                      IconHeight={30}
+                  />
+                  <ButtonIcon
+                      key={2}
+                      route={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})*/}}
+                      text='Fundos de Investimento'
+                      iconName='inventory'
+                      IconHeight={25}
+                  />
+                  <ButtonIcon
+                      key={3}
+                      route={() => {/*router.push('/simularInvestimento')*/}}
+                      text='Simular Investimento'
+                      iconName='timeline'
+                      IconHeight={25}
+                  />
                 </View>
-                <View style={{width:'90%', alignSelf:'center'}}>
-                <SearchBar
-                    value={searchText}
-                    onChangeText={(e) => setSearchText(e)}
-                    placeholder='Buscar fundos por nome ou categoria'
-                    hasFilter={false}
-                    onIconPress={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})*/}}
-                    transparent
-                />
-                </View>
-                <View>
-                    <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
-                    <View style={styles.buttonContainer}>
-                        {fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
-                          <HighlightFund
-                              key={index}
-                              data={fund}
-                              iconName={iconsFundoDestaque[index].name}
-                              color={iconsFundoDestaque[index].color}
-                          />
+                {userProfile === "Alana"? (
+                  <>
+                    <StyledText> </StyledText>
+                  </>
+                ):(
+                  <>
+                    <View style={{width:'90%', alignSelf:'center'}}>
+                    <SearchBar
+                        value={searchText}
+                        onChangeText={(e) => setSearchText(e)}
+                        placeholder='Buscar fundos por nome ou categoria'
+                        hasFilter={false}
+                        onIconPress={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})*/}}
+                        transparent
+                    />
+                    </View>
+                    <View>
+                        <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
+                        <View style={styles.buttonContainer}>
+                            {fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
+                              <HighlightFund
+                                  key={index}
+                                  data={fund}
+                                  iconName={iconsFundoDestaque[index].name}
+                                  color={iconsFundoDestaque[index].color}
+                              />
+                            ))}
+                            </View>
+                    </View>
+                    <View>
+                        <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
+                        <View style={styles.buttonContainer}>
+                        {marketToday.map((fund, index) => (
+                            <TodayMarket key={index} fundoDestaque={fund} />
                         ))}
                         </View>
-                </View>
-                <View>
-                    <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
-                    <View style={styles.buttonContainer}>
-                    {marketToday.map((fund, index) => (
-                        <TodayMarket key={index} fundoDestaque={fund} />
-                    ))}
                     </View>
-                </View>
-                <View style={styles.line}></View>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {imagesCard.map((image, index) => (
-                    <Image
-                    source={image}
-                    key={index}
-                    style={{
-                        borderRadius: 16,
-                        width: 280,
-                        height: 136,
-                        marginLeft: 16,
-                    }}
-                    />
-                ))}
-                </ScrollView>
-                <View style={styles.line}></View>
+                    <View style={styles.line}></View>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {imagesCard.map((image, index) => (
+                        <Image
+                        source={image}
+                        key={index}
+                        style={{
+                            borderRadius: 16,
+                            width: 280,
+                            height: 136,
+                            marginLeft: 16,
+                        }}
+                        />
+                    ))}
+                    </ScrollView>
+                    <View style={styles.line}></View>
+                  </>
+                )
+                }
             </View>
             </ScrollView>
         )

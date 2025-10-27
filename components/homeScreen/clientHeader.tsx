@@ -1,9 +1,10 @@
+import { useTheme } from '@/hooks/useTheme';
+import { useAlanaContext, UserProfileType } from '@/src/contexts/alanaContext';
+import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useTheme } from '@/hooks/useTheme';
-import { router } from 'expo-router';
+import { StylesType } from '@/@Types/stylesType';
 
 type ClientHeaderProps = {
   title: string;
@@ -17,8 +18,9 @@ export default function ClientHeader({
   value,
 }: ClientHeaderProps) {
   const theme = useTheme();
-  const styles = getStyles();
-
+  const userProfile = useAlanaContext().userProfile;
+  const styles = getStyles(theme, userProfile);
+  
   return (
     <View style={styles.outerbox}>
       <View style={styles.header}>
@@ -38,9 +40,11 @@ export default function ClientHeader({
               >
                 {title}
               </StyledText>
-              <StyledText style={{ color: theme.whiteText }}>
-                Veja seu perfil
-              </StyledText>
+              {userProfile === 'Default' && (
+                <StyledText style={{ color: theme.whiteText }}>
+                  Veja seu perfil
+                </StyledText>
+              )}
             </View>
           </View>
         </View>
@@ -52,7 +56,7 @@ export default function ClientHeader({
   );
 }
 
-const getStyles = () => {
+const getStyles = (theme:StylesType, userProfile:UserProfileType) => {
   const headerHeight = 138;
   const cardHeight = 80;
 
@@ -72,7 +76,7 @@ const getStyles = () => {
       justifyContent: 'space-between',
     },
     header: {
-      backgroundColor: '#3E75BC',
+      backgroundColor: userProfile === "Default"? theme.tint:theme.textSecundary,
       width: '100%',
       height: 125,
       borderBottomLeftRadius: 50,

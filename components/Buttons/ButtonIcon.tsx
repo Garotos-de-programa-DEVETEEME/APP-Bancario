@@ -1,10 +1,10 @@
-import React from 'react';
-import { Pressable, View, Text, StyleSheet } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { StyledText } from '../StyledText';
-import { useTheme } from '@/hooks/useTheme';
 import { StylesType } from '@/@Types/stylesType';
+import { useTheme } from '@/hooks/useTheme';
 import { useAlanaContext } from '@/src/contexts/alanaContext';
+import { MaterialIcons } from '@expo/vector-icons';
+import React from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
 
 interface ButtonIconProps {
   route: () => void;
@@ -21,11 +21,11 @@ export const ButtonIcon = ({ route, text, iconName, IconHeight = 24 }: ButtonIco
   return (
     <Pressable onPress={route} style={styles.button}>
       <View style={styles.iconWrapper}>
-        <MaterialIcons name={iconName as any} size={IconHeight} color={userProfile =='common'? theme.tint:theme.text} />
+        <MaterialIcons name={iconName as any} size={IconHeight} color={userProfile =='Common'? theme.tint:theme.text} />
       </View>
 
       <StyledText
-        style={[styles.text,{ color: userProfile =='common'? theme.tint:theme.text, textAlign: "left", maxWidth:70 }]}
+        style={[styles.text,{ color: userProfile =='Common'? theme.tint:theme.text, textAlign: "left", maxWidth:70 }]}
         numberOfLines={2}
       >
         {text}
