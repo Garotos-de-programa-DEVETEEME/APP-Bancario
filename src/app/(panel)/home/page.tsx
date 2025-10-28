@@ -10,6 +10,7 @@ import { SearchBar } from '@/components/SearchBar/searchBar';
 import { StyledText } from '@/components/StyledText';
 import { fundosDestaque } from '@/constants/fundosDestaque';
 import { useTheme } from '@/hooks/useTheme';
+import { consultarListaFundosAFA } from '@/services/afa-fundos.service';
 import { consultarSaldo } from '@/services/fundos.service';
 import { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
@@ -19,8 +20,7 @@ export default function TelaInicial() {
   const styles = getStyles(theme);
 
   const [searchText, setSearchText] = useState('');
-  const fundosEmDestaque:FundoInvestimento[] =  fundosDestaque //TODO substituir por fundos em destaque
-
+  
   const marketToday = [
     {
       nome: 'Dolar',
@@ -38,18 +38,19 @@ export default function TelaInicial() {
       valor: 10,
     },
   ];
-
+  
   const iconsFundoDestaque = [
     { name: 'trophy', color: '#FFAC33' },
     { name: 'chart-line-variant', color: '#00FF6A' },
     { name: 'leaf', color: '#00CC55' },
   ];
-
+  
   const imagesCard = [
     require('../../../../assets/images/home/image-34.png'),
     require('../../../../assets/images/home/banestes-56-anos.png')
   ];
-
+  
+  const [fundosEmDestaque, setFundoEmDestaque] = useState<any>();
   const [screenState, setScreenState] = useState(ScreenStates.loading())
   const [saldo, setSaldo]  = useState<number>(0);
   
@@ -59,6 +60,9 @@ export default function TelaInicial() {
       try{
         const saldo = await consultarSaldo();
         setSaldo(saldo.totalGeral);
+
+        const fundos = await consultarListaFundosAFA();
+        setFundoEmDestaque(fundos);
       }catch (error) {
         console.error("Falha ao carregar dados da tela inicial:", error);
         // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
@@ -116,7 +120,7 @@ export default function TelaInicial() {
                     <View>
                         <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
                         <View style={styles.buttonContainer}>
-                            {fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
+                            {fundosEmDestaque && fundosDestaque.map((fund:FundoInvestimento, index:number) => (
                                 <HighlightFund
                                     key={index}
                                     data={fund}
@@ -164,6 +168,7 @@ const getStyles = (theme: StylesType) => {
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
+      backgroundColor:theme.background,
     },
     buttonContainer: {
       display: 'flex',
