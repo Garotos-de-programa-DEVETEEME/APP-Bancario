@@ -5,7 +5,7 @@ import { StylesType } from "@/@Types/stylesType";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface ClienteImageProps{
-    name: string | string[];
+    name: string;
     image: string;
 }
 

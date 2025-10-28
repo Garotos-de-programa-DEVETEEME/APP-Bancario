@@ -10,9 +10,9 @@ import { SearchBar } from '@/components/SearchBar/searchBar';
 import { StyledText } from '@/components/StyledText';
 import { fundosDestaque } from '@/constants/fundosDestaque';
 import { useTheme } from '@/hooks/useTheme';
+import { consultarUsuario, UserResponse } from '@/services/dadosAvatar.service';
 import { consultarSaldo } from '@/services/fundos.service';
 import { useAlanaContext } from '@/src/contexts/alanaContext';
-import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -55,19 +55,22 @@ export default function TelaInicial() {
 
   const [screenState, setScreenState] = useState(ScreenStates.loading())
   const [saldo, setSaldo]  = useState<number>(0);
+  const [userData, setUserData] = useState<UserResponse | null>(null);
   
   useEffect(() => {
     setScreenState(ScreenStates.content())
     const getData = async () =>{
       try{
-        const resposta = await consultarSaldo();
-        setSaldo(resposta.totalGeral);
+        const saldo = await consultarSaldo();
+        setSaldo(saldo.totalGeral);
+        const userData = await consultarUsuario();
+        setUserData(userData);
+
       }catch (error) {
         console.error("Falha ao carregar dados da tela inicial:", error);
         // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
       }
     }
-
     getData();
 
   }, []);
@@ -82,9 +85,10 @@ export default function TelaInicial() {
             <ScrollView showsHorizontalScrollIndicator={false}>
             <View style={styles.container}>
                 <ClientHeader
-                    title='Cliente'
+                    userName={userData?.nomeUsuario || "Cliente"}
                     image='https://legacy.reactjs.org/logo-og.png'
                     value={saldo}
+                    userData={userData}
                 />
                 <View style={styles.buttonContainer}>
                   <ButtonIcon

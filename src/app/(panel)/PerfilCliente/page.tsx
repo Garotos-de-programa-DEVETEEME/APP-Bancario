@@ -14,8 +14,9 @@ import { StyleSheet, View } from "react-native";
 
 export default function PerfilClientePage() {
   const [screenState, setScreenState] = useState(ScreenStates.loading());
-  const { clientImage, name = "Cliente" } = useLocalSearchParams();
-  const imageUri = typeof clientImage === "string" ? clientImage : "";
+  const { data } = useLocalSearchParams();
+
+  const userData = typeof(data) === "string" && JSON.parse(data);
 
   useEffect(() => {
     setScreenState(ScreenStates.content());
@@ -51,7 +52,7 @@ export default function PerfilClientePage() {
             state: screenState,
             children: (
                 <View style={style.container}>
-                    <ClientImage name={name} image={imageUri} />
+                    <ClientImage name={userData?.nomeUsuario} image={userData?.imagemUsuario} />
 
                     <View style={style.contentContainer}>
                         <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>

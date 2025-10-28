@@ -1,21 +1,25 @@
+import { StylesType } from '@/@Types/stylesType';
 import { useTheme } from '@/hooks/useTheme';
 import { useAlanaContext, UserProfileType } from '@/src/contexts/alanaContext';
 import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
-import { StylesType } from '@/@Types/stylesType';
+import { UserResponse } from '@/services/dadosAvatar.service';
+import { use } from 'chai';
 
 type ClientHeaderProps = {
-  title: string;
+  userName: string;
   image: string;
   value: number;
+  userData?: UserResponse | null;
 };
 
 export default function ClientHeader({
-  title,
+  userName,
   image,
   value,
+  userData
 }: ClientHeaderProps) {
   const theme = useTheme();
   const userProfile = useAlanaContext().userProfile;
@@ -27,7 +31,7 @@ export default function ClientHeader({
         <View style={styles.container}>
           <View style={styles.left}>
             <Pressable
-              onPress={() => router.push({pathname:'(panel)/PerfilCliente/page', params:{clientImage:image}})}
+              onPress={() => router.push({pathname:'(panel)/PerfilCliente/page', params:{data: userData? JSON.stringify(userData):"" }})}
             >
               <Image src={image} alt='Foto Cliente' style={styles.image} />
             </Pressable>
@@ -38,7 +42,7 @@ export default function ClientHeader({
                   color: theme.whiteText,
                 }}
               >
-                {title}
+                {userName}
               </StyledText>
               {userProfile === 'Default' && (
                 <StyledText style={{ color: theme.whiteText }}>
