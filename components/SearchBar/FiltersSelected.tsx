@@ -1,0 +1,38 @@
+import { StyleSheet, View } from 'react-native';
+import { StyledText } from '../StyledText';
+import { useTheme } from '@/hooks/useTheme';
+import { StylesType } from '@/@Types/stylesType';
+import { FilterType } from '@/@Types/Filter';
+
+interface filterSelectedProps {
+  data: FilterType;
+}
+
+export const FiltersSelected = ({ data }: filterSelectedProps) => {
+  const theme = useTheme();
+  const style = getStyle(theme, data);
+
+  return (
+    <View style={style.container}>
+      <StyledText style={style.text}>{data.text}</StyledText>
+    </View>
+  );
+};
+
+function getStyle(theme: StylesType, data: FilterType) {
+  return StyleSheet.create({
+    container: {
+      backgroundColor: data.color ? data.color : theme.tint,
+      width: 120,
+      height: 22,
+      borderRadius: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: theme.whiteText,
+      fontWeight: 500,
+      fontSize: 14,
+    },
+  });
+}
