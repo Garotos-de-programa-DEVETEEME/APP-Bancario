@@ -1,5 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
-import { FundoAFA } from '@/services/afa-fundos.service';
+import { FundoDetalhe } from '@/services/fundos.service';
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationButton } from '../buttons/navigationButton';
@@ -14,9 +14,16 @@ const formatHour = (hourNumber: number): string => {
   return `${hours}:${minutes}`;
 };
 
+const formatCurrency = (value: number) => {
+    if (value === undefined || value === null) return 'R$ 0,00';
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value);
+};
 
 interface ExpandedProps {
-  fund: FundoAFA; 
+  fund: FundoDetalhe; 
   expanded: boolean;
   type?: 'default' | 'simular';
   requireInvestorProfileCheck?: boolean;
@@ -70,8 +77,7 @@ export const Expanded = ({
           Movimentação (aplic/resg):{' '}
         </Text>
         <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
-           {/* TODO: Verificar se essa lógica ainda é R$ 1,00 ou vem do FundoAFA */}
-          {'R$ 1,00'}
+           {`${formatCurrency(fund.valorMinimoAplicacaoInternet)} / ${formatCurrency(fund.valorMinimoResgateInternet)}`}
         </Text>
       </View>
 
@@ -80,8 +86,7 @@ export const Expanded = ({
           Cotização de resgate:{' '}
         </Text>
         <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
-          {/* TODO: Verificar se isso ainda é fixo ou vem do FundoAFA */}
-          D+30 (Dias Corridos) 
+          {fund.cotizacaoResgate}
         </Text>
       </View>
 
@@ -90,7 +95,7 @@ export const Expanded = ({
           Liquidação de resgate:{' '}
         </Text>
         <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
-          {`D+${fund.prazoConversaoResgate} (Dias Úteis)`}
+          {fund.liquidacaoResgate}
         </Text>
       </View>
 
@@ -98,7 +103,7 @@ export const Expanded = ({
         <View style={styles.buttonContainerCenter}>
           <NavigationButton
             onPress={() => router.push({
-              pathname: '/(panel)/simular-investimento/detalhes',
+              pathname: '/(panel)/simular-investimento/simulacao',
               params: { fundData: JSON.stringify(fund) }, 
             })}
             text='Simular'

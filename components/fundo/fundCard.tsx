@@ -1,5 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
-import { FundoAFA } from '@/services/afa-fundos.service';
+import { FundoDetalhe } from '@/services/fundos.service';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Expanded } from './expandedFund';
@@ -10,7 +10,7 @@ const formatCurrency = (value: number) => {
 };
 
 interface FundsCardProps {
-  fund: FundoAFA; 
+  fund: FundoDetalhe;
   onPress: () => void;
   expanded: boolean;
   expandedType?: 'default' | 'simular';
@@ -41,19 +41,21 @@ export const FundsCard = ({
             {'Fundo'}
           </Text>
           <View style={styles.riskContainer}>
-            <RiskIcon risk={'alto'} /> 
+            <RiskIcon
+              risk={fund.classificacaoRisco.toLowerCase() as any}
+            />
           </View>
         </View>
 
         <View>
           <Text style={[styles.textXlBold, { color: theme.text }]}>
-            {fund.nome} 
+            {fund.nome}
           </Text>
         </View>
 
         {expanded ? (
           <View
-            style={[styles.divider, { borderTopColor: theme.border }]} 
+            style={[styles.divider, { borderTopColor: theme.border }]}
           />
         ) : null}
 
@@ -68,16 +70,16 @@ export const FundsCard = ({
 
         <View style={styles.rowBetween}>
           <Text style={[styles.textBase, { color: theme.alternativeText }]}>
-            Rentabilidade dos últimos 12 meses
+            Rentabilidade (12 meses):
           </Text>
           <View style={styles.rentabilityValueContainer}>
-            {fund.taxaRentabilidade > 0 ? ( 
+            {fund.taxaRentabilidade > 0 ? (
               <MaterialCommunityIcons name="arrow-up" size={16} color="green" />
             ) : (
               <MaterialCommunityIcons name="arrow-down" size={16} color="red" />
             )}
             <Text style={[styles.textLg, { color: theme.tint }]}>
-              {`${fund.taxaRentabilidade.toFixed(2)}%`} 
+              {`${fund.taxaRentabilidade.toFixed(2)}%`}
             </Text>
           </View>
         </View>
@@ -85,7 +87,7 @@ export const FundsCard = ({
         {expanded ? (
           <View>
             <Expanded
-              fund={fund} 
+              fund={fund}
               expanded={expanded}
               type={expandedType}
               requireInvestorProfileCheck={requireInvestorProfileCheck}
@@ -145,5 +147,3 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
 });
-
-

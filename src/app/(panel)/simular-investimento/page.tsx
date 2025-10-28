@@ -2,8 +2,8 @@ import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import { FundsCard } from '@/components/fundo/fundCard';
 import { useTheme } from '@/hooks/useTheme';
-import { mockConsultarListaFundosAFA } from '@/mock/afa-fundos.mock';
-import { FundoAFA } from '@/services/afa-fundos.service';
+import { mockConsultarSaldo } from '@/mock/fundos.mock';
+import { FundoDetalhe } from '@/services/fundos.service';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -11,7 +11,7 @@ export default function SimularInvestimento() {
   const [screenState, setScreenState] = useState(ScreenStates.loading());
   const theme = useTheme();
   
-  const [investmentFunds, setInvestmentFunds] = useState<FundoAFA[]>([]);
+  const [investmentFunds, setInvestmentFunds] = useState<FundoDetalhe[]>([]);
   const [currentExpanded, setCurrentExpanded] = useState(-1);
 
   const changeCurrentExpanded = (key: number) => {
@@ -26,8 +26,8 @@ export default function SimularInvestimento() {
     async function carregarFundos() {
       try {
         setScreenState(ScreenStates.loading());
-        const fundos = await mockConsultarListaFundosAFA(); 
-        setInvestmentFunds(fundos);
+        const saldoData = await mockConsultarSaldo(); 
+        setInvestmentFunds(saldoData.listaFundos);
         setScreenState(ScreenStates.content());
       } catch (error) {
         console.error("Erro ao carregar fundos:", error);
@@ -39,55 +39,51 @@ export default function SimularInvestimento() {
   }, []);
 
   return (
-    BaseScreen({
-      state: screenState,
-      children: (
-        <ScrollView style={{backgroundColor: theme.background}}>
-          <View
-            style={[styles.container, { backgroundColor: theme.background }]}
+    <BaseScreen state={screenState}>
+      <ScrollView 
+        style={{backgroundColor: theme.background, flex: 1}}
+        contentContainerStyle={[styles.container, { backgroundColor: theme.background }]}
+      >
+        <View
+          style={[styles.infoBox, { backgroundColor: theme.backgroundCards }]}
+        >
+          <Text
+            style={[styles.infoText, { color: theme.alternativeText }]}
           >
-            <View
-              style={[styles.infoBox, { backgroundColor: theme.backgroundCards }]}
-            >
-              <Text
-                style={[styles.infoText, { color: theme.alternativeText }]}
-              >
-                A simulação considera seu perfil de investidor previamente cadastrado,
-                garantindo maior adequação às suas preferências e tolerância a risco.
-              </Text>
-            </View>
+            A simulação considera seu perfil de investidor previamente cadastrado,
+            garantindo maior adequação às suas preferências e tolerância a risco.
+          </Text>
+        </View>
 
-            <View style={styles.listContainer}>
-              <Text
-                style={[styles.title, { color: theme.darkText || theme.text }]}
-              >
-                Fundos
-              </Text>
+        <View style={styles.listContainer}>
+          <Text
+            style={[styles.title, { color: theme.darkText || theme.text }]}
+          >
+            Fundos
+          </Text>
 
-              <View style={styles.cardList}>
-                {investmentFunds.map((fund) => {
-                  return (
-                    <FundsCard
-                      fund={fund} 
-                      key={fund.codigo}
-                      onPress={() => changeCurrentExpanded(fund.codigo)}
-                      expanded={currentExpanded === fund.codigo}
-                      expandedType="simular"
-                    />
-                  );
-                })}
-              </View>
-            </View>
+          <View style={styles.cardList}>
+            {investmentFunds.map((fund) => {
+              return (
+                <FundsCard
+                  fund={fund}
+                  key={fund.codigoFundo}
+                  onPress={() => changeCurrentExpanded(fund.codigoFundo)}
+                  expanded={currentExpanded === fund.codigoFundo}
+                  expandedType="simular"
+                />
+              );
+            })}
           </View>
-        </ScrollView>
-      )
-    })
+        </View>
+      </ScrollView>
+    </BaseScreen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     paddingBottom: 40, 
   },
@@ -125,4 +121,3 @@ const styles = StyleSheet.create({
     width: '100%', 
   },
 });
-

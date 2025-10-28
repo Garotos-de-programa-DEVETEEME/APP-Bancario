@@ -26,6 +26,14 @@ export interface FundoDetalhe {
     horaLimite: number // Formato HHMM
     taxaAdministracao: number // Percentual
     fundoSimples: 'S' | 'N'
+    taxaRentabilidade: number
+    tipoFundo: string
+    classificacaoRisco: string
+    cotizacaoResgate: string
+    liquidacaoResgate: string
+    classificacaoCVM: string
+    subclasseCVM: string
+    tipoANBIMA: string
 }
 
 /**
