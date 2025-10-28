@@ -14,17 +14,17 @@ import { AlanaProvider } from '../contexts/alanaContext'
 
 export default function RootLayout() {
     return (
-        <SafeAreaProvider style={styles.container}>
+        <ThemeProvider>
             <AlanaProvider>
-                <ThemeProvider>
-                    <AuthProvider>
-                        <MainLayout />
-                    </AuthProvider>
-                    <Toast config={toastConfig} />
-                </ThemeProvider>
+                <SafeAreaProvider style={styles.container}>
+                        <AuthProvider>
+                            <MainLayout />
+                        </AuthProvider>
+                        <Toast config={toastConfig} />
+                </SafeAreaProvider>
             </AlanaProvider>
-        </SafeAreaProvider>
-    )
+        </ThemeProvider>
+    );
 }
 
 function MainLayout() {
