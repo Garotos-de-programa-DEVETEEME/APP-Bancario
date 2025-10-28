@@ -11,6 +11,7 @@ import { FiltersSelected } from './FiltersSelected';
 import { useTheme } from '@/hooks/useTheme';
 import { StylesType } from '@/@Types/stylesType';
 import { useFilters } from '@/src/contexts/filterContext';
+import { useState } from 'react';
 
 interface SearchBarProps {
   value: string; //variavel para controle
@@ -33,7 +34,7 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const theme = useTheme();
   const styles = getStyles(theme);
-  const { filters, setFilters } = useFilters();
+  const [filters, setFilters] = useState<any>([]);
 
   return (
     <View
@@ -62,7 +63,7 @@ export const SearchBar = ({
                 gap: 10,
               }}
             >
-              {filters.map((filter) => (
+              {filters.map((filter:any) => (
                 <FiltersSelected data={filter} key={filter.id} />
               ))}
               
