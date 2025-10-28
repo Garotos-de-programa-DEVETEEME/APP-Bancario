@@ -23,8 +23,7 @@ export interface Usuario {
 /**
  * A rota de rentabilidade retorna um array de CotaDiaria.
  */
-export type UserResponse = Usuario[]
-
+export type UserResponse = Usuario
 // --- Funções de Serviço ---
 
 /**
@@ -32,7 +31,7 @@ export type UserResponse = Usuario[]
  * @returns Uma Promise que resolve para um array de objetos CotaDiaria.
  * @throws Lança um erro se a chamada à API falhar.
  */
-export async function consultarRentabilidade(): Promise<UserResponse> {
+export async function consultarUsuario(): Promise<UserResponse> {
     try {
         // TODO: REMOVER DEPOIS QUE BACK ESTIVER PRONTO - CHAMADA MOCKADA
         const response = await mockConsultarUsuario();
