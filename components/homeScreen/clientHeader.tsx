@@ -40,6 +40,7 @@ export default function ClientHeader({
                 style={{
                   fontWeight: 'bold',
                   color: theme.whiteText,
+                  maxWidth:230,
                 }}
               >
                 {userName}
@@ -78,6 +79,7 @@ const getStyles = (theme:StylesType, userProfile:UserProfileType) => {
     container: {
       flexDirection: 'row',
       justifyContent: 'space-between',
+      marginHorizontal: 8,
     },
     header: {
       backgroundColor: userProfile === "Default"? theme.tint:theme.textSecundary,

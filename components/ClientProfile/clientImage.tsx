@@ -1,8 +1,8 @@
-import { useTheme } from "@/hooks/useTheme";
-import { View, StyleSheet,Image, ImageBackground } from "react-native";
-import { StyledText } from "../StyledText";
 import { StylesType } from "@/@Types/stylesType";
+import { useTheme } from "@/hooks/useTheme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Image, ImageBackground, StyleSheet, View } from "react-native";
+import { StyledText } from "../StyledText";
 
 interface ClienteImageProps{
     name: string;
@@ -22,26 +22,27 @@ export const ClientImage = ({name, image}:ClienteImageProps) => {
                 <View style={style.editContainer}>
                     <MaterialCommunityIcons name="pencil" color={theme.icon} onPress={()=>{}} />
                 </View>
-                <StyledText style={style.title}> {name} </StyledText>
             </View>
+            <StyledText style={style.title}> {name} </StyledText>
         </View>
     );
 }
 
 const getStyles = (theme:StylesType) => {
     return StyleSheet.create({
+        backgroundImage:{
+            width:'96%',
+            height:160,
+            position:'absolute',
+            alignSelf:'flex-end',
+        },
         imageContainer:{
             width:'90%',
             height:210,
             justifyContent:'flex-end',
             alignItems:'center',
             alignSelf:'center',
-        },
-        backgroundImage:{
-            width:'96%',
-            height:160,
-            position:'absolute',
-            alignSelf:'flex-end',
+            bottom:'5%',
         },
         clientImage:{
             borderRadius:100/2,
@@ -54,6 +55,9 @@ const getStyles = (theme:StylesType) => {
             color:theme.text,
             fontSize:18,
             fontWeight:'bold',
+            maxWidth:250,
+            alignSelf:'center',
+            textAlign:'center',
         },
         editContainer:{
             backgroundColor:theme.backgroundCards,
@@ -63,7 +67,7 @@ const getStyles = (theme:StylesType) => {
             justifyContent:'center',
             alignItems:'center',
             position:'absolute',
-            bottom:'10%',
+            bottom:'2%',
             right:'35%'
         }
     })
