@@ -75,9 +75,6 @@ export default function TelaInicial() {
 
   }, []);
 
-  
-
-
   return (
      BaseScreen({
         state: screenState,
