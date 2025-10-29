@@ -28,13 +28,12 @@ export default function ClientHeader({
   return (
     <View style={styles.outerbox}>
       <View style={styles.header}>
+        <Pressable
+          onPress={() => router.push({pathname:'(panel)/PerfilCliente/page', params:{data: userData? JSON.stringify(userData):"" }})}
+        >
         <View style={styles.container}>
           <View style={styles.left}>
-            <Pressable
-              onPress={() => router.push({pathname:'(panel)/PerfilCliente/page', params:{data: userData? JSON.stringify(userData):"" }})}
-            >
               <Image src={image} alt='Foto Cliente' style={styles.image} />
-            </Pressable>
             <View style={styles.textbox}>
               <StyledText
                 style={{
@@ -53,6 +52,7 @@ export default function ClientHeader({
             </View>
           </View>
         </View>
+      </Pressable>
       </View>
       <View style={styles.cardcontainer}>
         <PatrimonyCard value={value} />
@@ -79,7 +79,6 @@ const getStyles = (theme:StylesType, userProfile:UserProfileType) => {
     container: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginHorizontal: 8,
     },
     header: {
       backgroundColor: userProfile === "Default"? theme.tint:theme.textSecundary,
