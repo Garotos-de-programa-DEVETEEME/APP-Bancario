@@ -2,7 +2,7 @@ import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import { FundsCard } from '@/components/fundo/fundCard';
 import { useTheme } from '@/hooks/useTheme';
-import { mockConsultarSaldo } from '@/mock/fundos.mock';
+import { consultarSaldo } from '@/services/fundos.service';
 import { FundoDetalhe } from '@/services/fundos.service';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -26,7 +26,7 @@ export default function SimularInvestimento() {
     async function carregarFundos() {
       try {
         setScreenState(ScreenStates.loading());
-        const saldoData = await mockConsultarSaldo(); 
+        const saldoData = await consultarSaldo(); 
         setInvestmentFunds(saldoData.listaFundos);
         setScreenState(ScreenStates.content());
       } catch (error) {
