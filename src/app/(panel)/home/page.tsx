@@ -8,7 +8,6 @@ import { HighlightFund } from '@/components/homeScreen/highligthFund';
 import { TodayMarket } from '@/components/homeScreen/todayMarket';
 import { SearchBar } from '@/components/SearchBar/searchBar';
 import { StyledText } from '@/components/StyledText';
-import { fundosDestaque } from '@/constants/fundosDestaque';
 import { useTheme } from '@/hooks/useTheme';
 import { consultarListaFundosAFA } from '@/services/afa-fundos.service';
 import { consultarSaldo } from '@/services/fundos.service';
@@ -120,7 +119,7 @@ export default function TelaInicial() {
                     <View>
                         <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
                         <View style={styles.buttonContainer}>
-                            {fundosEmDestaque && fundosDestaque.map((fund:FundoInvestimento, index:number) => (
+                            {fundosEmDestaque && fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
                                 <HighlightFund
                                     key={index}
                                     data={fund}
