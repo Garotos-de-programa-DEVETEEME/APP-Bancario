@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
-import Animated, {
+import {
   Easing,
   useSharedValue,
   withTiming,

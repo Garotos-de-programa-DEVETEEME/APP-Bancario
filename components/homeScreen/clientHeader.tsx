@@ -1,6 +1,5 @@
 import { StylesType } from '@/@Types/stylesType';
 import { useTheme } from '@/hooks/useTheme';
-import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
