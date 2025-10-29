@@ -83,7 +83,7 @@ export default function TelaInicial() {
             <View style={styles.container}>
                 <ClientHeader
                     userName={userData?.nomeUsuario || "Cliente"}
-                    image='https://legacy.reactjs.org/logo-og.png'
+                    image={''}
                     value={saldo}
                     userData={userData}
                 />

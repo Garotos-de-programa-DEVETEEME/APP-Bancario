@@ -33,7 +33,7 @@ export default function ClientHeader({
         >
         <View style={styles.container}>
           <View style={styles.left}>
-              <Image src={image} alt='Foto Cliente' style={styles.image} />
+              <Image source={require('../../assets/images/home/banestes-home.jpg')} alt='foto cliente' style={styles.image} />{/*TODO alterar conforme API*/}
             <View style={styles.textbox}>
               <StyledText
                 style={{
@@ -99,8 +99,8 @@ const getStyles = (theme:StylesType, userProfile:UserProfileType) => {
       marginRight: '5%',
     },
     image: {
-      height: 40,
-      width: 40,
+      height: 50,
+      width: 50,
       borderRadius: 25,
       marginLeft: '10%',
     },
