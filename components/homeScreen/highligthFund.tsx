@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks/useTheme";
 import { StylesType } from "@/@Types/stylesType";
 import { FundoInvestimento } from "@/@Types/fundos";
+import { router, usePathname } from "expo-router";
 
 interface HighlightFundProps {
     data: FundoInvestimento;
@@ -17,7 +18,7 @@ export const HighlightFund = ({data, iconName, color}: HighlightFundProps) => {
     const styles = getStyles(theme);
 
   return (
-    <Pressable onPress={() => {}}>{/*TODO redirecionar para a pagina de saiba mais ou investir do fundo */}
+    <Pressable onPress={() => router.push({pathname: '', params:{fundoData:JSON.stringify(data)}})}>{/*TODO redirecionar para a pagina de investir do fundo */}
         <View style={styles.container}>
             <View style={styles.titleContainer}>
                 <MaterialCommunityIcons  name={iconName as any} color={color} size={22}/>
