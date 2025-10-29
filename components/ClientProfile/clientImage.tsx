@@ -19,9 +19,6 @@ export const ClientImage = ({name, image}:ClienteImageProps) => {
             <ImageBackground source={require('../../assets/images/home/banestes-56-anos.png')} style={style.backgroundImage} imageStyle={{ borderRadius: 10 }}/>
             <View style={style.imageContainer}>
                 <Image source={require('../../assets/images/home/banestes-home.jpg')} style={style.clientImage}/>
-                <View style={style.editContainer}>
-                    <MaterialCommunityIcons name="pencil" color={theme.icon} onPress={()=>{}} />
-                </View>
             </View>
             <StyledText style={style.title}> {name} </StyledText>
         </View>
