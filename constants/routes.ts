@@ -10,5 +10,6 @@ const routes: Routes = {
     LOGIN: '/',
     HOME_PANEL: '/(panel)/home/page',
     PROFILE_PANEL: '/(panel)/profile/page',
+    WITHDRAW: '/(panel)/withdraw/page',
 };
 export default routes;

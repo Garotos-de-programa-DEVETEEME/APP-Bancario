@@ -1,5 +1,5 @@
-import { Href, router } from 'expo-router'
-import routes from '@/constants/routes'
+import routes from '@/constants/routes';
+import { Href, router } from 'expo-router';
 
 /**
  * Navega para home (pós-login).
