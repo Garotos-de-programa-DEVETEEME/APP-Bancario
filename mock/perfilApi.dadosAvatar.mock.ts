@@ -1,6 +1,6 @@
 import { UserResponse } from "@/services/dadosAvatar.service";
 
-export const MOCK_USUARIO:UserResponse = {
+export const MOCK_USUARIO:UserResponse = {//TODO procurar como eles obtme a imagem
     "id": 28,
     "nrConta": 878470,
     "nrCpf": "00173252770",

@@ -52,8 +52,7 @@ export default function PerfilClientePage() {
             state: screenState,
             children: (
                 <View style={style.container}>
-                    <ClientImage name={userData?.nomeUsuario} image={userData?.imagemUsuario} />
-
+                    <ClientImage name={userData?.nomeUsuario} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
                     <View style={style.contentContainer}>
                         <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                     </View>
