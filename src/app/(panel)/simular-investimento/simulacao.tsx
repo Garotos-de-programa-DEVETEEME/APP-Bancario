@@ -78,13 +78,11 @@ export default function DetalhesInvestimento() {
     setIsSimulando(true);
     
     try {
-      // TODO: Passar 'valorAplicarEmCentavos' e 'valorSalvoDropdown' para a API
       const data = await simularFundo(); 
       setSimulacaoResultado(data);
       setMostrarResultados(true);
     } catch (error) {
       console.error("Erro ao simular fundo:", error);
-      // TODO: Mostrar um Toast de erro
     } finally {
       setIsSimulando(false);
     }
@@ -102,12 +100,11 @@ export default function DetalhesInvestimento() {
       );
     }
 
-    // --- TELA DE RESULTADOS ---
     if (mostrarResultados && simulacaoResultado) {
       return (
         <ScrollView style={styles.container}>
           <View style={styles.contentContainerResult}>
-            <View style={styles.marginBottom2}>
+            <View>
               <Text style={[styles.headerTitle, { color: theme.text }]}>
                 {fund.nome}
               </Text>
@@ -191,18 +188,17 @@ export default function DetalhesInvestimento() {
       );
     }
     
-    // --- TELA DE FORMULÁRIO ---
     return (
       <ScrollView
         style={styles.container}
         showsHorizontalScrollIndicator={false}
       >
         <View style={styles.contentContainer}>
-          <View style={styles.marginBottom2}>
+          <View>
             <FundDetails fund={fund} />
           </View>
 
-          <View style={styles.marginTop4}>
+          <View style={styles.sectionSpacer}>
             <Text style={[styles.sectionTitle, { color: theme.text }]}>
               Aplicação inicial
             </Text>
@@ -213,7 +209,7 @@ export default function DetalhesInvestimento() {
             />
           </View>
 
-          <View style={styles.marginTop4}>
+          <View style={styles.sectionSpacer}>
             <Text style={[styles.sectionTitle, { color: theme.text }]}>
               Data
             </Text>
@@ -224,11 +220,11 @@ export default function DetalhesInvestimento() {
             />
           </View>
 
-          <View style={styles.marginTop5}>
+          <View style={styles.sectionSpacer}>
             <FundClass fund={fund} />
           </View>
 
-          <View style={styles.buttonContainer}>
+          <View style={[styles.buttonContainer, styles.sectionSpacer]}>
             <NavigationButton
               onPress={onOpenTermo}
               text="Simular"
@@ -240,12 +236,22 @@ export default function DetalhesInvestimento() {
 
           <View style={styles.spacer} />
         </View>
+      </ScrollView>
+    );
+  }
+
+  return (
+    <BaseScreen state={screenState}>
+      <View style={[styles.baseContainer, { backgroundColor: theme.background }]}>
+        {renderContent()} 
 
         <Modalize
           ref={modalizeRef}
-          modalHeight={600}
+          modalHeight={600} 
           handleStyle={{ backgroundColor: theme.textSecundary }}
-          modalStyle={{ backgroundColor: theme.backgroundCards }}
+          modalStyle={{ 
+            backgroundColor: theme.backgroundCards, 
+          }}
         >
           <AcceptanceTerm
             isChecked={isChecked}
@@ -253,20 +259,16 @@ export default function DetalhesInvestimento() {
             onAccept={handleShowResults}
           />
         </Modalize>
-      </ScrollView>
-    );
-  }
 
-  return (
-    <BaseScreen state={screenState}>
-      <View style={[styles.container, { backgroundColor: theme.background }]}>
-        {renderContent()}
       </View>
     </BaseScreen>
   );
 }
 
 const getStyles = (theme: any) => StyleSheet.create({
+  baseContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },
@@ -287,25 +289,17 @@ const getStyles = (theme: any) => StyleSheet.create({
     paddingBottom: 25,
     paddingTop: 4,
   },
-  marginBottom2: {
-    marginBottom: 8,
-  },
-  marginTop4: {
-    marginTop: 16,
-  },
-  marginTop5: {
-    marginTop: 20,
+  sectionSpacer: {
+    marginTop: 24,
   },
   sectionTitle: {
     fontSize: 20,
     color: theme.text,
-    marginTop: 15,
     marginBottom: 10,
     fontWeight: 'bold',
   },
   buttonContainer: {
     alignItems: 'center',
-    marginTop: 16,
   },
   spacer: {
     height: 32,

@@ -10,7 +10,7 @@ interface TextRowProps{
 
 export function TextRow({left, right, fontSize=16, bold=false }: TextRowProps) {
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = getStyles(theme, fontSize, bold); 
 
   return (
     <View
@@ -19,24 +19,34 @@ export function TextRow({left, right, fontSize=16, bold=false }: TextRowProps) {
         { borderBottomColor: theme.border }
       ]}
     >
-      <Text style={{ color: theme.text, fontSize:fontSize, fontWeight:bold?'bold':'300' }}>
+      <Text style={styles.leftText}>
         {left}
       </Text>
-      <Text style={{ color: theme.text, fontSize:fontSize }}>
+      <Text style={styles.rightText}>
         {right}
       </Text>
     </View>
   );
 }
 
-const getStyles = (theme: any) => StyleSheet.create({
+const getStyles = (theme: any, fontSize: number, bold: boolean) => StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: 'flex-start', 
     borderBottomWidth: 1,
     paddingBottom: 8,
     marginBottom: 8,
+  },
+  leftText: {
+    color: theme.text,
+    fontSize: fontSize,
+    fontWeight: bold ? 'bold' : '300',
+    marginRight: 8,
+  },
+  rightText: {
+    flex: 1,
+    color: theme.text,
+    fontSize: fontSize,
+    textAlign: 'right', 
   }
 });
-
