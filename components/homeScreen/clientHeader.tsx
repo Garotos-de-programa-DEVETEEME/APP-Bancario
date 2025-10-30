@@ -1,12 +1,10 @@
 import { StylesType } from '@/@Types/stylesType';
 import { useTheme } from '@/hooks/useTheme';
 import { useAlanaContext, UserProfileType } from '@/src/contexts/alanaContext';
-import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
 import { UserResponse } from '@/services/dadosAvatar.service';
-import { use } from 'chai';
 
 type ClientHeaderProps = {
   userName: string;
@@ -29,7 +27,7 @@ export default function ClientHeader({
     <View style={styles.outerbox}>
       <View style={styles.header}>
         <Pressable
-          onPress={() => router.push({pathname:'(panel)/PerfilCliente/page', params:{data: userData? JSON.stringify(userData):"" }})}
+          onPress={() => }
         >
         <View style={styles.container}>
           <View style={styles.left}>

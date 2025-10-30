@@ -1,8 +1,7 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
-import Animated, {
+import {
   Easing,
-  useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";

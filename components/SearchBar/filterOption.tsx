@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet } from 'react-native';
-import { StyledText } from '../StyledText';
 import { useTheme } from '@/hooks/useTheme';
 import { StylesType } from '@/@Types/stylesType';
+import { StyledText } from '../StyledText';
 import { FilterType } from '@/@Types/Filter';
 
 interface filterOptionProps {
