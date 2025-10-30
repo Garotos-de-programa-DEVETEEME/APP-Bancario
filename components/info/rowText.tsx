@@ -16,7 +16,7 @@ export function TextRow({left, right, fontSize=16, bold=false }: TextRowProps) {
     <View
       style={[
         styles.container,
-        { borderBottomColor: theme.border }
+        { borderTopColor: theme.border }
       ]}
     >
       <Text style={styles.leftText}>
@@ -33,9 +33,9 @@ const getStyles = (theme: any, fontSize: number, bold: boolean) => StyleSheet.cr
   container: {
     flexDirection: 'row',
     alignItems: 'flex-start', 
-    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    paddingTop: 8,
     paddingBottom: 8,
-    marginBottom: 8,
   },
   leftText: {
     color: theme.text,

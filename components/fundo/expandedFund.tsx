@@ -1,26 +1,10 @@
 import { useTheme } from '@/hooks/useTheme';
 import { FundoDetalhe } from '@/services/fundos.service';
-import { router } from 'expo-router';
+import { coinFormat } from '@/utils/coinFormat';
+import { convertNumberToTime } from '@/utils/hourFormat';
+import { navigateToInvestir, navigateToSaibaMais, navigateToSimulacao } from '@/utils/navigation.utils';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationButton } from '../buttons/navigationButton';
-
-const formatHour = (hourNumber: number): string => {
-  if (hourNumber == null || isNaN(hourNumber)) {
-    return '--:--'; 
-  }
-  const hourString = String(hourNumber).padStart(4, '0'); 
-  const hours = hourString.substring(0, 2);
-  const minutes = hourString.substring(2, 4);
-  return `${hours}:${minutes}`;
-};
-
-const formatCurrency = (value: number) => {
-    if (value === undefined || value === null) return 'R$ 0,00';
-    return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(value);
-};
 
 interface ExpandedProps {
   fund: FundoDetalhe; 
@@ -45,10 +29,7 @@ export const Expanded = ({
     if (requireInvestorProfileCheck && onProfileCheckRequested) {
       onProfileCheckRequested();
     } else {
-      router.push({
-        pathname: '/(panel)/home/page', //TODO: Colocar caminho novo investir
-        params: { fundData: JSON.stringify(fund) }, 
-      });
+      navigateToInvestir(fund); 
     }
   };
 
@@ -68,7 +49,7 @@ export const Expanded = ({
           Hora limite de aplicação:{' '}
         </Text>
         <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
-          {formatHour(fund.horaLimite)} 
+          {convertNumberToTime(fund.horaLimite)} 
         </Text>
       </View>
 
@@ -77,7 +58,7 @@ export const Expanded = ({
           Movimentação (aplic/resg):{' '}
         </Text>
         <Text style={[styles.textDetail, { color: theme.alternativeText }]}>
-           {`${formatCurrency(fund.valorMinimoAplicacaoInternet)} / ${formatCurrency(fund.valorMinimoResgateInternet)}`}
+           {`${coinFormat(fund.valorMinimoAplicacaoInternet)} / ${coinFormat(fund.valorMinimoResgateInternet)}`}
         </Text>
       </View>
 
@@ -102,20 +83,14 @@ export const Expanded = ({
       {type === 'simular' ? (
         <View style={styles.buttonContainerCenter}>
           <NavigationButton
-            onPress={() => router.push({
-              pathname: '/(panel)/simular-investimento/simulacao',
-              params: { fundData: JSON.stringify(fund) }, 
-            })}
+            onPress={() => navigateToSimulacao(fund)}
             text='Simular'
           />
         </View>
       ) : (
         <View style={styles.buttonRowBetween}> 
           <NavigationButton
-            onPress={() => router.push({
-              pathname: '/(panel)/home/page', //TODO: Colocar caminho novo saiba mais
-              params: { fundData: JSON.stringify(fund) }, 
-            })}
+            onPress={() => navigateToSaibaMais(fund)}
             text='Saiba Mais'
             transparentStyle
           />

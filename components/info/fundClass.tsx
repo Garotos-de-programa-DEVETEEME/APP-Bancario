@@ -12,33 +12,28 @@ export function FundClass({ fund }: FundClassProps) {
     const theme = useTheme();
     const styles = getStyles(theme);
 
+    const classData = [
+        { left: 'Classificação de risco', right: fund.classificacaoRisco },
+        { left: 'Classificação CVM', right: fund.classificacaoCVM },
+        { left: 'Subclasse CVM', right: fund.subclasseCVM },
+        { left: 'Tipo ANBIMA', right: fund.tipoANBIMA },
+    ];
+
     return (
-            <View style={styles.container}>
-                <TextRow 
-                    left={'Classificação de risco'} 
-                    right={fund.classificacaoRisco}  
-                    bold 
+        <View style={styles.container}>
+            {classData.map((item) => (
+                <TextRow
+                    key={item.left}
+                    left={item.left}
+                    right={item.right}
+                    bold
                 />
-                <TextRow 
-                    left={'Classificação CVM'} 
-                    right={fund.classificacaoCVM}  
-                    bold 
-                />
-                <TextRow 
-                    left={'Subclasse CVM'}
-                    right={fund.subclasseCVM}  
-                    bold 
-                />
-                <TextRow 
-                    left={'Tipo ANBIMA'} 
-                    right={fund.tipoANBIMA}  
-                    bold 
-                />
-            </View>
+            ))}
+        </View>
     );
 }
 
-const getStyles = (theme: StylesType) => {
+const getStyles = (_: StylesType) => {
     return StyleSheet.create({
         container: {
             width: '100%',

@@ -1,13 +1,10 @@
 import { useTheme } from '@/hooks/useTheme';
 import { FundoDetalhe } from '@/services/fundos.service';
+import { coinFormat } from '@/utils/coinFormat';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Expanded } from './expandedFund';
 import { RiskIcon } from './riskIcon';
-
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
-};
 
 interface FundsCardProps {
   fund: FundoDetalhe;
@@ -64,7 +61,7 @@ export const FundsCard = ({
             Aplicação inicial:{' '}
           </Text>
           <Text style={[styles.textBase, { color: theme.alternativeText }]}>
-            {formatCurrency(fund.valorAplicacaoInicial)}
+            {coinFormat(fund.valorAplicacaoInicial)}
           </Text>
         </View>
 

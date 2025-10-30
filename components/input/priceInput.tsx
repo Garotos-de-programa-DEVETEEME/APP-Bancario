@@ -1,5 +1,6 @@
 import { StylesType } from '@/@Types/stylesType';
 import { useTheme } from '@/hooks/useTheme';
+import { coinFormat } from '@/utils/coinFormat';
 import { StyleProp, StyleSheet, TextInput, TextStyle } from 'react-native';
 
 interface PriceInputProps {
@@ -9,16 +10,6 @@ interface PriceInputProps {
     alternativeText?: string;
     alternativeStyle?: StyleProp<TextStyle>;
 }
-
-//Placeholder: const [valorAplicarEmCentavos, setValorAplicarEmCentavos] = useState(0);
-
-const formatCurrency = (valueInCents: number) => {
-    const valueInReais = valueInCents / 100;
-    return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(valueInReais);
-};
 
 export default function PriceInput({
     value,
@@ -36,14 +27,13 @@ export default function PriceInput({
         onValueChange(valorEmCentavos);
     };
 
-
     return (
         <TextInput
             style={alternativeStyle ? alternativeStyle : styles.input}
-            value={value > 0 ? formatCurrency(value) : ''}
+            value={value > 0 ? coinFormat(value / 100) : ''}
             onChangeText={handleTextChange}
             keyboardType="numeric"
-            placeholder={alternativeText ? alternativeText : placeholder? formatCurrency(placeholder): 'R$ 0,00'}
+            placeholder={alternativeText ? alternativeText : placeholder ? coinFormat(placeholder / 100) : 'R$ 0,00'}
             placeholderTextColor={theme.textSecundary}
             multiline={false}
         />
@@ -53,7 +43,7 @@ export default function PriceInput({
 const getStyles = (theme: StylesType) => {
     return StyleSheet.create({
         input: {
-            backgroundColor:theme.backgroundCards,
+            backgroundColor: theme.backgroundCards,
             borderRadius: 16,
             padding: 12,
             fontSize: 20,

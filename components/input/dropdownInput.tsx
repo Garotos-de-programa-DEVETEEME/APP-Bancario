@@ -10,8 +10,6 @@ interface DropdownInputProps {
     onValueChange: (value: string) => void;
 }
 
-//Página Pai: const [valorSalvo, setValorSalvo] = useState('');
-
 export default function DropdownInput({
     content,
     placeholder,
