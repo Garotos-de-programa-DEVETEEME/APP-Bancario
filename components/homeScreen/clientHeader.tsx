@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
 import { UserResponse } from '@/services/dadosAvatar.service';
+import { navigateToProfile } from '@/utils/navigation.utils';
 
 type ClientHeaderProps = {
   userName: string;
@@ -27,7 +28,7 @@ export default function ClientHeader({
     <View style={styles.outerbox}>
       <View style={styles.header}>
         <Pressable
-          onPress={() => }
+          onPress={() => navigateToProfile()}
         >
         <View style={styles.container}>
           <View style={styles.left}>

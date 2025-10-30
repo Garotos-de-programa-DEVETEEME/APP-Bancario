@@ -9,6 +9,9 @@ interface Routes {
 const routes: Routes = {
     LOGIN: '/',
     HOME_PANEL: '/(panel)/home/page',
-    PROFILE_PANEL: '/(panel)/profile/page',
+    PROFILE_PANEL: '/(panel)/PerfilCliente/page',
+    WALLET_PANEL: '',
+    FUNDOS_INVESTIMENTO_PANEL: '',
+    SIMULAR_PANEL: '',
 };
 export default routes;
