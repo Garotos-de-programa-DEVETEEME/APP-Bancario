@@ -28,7 +28,10 @@ const SimulationForm: FC<SimulationFormProps> = ({ fund, onSimulate }) => {
   const [isButtonEnabled, setButtonEnabled] = useState(false);
 
   useEffect(() => {
-    setButtonEnabled(valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100 && valorSalvoDropdown !== '');
+    const isValuePositive = valorAplicarEmCentavos > 0;
+    const meetsMinimum = valorAplicarEmCentavos >= fund.valorAplicacaoInicial * 100;
+    const isDropdownSelected = valorSalvoDropdown !== '';
+    setButtonEnabled(isValuePositive && meetsMinimum && isDropdownSelected);
   }, [valorSalvoDropdown, valorAplicarEmCentavos, fund]);
 
   return (
@@ -54,10 +57,7 @@ const SimulationForm: FC<SimulationFormProps> = ({ fund, onSimulate }) => {
           />
         </View>
 
-        <View style={styles.sectionSpacer}>
-          <Text style={[styles.sectionTitle, { color: theme.text }]}>
-            Classificação
-          </Text>
+        <View style={styles.sectionSpacerLong}>
           <FundClass fund={fund} />
         </View>
 
@@ -335,5 +335,8 @@ const getStyles = (theme: any) => StyleSheet.create({
   finalButtonContainer: {
     alignItems: 'center',
     marginTop: 8,
+  },
+  sectionSpacerLong: {
+    marginTop: 32, 
   },
 });
