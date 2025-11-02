@@ -1,7 +1,7 @@
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen'
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates'
 import colors from '@/constants/colors'
-import { signIn } from '@/src/services/authService'
+import { signIn } from '@/services/auth.service'
 import { useState } from 'react'
 import {
     ImageBackground,
