@@ -6,6 +6,7 @@ import { ContaCard } from "@/components/ClientProfile/contaCard";
 import { SwitchRow } from "@/components/ClientProfile/switchRow";
 import { StyledText } from "@/components/StyledText";
 import { useTheme } from "@/hooks/useTheme";
+import { consultarUsuario } from "@/services/dadosAvatar.service";
 import { useAlanaContext } from "@/src/contexts/alanaContext";
 import { useThemeContext } from "@/src/contexts/themeContext";
 import { useLocalSearchParams } from "expo-router/build/hooks";
@@ -14,12 +15,21 @@ import { StyleSheet, View } from "react-native";
 
 export default function PerfilClientePage() {
   const [screenState, setScreenState] = useState(ScreenStates.loading());
-  const { data } = useLocalSearchParams();
-
-  const userData = typeof(data) === "string" && JSON.parse(data);
+  const [userData, setUserData] = useState<string | null>(null);
 
   useEffect(() => {
-    setScreenState(ScreenStates.content());
+      const getData = async () =>{
+           try{
+             const userData = await consultarUsuario();
+             setUserData(userData.nomeUsuario);
+             setScreenState(ScreenStates.content()); 
+             
+           }catch (error) {
+             console.error("Falha ao carregar dados da tela inicial:", error);
+             // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
+           }
+         }
+         getData();
   }, []);
 
   const theme = useTheme();
@@ -52,7 +62,7 @@ export default function PerfilClientePage() {
             state: screenState,
             children: (
                 <View style={style.container}>
-                    <ClientImage name={userData?.nomeUsuario} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
+                    <ClientImage name={userData} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
                     <View style={style.contentContainer}>
                         <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                     </View>

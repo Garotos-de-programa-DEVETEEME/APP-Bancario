@@ -5,7 +5,7 @@ import { Image, ImageBackground, StyleSheet, View } from "react-native";
 import { StyledText } from "../StyledText";
 
 interface ClienteImageProps{
-    name: string;
+    name: string | null;
     image: string;
 }
 

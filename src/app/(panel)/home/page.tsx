@@ -58,14 +58,14 @@ export default function TelaInicial() {
   const [userData, setUserData] = useState<UserResponse | null>(null);
   
   useEffect(() => {
-    setScreenState(ScreenStates.content())
     const getData = async () =>{
       try{
         const saldo = await consultarSaldo();
         setSaldo(saldo.totalGeral);
         const userData = await consultarUsuario();
         setUserData(userData);
-
+        setScreenState(ScreenStates.content()); 
+        
       }catch (error) {
         console.error("Falha ao carregar dados da tela inicial:", error);
         // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
