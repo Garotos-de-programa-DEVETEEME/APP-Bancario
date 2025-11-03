@@ -10,6 +10,7 @@ const routes: Routes = {
     LOGIN: '/',
     HOME_PANEL: '/(panel)/home/page',
     PROFILE_PANEL: '/(panel)/profile/page',
+    WITHDRAW: '/(panel)/withdraw/page',
     //TODO: colocar rota da página inicial de investir quando for adicionada (FUNDO_LISTA ?)
     FUNDO_INVESTIR: '/(panel)/home/page', //TODO: colocar página certa quando for adicionada
     FUNDO_SAIBA_MAIS: '/(panel)/home/page', //TODO: colocar página certa quando for adicionada
