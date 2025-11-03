@@ -1,15 +1,13 @@
-import api from './api'
-import { getAuthHeader } from '@/utils/auth.utils'
 
 // TODO: REMOVER DEPOIS QUE BACK ESTIVER PRONTO
-import { mockConsultarSaldo } from '@/mock/fundos.mock'
+import { mockSimularResponse } from "@/mock/provisorio-simular-investimento.mock"
 
 // --- Interfaces de Tipagem (Typescript) ---
 
 /**
  * Define o formato dos dados detalhados de um fundo.
  */
-export interface FundoDetalhe {
+export interface SimulacaoResponse {
     codigoFundo: number
     nomeReduzido: string
     valorSaldoResgatavelAutomatico: number
@@ -26,22 +24,9 @@ export interface FundoDetalhe {
     horaLimite: number // Formato HHMM
     taxaAdministracao: number // Percentual
     fundoSimples: 'S' | 'N'
-    taxaRentabilidade: number
-    tipoFundo: string
-    classificacaoRisco: string
-    cotizacaoResgate: string
-    liquidacaoResgate: string
-    classificacaoCVM: string
-    subclasseCVM: string
-    tipoANBIMA: string
-}
-
-/**
- * Define o formato da resposta completa da consulta de saldo.
- */
-export interface SaldoResponse {
-    totalGeral: number
-    listaFundos: FundoDetalhe[]
+    valorSimulacaoAplicacaoInicial: number
+    valorSimulacaoRetornoFinal: number
+    taxaSimulacaoEstimado: number // Percentual
 }
 
 // --- Funções de Serviço ---
@@ -51,10 +36,10 @@ export interface SaldoResponse {
  * @returns Uma Promise que resolve para o objeto SaldoResponse.
  * @throws Lança um erro se a chamada à API falhar.
  */
-export async function consultarSaldo(): Promise<SaldoResponse> {
+export async function simularFundo(): Promise<SimulacaoResponse> {
     try {
         // TODO: REMOVER DEPOIS QUE BACK ESTIVER PRONTO - CHAMADA MOCKADA
-        const response = await mockConsultarSaldo()
+        const response = await mockSimularResponse()
 
         // const authHeader = await getAuthHeader()
         // const config = authHeader as { headers: { Authorization: string } }

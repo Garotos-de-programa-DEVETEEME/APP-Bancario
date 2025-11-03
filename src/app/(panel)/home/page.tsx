@@ -2,9 +2,10 @@ import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import CardButton from "@/components/buttons/CardButton";
 import FundHighlightCard from "@/components/fundo/FundHighlightCard";
-import Header from "@/components/home/Header";
+import Header from '@/components/home/Header';
 import PatrimonyCard from "@/components/home/PatrimonyCard";
 import SearchBar from "@/components/search/SearchBar";
+import { navigateToSimulacaoLista } from '@/utils/navigation.utils';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -44,7 +45,7 @@ export default function Home() {
                         <CardButton
                             iconName="line-chart"
                             text="Simular Investimento"
-                            onPress={() => console.log('Botão Simular Investimento pressionado')}
+                            onPress={navigateToSimulacaoLista} 
                         />
                     </View>
 
