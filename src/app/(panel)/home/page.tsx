@@ -1,6 +1,7 @@
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import CardButton from "@/components/buttons/CardButton";
+import ComingSoon from "@/components/coming-soon/ComingSoon";
 import FundHighlightCard from "@/components/fundo/FundHighlightCard";
 import Header from '@/components/home/Header';
 import PatrimonyCard from "@/components/home/PatrimonyCard";
@@ -73,6 +74,10 @@ export default function Home() {
                                 color="#007aff"
                             />
                         </View>
+                    </View>
+
+                    <View style={{ marginHorizontal: 15, marginTop: 25 }}>
+                        <ComingSoon />
                     </View>
                 </SafeAreaView>
             </View>)
