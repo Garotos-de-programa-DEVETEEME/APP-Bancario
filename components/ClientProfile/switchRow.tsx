@@ -1,10 +1,10 @@
 import { Entypo, MaterialIcons } from "@expo/vector-icons"
 import { View, StyleSheet } from "react-native"
 import { StyledText } from "../StyledText"
-import { SwitchButton } from "../Buttons/switch"
 import { useTheme } from "@/hooks/useTheme";
 import { StylesType } from "@/@Types/stylesType";
 import { useAlanaContext } from "@/src/contexts/alanaContext";
+import { SwitchButton } from "../buttons/switch";
 
 interface SwitchRowProps{
     title: string;

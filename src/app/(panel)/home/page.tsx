@@ -2,7 +2,7 @@ import { FundoInvestimento } from '@/@Types/fundos';
 import { StylesType } from '@/@Types/stylesType';
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
-import { ButtonIcon } from '@/components/Buttons/ButtonIcon';
+import { ButtonIcon } from '@/components/buttons/ButtonIcon';
 import ClientHeader from '@/components/homeScreen/clientHeader';
 import { HighlightFund } from '@/components/homeScreen/highligthFund';
 import { TodayMarket } from '@/components/homeScreen/todayMarket';
