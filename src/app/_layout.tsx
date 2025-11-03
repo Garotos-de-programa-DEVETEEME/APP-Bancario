@@ -49,7 +49,7 @@ function MainLayout() {
                 <Stack.Screen name="(panel)/home/page" options={{ headerShown: false }} />
                 <Stack.Screen
                     name="(panel)/PerfilCliente/page"
-                    options={{ header: () => <SimpleHeader title="Perfil" /> }}
+                    options={{ header: () => <SimpleHeader title="Perfil" backRoute={'/(panel)/home/page'} /> }}
                 />
             </Stack>
         </FiltersProvider>

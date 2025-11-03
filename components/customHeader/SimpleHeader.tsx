@@ -1,18 +1,19 @@
 import { useTheme } from '@/hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from 'expo-router';
+import { Href, router, useNavigation } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { FavoriteButton } from '../Buttons/favoriteButton';
 import { StyledText } from '../StyledText';
+import { FavoriteButton } from '../buttons/favoriteButton';
 
 interface SimpleHeaderProps {
   title: string;
+  backRoute: Href;//componente em que se deve passar a rota para pagina anterior
   favorite?: boolean;
 }
 
-export default function SimpleHeader({ title, favorite = false }: SimpleHeaderProps) {
+export default function SimpleHeader({ title, favorite = false, backRoute }: SimpleHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const theme = useTheme();
@@ -35,7 +36,7 @@ export default function SimpleHeader({ title, favorite = false }: SimpleHeaderPr
     >
       {/* Botão voltar */}
       <Pressable
-        onPress={() => navigation.goBack()}
+        onPress={() => router.replace(backRoute)}
         style={styles.backButton}
       >
         <Ionicons name="arrow-back" size={24} color={theme.tint} />
