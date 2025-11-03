@@ -1,6 +1,6 @@
-import { Href, router } from 'expo-router'
-import routes from '@/constants/routes'
-import { navigate } from 'expo-router/build/global-state/routing';
+import routes from '@/constants/routes';
+import { FundoDetalhe } from '@/services/fundos.service';
+import { Href, router } from 'expo-router';
 
 /**
  * Navega para home (pós-login).
@@ -42,4 +42,46 @@ export function navigateToFundosInvestimento() {
 */
 export function navigateToWallet() {
     router.replace(routes.WALLET_PANEL as Href);
+}
+/*
+ * Navega para a tela de investir de um fundo específico.
+ * TODO: Adicionar tela de investir (listagem de fundos)
+ */
+
+
+/**
+ * Navega para a tela de investir de um fundo específico.
+ */
+export function navigateToInvestir(fund: FundoDetalhe) {
+    router.push({
+        pathname: routes.FUNDO_INVESTIR,
+        params: { fundData: JSON.stringify(fund) },
+    } as Href);
+}
+
+/**
+ * Navega para a tela de 'Saiba Mais' de um fundo específico.
+ */
+export function navigateToSaibaMais(fund: FundoDetalhe) {
+    router.push({
+        pathname: routes.FUNDO_SAIBA_MAIS,
+        params: { fundData: JSON.stringify(fund) },
+    } as Href);
+}
+
+/**
+ * Navega para a tela de simulação (listagem de fundos).
+ */
+export function navigateToSimulacaoLista() {
+    router.push(routes.SIMULACAO_LISTA as Href);
+}
+
+/**
+ * Navega para a tela de simulação (fundo específico).
+ */
+export function navigateToSimulacao(fund: FundoDetalhe) {
+    router.push({
+        pathname: routes.SIMULACAO_DETALHE,
+        params: { fundData: JSON.stringify(fund) },
+    } as Href);
 }
