@@ -1,12 +1,12 @@
-import { Stack } from 'expo-router'
-import { AuthProvider } from '@/src/contexts/AuthContext'
-import { useEffect } from 'react'
-import { checkTokenValidity } from '@/services/auth.service'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { StyleSheet } from 'react-native'
-import Toast from 'react-native-toast-message'
 import toastConfig from '@/components/toast/toastConfig'
+import { checkTokenValidity } from '@/services/auth.service'
+import { AuthProvider } from '@/src/contexts/AuthContext'
 import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation.utils'
+import { Stack } from 'expo-router'
+import { useEffect } from 'react'
+import { StyleSheet } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import Toast from 'react-native-toast-message'
 
 export default function RootLayout() {
     return (
@@ -44,6 +44,11 @@ function MainLayout() {
 
             <Stack.Screen
                 name="(panel)/home/page"
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="(panel)/withdraw/page"
                 options={{ headerShown: false }}
             />
         </Stack>
