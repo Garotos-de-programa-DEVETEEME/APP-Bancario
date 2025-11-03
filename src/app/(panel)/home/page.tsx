@@ -5,7 +5,7 @@ import FundHighlightCard from "@/components/fundo/FundHighlightCard";
 import Header from '@/components/home/Header';
 import PatrimonyCard from "@/components/home/PatrimonyCard";
 import SearchBar from "@/components/search/SearchBar";
-import { navigateToSimulacaoLista } from '@/utils/navigation.utils';
+import { navigateToFundosLista, navigateToSimulacaoLista } from '@/utils/navigation.utils';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -40,7 +40,7 @@ export default function Home() {
                         <CardButton
                             iconName="folder1"
                             text="Fundos de Investimento"
-                            onPress={() => console.log('Botão Fundos de Investimento pressionado')}
+                            onPress={navigateToFundosLista}
                         />
                         <CardButton
                             iconName="line-chart"

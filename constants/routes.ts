@@ -10,9 +10,9 @@ const routes: Routes = {
     LOGIN: '/',
     HOME_PANEL: '/(panel)/home/page',
     PROFILE_PANEL: '/(panel)/profile/page',
-    //TODO: colocar rota da página inicial de investir quando for adicionada (FUNDO_LISTA ?)
-    FUNDO_INVESTIR: '/(panel)/home/page', //TODO: colocar página certa quando for adicionada
-    FUNDO_SAIBA_MAIS: '/(panel)/home/page', //TODO: colocar página certa quando for adicionada
+    FUNDO_LISTA: '/(panel)/investir-fundos/page',
+    FUNDO_INVESTIR: '/(panel)/investir-fundos/investimento',
+    FUNDO_SAIBA_MAIS: '/(panel)/investir-fundos/saiba-mais',
     SIMULACAO_LISTA: '/(panel)/simular-investimento/page',
     SIMULACAO_DETALHE: '/(panel)/simular-investimento/simulacao',
 };
