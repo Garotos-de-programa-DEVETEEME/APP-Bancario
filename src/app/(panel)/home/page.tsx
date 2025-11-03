@@ -3,6 +3,7 @@ import { StylesType } from '@/@Types/stylesType';
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import { ButtonIcon } from '@/components/buttons/ButtonIcon';
+import ComingSoon from '@/components/coming-soon/ComingSoon';
 import ClientHeader from '@/components/homeScreen/clientHeader';
 import { HighlightFund } from '@/components/homeScreen/highligthFund';
 import { TodayMarket } from '@/components/homeScreen/todayMarket';
@@ -153,6 +154,9 @@ export default function TelaInicial() {
                     ))}
                     </ScrollView>
                     <View style={styles.line}></View>
+                    <View style={{ marginHorizontal: 15, marginTop: 25 }}>
+                        <ComingSoon />
+                    </View>
                 </View>
             </ScrollView>
         )
