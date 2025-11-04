@@ -1,10 +1,9 @@
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
 import { FundsCard } from '@/components/fundo/fundCard';
-import SearchBar from '@/components/search/SearchBar';
-import { useTheme } from '@/hooks/useTheme';
-// Importamos o mesmo hook que usamos na tela de simulação
+import { SearchBar } from '@/components/SearchBar/searchBar';
 import { useFundos } from '@/hooks/useFundos';
+import { useTheme } from '@/hooks/useTheme';
 import { FundoDetalhe } from '@/services/fundos.service';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -32,7 +31,7 @@ export default function FundosInvestimento() {
     }
   }, [isLoading, error]);
 
-  const pesquisaFundos = useMemo(() => {
+  const filteredFundos = useMemo(() => {
     if (!searchText) {
       return fundos;
     }
@@ -48,12 +47,19 @@ export default function FundosInvestimento() {
   return (
     <BaseScreen state={screenState}>
       <View style={{ backgroundColor: theme.background, flex: 1 }}>
-        <SearchBar onSearch={handleSearch} />
         
         <ScrollView 
           style={styles.scrollView}
           contentContainerStyle={styles.container}
         >
+        <View style={styles.searchBarContainer}>
+          <SearchBar 
+            value={searchText}
+            onChangeText={handleSearch}
+            placeholder="Buscar fundos por nome..."
+            hasFilter={false}
+          />
+        </View>
           <View style={styles.listContainer}>
             <Text
               style={[styles.title, { color: theme.darkText || theme.text }]}
@@ -62,7 +68,7 @@ export default function FundosInvestimento() {
             </Text>
 
             <View style={styles.cardList}>
-              {pesquisaFundos.map((fund: FundoDetalhe) => (
+              {filteredFundos.map((fund: FundoDetalhe) => (
                 <FundsCard
                   fund={fund}
                   key={fund.codigoFundo}
@@ -83,6 +89,11 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
+  searchBarContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: 'center',
+  },
   container: {
     flexGrow: 1,
     alignItems: 'center',
@@ -91,7 +102,6 @@ const styles = StyleSheet.create({
   listContainer: {
     width: '90%', 
     maxWidth: 380,
-    marginTop: 20,
   },
   title: {
     marginBottom: 10,

@@ -43,10 +43,10 @@ export function navigateToFundosInvestimento() {
 export function navigateToWallet() {
     router.replace(routes.WALLET_PANEL as Href);
 }
-/*
- * Navega para a tela de investir de um fundo específico.
- * TODO: Adicionar tela de investir (listagem de fundos)
- */
+
+/**
+ * Navega para a tela de investimento (listagem de fundos)
+*/
 export function navigateToFundosLista() {
     router.push(routes.FUNDO_LISTA as Href);
 }

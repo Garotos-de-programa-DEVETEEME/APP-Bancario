@@ -15,5 +15,7 @@ const routes: Routes = {
     FUNDO_SAIBA_MAIS: '/(panel)/investir-fundos/saiba-mais',
     SIMULACAO_LISTA: '/(panel)/simular-investimento/page',
     SIMULACAO_DETALHE: '/(panel)/simular-investimento/simulacao',
+    WALLET_PANEL: '',
+    WITHDRAW: '/(panel)/withdraw/page',
 };
 export default routes;
