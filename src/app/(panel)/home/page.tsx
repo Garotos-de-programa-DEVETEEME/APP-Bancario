@@ -1,111 +1,195 @@
+import { FundoInvestimento } from '@/@Types/fundos';
+import { StylesType } from '@/@Types/stylesType';
 import { BaseScreen } from '@/components/BaseScreen/BaseScreen';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
-import CardButton from "@/components/buttons/CardButton";
-import FundHighlightCard from "@/components/fundo/FundHighlightCard";
-import Header from '@/components/home/Header';
-import PatrimonyCard from "@/components/home/PatrimonyCard";
-import SearchBar from "@/components/search/SearchBar";
-import { navigateToFundosLista, navigateToSimulacaoLista } from '@/utils/navigation.utils';
+import { ButtonIcon } from '@/components/buttons/ButtonIcon';
+import ComingSoon from '@/components/coming-soon/ComingSoon';
+import ClientHeader from '@/components/homeScreen/clientHeader';
+import { HighlightFund } from '@/components/homeScreen/highligthFund';
+import { TodayMarket } from '@/components/homeScreen/todayMarket';
+import { SearchBar } from '@/components/SearchBar/searchBar';
+import { StyledText } from '@/components/StyledText';
+import { useTheme } from '@/hooks/useTheme';
+import { consultarListaFundosAFA } from '@/services/afa-fundos.service';
+import { consultarSaldo } from '@/services/fundos.service';
 import { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
-export default function Home() {
-    const [screenState, setScreenState] = useState(ScreenStates.loading())
-    
-    useEffect(() => {
-        setScreenState(ScreenStates.content())
-    }, []);
+export default function TelaInicial() {
+  const theme = useTheme();
+  const styles = getStyles(theme);
 
-    const handleSearch = (text: string) => {
-        Alert.alert('Busca realizada', `Você buscou por: ${text}`);
-        console.log('Texto de busca:', text);
-    };
+  const [searchText, setSearchText] = useState('');
+  
+  const marketToday = [
+    {
+      nome: 'Dolar',
+      porcentagem: -3.4,
+      valor: 200,
+    },
+    {
+      nome: 'IBOVESTA',
+      porcentagem: 10.3,
+      valor: 185.9,
+    },
+    {
+      nome: 'BCRI11',
+      porcentagem: -5,
+      valor: 10,
+    },
+  ];
+  
+  const iconsFundoDestaque = [
+    { name: 'trophy', color: '#FFAC33' },
+    { name: 'chart-line-variant', color: '#00FF6A' },
+    { name: 'leaf', color: '#00CC55' },
+  ];
+  
+  const imagesCard = [
+    require('../../../../assets/images/home/image-34.png'),
+    require('../../../../assets/images/home/banestes-56-anos.png')
+  ];
+  
+  const [fundosEmDestaque, setFundoEmDestaque] = useState<any>();
+  const [screenState, setScreenState] = useState(ScreenStates.loading())
+  const [saldo, setSaldo]  = useState<number>(0);
+  
+  useEffect(() => {
+    setScreenState(ScreenStates.content())
+    const getData = async () =>{
+      try{
+        const saldo = await consultarSaldo();
+        setSaldo(saldo.totalGeral);
 
-    return ( 
-        BaseScreen({
-            state: screenState,
-            children: (
-            <View style={styles.container}>
-                <SafeAreaView style={styles.safeArea}>
-                    <Header />
-                    <PatrimonyCard />
+        const fundos = await consultarListaFundosAFA();
+        setFundoEmDestaque(fundos);
+      }catch (error) {
+        console.error("Falha ao carregar dados da tela inicial:", error);
+        // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
+      }
+    }
+    getData();
 
-                    <View style={styles.buttonsContainer}>
-                        <CardButton
-                            iconName="wallet"
-                            text="Minha Carteira"
-                            onPress={() => console.log('Botão Minha Carteira pressionado')}
+  }, []);
+
+
+  return (
+     BaseScreen({
+        state: screenState,
+        children: (
+            <ScrollView showsHorizontalScrollIndicator={false}>
+                <View style={styles.container}>
+                    <ClientHeader
+                        userName={"Cliente"}
+                        image='https://legacy.reactjs.org/logo-og.png'
+                        value={saldo}
+                    />
+                    <View style={styles.buttonContainer}>
+                        <ButtonIcon
+                            key={1}
+                            route={() =>{/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})*/}}
+                            text='Minha Carteira'
+                            iconName='wallet'
+                            IconHeight={30}
                         />
-                        <CardButton
-                            iconName="folder1"
-                            text="Fundos de Investimento"
-                            onPress={navigateToFundosLista}
+                        <ButtonIcon
+                            key={2}
+                            route={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})*/}}
+                            text='Fundos de Investimento'
+                            iconName='inventory'
+                            IconHeight={25}
                         />
-                        <CardButton
-                            iconName="line-chart"
-                            text="Simular Investimento"
-                            onPress={navigateToSimulacaoLista} 
+                        <ButtonIcon
+                            key={3}
+                            route={() => {/*router.push('/simularInvestimento')*/}}
+                            text='Simular Investimento'
+                            iconName='timeline'
+                            IconHeight={25}
                         />
                     </View>
-
-                    <SearchBar onSearch={handleSearch}/>
-
-                    <View style={styles.highlightSection}>
-                        <Text style={styles.highlightTitle}>Fundos em Destaque</Text>
-                        <View style={styles.cardsContainer}>
-                            <FundHighlightCard
-                                iconName="trophy"
-                                title="Banestes VIP DI FIC de FI"
-                                percentage="+76,38 %"
-                                color="#007aff"
-                            />
-                            <FundHighlightCard
-                                iconName="line-chart"
-                                title="Banestes Invest Money FI Renda Fixa"
-                                percentage="+13,50 %"
-                                color="#00C853" // Exemplo de cor verde
-                            />
-                            <FundHighlightCard
-                                iconName="leaf-circle"
-                                title="Banestes Reserva Climática"
-                                percentage="+9,00 %"
-                                color="#007aff"
-                            />
+                    <View style={{width:'90%', alignSelf:'center'}}>
+                        <SearchBar
+                            value={searchText}
+                            onChangeText={(e) => setSearchText(e)}
+                            placeholder='Buscar fundos por nome ou categoria'
+                            hasFilter={false}
+                            onIconPress={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos', filter: searchText}})*/}}
+                            transparent
+                        />
+                    </View>
+                    <View>
+                        <StyledText style={styles.titleText}>Fundos em Destaque</StyledText>
+                        <View style={styles.buttonContainer}>
+                            {fundosEmDestaque && fundosEmDestaque.map((fund:FundoInvestimento, index:number) => (
+                                <HighlightFund
+                                    key={index}
+                                    data={fund}
+                                    iconName={iconsFundoDestaque[index].name}
+                                    color={iconsFundoDestaque[index].color}
+                                />
+                            ))}
                         </View>
                     </View>
-                </SafeAreaView>
-            </View>)
-        })
+                    <View>
+                        <StyledText style={styles.titleText}>Mercado Hoje</StyledText>
+                        <View style={styles.buttonContainer}>
+                            {marketToday.map((fund, index) => (
+                                <TodayMarket key={index} fundoDestaque={fund} />
+                            ))}
+                        </View>
+                    </View>
+                    <View style={styles.line}></View>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {imagesCard.map((image, index) => (
+                        <Image
+                        source={image}
+                        key={index}
+                        style={{
+                            borderRadius: 16,
+                            width: 280,
+                            height: 136,
+                            marginLeft: 16,
+                        }}
+                        />
+                    ))}
+                    </ScrollView>
+                    <View style={styles.line}></View>
+                    <View style={{ marginHorizontal: 15, marginTop: 25 }}>
+                        <ComingSoon />
+                    </View>
+                </View>
+            </ScrollView>
+        )
+    })
     );
+
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme: StylesType) => {
+  return StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#f0f2f5',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 24,
+      backgroundColor:theme.background,
     },
-    safeArea: {
-        flex: 1,
+    buttonContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width:'100%',
+      alignSelf:'center',
+      paddingHorizontal:10,
     },
-    buttonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 20,
-        marginHorizontal: 15,
+    titleText: {
+      fontSize: 20,
+      color: theme.text,
+      marginLeft: 24,
+      marginBottom:12
     },
-    highlightSection: {
-        marginTop: 25,
-        marginHorizontal: 15,
+    line: {
+      borderBottomColor: theme.border,
+      borderBottomWidth: 1,
     },
-    highlightTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 15,
-        color: '#333',
-    },
-    cardsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-    },
-});
+  });
+};

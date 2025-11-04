@@ -49,6 +49,11 @@ function MainLayout() {
                 name="(panel)/home/page"
                 options={{ headerShown: false }}
             />
+
+            <Stack.Screen
+                name="(panel)/withdraw/page"
+                options={{ headerShown: false }}
+            />
         </Stack>
     )
 }

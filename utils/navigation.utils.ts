@@ -17,7 +17,35 @@ export function navigateToLogin() {
 }
 
 /**
- * Navega para a tela de investimento (listagem de fundos).
+ * Navega para o perfil do usuário.
+*/
+export function navigateToProfile() {
+    router.replace(routes.PROFILE_PANEL as Href);
+}
+
+/**
+ * Navega para a tela de simulação.
+*/
+export function navigateToSimular() {
+    router.replace(routes.SIMULAR_PANEL as Href);
+}
+
+/**
+ * Navega para a tela de fundos de investimento.
+*/
+export function navigateToFundosInvestimento() {
+    router.replace(routes.FUNDOS_INVESTIMENTO_PANEL as Href);
+}
+
+/**
+ * Navega para a tela de carteira.
+*/
+export function navigateToWallet() {
+    router.replace(routes.WALLET_PANEL as Href);
+}
+/*
+ * Navega para a tela de investir de um fundo específico.
+ * TODO: Adicionar tela de investir (listagem de fundos)
  */
 export function navigateToFundosLista() {
     router.push(routes.FUNDO_LISTA as Href);

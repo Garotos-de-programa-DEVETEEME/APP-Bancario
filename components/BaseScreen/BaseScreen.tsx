@@ -1,5 +1,6 @@
 import { ScreenState } from '@/@Types/ScreenState';
 import { ScreenStates } from '@/components/BaseScreen/ScreenStates';
+import { useTheme } from '@/hooks/useTheme';
 import React from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
 
@@ -16,6 +17,14 @@ export const BaseScreen: React.FC<BaseScreenProps> = ({
   ErrorComponent,
   onRetry,
 }) => {
+  const theme = useTheme();
+  const dynamicStyles = {
+    container: {
+      flex:1,
+      backgroundColor: theme.background, 
+    },
+  };
+
   switch (state.type) {
     case ScreenStates.loading().type:
       return (
@@ -41,15 +50,11 @@ export const BaseScreen: React.FC<BaseScreenProps> = ({
 
     case ScreenStates.content().type:
     default:
-      return <View style={styles.container}>{children}</View>;
+      return <View style={dynamicStyles.container}>{children}</View>;
   }
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   center: {
     flex: 1,
     justifyContent: 'center',
