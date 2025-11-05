@@ -9,7 +9,6 @@ interface DropdownInputProps {
     placeholder: string;
     onValueChange: (value: string) => void;
 }
-
 export default function DropdownInput({
     content,
     placeholder,

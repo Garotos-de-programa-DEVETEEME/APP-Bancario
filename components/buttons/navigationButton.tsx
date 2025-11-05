@@ -1,6 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
 import { Pressable, StyleSheet, Text } from 'react-native';
-
 interface NavigationButtonProps {
   onPress: () => void;
   text: string;
