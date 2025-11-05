@@ -55,7 +55,6 @@ const getStyles = () => {
       borderRadius: 10,
       justifyContent: 'center',
       alignItems: 'center',
-      paddingVertical: 12,
       paddingHorizontal: 12,
       borderWidth: 1,
     },

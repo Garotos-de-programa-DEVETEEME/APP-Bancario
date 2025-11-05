@@ -5,16 +5,19 @@ import { navigateToLogin, navigateToPanelHome } from '@/utils/navigation.utils'
 import { Stack } from 'expo-router'
 import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Toast from 'react-native-toast-message'
 
 export default function RootLayout() {
     return (
         <SafeAreaProvider style={styles.container}>
-            <AuthProvider>
-                <MainLayout />
-            </AuthProvider>
-            <Toast config={toastConfig} />
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <AuthProvider>
+                    <MainLayout />
+                </AuthProvider>
+                <Toast config={toastConfig} />
+            </GestureHandlerRootView>
         </SafeAreaProvider>
     )
 }

@@ -12,6 +12,7 @@ import { StyledText } from '@/components/StyledText';
 import { useTheme } from '@/hooks/useTheme';
 import { consultarListaFundosAFA } from '@/services/afa-fundos.service';
 import { consultarSaldo } from '@/services/fundos.service';
+import { navigateToFundosLista, navigateToSimulacaoLista, navigateToWallet } from '@/utils/navigation.utils';
 import { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -65,13 +66,11 @@ export default function TelaInicial() {
         setFundoEmDestaque(fundos);
       }catch (error) {
         console.error("Falha ao carregar dados da tela inicial:", error);
-        // setScreenState(ScreenStates.error(error)); // <-- Você deve ter um estado de erro
       }
     }
     getData();
 
   }, []);
-
 
   return (
      BaseScreen({
@@ -81,27 +80,27 @@ export default function TelaInicial() {
                 <View style={styles.container}>
                     <ClientHeader
                         userName={"Cliente"}
-                        image='https://legacy.reactjs.org/logo-og.png'
+                        image={require('@/assets/images/cliente/cliente_placeholder.png')}
                         value={saldo}
                     />
                     <View style={styles.buttonContainer}>
                         <ButtonIcon
                             key={1}
-                            route={() =>{/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'carteira'}})*/}}
+                            route={navigateToWallet}
                             text='Minha Carteira'
                             iconName='wallet'
                             IconHeight={30}
                         />
                         <ButtonIcon
                             key={2}
-                            route={() => {/*router.push({pathname:'/pagesWithTabs', params: {defaultTab: 'fundos'}})*/}}
+                            route={navigateToFundosLista}
                             text='Fundos de Investimento'
                             iconName='inventory'
                             IconHeight={25}
                         />
                         <ButtonIcon
                             key={3}
-                            route={() => {/*router.push('/simularInvestimento')*/}}
+                            route={navigateToSimulacaoLista}
                             text='Simular Investimento'
                             iconName='timeline'
                             IconHeight={25}
@@ -161,8 +160,7 @@ export default function TelaInicial() {
             </ScrollView>
         )
     })
-    );
-
+  );
 }
 
 const getStyles = (theme: StylesType) => {

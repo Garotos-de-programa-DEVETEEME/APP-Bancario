@@ -1,12 +1,13 @@
 import { StylesType } from '@/@Types/stylesType';
 import { useTheme } from '@/hooks/useTheme';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { navigateToProfile } from '@/utils/navigation.utils';
+import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
 
 type ClientHeaderProps = {
   userName: string;
-  image: string;
+  image: ImageSourcePropType;
   value: number;
 };
 
@@ -24,9 +25,9 @@ export default function ClientHeader({
         <View style={styles.container}>
           <View style={styles.left}>
             <Pressable
-              onPress={() => {/*TODO criar tela de perfil cliente */} }
+              onPress={navigateToProfile}
             >
-              <Image src={image} alt='Foto Cliente' style={styles.image} />
+              <Image source={image} style={styles.image} />
             </Pressable>
             <View style={styles.textbox}>
               <StyledText
@@ -83,6 +84,7 @@ const getStyles = (theme:StylesType) => {
     left: {
       flexDirection: 'row',
       alignItems: 'center',
+      marginLeft:10,
     },
     right: {
       flexDirection: 'row',
@@ -94,7 +96,6 @@ const getStyles = (theme:StylesType) => {
       height: 40,
       width: 40,
       borderRadius: 25,
-      marginLeft: '10%',
     },
     textbox: {
       marginLeft: 10,
