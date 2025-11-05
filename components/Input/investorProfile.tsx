@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { NavigationButton } from '../Buttons/navigationButton';
-import { StyledText } from '../StyledText';
-import { QuestionBox } from './questionBox';
-import { MaterialIcons } from '@expo/vector-icons';
-import { useTheme } from '@/hooks/useTheme';
 import { StylesType } from '@/@Types/stylesType';
 import { formSteps } from '@/constants/investidorPerfilPergunta';
+import { useTheme } from '@/hooks/useTheme';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useState } from 'react';
+import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { NavigationButton } from '../buttons/navigationButton';
+import { StyledText } from '../StyledText';
+import { QuestionBox } from './questionBox';
 
 interface InvestorProfileProps {
     visible: boolean;

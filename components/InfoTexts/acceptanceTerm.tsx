@@ -1,8 +1,8 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { NavigationButton } from '../Buttons/navigationButton';
+import { StylesType } from '@/@Types/stylesType';
 import { useTheme } from '@/hooks/useTheme';
 import { MaterialIcons } from '@expo/vector-icons';
-import { StylesType } from '@/@Types/stylesType';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { NavigationButton } from '../buttons/navigationButton';
 
 interface AcceptanceTermProps {
     onAccept: () => void;

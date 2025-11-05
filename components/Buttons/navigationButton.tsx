@@ -1,23 +1,21 @@
-import { Pressable, StyleSheet } from 'react-native';
-import { StyledText } from '../StyledText';
 import { useTheme } from '@/hooks/useTheme';
-
+import { Pressable, StyleSheet, Text } from 'react-native';
 interface NavigationButtonProps {
   onPress: () => void;
   text: string;
-  transparentStyle?: boolean; // parâmetro que controla o estilo do componente
+  transparentStyle?: boolean;
   disabled?: boolean;
   width?: number;
   height?: number;
 }
 
 export const NavigationButton = ({
-  // componente de botão de navegação
   onPress,
   text,
   transparentStyle,
   disabled,
   width = 180,
+  height = 29,
 }: NavigationButtonProps) => {
   const theme = useTheme();
   const styles = getStyles();
@@ -35,23 +33,22 @@ export const NavigationButton = ({
     <Pressable
       onPress={onPress}
       disabled={disabled}
-      style={[disabled? {
-        backgroundColor: theme.disabledButton,
-        borderColor: theme.disabledButton
-      }:{
-        backgroundColor: transparentStyle ? 'transparent' : theme.tint,
-        borderColor: theme.tint,
-      }, {
-        borderWidth: 1,
-        width,
-      }, styles.container]}
+      style={[
+        styles.container,
+        {
+          backgroundColor: backgroundColor,
+          borderColor: borderColor,
+          width: width,
+          height: height,
+        },
+      ]}
     >
-      <StyledText style={[styles.text, { color: transparentStyle ? theme.tint : theme.whiteText }]}>{text}</StyledText>
+      <Text style={[styles.text, { color: textColor }]}>{text}</Text>
     </Pressable>
   );
 };
 
-const getStyles = () =>{
+const getStyles = () => {
   return StyleSheet.create({
     container: {
       borderRadius: 10,
@@ -60,11 +57,11 @@ const getStyles = () =>{
       paddingVertical: 12,
       paddingHorizontal: 12,
       borderWidth: 1,
-      // margins removed (follow global no-margin rule)
     },
     text: {
       fontSize: 18,
       fontWeight: '500',
     },
   });
-}
+};
+
