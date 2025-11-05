@@ -45,14 +45,21 @@ function MainLayout() {
         <FiltersProvider>
             <Stack>
                 <Stack.Screen name="index" options={{ headerShown: false }} />
-                <Stack.Screen name="(panel)/profile/page" options={{ headerShown: false }} />
-                <Stack.Screen name="(panel)/home/page" options={{ headerShown: false }} />
                 <Stack.Screen
                     name="(panel)/PerfilCliente/page"
                     options={{ header: () => <SimpleHeader title="Perfil" backRoute={'/(panel)/home/page'} /> }}
                 />
-            </Stack>
-        </FiltersProvider>
+            <Stack.Screen
+                name="(panel)/home/page"
+                options={{ headerShown: false }}
+                />
+
+            <Stack.Screen
+                name="(panel)/withdraw/page"
+                options={{ headerShown: false }}
+                />
+        </Stack>
+    </FiltersProvider>
     )
 }
 
