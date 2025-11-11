@@ -10,5 +10,12 @@ const routes: Routes = {
     LOGIN: '/',
     HOME_PANEL: '/(panel)/home/page',
     PROFILE_PANEL: '/(panel)/profile/page',
+    FUNDO_LISTA: '/(panel)/investir-fundos/page',
+    FUNDO_INVESTIR: '/(panel)/investir-fundos/investimento',
+    FUNDO_SAIBA_MAIS: '/(panel)/investir-fundos/saiba-mais',
+    SIMULACAO_LISTA: '/(panel)/simular-investimento/page',
+    SIMULACAO_DETALHE: '/(panel)/simular-investimento/simulacao',
+    WALLET_PANEL: '',
+    WITHDRAW: '/(panel)/withdraw/page',
 };
 export default routes;
