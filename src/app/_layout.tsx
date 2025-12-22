@@ -34,9 +34,9 @@ export default function RootLayout() {
   }
 
   return (
+    <ThemeProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <FiltersProvider>
-        <ThemeProvider>
           <Stack>
             <Stack.Screen name='index' options={{ headerShown: false }} />
 
@@ -50,7 +50,7 @@ export default function RootLayout() {
               name='PerfilCliente/page'
               options={{
                 header: () => (
-                  <SimpleHeader title='Perfil Cliente' backrouter="telaInicial/index"/>
+                  <SimpleHeader title='Perfil Cliente' backroute={'/telaInicial'}/>
                 ),
               }}
             />
@@ -59,7 +59,7 @@ export default function RootLayout() {
               name='pagesWithTabs/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Banetes DTVM' backrouter="telaInicial/index"/>
+                  <SimpleHeader title='Banetes DTVM' backroute={'/telaInicial'}/>
                 ),
               }}
             />
@@ -68,7 +68,7 @@ export default function RootLayout() {
               name='carteira/resgatar/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Resgatar' backrouter="pageWithTabs/index"/>
+                  <SimpleHeader title='Resgatar' backroute={"/pagesWithTabs"} routerParam='carteira'/>
                 ),
               }}
             />
@@ -76,7 +76,7 @@ export default function RootLayout() {
             <Stack.Screen
               name='fundosInvestimentos/filter/index'
               options={{
-                header: () => <SimpleHeader title='Filtros' backrouter="pageWithTabs/index"/>,
+                header: () => <SimpleHeader title='Filtros' backroute={"/pagesWithTabs"} routerParam='fundos'/>,
               }}
             />
 
@@ -84,7 +84,7 @@ export default function RootLayout() {
               name='fundosInvestimentos/investir/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Investir' backrouter='pageWithTabs/index'/>
+                  <SimpleHeader title='Investir' backroute={'/pagesWithTabs'} routerParam='fundos'/>
                 ),
               }}
             />
@@ -92,29 +92,29 @@ export default function RootLayout() {
             <Stack.Screen
               name='fundosInvestimentos/saibaMais/index'
               options={{
-                header: () => <SimpleHeader favorite title='Fundo de Investimentos' backrouter='pageWithTabs/index'/>,
+                header: () => <SimpleHeader favorite title='Fundo de Investimentos' backroute={'/pagesWithTabs'} routerParam='fundos'/>,
               }}
             />
 
             <Stack.Screen
               name='simularInvestimento/index'
               options={{
-                header: () => <SimpleHeader title='Simular Investimento' backrouter="telaInicial/index" />,
+                header: () => <SimpleHeader title='Simular Investimento' backroute={"/telaInicial"} />,
               }}
             />
 
             <Stack.Screen
               name='simularInvestimento/detalhesFundo/index'
               options={{
-                header: () => <SimpleHeader title='Simular Investimento' backrouter="simularInvestimento/index" />,
+                header: () => <SimpleHeader title='Simular Investimento' backroute={'/simularInvestimento/detalhesFundo'}/>,
               }}
             />
             
             <Stack.Screen name='+not-found' />
           </Stack>
           <StatusBar style='auto' />
-        </ThemeProvider>
       </FiltersProvider>
     </GestureHandlerRootView>
+    </ThemeProvider>
   );
 }
