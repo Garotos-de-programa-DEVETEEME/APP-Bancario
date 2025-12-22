@@ -110,10 +110,11 @@ export default function TelaInicial() {
 const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     container: {
-      display: 'flex',
+      flex: 1,
       flexDirection: 'column',
       gap: 24,
       backgroundColor: theme.background,
+      height:'100%'
     },
     buttonContainer: {
       display: 'flex',

@@ -32,6 +32,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Salvar o tema no AsyncStorage ao alterá-lo
   const changeTheme = async (t: AppTheme) => {
+    console.log('change theme')
     setTheme(t);
     await AsyncStorage.setItem("userTheme", t); // Salva o tema no AsyncStorage
   };

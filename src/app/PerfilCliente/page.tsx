@@ -36,15 +36,16 @@ export default function PerfilClientePage() {
                     <SwitchRow title={"Modo Escuro"} iconName="dark-mode" switchValue={themeSwitch} setSwitch={setThemeSwitch}/>
                 </View>
             </View>
-        )
+    )
 };
 
 const getStyles = (theme:StylesType) => {
     return StyleSheet.create({
         container:{
-            display:'flex', 
+            flex:1,
             gap:10,
-            marginTop:10,
+            paddingTop:10,
+            backgroundColor:theme.background,
         },
         contentContainer:{
             width:'85%',
