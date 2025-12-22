@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function PerfilClientePage() {
-  const [userData, setUserData] = useState<string | null>(null);
 
   const theme = useTheme();
   const style = getStyles(theme);
@@ -28,7 +27,7 @@ export default function PerfilClientePage() {
 
     return(
             <View style={style.container}>
-                <ClientImage name={userData} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
+                <ClientImage name={"Cliente"} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
                 <View style={style.contentContainer}>
                     <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                 </View>

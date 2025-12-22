@@ -1,8 +1,3 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -16,6 +11,7 @@ import { useColorScheme } from 'react-native';
 import { FiltersProvider } from '../Context/filterContext';
 
 import SimpleHeader from '../components/customHeader/SimpleHeader';
+import { ThemeProvider } from '../Context/themeContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,7 +36,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <FiltersProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <ThemeProvider>
           <Stack>
             <Stack.Screen name='index' options={{ headerShown: false }} />
 
@@ -48,6 +44,14 @@ export default function RootLayout() {
               name='telaInicial/index'
               options={{
                 headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name='PerfilCliente/page'
+              options={{
+                header: () => (
+                  <SimpleHeader title='Perfil Cliente' backrouter="telaInicial/index"/>
+                ),
               }}
             />
 
