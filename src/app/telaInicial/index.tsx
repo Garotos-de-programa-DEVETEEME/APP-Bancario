@@ -32,8 +32,8 @@ export default function TelaInicial() {
     <ScrollView showsHorizontalScrollIndicator={false}>
       <View style={styles.container}>
         <ClientHeader
-          title='Cliente'
-          image='https://legacy.reactjs.org/logo-og.png'
+          userName='Cliente'
+          image={require('../../assets/Images/banestes-home.jpg')}
           value={-1}
         />
         <View style={styles.buttonContainer}>

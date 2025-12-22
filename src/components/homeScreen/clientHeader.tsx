@@ -1,61 +1,59 @@
-import { useTheme } from '@/src/hooks/useTheme';
-import { Image, StyleSheet, View } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
 import { StyledText } from '../StyledText';
 import PatrimonyCard from './patrimonyCard';
+import { Href, router } from 'expo-router';
+import { StylesType } from '@/src/@Types/stylesType';
+import { useTheme } from '@/src/hooks/useTheme';
 
 type ClientHeaderProps = {
-  title: string;
-  image: string;
+  userName: string;
+  image: ImageSourcePropType;
   value: number;
 };
 
 export default function ClientHeader({
-  title,
+  userName,
   image,
   value,
 }: ClientHeaderProps) {
   const theme = useTheme();
-  const styles = getStyles();
-
+  const styles = getStyles(theme);
+  
   return (
     <View style={styles.outerbox}>
       <View style={styles.header}>
         <View style={styles.container}>
           <View style={styles.left}>
-            <Image src={image} alt='Foto Cliente' style={styles.image} />
+            <Pressable
+              onPress={() => router.push("/PerfilCliente/page")}
+            >
+              <Image source={image} style={styles.image} />
+            </Pressable>
             <View style={styles.textbox}>
               <StyledText
                 style={{
                   fontWeight: 'bold',
                   color: theme.whiteText,
+                  maxWidth:230,
                 }}
               >
-                {title}
+                {userName}
               </StyledText>
-              <StyledText style={{ color: theme.whiteText }}>
-                Veja seu perfil
-              </StyledText>
+                <StyledText style={{ color: theme.whiteText }}>
+                  Veja seu perfil
+                </StyledText>
             </View>
-          </View>
-          <View style={styles.right}>
-            <MaterialCommunityIcons
-              name='bell-outline'
-              color='#FFF'
-              size={24}
-            />
-            <MaterialCommunityIcons name='exit-to-app' color='#FFF' size={24} />
           </View>
         </View>
       </View>
       <View style={styles.cardcontainer}>
-        <PatrimonyCard value={100} />
+        <PatrimonyCard value={value} />
       </View>
     </View>
   );
 }
 
-const getStyles = () => {
+const getStyles = (theme:StylesType) => {
   const headerHeight = 138;
   const cardHeight = 80;
 
@@ -75,7 +73,7 @@ const getStyles = () => {
       justifyContent: 'space-between',
     },
     header: {
-      backgroundColor: '#3E75BC',
+      backgroundColor: theme.tint,
       width: '100%',
       height: 125,
       borderBottomLeftRadius: 50,
@@ -85,6 +83,7 @@ const getStyles = () => {
     left: {
       flexDirection: 'row',
       alignItems: 'center',
+      marginLeft:10,
     },
     right: {
       flexDirection: 'row',
@@ -93,10 +92,9 @@ const getStyles = () => {
       marginRight: '5%',
     },
     image: {
-      height: 40,
-      width: 40,
+      height: 50,
+      width: 50,
       borderRadius: 25,
-      marginLeft: '10%',
     },
     textbox: {
       marginLeft: 10,
