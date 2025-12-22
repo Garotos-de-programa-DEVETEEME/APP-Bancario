@@ -1,18 +1,20 @@
 import { useTheme } from '@/src/hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from 'expo-router';
+import { Href, router, useNavigation } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StyledText } from '../StyledText';
 import { FavoriteButton } from '../Buttons/favoriteButton';
 import { useEffect, useState } from 'react';
+import { Background } from '@react-navigation/elements';
 
 interface SimpleHeaderProps {
   title: string;
   favorite?: boolean;
+  backrouter?: string;
 }
 
-export default function SimpleHeader({ title, favorite= false }: SimpleHeaderProps) {
+export default function SimpleHeader({ title, favorite= false, backrouter}: SimpleHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const theme = useTheme();
@@ -35,7 +37,7 @@ export default function SimpleHeader({ title, favorite= false }: SimpleHeaderPro
     >
       {/* Botão voltar */}
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => backrouter? router.push(backrouter as Href):navigation.goBack()}
         hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
         className="w-12 h-12 items-center justify-center"
         activeOpacity={0.7}

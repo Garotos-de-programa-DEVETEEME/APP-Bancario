@@ -43,25 +43,28 @@ export default function RootLayout() {
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <Stack>
             <Stack.Screen name='index' options={{ headerShown: false }} />
+
             <Stack.Screen
               name='telaInicial/index'
               options={{
                 headerShown: false,
               }}
             />
-            <Stack.Screen
-              name='carteira/resgatar/index'
-              options={{
-                header: () => (
-                  <SimpleHeader title='Resgatar' />
-                ),
-              }}
-            />
+
             <Stack.Screen
               name='pagesWithTabs/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Banetes DTVM' />
+                  <SimpleHeader title='Banetes DTVM' backrouter="telaInicial/index"/>
+                ),
+              }}
+            />
+
+            <Stack.Screen
+              name='carteira/resgatar/index'
+              options={{
+                header: () => (
+                  <SimpleHeader title='Resgatar' backrouter="pageWithTabs/index"/>
                 ),
               }}
             />
@@ -69,7 +72,7 @@ export default function RootLayout() {
             <Stack.Screen
               name='fundosInvestimentos/filter/index'
               options={{
-                header: () => <SimpleHeader title='Filtros' />,
+                header: () => <SimpleHeader title='Filtros' backrouter="pageWithTabs/index"/>,
               }}
             />
 
@@ -77,7 +80,7 @@ export default function RootLayout() {
               name='fundosInvestimentos/investir/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Investir' />
+                  <SimpleHeader title='Investir' backrouter='pageWithTabs/index'/>
                 ),
               }}
             />
@@ -85,21 +88,21 @@ export default function RootLayout() {
             <Stack.Screen
               name='fundosInvestimentos/saibaMais/index'
               options={{
-                header: () => <SimpleHeader favorite title='Fundo de Investimentos' />,
+                header: () => <SimpleHeader favorite title='Fundo de Investimentos' backrouter='pageWithTabs/index'/>,
               }}
             />
 
             <Stack.Screen
               name='simularInvestimento/index'
               options={{
-                header: () => <SimpleHeader title='Simular Investimento' />,
+                header: () => <SimpleHeader title='Simular Investimento' backrouter="telaInicial/index" />,
               }}
             />
 
             <Stack.Screen
               name='simularInvestimento/detalhesFundo/index'
               options={{
-                header: () => <SimpleHeader title='Simular Investimento' />,
+                header: () => <SimpleHeader title='Simular Investimento' backrouter="simularInvestimento/index" />,
               }}
             />
             
