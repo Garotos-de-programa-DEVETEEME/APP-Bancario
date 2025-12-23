@@ -45,7 +45,7 @@ export const GraficWallet = ({ data }: InvestmentChartProps) => {
 
     let acc = 0;
     return data.map((item) => {
-      const color = fundsColor.find((o) => o.nome === item.nomeReduzido)?.cor ?? "#999";
+      const color = fundsColor.find((o) => o.nome === item.nome)?.cor ?? "#999";
       const pct = item.codigoFundo / totalValue; // 0..1
       const info: SliceInfo = { color, pct, offsetPct: acc };
       acc += pct;

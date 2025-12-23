@@ -56,7 +56,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
         ) : (
           fundosInvestidos.map((fundo, index) => {
             const cor =
-              fundsColor.find((i) => i.nome === fundo.nomeReduzido)?.cor ??
+              fundsColor.find((i) => i.nome === fundo.nome)?.cor ??
               theme.tint;
 
             const isLast = index === fundosInvestidos.length - 1;
