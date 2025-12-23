@@ -66,7 +66,6 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
 
   return (
     <View style={{paddingBottom:20}}>
-      <ScrollView>
         <View style={styles.container}>
           <SearchBar
             placeholder='Buscar fundo'
@@ -74,21 +73,25 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
             onChangeText={(e) => setSearchBarValue(e)}
             onIconPress={() => searchByText(searchBarValue)}
             filter
-          />
-            {investmentFunds.listaFundos.map((fund) => {
-              return (
-                <FundsCard
-                  fund={fund}
-                  key={fund.codigoFundo}
-                  onPress={() => changeCurrentExpanded(fund.codigoFundo)}
-                  expanded={currentExpanded === fund.codigoFundo}
-                  requireInvestorProfileCheck={true}
-                  onProfileCheckRequested={() => handleProfileCheckRequest(fund)}
-                />
-              );
-            })}
+            />
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View className="gap-5">
+                {investmentFunds.listaFundos.map((fund) => {
+                  return (
+                    <FundsCard
+                      fund={fund}
+                      key={fund.codigoFundo}
+                      onPress={() => changeCurrentExpanded(fund.codigoFundo)}
+                      expanded={currentExpanded === fund.codigoFundo}
+                      requireInvestorProfileCheck={true}
+                      onProfileCheckRequested={() => handleProfileCheckRequest(fund)}
+                    />
+                  );
+                })}
+              </View>
+
+            </ScrollView>
         </View>
-      </ScrollView>
       
       <Modalize
         ref={modalizeRef}

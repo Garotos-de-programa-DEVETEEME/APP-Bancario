@@ -4,6 +4,7 @@ import { MOCK_FUNDOS } from '@/src/data/fundos';
 import { useTheme } from '@/src/hooks/useTheme';
 import { useState } from 'react';
 import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SimularInvestimento() {
   const theme = useTheme();
@@ -21,7 +22,7 @@ export default function SimularInvestimento() {
 
   return (
     <View
-      className="items-center h-full"
+      className="items-center h"
       style={{ backgroundColor: theme.background }}
     >
       <View
@@ -38,26 +39,29 @@ export default function SimularInvestimento() {
       </View>
 
       <View>
+
         <StyledText
           className="mb-[10px] text-xl font-bold"
           style={{ color: theme.darkText }}
         >
           Fundos
         </StyledText>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View className="gap-5">
+              {investmentFunds.listaFundos.map((fund) => {
+                return (
+                  <FundsCard
+                    fund={fund}
+                    key={fund.codigoFundo}
+                    onPress={() => changeCurrentExpanded(fund.codigoFundo)}
+                    expanded={currentExpanded === fund.codigoFundo}
+                    expandedType="simular"
+                  />
+                );
+              })}
 
-        <View className="gap-5">
-          {investmentFunds.listaFundos.map((fund) => {
-            return (
-              <FundsCard
-                fund={fund}
-                key={fund.codigoFundo}
-                onPress={() => changeCurrentExpanded(fund.codigoFundo)}
-                expanded={currentExpanded === fund.codigoFundo}
-                expandedType="simular"
-              />
-            );
-          })}
-        </View>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
