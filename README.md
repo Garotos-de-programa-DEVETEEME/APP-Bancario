@@ -15,7 +15,7 @@ Este é o front-end do projeto Asset, desenvolvido com React Native e TypeScript
 1. Clone o repositório:
 
 ```bash
-git clone https://gitlab.com/ti-banestes-asset/front-end.git
+
 ```
 
 2. Instale as dependências:
