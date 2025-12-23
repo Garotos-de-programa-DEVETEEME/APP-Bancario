@@ -40,11 +40,10 @@ export const FundsCard = ({
       <Pressable onPress={onPress}>
         <View className="flex flex-row justify-between">
           <StyledText className="text-md" style={{ color: theme.tint }}>
-            {'Fundo'}
+              {fund.tipoFundo}
           </StyledText>
           <View className="flex flex-row items-center gap-[10px]">
-            <RiskIcon risk={'alto'} />
-            {/* TODO integrar quando a api estiver pronta */}
+            <RiskIcon risk={fund.classificacaoRisco} />
           </View>
         </View>
 

@@ -9,6 +9,7 @@ import { useTheme } from '@/src/hooks/useTheme';
 import { router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Modalize } from 'react-native-modalize';
 
 interface FundoInvestimentoProps {
@@ -64,29 +65,30 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <SearchBar
-          placeholder='Buscar fundo'
-          value={searchBarValue}
-          onChangeText={(e) => setSearchBarValue(e)}
-          onIconPress={() => searchByText(searchBarValue)}
-          filter
-        />
-
-        {investmentFunds.map((fund) => {
-          return (
-            <FundsCard
-              fund={fund}
-              key={fund.codigo}
-              onPress={() => changeCurrentExpanded(fund.codigo)}
-              expanded={currentExpanded === fund.codigo}
-              requireInvestorProfileCheck={true}
-              onProfileCheckRequested={() => handleProfileCheckRequest(fund)}
-            />
-          );
-        })}
-      </View>
+    <View style={{paddingBottom:20}}>
+      <ScrollView>
+        <View style={styles.container}>
+          <SearchBar
+            placeholder='Buscar fundo'
+            value={searchBarValue}
+            onChangeText={(e) => setSearchBarValue(e)}
+            onIconPress={() => searchByText(searchBarValue)}
+            filter
+          />
+            {investmentFunds.listaFundos.map((fund) => {
+              return (
+                <FundsCard
+                  fund={fund}
+                  key={fund.codigoFundo}
+                  onPress={() => changeCurrentExpanded(fund.codigoFundo)}
+                  expanded={currentExpanded === fund.codigoFundo}
+                  requireInvestorProfileCheck={true}
+                  onProfileCheckRequested={() => handleProfileCheckRequest(fund)}
+                />
+              );
+            })}
+        </View>
+      </ScrollView>
       
       <Modalize
         ref={modalizeRef}
@@ -108,7 +110,7 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
             />
         </View>
       </Modalize>
-    </>
+    </View>
   );
 }
 

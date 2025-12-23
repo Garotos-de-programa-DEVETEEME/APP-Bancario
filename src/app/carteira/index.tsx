@@ -24,7 +24,7 @@ export default function WalletPage() {
   };
 
   useEffect(() => {
-    setFundosInvestidos(MOCK_FUNDOS);
+    setFundosInvestidos(MOCK_FUNDOS.listaFundos.filter(fundo => fundo.codigoFundo <= 5));
   }, []);
 
   return (
@@ -57,7 +57,7 @@ export default function WalletPage() {
         <View className="flex-col gap-5">
           {fundosInvestidos.map((fundo, index) => {
             const key =
-              `${fundo?.nome ?? "fundo"}-${index}`;
+              `${fundo.nome ?? "fundo"}-${index}`;
 
             return (
               <Animated.View

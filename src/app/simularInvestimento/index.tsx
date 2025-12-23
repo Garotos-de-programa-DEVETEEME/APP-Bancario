@@ -46,13 +46,13 @@ export default function SimularInvestimento() {
         </StyledText>
 
         <View className="gap-5">
-          {investmentFunds.map((fund) => {
+          {investmentFunds.listaFundos.map((fund) => {
             return (
               <FundsCard
                 fund={fund}
-                key={fund.codigo}
-                onPress={() => changeCurrentExpanded(fund.codigo)}
-                expanded={currentExpanded === fund.codigo}
+                key={fund.codigoFundo}
+                onPress={() => changeCurrentExpanded(fund.codigoFundo)}
+                expanded={currentExpanded === fund.codigoFundo}
                 expandedType="simular"
               />
             );

@@ -21,11 +21,11 @@ export const HighlightFund = ({data, iconName}: HighlightFundProps) => {
             <View style={styles.titleContainer}>
                 <MaterialCommunityIcons  name={iconName.name} color={iconName.color} size={22}/>
                 <View style={{maxWidth: 80}}>
-                    <StyledText style={{fontSize: 9, color:theme.whiteText}}> {data.nome} </StyledText>
+                    <StyledText style={{fontSize: 9, color:theme.text}}> {data.nome} </StyledText>
                 </View>
             </View>
-            <View style={{backgroundColor:theme.background, height: 24, borderBottomLeftRadius:16, borderBottomRightRadius:16, justifyContent:'center',}}>
-                <StyledText style={{fontSize:10, color: theme.tint}}><StyledText style={{color: "#00914D"}}> +{data.taxaRentabilidade.toFixed(2)}% </StyledText> no mês</StyledText>
+            <View style={styles.footer}>
+                <StyledText style={{fontSize:10, color: theme.text}}><StyledText style={{color: "#00914D"}}> +{data.taxaRentabilidade.toFixed(2)}% </StyledText> no mês</StyledText>
             </View>
         </View>
     </Pressable>
@@ -41,7 +41,7 @@ const getStyles = (theme: StylesType) => {
         borderRadius:16,
     },
     titleContainer: {
-        backgroundColor:theme.tint,
+        backgroundColor:theme.background,
         borderTopLeftRadius:16,
         borderTopRightRadius:16,
         justifyContent:'space-around',
@@ -51,5 +51,14 @@ const getStyles = (theme: StylesType) => {
         height: 48,
         boxSizing:'border-box',
     },
+    footer:{
+        backgroundColor:theme.background, 
+        height: 24, 
+        borderBottomLeftRadius:16, 
+        borderBottomRightRadius:16, 
+        justifyContent:'center',
+        borderTopWidth:0.5,
+        borderTopColor:theme.border
+    }
   });
 };
