@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function PerfilClientePage() {
-  const [userData, setUserData] = useState<string | null>(null);
 
   const theme = useTheme();
   const style = getStyles(theme);
@@ -28,7 +27,7 @@ export default function PerfilClientePage() {
 
     return(
             <View style={style.container}>
-                <ClientImage name={userData} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
+                <ClientImage name={"Cliente"} image={''} />{/*TODO adicionar logica de tratamento da imagem */}
                 <View style={style.contentContainer}>
                     <ContaCard numeroConta={'3980425-7'} numeroAgencia={83}/>
                 </View>
@@ -37,15 +36,16 @@ export default function PerfilClientePage() {
                     <SwitchRow title={"Modo Escuro"} iconName="dark-mode" switchValue={themeSwitch} setSwitch={setThemeSwitch}/>
                 </View>
             </View>
-        )
+    )
 };
 
 const getStyles = (theme:StylesType) => {
     return StyleSheet.create({
         container:{
-            display:'flex', 
+            flex:1,
             gap:10,
-            marginTop:10,
+            paddingTop:10,
+            backgroundColor:theme.background,
         },
         contentContainer:{
             width:'85%',

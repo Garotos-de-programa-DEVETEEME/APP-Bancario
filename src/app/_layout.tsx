@@ -1,8 +1,3 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -16,6 +11,7 @@ import { useColorScheme } from 'react-native';
 import { FiltersProvider } from '../Context/filterContext';
 
 import SimpleHeader from '../components/customHeader/SimpleHeader';
+import { ThemeProvider } from '../Context/themeContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,11 +34,12 @@ export default function RootLayout() {
   }
 
   return (
+    <ThemeProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <FiltersProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <Stack>
             <Stack.Screen name='index' options={{ headerShown: false }} />
+
             <Stack.Screen
               name='telaInicial/index'
               options={{
@@ -50,18 +47,28 @@ export default function RootLayout() {
               }}
             />
             <Stack.Screen
-              name='carteira/resgatar/index'
+              name='PerfilCliente/page'
               options={{
                 header: () => (
-                  <SimpleHeader title='Resgatar' />
+                  <SimpleHeader title='Perfil Cliente' backroute={'/telaInicial'}/>
                 ),
               }}
             />
+
             <Stack.Screen
               name='pagesWithTabs/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Banetes DTVM' />
+                  <SimpleHeader title='Banetes DTVM' backroute={'/telaInicial'}/>
+                ),
+              }}
+            />
+
+            <Stack.Screen
+              name='carteira/resgatar/index'
+              options={{
+                header: () => (
+                  <SimpleHeader title='Resgatar' backroute={"/pagesWithTabs"} routerParam='carteira'/>
                 ),
               }}
             />
@@ -69,7 +76,7 @@ export default function RootLayout() {
             <Stack.Screen
               name='fundosInvestimentos/filter/index'
               options={{
-                header: () => <SimpleHeader title='Filtros' />,
+                header: () => <SimpleHeader title='Filtros' backroute={"/pagesWithTabs"} routerParam='fundos'/>,
               }}
             />
 
@@ -77,7 +84,7 @@ export default function RootLayout() {
               name='fundosInvestimentos/investir/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Investir' />
+                  <SimpleHeader title='Investir' backroute={'/pagesWithTabs'} routerParam='fundos'/>
                 ),
               }}
             />
@@ -85,29 +92,29 @@ export default function RootLayout() {
             <Stack.Screen
               name='fundosInvestimentos/saibaMais/index'
               options={{
-                header: () => <SimpleHeader favorite title='Fundo de Investimentos' />,
+                header: () => <SimpleHeader favorite title='Fundo de Investimentos' backroute={'/pagesWithTabs'} routerParam='fundos'/>,
               }}
             />
 
             <Stack.Screen
               name='simularInvestimento/index'
               options={{
-                header: () => <SimpleHeader title='Simular Investimento' />,
+                header: () => <SimpleHeader title='Simular Investimento' backroute={"/telaInicial"} />,
               }}
             />
 
             <Stack.Screen
               name='simularInvestimento/detalhesFundo/index'
               options={{
-                header: () => <SimpleHeader title='Simular Investimento' />,
+                header: () => <SimpleHeader title='Simular Investimento' backroute={'/simularInvestimento/detalhesFundo'}/>,
               }}
             />
             
             <Stack.Screen name='+not-found' />
           </Stack>
           <StatusBar style='auto' />
-        </ThemeProvider>
       </FiltersProvider>
     </GestureHandlerRootView>
+    </ThemeProvider>
   );
 }

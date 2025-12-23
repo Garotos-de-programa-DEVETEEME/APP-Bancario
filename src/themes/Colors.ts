@@ -1,6 +1,6 @@
 import { StylesType } from '../@Types/stylesType';
 
-const tintColor = '#3E75BC'; //cor principal projeto
+const tintColor = '#3EBC68'; //cor principal projeto
 
 type ThemeType = {
   light: StylesType;

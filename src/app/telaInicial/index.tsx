@@ -32,8 +32,8 @@ export default function TelaInicial() {
     <ScrollView showsHorizontalScrollIndicator={false}>
       <View style={styles.container}>
         <ClientHeader
-          title='Cliente'
-          image='https://legacy.reactjs.org/logo-og.png'
+          userName='Cliente'
+          image={require('../../assets/Images/banestes-home.jpg')}
           value={-1}
         />
         <View style={styles.buttonContainer}>
@@ -110,10 +110,11 @@ export default function TelaInicial() {
 const getStyles = (theme: StylesType) => {
   return StyleSheet.create({
     container: {
-      display: 'flex',
+      flex: 1,
       flexDirection: 'column',
       gap: 24,
       backgroundColor: theme.background,
+      height:'100%'
     },
     buttonContainer: {
       display: 'flex',
