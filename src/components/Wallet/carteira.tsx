@@ -39,7 +39,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
       {/* Seção: Valores + Gráfico */}
       <View className="px-4 pt-3 pb-2">
         <StyledText className="text-[15px] mb-3" style={{ color: theme.text }}>
-          Valores
+          Valores Investidos
         </StyledText>
 
         <View className="items-center justify-center">

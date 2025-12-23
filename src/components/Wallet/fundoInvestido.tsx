@@ -73,7 +73,7 @@ export const FundoInvestido = ({ fundoData, expanded, setExpanded }: FundoInvest
 
       {/* linhas */}
       <View className="px-4 pt-3 pb-1">
-        <InfoRow theme={theme} title="Saldo resgate automático" value={coinFormat(fundoData.valorSaldoResgatavelCliente)} />
+        <InfoRow theme={theme} title="Valor Investido" value={coinFormat(fundoData.valorSaldoResgatavelCliente)} />
         <Divider color={theme.border} />
         <InfoRow theme={theme} title="Valor mínimo de resgate" value={coinFormat(fundoData.valorMinimoResgateInternet)} />
         <Divider color={theme.border} />
