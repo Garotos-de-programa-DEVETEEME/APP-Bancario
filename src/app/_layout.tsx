@@ -59,7 +59,7 @@ export default function RootLayout() {
               name='pagesWithTabs/index'
               options={{
                 header: () => (
-                  <SimpleHeader title='Banetes DTVM' backroute={'/telaInicial'}/>
+                  <SimpleHeader title='IPSUM Banking' backroute={'/telaInicial'}/>
                 ),
               }}
             />

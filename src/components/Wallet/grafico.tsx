@@ -40,13 +40,13 @@ export const GraficWallet = ({ data }: InvestmentChartProps) => {
   const slices = useMemo<SliceInfo[]>(() => {
     if (!data || data.length === 0) return [];
     // TODO: alterar para patrimônio investido ao invés de `codigo`
-    const totalValue = data.reduce((sum, item) => sum + item.codigo, 0);
+    const totalValue = data.reduce((sum, item) => sum + item.codigoFundo, 0);
     if (totalValue === 0) return [];
 
     let acc = 0;
     return data.map((item) => {
-      const color = fundsColor.find((o) => o.nome === item.nomeReduzido)?.cor ?? "#999";
-      const pct = item.codigo / totalValue; // 0..1
+      const color = fundsColor.find((o) => o.nome === item.nome)?.cor ?? "#999";
+      const pct = item.codigoFundo / totalValue; // 0..1
       const info: SliceInfo = { color, pct, offsetPct: acc };
       acc += pct;
       return info;

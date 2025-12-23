@@ -65,7 +65,7 @@ export function AcceptanceTerm({ onAccept, isChecked, onToggleChecked }: Accepta
             <Text style={styles.label}>
                 Caso não concorde com qualquer um dos termos aqui expostos, por favor, não prossiga com a utilização da Simulação.{'\n\n'}
                 Atenciosamente,{'\n'}
-                Banestes DTVM
+                IPSUM Banking
             </Text>
 
             <TouchableOpacity style={styles.checkboxContainer} onPress={onToggleChecked}>

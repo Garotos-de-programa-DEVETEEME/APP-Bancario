@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { StyledText } from '../StyledText';
 
 interface riskIconProps {
-  risk: 'muito baixo' | 'baixo' | 'medio' | 'alto'; // TODO alterar conforme resposta da API
+  risk:string; // TODO alterar conforme resposta da API
 }
 
 export const RiskIcon = ({ risk }: riskIconProps) => {
@@ -21,7 +21,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
         className="text-base font-medium"
         style={{ color: theme.alternativeText }}
       >
-        {`Risco ${risk === 'medio' ? 'médio' : risk}`}{' '}
+        {`Risco ${risk === 'Medio' ? 'Médio' : risk}`}{' '}
         {/* expressão booleana para adicionar acento no médio preferencialmente os risk deve vir da api já com o nome correto */}
         {/* TODO alterar conforme resposta da API */}
       </StyledText>
@@ -35,11 +35,11 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
             height: ballSize,
             borderRadius: radius,
             backgroundColor:
-              risk === 'muito baixo'
+              risk === 'Muito Baixo'
                 ? riskTheme.veryLow
-                : risk === 'baixo'
+                : risk === 'Baixo'
                 ? riskTheme.low
-                : risk === 'medio'
+                : risk === 'Medio'
                 ? riskTheme.medium
                 : riskTheme.high,
           }}
@@ -53,11 +53,11 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
             height: ballSize,
             borderRadius: radius,
             backgroundColor:
-              risk === 'baixo'
+              risk === 'Baixo'
                 ? riskTheme.low
-                : risk === 'medio'
+                : risk === 'Medio'
                 ? riskTheme.medium
-                : risk === 'alto'
+                : risk === 'Alto'
                 ? riskTheme.high
                 : undefined,
           }}
@@ -71,9 +71,9 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
             height: ballSize,
             borderRadius: radius,
             backgroundColor:
-              risk === 'medio'
+              risk === 'Medio'
                 ? riskTheme.medium
-                : risk === 'alto'
+                : risk === 'Alto'
                 ? riskTheme.high
                 : undefined,
           }}
@@ -86,7 +86,7 @@ export const RiskIcon = ({ risk }: riskIconProps) => {
             width: ballSize,
             height: ballSize,
             borderRadius: radius,
-            backgroundColor: risk === 'alto' ? riskTheme.high : undefined,
+            backgroundColor: risk === 'Alto' ? riskTheme.high : undefined,
           }}
         />
       </View>

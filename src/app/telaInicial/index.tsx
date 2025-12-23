@@ -18,7 +18,7 @@ export default function TelaInicial() {
   const styles = getStyles(theme);
   const icons = iconsFundoDestaque;
 
-  const fundosDestaque = MOCK_FUNDOS; //TODO substituir por fundos em destaque
+  const fundosDestaque = MOCK_FUNDOS.listaFundos.filter(fundo => fundo.codigoFundo <= 3); //Pega os três primeiros fundos
 
   const [searchText, setSearchText] = useState('');
   const marketToday = marketTodayData;
