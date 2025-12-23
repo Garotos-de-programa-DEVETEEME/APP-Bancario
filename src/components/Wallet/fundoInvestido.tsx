@@ -93,8 +93,8 @@ export const FundoInvestido = ({ fundoData, expanded, setExpanded }: FundoInvest
                 router.push({
                   pathname: "/carteira/resgatar",
                   params: {
-                    saldo: 10,
-                    valorMinimoPermanencia: fundoData.valorAplicacaoInicial,
+                    saldo: fundoData.valorSaldoResgatavelCliente,
+                    valorMinimoPermanencia: fundoData.valorSaldoMinimoPermanencia,
                     valorMinimoResgate: fundoData.valorMinimoResgateInternet,
                   },
                 })
