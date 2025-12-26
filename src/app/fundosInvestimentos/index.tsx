@@ -65,7 +65,7 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
   };
 
   return (
-    <View style={{paddingBottom:20}}>
+    <View>
         <View style={styles.container}>
           <SearchBar
             placeholder='Buscar fundo'
@@ -75,7 +75,7 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
             filter
             />
             <ScrollView showsVerticalScrollIndicator={false}>
-              <View className="gap-5">
+              <View className="gap-5 pb-5">
                 {investmentFunds.listaFundos.map((fund) => {
                   return (
                     <FundsCard
@@ -92,12 +92,11 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
 
             </ScrollView>
         </View>
-      
       <Modalize
         ref={modalizeRef}
-        adjustToContentHeight
         handleStyle={{ backgroundColor: theme.textSecundary }}
         modalStyle={{ backgroundColor: theme.backgroundCards }}
+        modalHeight={360}
       >
         <View style={{ flex: 1, alignItems: 'center', padding: 24, gap: 20, paddingTop: 40 }}>
             <StyledText style={{ fontSize: 22, fontFamily: 'Whitney-Bold', color: theme.text, textAlign: 'center' }}>
@@ -109,10 +108,11 @@ export default function FundoInvestimentoPage({ filters }: FundoInvestimentoProp
             <NavigationButton
                 onPress={handleNavigateToInvest}
                 text="Continuar"
-                width={261}
+                width={260}
             />
         </View>
       </Modalize>
+      
     </View>
   );
 }
