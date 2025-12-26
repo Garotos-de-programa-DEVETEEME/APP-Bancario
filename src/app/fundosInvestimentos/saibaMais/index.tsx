@@ -21,20 +21,20 @@ export default function SaibaMais() {
   const fundInformation = fundo !== null? [
     { left: 'Aplicação inicial', right: coinFormat(fundo.valorAplicacaoInicial) },
     { left: 'Investimento adicional mínimo', right: fundo.valorAplicacaoInicial },
-    { left: 'Resgate mínimo', right: fundo.valorMinimoResgatavel },
-    { left: 'Saldo mínimo para permanência', right: fundo.valorSaldoMinimo },
+    { left: 'Resgate mínimo', right: fundo.valorMinimoResgateInternet },
+    { left: 'Saldo mínimo para permanência', right: fundo.valorSaldoMinimoPermanencia },
     { left: 'Tipo de cota', right: 'Abertura' },
-    { left: 'Carência', right: fundo.dataCarenciaResgate },
+    { left: 'Carência', right: fundo?.sla },
     { left: 'Cota de aplicação', right: 'D+0' },
-    { left: 'Cota de resgate', right: `D+${fundo.prazoConversaoResgate}` },
-    { left: 'Débito em conta corrente', right: `D+${fundo.prazoConversaoResgate}` },
-    { left: 'Crédito em conta corrente', right: `D+${fundo.fundoPrazoCreditoConta}` },
+    { left: 'Cota de resgate', right: `D+${fundo.cotizacaoResgate}` },
+    { left: 'Débito em conta corrente', right: `D+${fundo.cotizacaoResgate}` },
+    { left: 'Crédito em conta corrente', right: `D+${fundo.cotizacaoResgate}` },
     { left: 'Taxa de gestão', right: `${fundo.taxaAdministracao}% a.a.` },
     { left: 'Taxa de distribuição', right:  `40% a.a. ` },
-    { left: 'Taxa de performance', right:`${fundo.taxaRentabilidade}% a.a.` },
+    { left: 'Taxa de performance', right:`${fundo.taxaAdministracao}% a.a.` },
     { left: 'Taxa de ingresso', right:`${fundo.taxaRentabilidade}% a.a.` },
     { left: 'Taxa de saída', right:`${fundo.taxaRentabilidade}% a.a.` },
-    { left: 'Horário limite para aplicação e resgate', right:`${fundo.horaLimiteAplicacaoInternet}:00` },
+    { left: 'Horário limite para aplicação e resgate', right:`${fundo.horaLimiteAplicacaoResgate}:00` },
   ]:[];
   return (
     <View style={styles.container}>
@@ -62,7 +62,7 @@ export default function SaibaMais() {
               Este fundo de investimento é destinado a investidores, pessoas físicas ou jurídicas, interessados em aplicar recursos no mercado de renda fixa com uma estratégia voltada para acompanhar a taxa SELIC. O fundo tem como objetivo proporcionar valorização das cotas dos seus cotistas por meio de aplicações em ativos financeiros de baixo risco, sendo classificado como renda fixa simples.
             </StyledText>
             <StyledText style={{fontSize: 14, fontWeight: '400', color:theme.text}}>
-              A política de investimento estabelece que, no mínimo, 95% do patrimônio líquido do fundo seja composto por títulos da dívida pública federal ou operações compromissadas lastreadas nesses títulos, assegurando maior segurança e previsibilidade ao investimento. No entanto, a rentabilidade do fundo está sujeita a deduções de custos e despesas, incluindo a taxa de administração, que impactam diretamente o retorno final para o investidor. {/*TODO adicionar descrição */} 
+              {/*TODO adicionar descrição */} 
             </StyledText>
           </View>
           <View style={{marginBottom:80, display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
