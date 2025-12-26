@@ -19,7 +19,8 @@ export default function TelaInicial() {
   const icons = iconsFundoDestaque;
 
   const fundosDestaque = MOCK_FUNDOS.listaFundos.filter(fundo => fundo.codigoFundo <= 3); //Pega os três primeiros fundos
-
+  let pratrimonio = 0;
+  fundosDestaque.map(fundo => pratrimonio += fundo.valorSaldoResgatavelCliente)
   const [searchText, setSearchText] = useState('');
   const marketToday = marketTodayData;
 
@@ -34,7 +35,7 @@ export default function TelaInicial() {
         <ClientHeader
           userName='Cliente'
           image={require('../../assets/Images/banestes-home.jpg')}
-          value={-1}
+          value={pratrimonio}
         />
         <View style={styles.buttonContainer}>
           <ButtonIcon
