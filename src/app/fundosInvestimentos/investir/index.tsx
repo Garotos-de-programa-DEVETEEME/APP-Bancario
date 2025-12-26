@@ -125,7 +125,7 @@ export default function DetalhesInvestimento() {
               <PriceInput
                 value={valorAplicarEmCentavos}
                 onValueChange={setValorAplicarEmCentavos}
-                placeholder={fund.valorAplicacaoInicial * 100}
+                numericPlaceholder={fund.valorAplicacaoInicial * 100}
               />
             </Animated.View>
 
@@ -163,7 +163,7 @@ export default function DetalhesInvestimento() {
               <PriceInput
                 value={valorMensalOpcional}
                 onValueChange={setValorMensalOpcional}
-                alternativeText="Opcional"
+                textPlaceholder="Opcional"
               />
             </Animated.View>
 
