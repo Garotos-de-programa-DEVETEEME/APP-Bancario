@@ -14,13 +14,13 @@ export const DocumentButton = ({type, title, alternativeIcon=false, documentoUri
     const theme = useTheme();
     return(
         <View>
-            <Pressable style={[{display:'flex', flexDirection:'row', alignItems:'center', width:160, height:64 }, type === 'default'? {boxSizing:'content-box' ,justifyContent:'center', borderWidth:2, borderColor:theme.text, borderRadius:10, }:{justifyContent:'flex-start', borderBottomColor:theme.border, borderBottomWidth:1, width:'100%', height:48, gap:16, paddingLeft:8,}]}>{/*TODO adicionar navegação para o documentoUri */}
+            <Pressable style={[{display:'flex', flexDirection:'row', alignItems:'center', width:160, height:64 }, type === 'default'? {boxSizing:'content-box' ,justifyContent:'center', borderWidth:2, borderColor:theme.textSecundary, borderRadius:10, }:{justifyContent:'flex-start', borderBottomColor:theme.border, borderBottomWidth:1, width:'100%', height:48, gap:16, paddingLeft:8,}]}>{/*TODO adicionar navegação para o documentoUri */}
                 {alternativeIcon? (
                     <Ionicons name="receipt-outline" color={theme.text} size={type ==='row'? 14:26} />
                 ):(
                     <MaterialCommunityIcons name="file" color={theme.text} size={type ==='row'? 14:26} />
                 )}
-                <StyledText style={{fontSize:16, fontWeight:'500'}}> {title} </StyledText>
+                <StyledText style={{fontSize:16, fontWeight:'500', color:theme.text}}> {title} </StyledText>
             </Pressable>
         </View>
     );    
