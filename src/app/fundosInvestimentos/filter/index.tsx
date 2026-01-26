@@ -77,7 +77,7 @@ export default function FilterFundsPage() {
   });
 
   useEffect(() => {
-    if (filters.length > 1) {
+    if (filters.length > 1) {//verifica se já ha filtros selecionados
       //atualiza os fltros com base no que foi selecionado anteriormente
       const tempArrayRisk = [...riskFilters]; //cria uma copia da array de filtros de risco
       filters.forEach((e) => {
