@@ -19,7 +19,7 @@ export const Styles: ThemeType = {
     tint: tintColor,
     alternativeIcon: '#A5A5A5',
     border: '#C9C9C9',
-    disabledButton: '#9BD1FF',
+    disabledButton: '#3EBC6880',
   },
   dark: {
     text: '#FFFFFF',
@@ -32,6 +32,6 @@ export const Styles: ThemeType = {
     tint: tintColor,
     alternativeIcon: '#ABABAB',
     border: '#3C3C3C',
-    disabledButton: '#9BD1FF',
+    disabledButton: '#3EBC6880',
   },
 };
