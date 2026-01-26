@@ -9,7 +9,7 @@ import { StyledText } from '@/src/components/StyledText';
 import { useTheme } from "@/src/hooks/useTheme";
 import { coinFormat } from '@/src/utils/coinFormat';
 import { useLocalSearchParams } from 'expo-router';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, Image } from 'react-native';
 
 export default function SaibaMais() {
   const { fundData } = useLocalSearchParams();
@@ -24,7 +24,7 @@ export default function SaibaMais() {
     { left: 'Resgate mínimo', right: fundo.valorMinimoResgateInternet },
     { left: 'Saldo mínimo para permanência', right: fundo.valorSaldoMinimoPermanencia },
     { left: 'Tipo de cota', right: 'Abertura' },
-    { left: 'Carência', right: fundo?.sla },
+    { left: 'Carência', right: 'n/a' },
     { left: 'Cota de aplicação', right: 'D+0' },
     { left: 'Cota de resgate', right: `D+${fundo.cotizacaoResgate}` },
     { left: 'Débito em conta corrente', right: `D+${fundo.cotizacaoResgate}` },
@@ -36,13 +36,26 @@ export default function SaibaMais() {
     { left: 'Taxa de saída', right:`${fundo.taxaRentabilidade}% a.a.` },
     { left: 'Horário limite para aplicação e resgate', right:`${fundo.horaLimiteAplicacaoResgate}:00` },
   ]:[];
+
   return (
     <View style={styles.container}>
       {fundo !== null? (
         <ScrollView showsVerticalScrollIndicator={false}>
-          <StyledText style={{fontSize:28, fontWeight:'500', color:theme.text}}>{fundo.nome}</StyledText>
-          <View style={{height:100}}>
-            {/* TODO componente grafico */}
+          <StyledText style={{fontSize:28, fontWeight:'500', color:theme.text, marginBottom: 40}}>{fundo.nome}</StyledText>
+          <View style={{display:'contents', flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+            {fundo?.taxaRentabilidade > 0? (
+              <Image
+                style={{ flex: 1, width: '100%', height: '100%' }}
+                resizeMode="contain"
+                source={require('../../../assets/Images/positive-graph.jpg')}
+              />                
+            ):(
+              <Image
+                style={{ flex: 1, width: '100%', height: '100%' }}
+                resizeMode="contain"
+                source={require('../../../assets/Images/negative-graph.png')}
+              />                
+            )}
           </View>
           <View>
               <TextRow left={'Saldo líquido'} right={coinFormat(fundo.valorAplicacaoInicial)}  bold />

@@ -4,6 +4,7 @@ import { StyledText } from "../StyledText";
 import { FundoInvestimento } from "@/src/@Types/fundos";
 import { StylesType } from "@/src/@Types/stylesType";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 interface HighlightFundProps {
     data: FundoInvestimento;
@@ -14,9 +15,10 @@ interface HighlightFundProps {
 export const HighlightFund = ({data, iconName}: HighlightFundProps) => { 
     const theme = useTheme();
     const styles = getStyles(theme);
+    const router = useRouter();
 
   return (
-    <Pressable onPress={() => {}}>{/*TODO redirecionar para a pagina de saiba mais ou investir do fundo */}
+    <Pressable onPress={() => router.push({pathname:'/fundosInvestimentos/saibaMais', params: {fundData: JSON.stringify(data)}})}>{/*TODO redirecionar para a pagina de saiba mais ou investir do fundo */}
         <View style={styles.container}>
             <View style={styles.titleContainer}>
                 <MaterialCommunityIcons  name={iconName.name} color={iconName.color} size={22}/>
