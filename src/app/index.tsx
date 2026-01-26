@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View className="flex-1">
       <ImageBackground
-        source={{ uri: 'https://legacy.reactjs.org/logo-og.png' }}
+        source={require('../assets/Images/image-33.png')}
         className="flex-1"
         resizeMode="cover"
       >

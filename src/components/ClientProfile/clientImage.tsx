@@ -15,9 +15,9 @@ export const ClientImage = ({name, image}:ClienteImageProps) => {
 
     return(
         <View>
-            <ImageBackground source={require('../../assets/Images/banestes-56-anos.png')} style={style.backgroundImage} imageStyle={{ borderRadius: 10 }}/>
+            <ImageBackground source={require('../../assets/Images/image-33.png')} style={style.backgroundImage} imageStyle={{ borderRadius: 10 }}/>
             <View style={style.imageContainer}>
-                <Image source={require('../../assets/Images/banestes-home.jpg')} style={style.clientImage}/>
+                <Image source={require('../../assets/Images/User.jpg')} style={style.clientImage}/>
             </View>
             <StyledText style={style.title}> {name} </StyledText>
         </View>

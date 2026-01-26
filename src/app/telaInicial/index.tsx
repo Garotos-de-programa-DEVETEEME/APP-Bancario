@@ -34,7 +34,7 @@ export default function TelaInicial() {
       <View style={styles.container}>
         <ClientHeader
           userName='Cliente'
-          image={require('../../assets/Images/banestes-home.jpg')}
+          image={require('../../assets/Images/User.jpg')}
           value={pratrimonio}
         />
         <View style={styles.buttonContainer}>
