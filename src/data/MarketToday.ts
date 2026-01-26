@@ -2,16 +2,16 @@ export const marketTodayData = [
     {
       nome: 'Dolar',
       porcentagem: -3.4,
-      valor: 200,
+      valor: 6.20,
     },
     {
-      nome: 'IBOVESTA',
+      nome: 'IBOVESPA',
       porcentagem: 10.3,
       valor: 185.9,
     },
     {
-      nome: 'BCRI11',
-      porcentagem: -5,
-      valor: 10,
+      nome: 'Tesouro Direto',
+      porcentagem: 15,
+      valor: 17000,
     },
   ];

@@ -24,7 +24,7 @@ export default function SaibaMais() {
     { left: 'Resgate mínimo', right: fundo.valorMinimoResgateInternet },
     { left: 'Saldo mínimo para permanência', right: fundo.valorSaldoMinimoPermanencia },
     { left: 'Tipo de cota', right: 'Abertura' },
-    { left: 'Carência', right: fundo?.sla },
+    { left: 'Carência', right: 'n/a' },
     { left: 'Cota de aplicação', right: 'D+0' },
     { left: 'Cota de resgate', right: `D+${fundo.cotizacaoResgate}` },
     { left: 'Débito em conta corrente', right: `D+${fundo.cotizacaoResgate}` },
