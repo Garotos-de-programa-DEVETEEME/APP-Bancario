@@ -87,7 +87,6 @@ export default function DetalhesInvestimento() {
         onClose={() => router.back()}
         onAccept={handleProfileAccept}
         clientName='Cliente'
-        image='https://legacy.reactjs.org/logo-og.png'
         />
 
     {perfilPreenchido && (

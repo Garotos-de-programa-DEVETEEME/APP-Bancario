@@ -1,6 +1,6 @@
 import EntrarButton from '@/src/components/Buttons/EntrarButton';
 import { router } from 'expo-router';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
 export default function App() {
   return (
@@ -10,6 +10,9 @@ export default function App() {
         className="flex-1"
         resizeMode="cover"
       >
+        <View style={{ marginTop: 100, maxHeight:60, justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={require('../assets/Images/Logo-Ipsum.png')} />
+        </View>
         <SafeAreaView className="flex-1 justify-end px-5 pb-10">
           <View className="flex-1" />
 

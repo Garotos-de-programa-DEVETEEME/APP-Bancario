@@ -25,8 +25,8 @@ export default function TelaInicial() {
   const marketToday = marketTodayData;
 
   const images = [
-    require('../../assets/Images/image-34.png'),
-    require('../../assets/Images/banestes-56-anos.png'),
+    require('../../assets/Images/banner-ipsum.jpg'),
+    require('../../assets/Images/banner-2-ipsum.jpg'),
   ];
 
   return (

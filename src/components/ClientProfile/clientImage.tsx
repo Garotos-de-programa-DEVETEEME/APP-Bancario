@@ -44,7 +44,7 @@ const getStyles = (theme:StylesType) => {
             borderRadius:100/2,
             width:100,
             height:100,
-            borderColor:theme.background,
+            borderColor:theme.text,
             borderWidth:2,
         },
         title:{
