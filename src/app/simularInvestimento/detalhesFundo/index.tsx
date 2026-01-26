@@ -12,9 +12,9 @@ import { useEffect, useRef, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import Animated, {
-  FadeIn,
-  FadeInDown,
-  LinearTransition
+    FadeIn,
+    FadeInDown,
+    LinearTransition
 } from 'react-native-reanimated';
 
 const formatCurrency = (valueInCents: number) => {
@@ -92,7 +92,7 @@ export default function DetalhesInvestimento() {
               <PriceInput
                 value={valorAplicarEmCentavos}
                 onValueChange={setValorAplicarEmCentavos}
-                placeholder={fund.valorAplicacaoInicial * 100}
+                numericPlaceholder={fund.valorAplicacaoInicial * 100}
               />
             </Animated.View>
 
@@ -130,7 +130,7 @@ export default function DetalhesInvestimento() {
               <PriceInput
                 value={valorMensalOpcional}
                 onValueChange={setValorMensalOpcional}
-                alternativeText="Opcional"
+                textPlaceholder="Opcional"
               />
             </Animated.View>
 

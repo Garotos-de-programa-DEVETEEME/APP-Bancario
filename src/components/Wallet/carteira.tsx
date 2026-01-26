@@ -1,6 +1,6 @@
 import { FundoInvestimento } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
-import { fundsColor } from "@/src/themes/fundosInvestdos";
+import { carteiraColors } from "@/src/themes/carteira";
 import { useMemo } from "react";
 import { View } from "react-native";
 import { StyledText } from "../StyledText";
@@ -13,8 +13,9 @@ interface WalletInfoCardProps {
 
 export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
   const theme = useTheme();
-
   const isEmpty = !fundosInvestidos || fundosInvestidos.length === 0;
+  let patrimonioTotal = 0;
+  fundosInvestidos.forEach(fundo => patrimonioTotal += fundo.valorSaldoResgatavelCliente)
   const cardShadow = useMemo(
     () => ({ elevation: 4, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 4 } }),
     []
@@ -33,7 +34,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
     >
       {/* Cabeçalho / Patrimônio */}
       <View style={{ borderBottomColor: theme.border, borderBottomWidth: 1 }}>
-        <PatrimonyCard value={100} cointaned={true} />
+        <PatrimonyCard value={patrimonioTotal} cointaned={true} />
       </View>
 
       {/* Seção: Valores + Gráfico */}
@@ -56,7 +57,7 @@ export const WalletInfoCard = ({ fundosInvestidos }: WalletInfoCardProps) => {
         ) : (
           fundosInvestidos.map((fundo, index) => {
             const cor =
-              fundsColor.find((i) => i.nome === fundo.nome)?.cor ??
+              carteiraColors.find((i) => i.nome === fundo.nome)?.cor ??
               theme.tint;
 
             const isLast = index === fundosInvestidos.length - 1;

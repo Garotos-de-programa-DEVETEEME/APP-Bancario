@@ -28,8 +28,8 @@ export const TodayMarket = ({fundoDestaque}:TodayMarketProps) =>{
                         </View>
                         <StyledText style={{color:fundoDestaque.porcentagem > 0? '#00C86B':'#FF5154'}} > {`${fundoDestaque.porcentagem}%`} </StyledText>
                     </View>
-                    <View style={{backgroundColor:theme.background, height:42, borderBottomEndRadius:16, borderBottomLeftRadius:16, justifyContent:'center',}}>
-                            <StyledText style={{color:theme.textSecundary, fontSize:14, paddingLeft:8}}>{coinFormat(fundoDestaque.valor)}</StyledText>
+                    <View style={{backgroundColor:theme.tint, height:42, borderBottomEndRadius:16, borderBottomLeftRadius:16, justifyContent:'center',}}>
+                            <StyledText style={{color:theme.text, fontSize:14, paddingLeft:8}}>{coinFormat(fundoDestaque.valor)}</StyledText>
                     </View>
             </View>
         </Pressable>

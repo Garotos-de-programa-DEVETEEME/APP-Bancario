@@ -19,13 +19,14 @@ export default function TelaInicial() {
   const icons = iconsFundoDestaque;
 
   const fundosDestaque = MOCK_FUNDOS.listaFundos.filter(fundo => fundo.codigoFundo <= 3); //Pega os três primeiros fundos
-
+  let pratrimonio = 0;
+  fundosDestaque.map(fundo => pratrimonio += fundo.valorSaldoResgatavelCliente)
   const [searchText, setSearchText] = useState('');
   const marketToday = marketTodayData;
 
   const images = [
-    require('../../assets/Images/image-34.png'),
-    require('../../assets/Images/banestes-56-anos.png'),
+    require('../../assets/Images/banner-ipsum.jpg'),
+    require('../../assets/Images/banner-2-ipsum.jpg'),
   ];
 
   return (
@@ -33,8 +34,8 @@ export default function TelaInicial() {
       <View style={styles.container}>
         <ClientHeader
           userName='Cliente'
-          image={require('../../assets/Images/banestes-home.jpg')}
-          value={-1}
+          image={require('../../assets/Images/User.jpg')}
+          value={pratrimonio}
         />
         <View style={styles.buttonContainer}>
           <ButtonIcon

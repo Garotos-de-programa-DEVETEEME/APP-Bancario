@@ -46,13 +46,14 @@ export default function ResgatarPage() {
           <PriceInput
             value={valorResgate}
             onValueChange={setValorResgate}
-            placeholder={valorResgate}
+            numericPlaceholder={valorResgate}
             // mantém seu estilo, só convertido
             alternativeStyle={{
               backgroundColor: "transparent",
               fontSize: 40,
               borderBottomColor: theme.tint,
               borderBottomWidth: 1,
+              color:theme.text
             }}
           />
         </View>

@@ -13,10 +13,9 @@ interface InvestorProfileProps {
     onClose: () => void;
     onAccept: () => void;
     clientName: string;
-    image: string;
 }
 
-export function InvestorProfile({ visible, onClose, onAccept, clientName, image }: InvestorProfileProps) {
+export function InvestorProfile({ visible, onClose, onAccept, clientName}: InvestorProfileProps) {
     const theme = useTheme();
     const styles = getStyles(theme);
 
@@ -86,7 +85,7 @@ export function InvestorProfile({ visible, onClose, onAccept, clientName, image 
                         <View style={styles.content}>
                             <View style={styles.profileCard}>
                                 <StyledText style={styles.cardGreeting}>Tudo bem {clientName}?</StyledText>
-                                <Image source={{ uri: image }} style={styles.image} />
+                                <Image source={require('../../assets/Images/User.jpg')} style={styles.image} />
                                 <StyledText style={styles.cardTitle}>Vamos Começar Seu Perfil de Investidor!</StyledText>
                             </View>
                         </View>

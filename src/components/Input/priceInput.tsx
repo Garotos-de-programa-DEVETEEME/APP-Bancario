@@ -5,8 +5,8 @@ import { StyleProp, StyleSheet, TextInput, TextStyle } from 'react-native';
 interface PriceInputProps {
     value: number;
     onValueChange: (value: number) => void;
-    placeholder?: number;
-    alternativeText?: string;
+    numericPlaceholder?: number;
+    textPlaceholder?: string;
     alternativeStyle?: StyleProp<TextStyle>;
 }
 
@@ -23,8 +23,8 @@ const formatCurrency = (valueInCents: number) => {
 export default function PriceInput({
     value,
     onValueChange,
-    placeholder,
-    alternativeText,
+    numericPlaceholder,
+    textPlaceholder,
     alternativeStyle
 }: PriceInputProps) {
     const theme = useTheme();
@@ -43,7 +43,7 @@ export default function PriceInput({
             value={value > 0 ? formatCurrency(value) : ''}
             onChangeText={handleTextChange}
             keyboardType="numeric"
-            placeholder={alternativeText ? alternativeText : placeholder? formatCurrency(placeholder): 'R$ 0,00'}
+            placeholder={textPlaceholder ? textPlaceholder : numericPlaceholder? formatCurrency(numericPlaceholder): 'R$ 0,00'}
             placeholderTextColor={theme.textSecundary}
             multiline={false}
         />

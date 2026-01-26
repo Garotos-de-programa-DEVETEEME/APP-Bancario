@@ -25,7 +25,7 @@ export const HighlightFund = ({data, iconName}: HighlightFundProps) => {
                 </View>
             </View>
             <View style={styles.footer}>
-                <StyledText style={{fontSize:10, color: theme.text}}><StyledText style={{color: "#00914D"}}> +{data.taxaRentabilidade.toFixed(2)}% </StyledText> no mês</StyledText>
+                <StyledText style={{fontSize:10, color: theme.text}}><StyledText style={{color:data.taxaRentabilidade > 0? "#49BB4F":"#FF4646"}}> +{data.taxaRentabilidade.toFixed(2)}% </StyledText> no mês</StyledText>
             </View>
         </View>
     </Pressable>
@@ -41,15 +41,15 @@ const getStyles = (theme: StylesType) => {
         borderRadius:16,
     },
     titleContainer: {
-        backgroundColor:theme.background,
-        borderTopLeftRadius:16,
-        borderTopRightRadius:16,
+        backgroundColor:theme.tint,
         justifyContent:'space-around',
         alignItems:'center',
         display:'flex',
         flexDirection:'row',
         height: 48,
         boxSizing:'border-box',
+        borderTopEndRadius:16,
+        borderTopStartRadius:16,
     },
     footer:{
         backgroundColor:theme.background, 

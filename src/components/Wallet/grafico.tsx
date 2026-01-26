@@ -10,7 +10,7 @@ import Svg, { Circle } from "react-native-svg";
 
 import { FundoInvestimento } from "@/src/@Types/fundos";
 import { useTheme } from "@/src/hooks/useTheme";
-import { fundsColor } from "@/src/themes/fundosInvestdos";
+import { carteiraColors } from "@/src/themes/carteira";
 
 // Componente animado do Circle
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -45,7 +45,7 @@ export const GraficWallet = ({ data }: InvestmentChartProps) => {
 
     let acc = 0;
     return data.map((item) => {
-      const color = fundsColor.find((o) => o.nome === item.nome)?.cor ?? "#999";
+      const color = carteiraColors.find((o) => o.nome === item.nome)?.cor ?? "#999";
       const pct = item.codigoFundo / totalValue; // 0..1
       const info: SliceInfo = { color, pct, offsetPct: acc };
       acc += pct;

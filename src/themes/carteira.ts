@@ -1,6 +1,6 @@
 //codigo para converter fundsType para FundosInvestimento
 
-export const fundsColor = [
+export const carteiraColors = [
     { id:'1', nome: 'IPSUM Inteligente Automático', cor: '#33609A' },
     { id:'2', nome: 'IPSUM Premium DI', cor: '#4C9AFE' },
     { id:'3', nome: 'IPSUM Incentivo Empresarial', cor: '#318535' },
