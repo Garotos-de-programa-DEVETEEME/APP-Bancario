@@ -1,15 +1,15 @@
-import { FilterType } from '@/src/@Types/Filter'
-import { StylesType } from '@/src/@Types/stylesType'
-import { FavoriteButton } from '@/src/components/Buttons/favoriteButton'
-import { NavigationButton } from '@/src/components/Buttons/navigationButton'
-import { FilterOption } from '@/src/components/SearchBar/filterOption'
-import { StyledText } from '@/src/components/StyledText'
-import { useFilters } from '@/src/Context/filterContext'
-import { useTheme } from '@/src/hooks/useTheme'
-import { riskTheme } from '@/src/themes/risk'
-import { router } from 'expo-router'
-import { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { FilterType } from '@/src/@Types/Filter';
+import { StylesType } from '@/src/@Types/stylesType';
+import { FavoriteButton } from '@/src/components/Buttons/favoriteButton';
+import { NavigationButton } from '@/src/components/Buttons/navigationButton';
+import { FilterOption } from '@/src/components/SearchBar/filterOption';
+import { StyledText } from '@/src/components/StyledText';
+import { useFilters } from '@/src/Context/filterContext';
+import { useTheme } from '@/src/hooks/useTheme';
+import { riskTheme } from '@/src/themes/risk';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function FilterFundsPage() {
   const { filters, setFilters } = useFilters();
@@ -77,23 +77,33 @@ export default function FilterFundsPage() {
   });
 
   useEffect(() => {
-    if (filters.length > 1) {//verifica se já ha filtros selecionados
-      //atualiza os fltros com base no que foi selecionado anteriormente
-      const tempArrayRisk = [...riskFilters]; //cria uma copia da array de filtros de risco
-      filters.forEach((e) => {
-        if (e.id < 4) {
-          const tempArrayValue = [...valueFilters];
-          tempArrayValue[e.id - 1] = e;
-          setValueFilters(tempArrayValue); //define a risco de filtross igual a sua copia modifica pois pode conter mais de uma alteração
-        } else if (e.id < 8) {
-          //caso o id esteja no intervalo de ids de filtros de risco altera a copia da array de riscos
-          tempArrayRisk[e.id - 4] = e;
-        } else {
-          //filtro de favoritos
-          setStarFilter(e);
+    if (filters.length > 0) {
+      // Cria cópias locais para manipulação
+      const tempValueFilters = [...valueFilters];
+      const tempRiskFilters = [...riskFilters];
+
+      filters.forEach((filter) => {
+        if (filter.id <= 3) {
+          // Filtros de valor (ids 1, 2, 3) -> Índices 0, 1, 2
+          const index = filter.id - 1;
+          if (index >= 0 && index < tempValueFilters.length) {
+            tempValueFilters[index] = { ...filter, selected: true };
+          }
+        } else if (filter.id >= 4 && filter.id <= 7) {
+          // Filtros de risco (ids 4, 5, 6, 7) -> Índices 0, 1, 2, 3
+          const index = filter.id - 4;
+          if (index >= 0 && index < tempRiskFilters.length) {
+            tempRiskFilters[index] = { ...filter, selected: true };
+          }
+        } else if (filter.id === 8) {
+          // Filtro de favoritos
+          setStarFilter({ ...filter, selected: true });
         }
       });
-      setRiskFilters(tempArrayRisk); //define os filtros de risco igual a sua copia modifica, pois pode conter mais de uma alteração
+
+      // Atualiza os estados uma única vez após processar toda a lista
+      setValueFilters(tempValueFilters);
+      setRiskFilters(tempRiskFilters);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -143,7 +153,10 @@ export default function FilterFundsPage() {
       selectedFilters = [...selectedFilters, starFilter];
     }
     setFilters(selectedFilters); //defini o valor dos filtros globais de acordo com os filtros selecionados
-    router.push({pathname: '/pagesWithTabs', params:{defaultTab:'fundos'}});
+    router.push({
+      pathname: '/pagesWithTabs',
+      params: { defaultTab: 'fundos' },
+    });
   };
 
   return (
