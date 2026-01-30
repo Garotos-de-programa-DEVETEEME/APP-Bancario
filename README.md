@@ -20,6 +20,7 @@ Foi adotado o **Expo Router** para uma gestão de rotas baseada em ficheiros. A 
 A aplicação integra a **Context API** na gestão centralizada de estados globais e o **NativeWind** para uma estilização dinâmica. A performance visual é assegurada pela biblioteca **Reanimated**, otimizando a renderização de listas e transições para manter uma fluidez constante de 60fps.
 
 Todo o projeto foi desenvolvido em **TypeScript**. As interfaces definidas em `src/@Types` asseguram a integridade dos dados que fluem entre os componentes.
+
 ## Funcionalidades Implementadas
 
 A aplicação cobre os principais pontos de uma jornada essencial para um investidor:
@@ -39,7 +40,7 @@ src/
 ├── data/           # Mock Data (Simulação de API)
 ├── hooks/          # Custom Hooks
 ├── themes/         # Definições de cores e estilos
-└── utils/          # Funções utilitárias (Formatação de moeda/hora)
+└── utils/          # Funções utilitárias
 ```
 
 ## Pré-requisitos e Instalação
@@ -64,7 +65,7 @@ npm start
 
    Projeto desenvolvido com dedicação por:
 
-**[Arthur Marinho](https://www.linkedin.com/in/arthurcmarinho/)** •  **[Lucas Machado](https://www.linkedin.com/in/dev-lucas-machado/)** •  **[Rafael Crema](https://www.linkedin.com/in/rafaelbcrema/)**
+**[Arthur Marinho](https://www.linkedin.com/in/arthurcmarinho/)** •  **[Lucas Machado](https://www.linkedin.com/in/dev-lucas-machado/)** •  **[Rafael Crema](https://www.linkedin.com/in/rafaelbcrema/)** •  **[Bruno Santos Lokchin](https://www.linkedin.com/in/blokchin//)** 
 
-© 2026 **Arthur Marinho, Lucas Machado e Rafael Crema**. Todos os direitos reservados.
+© 2026 **Arthur Marinho, Lucas Machado, Bruno Lokchin e Rafael Crema**. Todos os direitos reservados.
 Este projeto é para fins exclusivos de portfólio e demonstração. A reprodução, distribuição ou uso comercial deste código sem autorização expressa dos autores é proibida.
