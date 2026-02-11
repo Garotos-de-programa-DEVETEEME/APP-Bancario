@@ -7,7 +7,7 @@ import { FundDetails } from '@/src/components/InfoTexts/fundDetails';
 import DropdownInput from '@/src/components/Input/dropdownInput';
 import PriceInput from '@/src/components/Input/priceInput';
 import { useTheme } from '@/src/hooks/useTheme';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { Modalize } from 'react-native-modalize';
@@ -24,6 +24,7 @@ const formatCurrency = (valueInCents: number) => {
 
 export default function DetalhesInvestimento() {
   const { fundData } = useLocalSearchParams();
+  const router = useRouter();
   const theme = useTheme();
 
   const modalizeRef = useRef<Modalize>(null);
@@ -256,7 +257,7 @@ export default function DetalhesInvestimento() {
               <View className="flex-row justify-between mb-[2px]">
                 <Text style={{ fontSize: 15, color: theme.text }}>Liquidação de resgate:</Text>
                 <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text }}>
-                  D+{fund.prazoConversaoResgate} (Dias Úteis)
+                  D+10 (Dias Úteis)
                 </Text>
               </View>
             </Animated.View>
@@ -310,7 +311,7 @@ export default function DetalhesInvestimento() {
               className="items-center mt-2"
             >
               <NavigationButton
-                onPress={() => console.log('Pressionado')}/* TODO redirecionar pagina investir */
+                onPress={() => router.push('/telaInicial')}/* TODO redirecionar pagina investir */
                 text="Aplicar Investimento"
                 width={261}
                 height={37}
