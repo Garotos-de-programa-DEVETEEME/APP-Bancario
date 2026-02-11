@@ -4,11 +4,11 @@ import { useTheme } from '@/src/hooks/useTheme';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  TextInput,
-  View,
+    Pressable,
+    ScrollView,
+    StyleSheet,
+    TextInput,
+    View,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FiltersSelected } from './FiltersSelected';
@@ -53,21 +53,20 @@ export const SearchBar = ({
       ]}
     >
       <View style={styles.searchContainer}>
-        {filter && filters.length > 0 ? ( //confere se a filtragem foi feita e caso sim se há filtros selecionados
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={{ maxWidth: 306, flexGrow: 0 }}
-              contentContainerStyle={{
-                flexDirection: 'row',
-                gap: 10,
-              }}
-            >
-              {filters.map((filter) => (
-                <FiltersSelected data={filter} key={filter.id} />
-              ))}
-              
-            </ScrollView>
+        {filter && filters.some((f) => f.length > 0) ? ( //confere se a filtragem foi feita e caso sim se há filtros selecionados
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ maxWidth: 306, flexGrow: 0 }}
+            contentContainerStyle={{
+              flexDirection: 'row',
+              gap: 10,
+            }}
+          >
+            {filters.flat().map((filter) => (
+              <FiltersSelected data={filter} key={filter.id} />
+            ))}
+          </ScrollView>
         ) : (
           <>
             <Pressable onPress={onIconPress}>
@@ -88,12 +87,24 @@ export const SearchBar = ({
         )}
       </View>
       {hasFilter && (
-        <View style={{display:'flex', flexDirection:'row', alignItems:'center', gap:15 }}>
-          {(filter && filters.length > 0) && (//caso a filtragem tenha sido feita adiciona o botão de remover filtros
-            <Pressable onPress={() => setFilters([])}>
-                <MaterialCommunityIcons name="close-circle-outline" color={theme.border} size={24} />
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 15,
+          }}
+        >
+          {filter &&
+            filters.some((f) => f.length > 0) && ( //caso a filtragem tenha sido feita adiciona o botão de remover filtros
+              <Pressable onPress={() => setFilters([[], [], []])}>
+                <MaterialCommunityIcons
+                  name='close-circle-outline'
+                  color={theme.border}
+                  size={24}
+                />
               </Pressable>
-          )}
+            )}
           <MaterialIcons
             name='filter-list'
             style={styles.filterIcon}

@@ -15,7 +15,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Modalize } from 'react-native-modalize';
 
 interface FundoInvestimentoProps {
-  filters?: FilterType[];
+  filters?: [FilterType[], FilterType[], FilterType[]];
 }
 
 export default function FundoInvestimentoPage({
@@ -69,12 +69,11 @@ export default function FundoInvestimentoPage({
     }
 
     // Filtros selecionados (Valor e Risco)
-    if (filtersContext.length > 0) {
-      const valueFilters = filtersContext.filter((f) => f.id <= 3);
-      const riskFilters = filtersContext.filter((f) => f.id >= 4 && f.id <= 7);
+    if (filtersContext.some((arr) => arr.length > 0)) {
+      const [favoriteFilters, valueFilters, riskFilters] = filtersContext;
 
       // Se houver filtro de favoritos (id 8) e não temos a prop no mock, por enquanto ignoramos ou implementamos se houver lógica
-      // const favoriteFilter = filtersContext.find(f => f.id === 8);
+      // const favoriteFilter = favoriteFilters.length > 0;
 
       filteredList = filteredList.filter((fund) => {
         // Filtro por valor (OR entre as opções de valor)

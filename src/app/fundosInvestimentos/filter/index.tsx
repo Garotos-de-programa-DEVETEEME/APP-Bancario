@@ -77,31 +77,33 @@ export default function FilterFundsPage() {
   });
 
   useEffect(() => {
-    if (filters.length > 0) {
-      // Cria cópias locais para manipulação
-      const tempValueFilters = [...valueFilters];
-      const tempRiskFilters = [...riskFilters];
+    if (filters.some((arr) => arr.length > 0)) {
+      const [favoriteFiltersList, valueFiltersList, riskFiltersList] = filters;
 
-      filters.forEach((filter) => {
-        if (filter.id <= 3) {
-          // Filtros de valor (ids 1, 2, 3) -> Índices 0, 1, 2
-          const index = filter.id - 1;
-          if (index >= 0 && index < tempValueFilters.length) {
-            tempValueFilters[index] = { ...filter, selected: true };
-          }
-        } else if (filter.id >= 4 && filter.id <= 7) {
-          // Filtros de risco (ids 4, 5, 6, 7) -> Índices 0, 1, 2, 3
-          const index = filter.id - 4;
-          if (index >= 0 && index < tempRiskFilters.length) {
-            tempRiskFilters[index] = { ...filter, selected: true };
-          }
-        } else if (filter.id === 8) {
-          // Filtro de favoritos
-          setStarFilter({ ...filter, selected: true });
+      // Atualiza filtros de valor
+      const tempValueFilters = [...valueFilters];
+      valueFiltersList.forEach((filter) => {
+        const index = filter.id - 1;
+        if (index >= 0 && index < tempValueFilters.length) {
+          tempValueFilters[index] = { ...filter, selected: true };
         }
       });
 
-      // Atualiza os estados uma única vez após processar toda a lista
+      // Atualiza filtros de risco
+      const tempRiskFilters = [...riskFilters];
+      riskFiltersList.forEach((filter) => {
+        const index = filter.id - 4;
+        if (index >= 0 && index < tempRiskFilters.length) {
+          tempRiskFilters[index] = { ...filter, selected: true };
+        }
+      });
+
+      // Atualiza filtro de favoritos
+      if (favoriteFiltersList.length > 0) {
+        setStarFilter({ ...favoriteFiltersList[0], selected: true });
+      }
+
+      // Atualiza os estados
       setValueFilters(tempValueFilters);
       setRiskFilters(tempRiskFilters);
     }
@@ -143,16 +145,12 @@ export default function FilterFundsPage() {
   };
 
   const updateFilters = () => {
-    // cria uma array somente com os filtros selecionados
-    let selectedFilters: FilterType[] = [
-      ...filterSelected(valueFilters),
-      ...filterSelected(riskFilters),
-    ];
-    if (starFilter.selected) {
-      //caso o filtro de favoritos esteja seleciionado adiciona-o no array de filtros selecionados
-      selectedFilters = [...selectedFilters, starFilter];
-    }
-    setFilters(selectedFilters); //defini o valor dos filtros globais de acordo com os filtros selecionados
+    // cria uma array organizado (favoritos, valor, risco)
+    const selectedFavorites = starFilter.selected ? [starFilter] : [];
+    const selectedValues = filterSelected(valueFilters);
+    const selectedRisks = filterSelected(riskFilters);
+
+    setFilters([selectedFavorites, selectedValues, selectedRisks]); // A ordem é importante: [favoritos, valores, riscos]
     router.push({
       pathname: '/pagesWithTabs',
       params: { defaultTab: 'fundos' },
