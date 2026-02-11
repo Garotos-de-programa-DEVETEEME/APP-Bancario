@@ -1,48 +1,71 @@
-# Front-end Asset
+# App IPSUM
 
-## Descrição
+![React Native](https://img.shields.io/badge/React_Native-v0.76-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-v5.0-blue)
 
-Este é o front-end do projeto Asset, desenvolvido com React Native e TypeScript. O projeto é responsável por gerenciar os ativos e suas operações.
+## Visão Geral do Projeto
 
-## Pré-requisitos
+O **App IPSUM** é uma demonstração de uma aplicação móvel desenvolvida para simular o ecossistema de investimentos de um banco digital. O projeto apresenta uma interface de alta fidelidade que permite ao utilizador gerir o seu património, consultar a evolução de ativos e realizar simulações de rendimento em tempo real.
 
-- React Native (versão recomendada: 18.x ou superior)
-- npm ou yarn
-- TypeScript
+| Dashboard | Home-page | Carteira |
+|:---:|:---:|:---:|
+| <img src="https://github.com/rafaelbcrema/images-ipsum/blob/main/main.png?raw=true" width="200" /> | <img src="https://github.com/rafaelbcrema/images-ipsum/blob/main/home.png?raw=true" width="200" /> | <img src="https://github.com/rafaelbcrema/images-ipsum/blob/main/wallet.png?raw=true" width="200" /> |
 
-## Instalação
+## Arquitetura e Decisões Técnicas
 
-1. Clone o repositório:
+A aplicação foi construída sobre o ecossistema **Expo (SDK 52)**, tirando partido das mais recentes funcionalidades do React Native.
 
-```bash
+Foi adotado o **Expo Router** para uma gestão de rotas baseada em ficheiros. A estrutura de pastas segue uma organização modular, separando claramente as camadas de visualização (`src/app`), lógica de negócio (`src/hooks`) e componentes de interface (`src/components`).
 
-```
+A aplicação integra a **Context API** na gestão centralizada de estados globais e o **NativeWind** para uma estilização dinâmica. A performance visual é assegurada pela biblioteca **Reanimated**, otimizando a renderização de listas e transições para manter uma fluidez constante de 60fps.
 
-2. Instale as dependências:
+Todo o projeto foi desenvolvido em **TypeScript**. As interfaces definidas em `src/@Types` asseguram a integridade dos dados que fluem entre os componentes.
 
-```bash
-npm install
-# ou
-yarn install
-```
+## Funcionalidades Implementadas
 
-## Scripts Disponíveis
+A aplicação cobre os principais pontos de uma jornada essencial para um investidor:
 
-- `npm start`: Inicia a aplicação
-- `npm run android`: Inicia a aplicação no android studio
-- `npm run test`: Executa os testes
-- `npm run lint`: Executa o linter para verificar o código
+1.  **Dashboard e Carteira:** Visualização do saldo total e gráficos de alocação de ativos renderizados via SVG.
+2.  **Sistema de Filtros:** Um motor de busca que permite classificar fundos por nível de risco, valor mínimo e categoria.
+3.  **Personalização:** Suporte completo a tema escuro, com a preferência do utilizador salva localmente.
+4.  **Simulação:** Ferramenta para projeção de rendimentos futuros com base em taxas pré-definidas.
 
-## Estrutura do Projeto
-
+## Estrutura do Projeto e Pastas
 ```
 src/
-  ├── app/                # Contém as rotas e telas principais do aplicativo, organizadas segundo a convenção de roteamento do Expo Router.
-  ├── assets/             # Contém todos os recursos estáticos da aplicação, como imagens, fontes e ícones.
-  ├── components/         # Contém componentes visuais e lógicos reutilizáveis.
-  ├── constants/          # Armazena valores fixos e reutilizáveis utilizados em diferentes partes da aplicação, como paleta de cores, que não alteram durante a execução do aplicativo
-  ├── hooks/              # Contém funções reutilizáveis baseadas nos React Hooks.
-  ├── scripts/            # Contém scripts auxiliares usados durante o desenvolvimento.
-  ├── .gitignore/         # Contém a lista de arquivos que vão ser ignorados em cada Commit no Git do projeto. Usado par armazenar informações confidenciais
-  └── app.json/           # Arquivo de configuração do Expo.
+├── @Types/         # Definições de Tipos TypeScript
+├── app/            # Rotas e Telas
+├── components/     # Componentes Reutilizáveis
+├── Context/        # Gestão de Estado Global
+├── data/           # Mock Data (Simulação de API)
+├── hooks/          # Custom Hooks
+├── themes/         # Definições de cores e estilos
+└── utils/          # Funções utilitárias
 ```
+
+## Pré-requisitos e Instalação
+
+Para executar este projeto localmente, é necessário ter o ambiente Node.js configurado.
+
+```bash
+# 1. Clonar o repositório
+git clone [https://github.com/Garotos-de-programa-DEVETEEME/APP-Bancario.git](https://github.com/Garotos-de-programa-DEVETEEME/APP-Bancario.git)
+
+# 2. Ir ao diretório do projeto
+cd APP-BANCARIO
+
+# 3. Instalar as dependências
+npm install
+
+# 4. Executar o servidor de desenvolvimento
+npm start
+```
+
+   ## Equipe
+
+   Projeto desenvolvido com dedicação por:
+
+**[Arthur Marinho](https://www.linkedin.com/in/arthurcmarinho/)** •  **[Lucas Machado](https://www.linkedin.com/in/dev-lucas-machado/)** •  **[Rafael Crema](https://www.linkedin.com/in/rafaelbcrema/)** •  **[Bruno Santos Lokchin](https://www.linkedin.com/in/blokchin//)** 
+
+© 2026 **Arthur Marinho, Lucas Machado, Bruno Lokchin e Rafael Crema**. Todos os direitos reservados.
+Este projeto é para fins exclusivos de portfólio e demonstração. A reprodução, distribuição ou uso comercial deste código sem autorização expressa dos autores é proibida.
