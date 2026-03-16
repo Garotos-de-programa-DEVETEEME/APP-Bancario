@@ -7,7 +7,7 @@
 
 O **App IPSUM** é uma demonstração de uma aplicação móvel desenvolvida para simular o ecossistema de investimentos de um banco digital. O projeto apresenta uma interface de alta fidelidade que permite ao utilizador gerir o seu património, consultar a evolução de ativos e realizar simulações de rendimento em tempo real. 
 
-| Dashboard | Home-page | Carteira |
+| Pagina Login | Home-page | Carteira |
 |:---:|:---:|:---:|
 | <img src="https://github.com/rafaelbcrema/images-ipsum/blob/main/main.png?raw=true" width="200" /> | <img src="https://github.com/rafaelbcrema/images-ipsum/blob/main/home.png?raw=true" width="200" /> | <img src="https://github.com/rafaelbcrema/images-ipsum/blob/main/wallet.png?raw=true" width="200" /> |
 
