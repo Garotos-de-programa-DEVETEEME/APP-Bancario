@@ -13,7 +13,7 @@ O **App IPSUM** é uma demonstração de uma aplicação móvel desenvolvida par
 
 ## Arquitetura
 
-A aplicação foi construída sobre o ecossistema **Expo (SDK 52)**, tirando partido das mais recentes funcionalidades do React Native.
+A aplicação foi construída sobre o ecossistema **Expo (SDK 52)**,utilizando as mais recentes funcionalidades do React Native.
 
 Foi adotado o **Expo Router** para uma gestão de rotas baseada em ficheiros. A estrutura de pastas segue uma organização modular, separando claramente as camadas de visualização (`src/app`), lógica de negócio (`src/hooks`) e componentes de interface (`src/components`).
 
